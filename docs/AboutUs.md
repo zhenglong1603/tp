@@ -12,6 +12,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ## Project team
 
 ### Mervyn Teo
+
 <img src="images/mervyn-teo.png" width="200px">
 
 [[github](http://github.com/mervyn-teo)]
@@ -19,3 +20,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: IntelliJ expert
 * Responsibilities: Backend
+
+### Pun Yik Hong
+
+<img src="images/awlarpi.png" width="200px">
+
+[[github](http://github.com/awlarpi)]
+
+* Role: Testing
+* Responsibilities: Unit Testing + System Testing
