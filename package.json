@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "markbind-cli": "^5.5.3"
+  }
+}
