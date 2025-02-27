@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Sue Zheng Long
 
 <img src="images/zhenglong1603.png" width="200px">
 
@@ -20,3 +20,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Documentation
 * Responsibilities: Writing Clear and Concise Documentation
 
+### Mervyn Teo
+
+<img src="images/mervyn-teo.png" width="200px">
+
+[[github](http://github.com/mervyn-teo)]
+[[portfolio](team/mervyn-teo.md)]
+
+* Role: IntelliJ expert
+* Responsibilities: Backend
+
+### Pun Yik Hong
+
+<img src="images/awlarpi.png" width="200px">
+
+[[github](http://github.com/awlarpi)]
+
+* Role: Testing
+* Responsibilities: Unit Testing + System Testing
