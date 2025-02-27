@@ -11,6 +11,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Mervyn Teo
+
+<img src="images/mervyn-teo.png" width="200px">
+
+[[github](http://github.com/mervyn-teo)]
+[[portfolio](team/mervyn-teo.md)]
+
+* Role: IntelliJ expert
+* Responsibilities: Backend
+
 ### Pun Yik Hong
 
 <img src="images/awlarpi.png" width="200px">
