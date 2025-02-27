@@ -11,6 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Lim Shao Qi
+
+<img src="images/limshaoqi.png" width="200px">
+
+[[github](https://github.com/limshaoqi)]
+
+* Role: Gangster skrtttt
+* Responsibilities: Motivating the Team and Time Keeper
+
 ### Sue Zheng Long
 
 <img src="images/zhenglong1603.png" width="200px">
@@ -29,6 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: IntelliJ expert
 * Responsibilities: Backend
+
 
 ### Pun Yik Hong
 
