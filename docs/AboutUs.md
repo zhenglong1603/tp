@@ -11,51 +11,50 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lim Shao Qi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/limshaoqi.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/limshaoqi)]
 
-* Role: Project Advisor
+* Role: Gangster skrtttt
+* Responsibilities: Motivating the Team and Time Keeper
 
-### Jane Doe
+### Sue Zheng Long
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhenglong1603.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zhenglong1603)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Writing Clear and Concise Documentation
 
-### Johnny Doe
+### Mervyn Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mervyn-teo.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/mervyn-teo)]
+[[portfolio](team/mervyn-teo.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: IntelliJ expert
+* Responsibilities: Backend
 
-### Jean Doe
+### Pun Yik Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/awlarpi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/awlarpi)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Testing
+* Responsibilities: Unit Testing + System Testing
 
-### James Doe
+### Dang Hoang Duy
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/diligentpenguinn.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/DiligentPenguinn)]
+[[linkedIn](https://www.linkedin.com/in/dang-hoang-duy-0485b025b/)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Member
+* Responsibility: Code
+
