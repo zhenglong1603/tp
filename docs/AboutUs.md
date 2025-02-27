@@ -11,6 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Sue Zheng Long
+
+<img src="images/zhenglong1603.png" width="200px">
+
+[[github](http://github.com/zhenglong1603)]
+
+* Role: Documentation
+* Responsibilities: Writing Clear and Concise Documentation
+
 ### Mervyn Teo
 
 <img src="images/mervyn-teo.png" width="200px">
