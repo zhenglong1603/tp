@@ -274,57 +274,269 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+General Clinic Counter Receptionist
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+* Helps to keep track of the patients’ records and add details
+* Keep track of patients’ medicine needs (for supply management)
+* Helps people who type fast
+* Ensures accurate patient information handling
+* Help set up and manage appointments with patients
+* Powerful search and filtering
+
 
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely to have) - *
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
+| Priority     | As a ...                            | I want to ...                                                     | So that ...                                                                   |
+| ------------ | ----------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `***`    | Basic User                          | add medicine usage records                                        | the supply management system remains accurate.                                |
+| `***`    | Basic User                          | delete medicine usage records                                     | the supply management system remains accurate.                                |
+| `***`    | Basic User                          | view detailed patient medical history                             | I have the necessary context during patient check-in.                         |
+| `***`    | Basic User                          | view patients’ medicine needs                                     | I can manage the clinic’s medicine supply efficiently.                        |
+| `***`    | Basic User                          | view patient records                                              | I always work with the most current information.                              |
+| `***`    | Basic User                          | view patient's appointments                                       | I always work with the most current information.                              |
+| `***`    | Basic User                          | add medical history                                               | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | delete medical history                                            | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | quickly add new patient details                                   | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | quickly delete new patient details                                | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | add appointments                                                  | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | delete appointments                                               | the clinic database remains current and accurate.                             |
+| `**` | Basic User                          | edit existing patient details                                     | all information stays up-to-date and error-free.                              |
+| `**` | Advanced User                       | search for patient records using various filters                  | I can locate the right records quickly and efficiently.                       |
+| `**` | Basic User                          | schedule new patient appointments                                 | clinic visits are well organized.                                             |
+| `**` | Advanced/Forgetful User             | receive notifications for upcoming appointments                   | I can remind patients and manage time effectively.                            |
+| `**` | Basic User                          | quickly update appointment details                                | any last-minute changes are accurately reflected in the schedule.             |
+| `**` | Basic User                          | view real-time inventory levels of medicines                      | I know when to reorder supplies without delays.                               |
+| `**` | Basic User                          | update medicine usage records                                     | the supply management system remains accurate.                                |
+| `**` | Advanced User/Fast Typer            | utilize fast-typing shortcuts during data entry                   | I can enter information quickly and reduce wait times.                        |
+| `**` | Beginner, Basic User, Advanced User | work with an intuitive user interface                             | I need less training and can work more efficiently.                           |
+| `**` | Basic User, Beginner                | have error-prevention features built into the data entry process  | patient information is recorded correctly the first time.                     |
+| `**` | Basic User                          | confirm any record changes before finalizing them                 | I avoid mistakes and ensure accuracy in patient data.                         |
+| `**` | Basic User                          | search for patients by multiple parameters (e.g., name, ID, date) | I can quickly narrow down results to find the correct record.                 |
+| `**` | Basic User                          | filter appointments by date and time                              | I can efficiently manage busy schedules.                                      |
+| `**` | Basic User                          | receive alerts for potential double-booking                       | scheduling conflicts are minimized.                                           |
+| `**` | Basic User                          | securely export patient data                                      | backups are maintained and information can be shared with authorized parties. |
+| `**` | Basic User                          | import external patient data                                      | existing records are seamlessly integrated into Klinix.                       |
+| `**` | Advanced User, Beginner             | receive suggestions for common search queries                     | I can work faster and reduce typing effort.                                   |
+| `**` | Basic User, Beginner                | navigate the application easily                                   | I can quickly access the functionality I need most often.                     |
+| `**` | Forgetful User                      | add notes during patient check-in                                 | any additional details are captured for future reference.                     |
+| `**` | Forgetful User                      | mark patients as “visited” after their appointments               | follow-ups and further actions can be tracked efficiently.                    |
+| `**` | Advanced User, Careless user        | flag incomplete or inconsistent records                           | I can follow up and ensure all necessary details are completed.               |
+| `**` | Basic User                          | securely log out of the system                                    | patient data remains confidential and secure.                                 |
+| `**` | Basic User                          | securely log in                                                   | patient data remains confidential and secure.                                 |
+| `**` | Beginner                            | view the user guide easily                                        | I can learn more about the product as and when I need                         |
+| `**` | Beginner                            | view sample data table                                            | I can see what the end result would look like                                 |
+| `**` | Beginner                            | see common medicines when entering prescriptions                  | so I don’t need to type everything manually                                   |
+| `*`     | Basic User                          | generate daily appointment and check-in reports                   | I can plan resources and follow up as needed.                                 |
+| `*`     | Advanced User                       | set up automatic email/SMS reminders for patients                 | patients receive timely notifications about their appointments.               |
+| `*`     | Advanced User                       | filter records based on insurance type or payment status          | I can assist with billing and insurance-related queries promptly.             |
+| `*`     | Basic User, Beginner                | view a visual calendar of appointments                            | I can manage daily schedules more intuitively.                                |
+| `*`     | Beginner                            | see pop-up help tips when hovering over icons or fields           | I understand what each element does without feeling overwhelmed               |
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Klinix` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add Patient**
 
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1. User requests to add a new patient.
+2. System validates the provided NRIC, name, age, contact number, and address.
+3. If all inputs are valid and the NRIC is unique, the system registers the patient.
+4. System confirms successful patient registration.
 
 **Extensions**
+- 2a. Missing required parameters → System returns an appropriate error message.
+- 2b. Invalid NRIC, name, age, or contact number → System returns an appropriate error message.
+- 3a. Duplicate NRIC detected → System returns "Error: Duplicate patient detected. Patient with NRIC <NRIC> already exists."
+- 4a. System error occurs → System returns "Error: Unable to add patient due to system error."
 
-* 2a. The list is empty.
+Use case ends.
 
-  Use case ends.
+---
 
-* 3a. The given index is invalid.
+**Use case: Delete Patient**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+1. User requests to delete a patient by NRIC.
+2. System validates the NRIC.
+3. System checks if a matching patient exists.
+4. If the patient exists, the system deletes the patient record.
+5. System confirms successful deletion.
 
-      Use case resumes at step 2.
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 3a. No matching patient found → System returns "Error: No patient found with the given NRIC."
+- 3b. Unexpected duplicate records → System returns "Error: Duplicate patient records detected. Contact administrator."
+- 4a. System error occurs → System returns "Error: Unable to delete patient due to system error."
 
+Use case ends.
+
+---
+
+**Use case: Add Medical Report**
+
+**MSS**
+1. User requests to add a medical report for a patient.
+2. System validates the NRIC.
+3. System checks if the patient exists.
+4. System records the provided medical history (allergies, illnesses, surgeries, immunizations, medical usage).
+5. System confirms successful addition.
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 3a. No matching patient found → System returns "Error: No medical report found with the given NRIC."
+- 4a. Duplicate entry detected → System returns "Error: Duplicate entry detected. No changes were made."
+
+Use case ends.
+
+---
+
+**Use case: Delete Medical Report**
+
+**MSS**
+1. User requests to delete a patient’s medical report.
+2. System validates the NRIC.
+3. System checks if a medical report exists for the patient.
+4. If a medical report exists, the system deletes it.
+5. System confirms successful deletion.
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 3a. No medical report found → System returns "Error: No medical report found with the given NRIC."
+
+Use case ends.
+
+---
+
+**Use case: Add Medicine Usage Record**
+
+**MSS**
+1. User requests to add a medicine usage record for a patient.
+2. System validates the NRIC.
+3. System checks if the patient exists.
+4. System records the medicine name, dosage, start date, and end date.
+5. System confirms successful addition.
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 3a. No medical report found → System returns "Error: Medical report for Patient [NRIC] is missing."
+- 4a. Duplicate entry detected → System returns "Error: Duplicate entry detected. No changes were made."
+- 4b. Start date is after end date → System returns "Error: Date must be in YYYY-MM-DD format."
+
+Use case ends.
+
+---
+
+**Use case: Delete Medicine Usage Record**
+
+**MSS**
+1. User requests to delete a medicine usage record by ID.
+2. System validates the NRIC and medicine usage ID.
+3. System checks if the medicine usage record exists.
+4. If a record exists, the system deletes it.
+5. System confirms successful deletion.
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 2b. Missing medicine usage ID → System returns "Error: ID must contain only numbers."
+- 3a. No record found → System returns "Error: No medicine usage record found for the given ID."
+
+Use case ends.
+
+---
+
+**Use case: Add Appointment**
+
+**MSS**
+1. User requests to add an appointment for a patient.
+2. System validates the NRIC and doctor NRIC.
+3. System checks for existing appointments to prevent overlaps.
+4. System records the appointment details.
+5. System confirms successful addition.
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 2c. Missing doctor NRIC → System returns "Error: Doctor NRIC is missing."
+- 3a. Overlapping appointment detected → System returns "Error: Appointment overlaps with an existing one."
+- 4a. Invalid date format → System returns "Error: Date must be in YYYY-MM-DD-HHmm format."
+
+Use case ends.
+
+---
+
+**Use case: Delete Appointment**
+
+**MSS**
+1. User requests to delete an appointment by ID.
+2. System validates the NRIC and appointment ID.
+3. System checks if the appointment exists.
+4. If the appointment exists, the system deletes it.
+5. System confirms successful deletion.
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 2b. Missing appointment ID → System returns "Error: Appointment ID is missing."
+- 3a. No matching appointment found → System returns "Error: Invalid appointment ID."
+
+Use case ends.
+
+---
+
+**Use case: View Medical Report**
+
+**MSS**
+1. User requests to view a patient’s medical report.
+2. System validates the NRIC.
+3. System retrieves the medical report details.
+4. System displays the report to the user.
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 3a. No medical report found → System returns "Error: No medical history found with the given NRIC."
+
+Use case ends.
+
+---
+
+**Use case: View Patient Records**
+
+**MSS**
+1. User requests to view a patient’s details.
+2. System validates the NRIC.
+3. System retrieves and displays patient records.
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: NRIC is required."
+- 3a. No matching record found → System returns "Error: Patient record not found."
+
+Use case ends.
+
+---
+
+**Use case: View Appointments**
+
+**MSS**
+1. User requests to view appointments for a patient.
+2. System validates the NRIC.
+3. System retrieves and displays upcoming appointments.
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: NRIC is required."
+- 3a. No appointments found → System returns "Error: No appointments found for the specified date."
+
+Use case ends.
+
+---
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -337,8 +549,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+Here are some glossary terms that might be helpful to clarify within your document:
+
+1. **NRIC (National Registration Identity Card)** – A unique identification number assigned to citizens and residents.
+2. **Medical Report** – A document containing a patient's medical history, including illnesses, treatments, and surgeries.
+3. **Medical Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
+8. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
+9. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
+10. **MSS (Main Success Scenario)** – The sequence of steps that lead to a successful execution of a use case.
 
 --------------------------------------------------------------------------------------------------------------------
 
