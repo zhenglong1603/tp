@@ -3,12 +3,13 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 <?import java.net.URL?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Address App" minWidth="650" minHeight="600" onCloseRequest="#handleExit" maxHeight="Infinity">
     <icons>
         <Image url="@/images/address_book_32.png"/>
     </icons>
@@ -19,7 +20,8 @@
                 <URL value="@Extensions.css"/>
             </stylesheets>
 
-            <VBox styleClass="main-window" VBox.vgrow="ALWAYS" minWidth="500" prefWidth="500" maxWidth="Infinity">
+            <VBox styleClass="main-window" VBox.vgrow="ALWAYS" minWidth="700" prefWidth="700" maxWidth="Infinity"
+                  maxHeight="Infinity">
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="File">
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
@@ -34,30 +36,40 @@
                     </padding>
                 </StackPane>
 
-                <HBox HBox.hgrow="ALWAYS" styleClass="split-pane">
-                    <VBox fx:id="leftVBox" prefWidth="200" minWidth="200" styleClass="split-pane" VBox.vgrow="ALWAYS">
+                <SplitPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" styleClass="split-pane" maxHeight="Infinity" prefWidth="300" minWidth="300">
+                    <VBox fx:id="leftVBox" prefWidth="200" minWidth="200" styleClass="pane-with-border"
+                          VBox.vgrow="ALWAYS">
+                        <StackPane alignment="CENTER_LEFT">
+                            <padding>
+                                <Insets top="10" right="20" bottom="5" left="20"/>
+                            </padding>
+                            <ImageView fitWidth="160" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@/images/Klinix_logo.png"/>
+                                </image>
+                            </ImageView>
+                        </StackPane>
                         <Label text="Appointments: " styleClass="sub-title">
                             <padding>
                                 <Insets top="10" right="10" bottom="10" left="10"/>
                             </padding>
                         </Label>
-                        <!-- Add your components for the left VBox here -->
                         <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS"
                                    styleClass="pane-with-border">
                             <padding>
                                 <Insets top="10" right="10" bottom="5" left="10"/>
                             </padding>
                         </StackPane>
+                        <!-- This is the placeholder for the appointment list, add content after function is implements -->
                     </VBox>
 
-                    <VBox>
+                    <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                         <Label styleClass="sub-title" text="Patient Details: ">
                             <padding>
                                 <Insets top="10" right="10" bottom="10" left="10"/>
                             </padding>
                         </Label>
-                        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                                   minHeight="100" prefHeight="100" maxHeight="100">
+                        <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="split-pane">
                             <padding>
                                 <Insets top="5" right="5" bottom="5" left="5"/>
                             </padding>
@@ -78,7 +90,7 @@
 
                         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
                     </VBox>
-                </HBox>
+                </SplitPane>
             </VBox>
         </Scene>
     </scene>
