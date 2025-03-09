@@ -8,8 +8,10 @@ import static seedu.address.logic.commands.CommandTestUtil.BIRTHDATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -31,8 +33,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -44,8 +48,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -91,6 +97,14 @@ public class AddCommandParserTest {
         assertParseFailure(parser, EMAIL_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
 
+        // multiple nrics
+        assertParseFailure(parser, NRIC_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NRIC));
+
+        // multiple birthdates
+        assertParseFailure(parser, BIRTHDATE_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_BIRTHDATE));
+
         // multiple addresses
         assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
@@ -100,7 +114,7 @@ public class AddCommandParserTest {
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY
                         + ADDRESS_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS,
-                        PREFIX_EMAIL, PREFIX_PHONE));
+                        PREFIX_EMAIL, PREFIX_PHONE, PREFIX_NRIC, PREFIX_BIRTHDATE));
 
         // invalid value followed by valid value
 
@@ -115,6 +129,14 @@ public class AddCommandParserTest {
         // invalid phone
         assertParseFailure(parser, INVALID_PHONE_DESC + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+
+        // invalid nric
+        assertParseFailure(parser, INVALID_NRIC_DESC + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NRIC));
+
+        // invalid birthdate
+        assertParseFailure(parser, INVALID_BIRTHDATE_DESC + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_BIRTHDATE));
 
         // invalid address
         assertParseFailure(parser, INVALID_ADDRESS_DESC + validExpectedPersonString,
@@ -133,6 +155,14 @@ public class AddCommandParserTest {
         // invalid phone
         assertParseFailure(parser, validExpectedPersonString + INVALID_PHONE_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+
+        // invalid nric
+        assertParseFailure(parser, validExpectedPersonString + INVALID_NRIC_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NRIC));
+
+        // invalid birthdate
+        assertParseFailure(parser, validExpectedPersonString + INVALID_BIRTHDATE_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_BIRTHDATE));
 
         // invalid address
         assertParseFailure(parser, validExpectedPersonString + INVALID_ADDRESS_DESC,
@@ -168,6 +198,14 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + NRIC_DESC_BOB
                 + BIRTHDATE_DESC_BOB + VALID_ADDRESS_BOB, expectedMessage);
 
+        // missing nric prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_NRIC_BOB
+                + BIRTHDATE_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
+
+        // missing birthdate prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + NRIC_DESC_BOB
+                + VALID_BIRTHDATE_BOB + ADDRESS_DESC_BOB, expectedMessage);
+
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
                 + VALID_NRIC_BOB + VALID_BIRTHDATE_BOB + VALID_ADDRESS_BOB, expectedMessage);
@@ -195,6 +233,20 @@ public class AddCommandParserTest {
                         + BIRTHDATE_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND
                         + TAG_DESC_FRIEND,
                 Email.MESSAGE_CONSTRAINTS);
+
+        // invalid nric
+        assertParseFailure(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_NRIC_DESC
+                        + BIRTHDATE_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND
+                        + TAG_DESC_FRIEND,
+                Nric.MESSAGE_CONSTRAINTS);
+
+        // invalid birthdate
+        assertParseFailure(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + NRIC_DESC_BOB
+                        + INVALID_BIRTHDATE_DESC + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND
+                        + TAG_DESC_FRIEND,
+                BirthDate.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser,

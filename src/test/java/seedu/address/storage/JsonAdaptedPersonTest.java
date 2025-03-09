@@ -13,8 +13,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
@@ -23,6 +25,9 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_NRIC = "S1234";
+    private static final String INVALID_BIRTH_DATE = "2020-02-30";
+
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -87,6 +92,40 @@ public class JsonAdaptedPersonTest {
                 VALID_BIRTH_DATE, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage =
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidNric_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                INVALID_NRIC, VALID_BIRTH_DATE, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = Nric.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullNric_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
+                VALID_BIRTH_DATE, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage =
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidBirthDate_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_NRIC, INVALID_BIRTH_DATE, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = BirthDate.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullBirthDate_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_NRIC, null, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage =
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, BirthDate.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

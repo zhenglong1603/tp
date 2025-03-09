@@ -41,6 +41,10 @@ public class Messages {
                 .append(person.getPhone())
                 .append("; Email: ")
                 .append(person.getEmail())
+                .append("; Nric: ")
+                .append(person.getNric())
+                .append("; BirthDate: ")
+                .append(person.getBirthDate())
                 .append("; Address: ")
                 .append(person.getAddress())
                 .append("; Tags: ");

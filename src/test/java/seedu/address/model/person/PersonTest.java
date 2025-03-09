@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -35,6 +37,7 @@ public class PersonTest {
         // same name, all other attributes different -> returns true
         Person editedAlice =
                 new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                        .withNric(VALID_NRIC_BOB).withBirthDate(VALID_BIRTHDATE_BOB)
                         .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -80,6 +83,14 @@ public class PersonTest {
 
         // different email -> returns false
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different nric -> returns false
+        editedAlice = new PersonBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different birthDate -> returns false
+        editedAlice = new PersonBuilder(ALICE).withBirthDate(VALID_BIRTHDATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
