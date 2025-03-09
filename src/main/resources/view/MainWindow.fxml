@@ -48,16 +48,25 @@
                                 <Insets top="10" right="10" bottom="5" left="10"/>
                             </padding>
                         </StackPane>
-
                     </VBox>
 
                     <VBox>
+                        <Label styleClass="sub-title" text="Patient Details: ">
+                            <padding>
+                                <Insets top="10" right="10" bottom="10" left="10"/>
+                            </padding>
+                        </Label>
                         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                                    minHeight="100" prefHeight="100" maxHeight="100">
                             <padding>
-                                <Insets top="5" right="10" bottom="5" left="10"/>
+                                <Insets top="5" right="5" bottom="5" left="5"/>
                             </padding>
                         </StackPane>
+                        <Label text="Patients: " styleClass="sub-title">
+                            <padding>
+                                <Insets top="10" right="10" bottom="10" left="10"/>
+                            </padding>
+                        </Label>
 
                         <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
                               VBox.vgrow="ALWAYS">
