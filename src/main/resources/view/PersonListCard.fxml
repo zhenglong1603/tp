@@ -27,10 +27,23 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <FlowPane fx:id="tags" />      
+      <GridPane hgap="5" vgap="5">
+        <columnConstraints>
+          <ColumnConstraints minWidth="60" />
+          <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <Label text="NRIC:" styleClass="cell_small_label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="nric" text="\$nric" styleClass="cell_small_label" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label text="Age:" styleClass="cell_small_label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Label fx:id="age" text="\$age" styleClass="cell_small_label" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label text="Phone:" styleClass="cell_small_label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Label fx:id="phone" text="\$phone" styleClass="cell_small_label" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Label text="Address:" styleClass="cell_small_label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <Label fx:id="address" text="\$address" styleClass="cell_small_label" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        <Label text="Email:" styleClass="cell_small_label" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <Label fx:id="email" text="\$email" styleClass="cell_small_label" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+      </GridPane>
     </VBox>
   </GridPane>
 </HBox>
