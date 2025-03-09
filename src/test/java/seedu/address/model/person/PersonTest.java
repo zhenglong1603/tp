@@ -110,4 +110,20 @@ public class PersonTest {
                 + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
+
+    @Test
+    public void getAge() {
+        int aliceAge = ALICE.getBirthDate().getAge();
+        assertEquals(aliceAge, ALICE.getAge());
+
+        int bobAge = BOB.getBirthDate().getAge();
+        assertEquals(bobAge, BOB.getAge());
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
+    }
+
 }
