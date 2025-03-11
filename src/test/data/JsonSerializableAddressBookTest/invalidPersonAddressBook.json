@@ -3,6 +3,8 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
+    "nric": "2f23f",
+    "birthDate": "01/01/199",
     "address": "4th street"
   } ]
 }
