@@ -6,6 +6,9 @@ import static seedu.address.commons.util.DateUtil.DATE_TIME_DISPLAY_FORMATTER;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a Appointment.
+ */
 public class Appointment {
     public static final String MESSAGE_CONSTRAINTS = "Appointment description must contain at least 1 alphabetic"
             + " character and has a limit of 70 characters.";
