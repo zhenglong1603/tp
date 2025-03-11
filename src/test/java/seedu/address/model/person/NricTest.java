@@ -45,4 +45,16 @@ public class NricTest {
         assertFalse(nric.equals(5.0f));
         assertFalse(nric.equals(new Nric("T7654321F")));
     }
+
+    @Test
+    public void hashCodeTest() {
+        Nric nric = new Nric("S1234567D");
+        assertTrue(nric.hashCode() == new Nric("S1234567D").hashCode());
+    }
+
+    @Test
+    public void toStringTest() {
+        Nric nric = new Nric("S1234567D");
+        assertTrue(nric.toString().equals("S1234567D"));
+    }
 }

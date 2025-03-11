@@ -18,9 +18,16 @@ public class Doctor {
      * Every field must be present and not null.
      */
     public Doctor(Name name, Nric nric, Specialisation specialisation) {
+        checkNotNull(name, nric, specialisation);
         this.name = name;
         this.nric = nric;
         this.specialisation = specialisation;
+    }
+
+    private void checkNotNull(Name name, Nric nric, Specialisation specialisation) throws NullPointerException {
+        if (name == null || nric == null || specialisation == null) {
+            throw new NullPointerException();
+        }
     }
 
     public Name getName() {
