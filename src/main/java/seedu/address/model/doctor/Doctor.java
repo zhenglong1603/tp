@@ -1,33 +1,37 @@
 package seedu.address.model.doctor;
 
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+
 /**
  * Represents a Doctor in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 
 public class Doctor {
-    private final String name;
-    private final String nric;
-    private final String specialisation;
+
+    public final Name name;
+    public final Nric nric;
+    public final Specialisation specialisation;
 
     /**
      * Every field must be present and not null.
      */
-    public Doctor(String name, String nric, String specialisation) {
+    public Doctor(Name name, Nric nric, Specialisation specialisation) {
         this.name = name;
         this.nric = nric;
         this.specialisation = specialisation;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public String getNric() {
+    public Nric getNric() {
         return nric;
     }
 
-    public String getSpecialisation() {
+    public Specialisation getSpecialisation() {
         return specialisation;
     }
 }
