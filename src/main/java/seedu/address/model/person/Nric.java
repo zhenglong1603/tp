@@ -11,7 +11,7 @@ public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
             "NRIC should be a valid format starting with a letter, followed by 7 digits, "
-            + "and ending with a letter.";
+                    + "and ending with a letter.";
 
     /*
      * The NRIC must follow a specific format starting with a letter, followed by 7
