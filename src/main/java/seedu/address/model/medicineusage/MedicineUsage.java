@@ -14,7 +14,7 @@ public class MedicineUsage {
     private final LocalDateTime endDate;
 
     /**
-     * Constructs a <>MedicineUsage</> object
+     * Constructs a MedicineUsage object
      * @param name Name of the medicine
      * @param dosage Dosage of the medicine
      * @param startDate Patient starts taking medicine on this date
