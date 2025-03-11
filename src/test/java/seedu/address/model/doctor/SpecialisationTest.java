@@ -1,11 +1,11 @@
 package seedu.address.model.doctor;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.doctor.Specialisation;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
 
 public class SpecialisationTest {
     @Test
@@ -36,21 +36,21 @@ public class SpecialisationTest {
 
     @Test
     public void equals() {
-        Specialisation Specialisation = new Specialisation("Valid Specialisation");
+        Specialisation specialisation = new Specialisation("Valid Specialisation");
 
         // same values -> returns true
-        assertTrue(Specialisation.equals(new Specialisation("Valid Specialisation")));
+        assertTrue(specialisation.equals(new Specialisation("Valid Specialisation")));
 
         // same object -> returns true
-        assertTrue(Specialisation.equals(Specialisation));
+        assertTrue(specialisation.equals(specialisation));
 
         // null -> returns false
-        assertFalse(Specialisation.equals(null));
+        assertFalse(specialisation.equals(null));
 
         // different types -> returns false
-        assertFalse(Specialisation.equals(5.0f));
+        assertFalse(specialisation.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(Specialisation.equals(new Specialisation("Other Valid Specialisation")));
+        assertFalse(specialisation.equals(new Specialisation("Other Valid Specialisation")));
     }
 }
