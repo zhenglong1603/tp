@@ -6,13 +6,25 @@ package seedu.address.model.doctor;
      */
 
 public class Doctor {
-    private String Name;
-    private String NRIC;
-    private String Specialisation;
+    private final String Name;
+    private final String NRIC;
+    private final String Specialisation;
 
     public Doctor(String Name, String NRIC, String Specialisation) {
         this.Name = Name;
         this.NRIC = NRIC;
         this.Specialisation = Specialisation;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getNRIC() {
+        return NRIC;
+    }
+
+    public String getSpecialisation() {
+        return Specialisation;
     }
 }
