@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Person;
 
 /**
@@ -89,4 +90,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Adds a medical report to the person.
+     */
+    void addMedicalReport(Person target, MedicalReport medicalReport);
+
+    /**
+     * Deletes medical report from the person.
+     */
+    void deleteMedicalReport(Person target);
 }

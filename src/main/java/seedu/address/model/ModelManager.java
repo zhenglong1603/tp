@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Person;
 
 /**
@@ -120,7 +121,43 @@ public class ModelManager implements Model {
 
 
     //=========== Medical Report =============================================================
+    @Override
+    public void addMedicalReport(Person target, MedicalReport medicalReport) {
+        requireAllNonNull(target, medicalReport);
 
+        Person updatedPerson = new Person(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getNric(),
+                target.getBirthDate(),
+                target.getAddress(),
+                target.getTags(),
+                medicalReport
+        );
+
+        klinix.setPerson(target, updatedPerson);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void deleteMedicalReport(Person target) {
+        requireNonNull(target);
+
+        Person updatedPerson = new Person(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getNric(),
+                target.getBirthDate(),
+                target.getAddress(),
+                target.getTags(),
+                null
+        );
+
+        klinix.setPerson(target, updatedPerson);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 

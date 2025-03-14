@@ -26,12 +26,13 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final MedicalReport medicalReport;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Nric nric, BirthDate birthDate,
-            Address address, Set<Tag> tags) {
+            Address address, Set<Tag> tags, MedicalReport medicalReport) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -40,6 +41,7 @@ public class Person {
         this.birthDate = birthDate;
         this.address = address;
         this.tags.addAll(tags);
+        this.medicalReport = medicalReport;
     }
 
     public Name getName() {
@@ -91,6 +93,13 @@ public class Person {
         }
 
         return otherPerson != null && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns a new Person instance without a medical report.
+     */
+    public Person withoutMedicalReport() {
+        return new Person(name, phone, email, nric, birthDate, address, tags, null);
     }
 
     /**
