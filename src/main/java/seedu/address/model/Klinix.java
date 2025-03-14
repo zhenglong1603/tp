@@ -127,4 +127,15 @@ public class Klinix implements ReadOnlyKlinix {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    public Person findPersonByNric(String nric) {
+        requireNonNull(nric);
+
+        for (Person person : persons) {
+            if (person.getNric().value.equals(nric)) {
+                return person;
+            }
+        }
+        return null;
+    }
 }

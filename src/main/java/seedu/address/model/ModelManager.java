@@ -111,6 +111,17 @@ public class ModelManager implements Model {
         klinix.setPerson(target, editedPerson);
     }
 
+    @Override
+    public Person findPersonByNric(String nric) {
+        requireNonNull(nric);
+        return klinix.findPersonByNric(nric);
+    }
+
+
+
+    //=========== Medical Report =============================================================
+
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
