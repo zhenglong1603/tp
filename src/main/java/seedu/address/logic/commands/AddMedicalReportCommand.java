@@ -1,14 +1,17 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Adds a medical report to a person identified by NRIC.
+ */
 public class AddMedicalReportCommand extends Command {
 
     public static final String COMMAND_WORD = "addMedicalReport";
@@ -33,6 +36,10 @@ public class AddMedicalReportCommand extends Command {
     private final Nric nric;
     private final MedicalReport medicalReport;
 
+    /**
+     * Creates an AddMedicalReportCommand to add the specified {@code MedicalReport}
+     * to the person identified by {@code Nric}.
+     */
     public AddMedicalReportCommand(Nric nric, MedicalReport medicalReport) {
         requireNonNull(nric);
         requireNonNull(medicalReport);

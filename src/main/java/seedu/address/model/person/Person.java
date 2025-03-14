@@ -84,6 +84,13 @@ public class Person {
     }
 
     /**
+     * Returns the medical report of the person.
+     */
+    public MedicalReport getMedicalReport() {
+        return medicalReport;
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
