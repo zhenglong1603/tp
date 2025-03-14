@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -128,11 +129,11 @@ public class Klinix implements ReadOnlyKlinix {
         return persons.hashCode();
     }
 
-    public Person findPersonByNric(String nric) {
+    public Person findPersonByNric(Nric nric) {
         requireNonNull(nric);
 
         for (Person person : persons) {
-            if (person.getNric().value.equals(nric)) {
+            if (person.getNric().equals(nric)) {
                 return person;
             }
         }

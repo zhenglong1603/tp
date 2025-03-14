@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.MedicalReport;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
@@ -80,7 +81,7 @@ public interface Model {
     /**
      * Returns the person with the given NRIC.
      */
-    Person findPersonByNric(String nric);
+    Person findPersonByNric(Nric nric);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

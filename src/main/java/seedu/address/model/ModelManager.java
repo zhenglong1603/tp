@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.MedicalReport;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
@@ -113,7 +114,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Person findPersonByNric(String nric) {
+    public Person findPersonByNric(Nric nric) {
         requireNonNull(nric);
         return klinix.findPersonByNric(nric);
     }
