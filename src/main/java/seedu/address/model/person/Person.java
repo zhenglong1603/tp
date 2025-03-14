@@ -20,6 +20,8 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Nric nric;
+    private final BirthDate birthDate;
 
     // Data fields
     private final Address address;
@@ -28,11 +30,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Nric nric, BirthDate birthDate,
+            Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.nric = nric;
+        this.birthDate = birthDate;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -49,8 +54,23 @@ public class Person {
         return email;
     }
 
+    public Nric getNric() {
+        return nric;
+    }
+
+    public BirthDate getBirthDate() {
+        return birthDate;
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    /**
+     * Returns the age of the person.
+     */
+    public int getAge() {
+        return birthDate.getAge();
     }
 
     /**
@@ -70,8 +90,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -90,28 +109,22 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+        return nric.equals(otherPerson.nric) && name.equals(otherPerson.name)
+                && phone.equals(otherPerson.phone) && email.equals(otherPerson.email)
+                && birthDate.equals(otherPerson.birthDate) && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, nric, birthDate, address, tags);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .toString();
+        return new ToStringBuilder(this).add("name", name).add("phone", phone).add("email", email)
+                .add("nric", nric).add("birthDate", birthDate).add("address", address)
+                .add("tags", tags).toString();
     }
 
 }
