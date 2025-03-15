@@ -102,12 +102,6 @@ public class Person {
         return otherPerson != null && otherPerson.getName().equals(getName());
     }
 
-    /**
-     * Returns a new Person instance without a medical report.
-     */
-    public Person withoutMedicalReport() {
-        return new Person(name, phone, email, nric, birthDate, address, tags, null);
-    }
 
     /**
      * Returns true if both persons have the same identity and data fields.

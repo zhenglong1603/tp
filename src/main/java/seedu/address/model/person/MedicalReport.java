@@ -8,6 +8,7 @@ public class MedicalReport {
     public static final MedicalReport EMPTY_MEDICAL_REPORT =
             new MedicalReport("None", "None", "None", "None");
 
+    public final String value;
     private final String allergens;
     private final String illnesses;
     private final String surgeries;
@@ -26,6 +27,7 @@ public class MedicalReport {
         this.illnesses = illnesses;
         this.surgeries = surgeries;
         this.immunizations = immunizations;
+        this.value = this.toString();
     }
 
     public String getAllergens() {
@@ -42,6 +44,16 @@ public class MedicalReport {
 
     public String getImmunizations() {
         return immunizations;
+    }
+
+    @Override
+    public String toString() {
+        return (
+                "  ➤ Allergens: " + allergens + "\n"
+                + "  ➤ Illnesses: " + illnesses + "\n"
+                + "  ➤ Surgeries: " + surgeries + "\n"
+                + "  ➤ Immunizations: " + immunizations
+        );
     }
 }
 
