@@ -15,7 +15,8 @@ public class DeleteMedicalReportCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteMedicalReport";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a medical report from a person identified by NRIC.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Deletes a medical report from a person identified by NRIC.\n"
             + "Parameters: "
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " "

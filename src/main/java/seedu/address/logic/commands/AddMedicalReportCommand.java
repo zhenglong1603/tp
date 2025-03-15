@@ -1,7 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ILLNESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMMUNIZATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SURGERY;
+
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,7 +21,8 @@ public class AddMedicalReportCommand extends Command {
 
     public static final String COMMAND_WORD = "addMedicalReport";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a medical report to a person identified by NRIC.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a medical report to a person identified by NRIC.\n"
             + "Parameters: "
             + PREFIX_NRIC + "NRIC "
             + PREFIX_ALLERGY + "ALLERGY "

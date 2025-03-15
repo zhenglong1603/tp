@@ -53,7 +53,7 @@ public class MedicalReport {
                 + "  ➤ Illnesses: " + illnesses + "\n"
                 + "  ➤ Surgeries: " + surgeries + "\n"
                 + "  ➤ Immunizations: " + immunizations
-        );
+            );
     }
 }
 

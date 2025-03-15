@@ -129,6 +129,10 @@ public class Klinix implements ReadOnlyKlinix {
         return persons.hashCode();
     }
 
+    /**
+     * Returns the person with the given {@code nric}.
+     *
+     */
     public Person findPersonByNric(Nric nric) {
         requireNonNull(nric);
 

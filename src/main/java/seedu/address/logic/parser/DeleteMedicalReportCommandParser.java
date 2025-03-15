@@ -1,13 +1,15 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.DeleteMedicalReportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Nric;
 
-import java.util.stream.Stream;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 /**
  * Parses input arguments and creates a new DeleteMedicalReportCommand object
@@ -23,7 +25,7 @@ public class DeleteMedicalReportCommandParser implements Parser<DeleteMedicalRep
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NRIC);
 
-       if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                                    DeleteMedicalReportCommand.MESSAGE_USAGE));
