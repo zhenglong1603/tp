@@ -27,5 +27,21 @@ public class MedicalReport {
         this.surgeries = surgeries;
         this.immunizations = immunizations;
     }
+
+    public String getAllergens() {
+        return allergens;
+    }
+
+    public String getIllnesses() {
+        return illnesses;
+    }
+
+    public String getSurgeries() {
+        return surgeries;
+    }
+
+    public String getImmunizations() {
+        return immunizations;
+    }
 }
 
