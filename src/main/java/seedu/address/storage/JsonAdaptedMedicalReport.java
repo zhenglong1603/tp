@@ -60,3 +60,4 @@ class JsonAdaptedMedicalReport {
         return new MedicalReport(allergens, illnesses, surgeries, immunizations);
     }
 }
+
