@@ -31,7 +31,7 @@ public class DeleteMedicalReportCommandParser implements Parser<DeleteMedicalRep
                                                    DeleteMedicalReportCommand.MESSAGE_USAGE));
         }
 
-       Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
 
         return new DeleteMedicalReportCommand(nric);
     }
