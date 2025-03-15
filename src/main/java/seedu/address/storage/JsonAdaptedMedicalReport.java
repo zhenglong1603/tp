@@ -1,10 +1,11 @@
 package seedu.address.storage;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.MedicalReport;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * Jackson-friendly version of {@link MedicalReport}.
@@ -41,7 +42,7 @@ class JsonAdaptedMedicalReport {
     /**
      * Converts this Jackson-friendly adapted medical report object into the model's {@code MedicalReport} object.
      *
-     * @throws IllegalValueException
+     * @throws IllegalValueException if there were any data constraints violated in the adapted medical report.
      */
     public MedicalReport toModelType() throws IllegalValueException {
         if (allergens == null) {
