@@ -37,7 +37,8 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS =
             BENSON.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList());
-    private static final JsonAdaptedMedicalReport VALID_MEDICAL_REPORT = new JsonAdaptedMedicalReport(BENSON.getMedicalReport());
+    private static final JsonAdaptedMedicalReport VALID_MEDICAL_REPORT =
+            new JsonAdaptedMedicalReport(BENSON.getMedicalReport());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
