@@ -8,10 +8,10 @@ public class MedicalReport {
     public static final MedicalReport EMPTY_MEDICAL_REPORT =
             new MedicalReport("None", "None", "None", "None");
 
-    private String allergens;
-    private String illnesses;
-    private String surgeries;
-    private String immunizations;
+    private final String allergens;
+    private final String illnesses;
+    private final String surgeries;
+    private final String immunizations;
 
     /**
      * Constructs a {@code MedicalReport} with the specified medical report details.
