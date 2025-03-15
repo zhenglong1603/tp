@@ -4,6 +4,10 @@ package seedu.address.model.person;
  * Represents a Person's medical report in the address book.
  */
 public class MedicalReport {
+
+    public static final MedicalReport EMPTY_MEDICAL_REPORT =
+            new MedicalReport("None", "None", "None", "None");
+
     private String allergens;
     private String illnesses;
     private String surgeries;

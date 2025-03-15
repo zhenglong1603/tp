@@ -153,7 +153,7 @@ public class ModelManager implements Model {
                 target.getBirthDate(),
                 target.getAddress(),
                 target.getTags(),
-                null
+                MedicalReport.EMPTY_MEDICAL_REPORT
         );
 
         klinix.setPerson(target, updatedPerson);
