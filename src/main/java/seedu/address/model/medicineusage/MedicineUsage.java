@@ -47,8 +47,21 @@ public class MedicineUsage {
     }
 
     /**
+     * Returns true if both medicine usages have the same name.
+     * This defines the weakest notion of equality between two medicine usages.
+     */
+
+    public boolean isSameMedicine(MedicineUsage otherMedicineUsage) {
+        if (otherMedicineUsage == this) {
+            return true;
+        }
+
+        return otherMedicineUsage != null && otherMedicineUsage.getName().equals(getName());
+    }
+
+    /**
      * Returns true if both medicine usages have the same name and overlapping time.
-     * This defines a weaker notion of equality between two medicine usages.
+     * This defines a weak notion of equality between two medicine usages.
      */
 
     public boolean hasOverlap(Object other) {
