@@ -2,9 +2,7 @@ package seedu.address.model.medicineusage;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
-
-import seedu.address.model.person.Person;
+import java.time.LocalDate;
 
 /**
  * Represents a Medicine Usage of a patient in the clinic.
@@ -12,8 +10,8 @@ import seedu.address.model.person.Person;
 public class MedicineUsage {
     private final String name;
     private final String dosage;
-    private final LocalDateTime startDate;
-    private final LocalDateTime endDate;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
 
     /**
      * Constructs a MedicineUsage object
@@ -22,7 +20,7 @@ public class MedicineUsage {
      * @param startDate Patient starts taking medicine on this date
      * @param endDate Patient stops taking medicine on this date
      */
-    public MedicineUsage(String name, String dosage, LocalDateTime startDate, LocalDateTime endDate) {
+    public MedicineUsage(String name, String dosage, LocalDate startDate, LocalDate endDate) {
         requireAllNonNull(name, dosage, startDate, endDate);
         this.name = name;
         this.dosage = dosage;
@@ -38,11 +36,11 @@ public class MedicineUsage {
         return dosage;
     }
 
-    public LocalDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 

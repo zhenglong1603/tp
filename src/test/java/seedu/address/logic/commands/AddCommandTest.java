@@ -22,6 +22,7 @@ import seedu.address.model.Klinix;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyKlinix;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -173,6 +174,18 @@ public class AddCommandTest {
         @Override
         public void deleteMedicalReport(Person person) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMedicineUsage(Person person, MedicineUsage medicineUsage) {
+            // Since this is a stub, you can leave it empty or simulate behavior
+            throw new UnsupportedOperationException("This method should not be called");
+        }
+
+        @Override
+        public void deleteMedicineUsage(Person person, MedicineUsage medicineUsage) {
+            // Since this is a stub, you can leave it empty or simulate behavior
+            throw new UnsupportedOperationException("This method should not be called");
         }
     }
 

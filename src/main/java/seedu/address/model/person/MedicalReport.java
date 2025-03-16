@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import seedu.address.model.medicineusage.MedicineUsage;
+import seedu.address.model.medicineusage.MedicineUsageList;
+
 /**
  * Represents a Person's medical report in the address book.
  */
@@ -13,6 +16,7 @@ public class MedicalReport {
     private final String illnesses;
     private final String surgeries;
     private final String immunizations;
+    private final MedicineUsageList medicineUsages;
 
     /**
      * Constructs a {@code MedicalReport} with the specified medical report details.
@@ -27,6 +31,7 @@ public class MedicalReport {
         this.illnesses = illnesses;
         this.surgeries = surgeries;
         this.immunizations = immunizations;
+        this.medicineUsages = new MedicineUsageList();
         this.value = this.toString();
     }
 
@@ -44,6 +49,14 @@ public class MedicalReport {
 
     public String getImmunizations() {
         return immunizations;
+    }
+
+    public void add(MedicineUsage toAdd) {
+        medicineUsages.add(toAdd);
+    }
+
+    public void remove(MedicineUsage toRemove) {
+        medicineUsages.remove(toRemove);
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -101,4 +102,14 @@ public interface Model {
      * Deletes medical report from the person.
      */
     void deleteMedicalReport(Person target);
+
+    /**
+     * Adds medicine usage to a person
+     */
+    void addMedicineUsage(Person target, MedicineUsage medicineUsage);
+
+    /**
+     * Deletes medicine usage from a person.
+     */
+    void deleteMedicineUsage(Person target, MedicineUsage medicineUsage);
 }

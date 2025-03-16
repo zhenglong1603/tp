@@ -38,6 +38,10 @@ public class DateUtil {
         return dateTime.format(DATE_TIME_DISPLAY_FORMATTER);
     }
 
+    public static DateTimeFormatter getDateFormatter() {
+        return DATE_FORMATTER;
+    }
+
     /**
      * Check if date is current date
      */
