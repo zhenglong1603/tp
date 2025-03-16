@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.medicineusage.exceptions.MedicineUsageNotFoundException;
 import seedu.address.model.medicineusage.exceptions.OverlappingMedicineUsageException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of medicine usages that enforces uniqueness between its elements and does not allow nulls.
@@ -93,7 +92,7 @@ public class MedicineUsageList implements Iterable<MedicineUsage> {
     public void setMedicineUsages(List<MedicineUsage> replacement) {
         requireAllNonNull(replacement);
         if (!medicineUsagesAreUnique(replacement)) {
-            throw new DuplicatePersonException();
+            throw new OverlappingMedicineUsageException();
         }
 
         internalList.setAll(replacement);

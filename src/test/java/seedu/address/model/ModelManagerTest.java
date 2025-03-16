@@ -10,11 +10,13 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.KlinixBuilder;
 
@@ -128,5 +130,26 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setKlinixFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    void addMedicineUsage_personExists_success() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.addPerson(ALICE);
+        MedicineUsage medicineUsage = new MedicineUsage("Paracetamol", "500mg",
+                LocalDate.now(), LocalDate.now().plusDays(5));
+        modelManager.addMedicineUsage(ALICE, medicineUsage);
+        assertTrue(ALICE.getMedicalReport().getMedicineUsages().contains(medicineUsage));
+    }
+
+    @Test
+    void clearMedicineUsage_personExists_success() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.addPerson(ALICE);
+        MedicineUsage medicineUsage = new MedicineUsage("Panadol", "500mg",
+                LocalDate.now(), LocalDate.now().plusDays(5));
+        modelManager.addMedicineUsage(ALICE, medicineUsage);
+        modelManager.clearMedicineUsage(ALICE);
+        assertTrue(ALICE.getMedicalReport().getMedicineUsages().isEmpty());
     }
 }

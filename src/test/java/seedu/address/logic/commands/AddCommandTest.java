@@ -187,6 +187,12 @@ public class AddCommandTest {
             // Since this is a stub, you can leave it empty or simulate behavior
             throw new UnsupportedOperationException("This method should not be called");
         }
+
+        @Override
+        public void clearMedicineUsage(Person person) {
+            // Since this is a stub, you can leave it empty or simulate behavior
+            throw new UnsupportedOperationException("This method should not be called");
+        }
     }
 
     /**
