@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents a Medicine Usage of a patient in the clinic.
  */
@@ -45,8 +47,30 @@ public class MedicineUsage {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both medicine usages have the same name and overlapping time.
+     * This defines a weaker notion of equality between two medicine usages.
+     */
+
+    public boolean hasOverlap(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MedicineUsage)) {
+            return false;
+        }
+
+        MedicineUsage otherMedicineUsage = (MedicineUsage) other;
+        boolean hasNoTimeOverlap = otherMedicineUsage.getStartDate().isAfter(this.getEndDate())
+                || otherMedicineUsage.getEndDate().isBefore(this.getStartDate());
+
+        return otherMedicineUsage.getName().equals(this.getName()) && !hasNoTimeOverlap;
+    }
+
+    /**
+     * Returns true if both medicine usages have the same identity and data fields.
+     * This defines a stronger notion of equality between two medicine usages.
      */
     @Override
     public boolean equals(Object other) {
@@ -60,9 +84,10 @@ public class MedicineUsage {
         }
 
         MedicineUsage otherMedicineUsage = (MedicineUsage) other;
-        boolean isDateTimeSeparate = otherMedicineUsage.getStartDate().isAfter(this.getEndDate())
-                || otherMedicineUsage.getEndDate().isBefore(this.getStartDate());
-
-        return otherMedicineUsage.getName().equals(this.getName()) && !isDateTimeSeparate;
+        return name.equals(otherMedicineUsage.name)
+                && dosage.equals(otherMedicineUsage.dosage)
+                && startDate.equals(otherMedicineUsage.startDate)
+                && endDate.equals(otherMedicineUsage.endDate);
     }
+
 }
