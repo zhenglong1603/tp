@@ -167,6 +167,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, medicineUsage);
         MedicalReport medicalReport = target.getMedicalReport();
         medicalReport.add(medicineUsage);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -174,6 +175,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, medicineUsage);
         MedicalReport medicalReport = target.getMedicalReport();
         medicalReport.remove(medicineUsage);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
     //=========== Filtered Person List Accessors =============================================================
 

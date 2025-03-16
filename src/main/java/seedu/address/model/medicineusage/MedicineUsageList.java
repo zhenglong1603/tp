@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.medicineusage.exceptions.MedicineUsageNotFoundException;
 import seedu.address.model.medicineusage.exceptions.OverlappingMedicineUsageException;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
@@ -18,11 +17,11 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
  * A medicine usage is considered unique by comparing using {@code MedicineUsage#hasOverlap(MedicineUsage)}.
  * As such, adding and updating of medicine usages uses MedicineUsage#hasOverlap(MedicineUsage) for equality
  * to ensure that the medicine usage being added or updated is unique in terms of identity in the
- * MedicineUsageList. However, the removal of a person uses MedicineUsage#equals(Object) to ensure that the
+ * MedicineUsageList. However, the removal of a medicine usage uses MedicineUsage#equals(Object) to ensure that the
  * medicine usage with exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see MedicineUsage#hasOverlap(MedicineUsage)
  */
 public class MedicineUsageList implements Iterable<MedicineUsage> {
     private final ObservableList<MedicineUsage> internalList = FXCollections.observableArrayList();
@@ -50,9 +49,11 @@ public class MedicineUsageList implements Iterable<MedicineUsage> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedMedicineUsage}.
+     * Replaces the medicine usage {@code target} in the list with {@code editedMedicineUsage}.
+     * To be used in the future if needed
      * {@code target} must exist in the list.
-     * The person identity of {@code editedMedicineUsage} must not be the same as another existing person in the list.
+     * The medicine usage identity of {@code editedMedicineUsage} must not be the same as another existing
+     * medicine usage in the list.
      */
     public void setMedicineUsage(MedicineUsage target, MedicineUsage editedMedicineUsage) {
         requireAllNonNull(target, editedMedicineUsage);
@@ -89,13 +90,13 @@ public class MedicineUsageList implements Iterable<MedicineUsage> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setMedicineUsages(List<MedicineUsage> medicineUsages) {
-        requireAllNonNull(medicineUsages);
-        if (!medicineUsagesAreUnique(medicineUsages)) {
+    public void setMedicineUsages(List<MedicineUsage> replacement) {
+        requireAllNonNull(replacement);
+        if (!medicineUsagesAreUnique(replacement)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.setAll(medicineUsages);
+        internalList.setAll(replacement);
     }
 
     /**

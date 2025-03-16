@@ -1,10 +1,14 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
-
 
 
 /**
@@ -17,16 +21,21 @@ class JsonAdaptedMedicalReport {
     private final String illnesses;
     private final String surgeries;
     private final String immunizations;
+    private final List<JsonAdaptedMedicineUsage> medicineUsages = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedMedicalReport} with the given medical report details.
      */
     public JsonAdaptedMedicalReport(@JsonProperty("allergy") String allergy, @JsonProperty("illness") String illness,
-            @JsonProperty("surgery") String surgery, @JsonProperty("immunization") String immunization) {
+            @JsonProperty("surgery") String surgery, @JsonProperty("immunization") String immunization,
+            @JsonProperty("medicineUsages") List<JsonAdaptedMedicineUsage> medicineUsages) {
         this.allergens = allergy;
         this.illnesses = illness;
         this.surgeries = surgery;
         this.immunizations = immunization;
+        if (medicineUsages != null) {
+            this.medicineUsages.addAll(medicineUsages);
+        }
     }
 
     /**
@@ -37,6 +46,8 @@ class JsonAdaptedMedicalReport {
         this.illnesses = source.getIllnesses();
         this.surgeries = source.getSurgeries();
         this.immunizations = source.getImmunizations();
+        this.medicineUsages.addAll(
+                source.getMedicineUsages().stream().map(JsonAdaptedMedicineUsage::new).collect(Collectors.toList()));
     }
 
     /**
@@ -45,6 +56,11 @@ class JsonAdaptedMedicalReport {
      * @throws IllegalValueException if there were any data constraints violated in the adapted medical report.
      */
     public MedicalReport toModelType() throws IllegalValueException {
+        final List<MedicineUsage> personMedicineUsages = new ArrayList<>();
+        for (JsonAdaptedMedicineUsage medicineUsage : this.medicineUsages) {
+            personMedicineUsages.add(medicineUsage.toModelType());
+        }
+
         if (allergens == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "allergy"));
         }
@@ -58,7 +74,10 @@ class JsonAdaptedMedicalReport {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "immunization"));
         }
 
-        return new MedicalReport(allergens, illnesses, surgeries, immunizations);
+        MedicalReport medicalReport = new MedicalReport(allergens, illnesses, surgeries, immunizations);
+        medicalReport.setMedicineUsages(personMedicineUsages);
+
+        return medicalReport;
     }
 }
 

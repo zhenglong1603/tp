@@ -42,6 +42,10 @@ public class DateUtil {
         return DATE_FORMATTER;
     }
 
+    public static DateTimeFormatter getDisplayDateFormatter() {
+        return DATE_DISPLAY_FORMATTER;
+    }
+
     /**
      * Check if date is current date
      */

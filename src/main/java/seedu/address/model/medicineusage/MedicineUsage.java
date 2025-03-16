@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 
+import seedu.address.commons.util.DateUtil;
+
 /**
  * Represents a Medicine Usage of a patient in the clinic.
  */
@@ -44,6 +46,14 @@ public class MedicineUsage {
         return endDate;
     }
 
+    public String getStringStartDate() {
+        return DateUtil.getDisplayableDate(startDate);
+    }
+
+    public String getStringEndDate() {
+        return DateUtil.getDisplayableDate(endDate);
+    }
+
     /**
      * Returns true if both medicine usages have the same name.
      * This defines the weakest notion of equality between two medicine usages.
@@ -62,21 +72,15 @@ public class MedicineUsage {
      * This defines a weak notion of equality between two medicine usages.
      */
 
-    public boolean hasOverlap(Object other) {
+    public boolean hasOverlap(MedicineUsage other) {
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof MedicineUsage)) {
-            return false;
-        }
+        boolean hasNoTimeOverlap = other.getStartDate().isAfter(this.getEndDate())
+                || other.getEndDate().isBefore(this.getStartDate());
 
-        MedicineUsage otherMedicineUsage = (MedicineUsage) other;
-        boolean hasNoTimeOverlap = otherMedicineUsage.getStartDate().isAfter(this.getEndDate())
-                || otherMedicineUsage.getEndDate().isBefore(this.getStartDate());
-
-        return otherMedicineUsage.getName().equals(this.getName()) && !hasNoTimeOverlap;
+        return other.getName().equals(this.getName()) && !hasNoTimeOverlap;
     }
 
     /**
@@ -99,6 +103,13 @@ public class MedicineUsage {
                 && dosage.equals(otherMedicineUsage.dosage)
                 && startDate.equals(otherMedicineUsage.startDate)
                 && endDate.equals(otherMedicineUsage.endDate);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s, from %s to %s", name, dosage,
+                DateUtil.getDisplayableDate(startDate),
+                DateUtil.getDisplayableDate(endDate));
     }
 
 }

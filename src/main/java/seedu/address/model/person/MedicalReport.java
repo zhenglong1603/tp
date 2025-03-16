@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import java.util.List;
+
+import javafx.collections.ObservableList;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.medicineusage.MedicineUsageList;
 
@@ -51,12 +54,20 @@ public class MedicalReport {
         return immunizations;
     }
 
+    public ObservableList<MedicineUsage> getMedicineUsages() {
+        return medicineUsages.asUnmodifiableObservableList();
+    }
+
     public void add(MedicineUsage toAdd) {
         medicineUsages.add(toAdd);
     }
 
     public void remove(MedicineUsage toRemove) {
         medicineUsages.remove(toRemove);
+    }
+
+    public void setMedicineUsages(List<MedicineUsage> newData) {
+        medicineUsages.setMedicineUsages(newData);
     }
 
     @Override
