@@ -22,6 +22,8 @@ import seedu.address.model.Klinix;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyKlinix;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.MedicalReport;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -157,6 +159,21 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Person findPersonByNric(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMedicalReport(Person target, MedicalReport medicalReport) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMedicalReport(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -200,5 +217,5 @@ public class AddCommandTest {
             return new Klinix();
         }
     }
-
 }
+

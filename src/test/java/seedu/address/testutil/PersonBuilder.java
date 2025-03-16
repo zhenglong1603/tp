@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -32,6 +33,7 @@ public class PersonBuilder {
     private BirthDate birthDate;
     private Address address;
     private Set<Tag> tags;
+    private MedicalReport medicalReport;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +46,7 @@ public class PersonBuilder {
         birthDate = new BirthDate(DEFAULT_BIRTHDATE);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        medicalReport = MedicalReport.EMPTY_MEDICAL_REPORT;
     }
 
     /**
@@ -57,6 +60,7 @@ public class PersonBuilder {
         birthDate = personToCopy.getBirthDate();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        medicalReport = personToCopy.getMedicalReport();
     }
 
     /**
@@ -115,8 +119,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code MedicalReport} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMedicalReport(MedicalReport medicalReport) {
+        this.medicalReport = medicalReport;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, nric, birthDate, address, tags);
+        return new Person(name, phone, email, nric, birthDate, address, tags, medicalReport);
     }
 
 }

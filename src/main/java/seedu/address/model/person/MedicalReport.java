@@ -4,10 +4,15 @@ package seedu.address.model.person;
  * Represents a Person's medical report in the address book.
  */
 public class MedicalReport {
-    private String allergens;
-    private String illnesses;
-    private String surgeries;
-    private String immunizations;
+
+    public static final MedicalReport EMPTY_MEDICAL_REPORT =
+            new MedicalReport("None", "None", "None", "None");
+
+    public final String value;
+    private final String allergens;
+    private final String illnesses;
+    private final String surgeries;
+    private final String immunizations;
 
     /**
      * Constructs a {@code MedicalReport} with the specified medical report details.
@@ -22,6 +27,34 @@ public class MedicalReport {
         this.illnesses = illnesses;
         this.surgeries = surgeries;
         this.immunizations = immunizations;
+        this.value = this.toString();
+    }
+
+    public String getAllergens() {
+        return allergens;
+    }
+
+    public String getIllnesses() {
+        return illnesses;
+    }
+
+    public String getSurgeries() {
+        return surgeries;
+    }
+
+    public String getImmunizations() {
+        return immunizations;
+    }
+
+    @Override
+    public String toString() {
+        return (
+                "  ➤ Allergens: " + allergens + "\n"
+                + "  ➤ Illnesses: " + illnesses + "\n"
+                + "  ➤ Surgeries: " + surgeries + "\n"
+                + "  ➤ Immunizations: " + immunizations
+            );
     }
 }
+
 
