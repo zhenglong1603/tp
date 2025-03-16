@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateUtil;

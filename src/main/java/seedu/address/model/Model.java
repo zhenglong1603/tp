@@ -104,12 +104,17 @@ public interface Model {
     void deleteMedicalReport(Person target);
 
     /**
-     * Adds medicine usage to a person
+     * Adds a medicine usage to a person
      */
     void addMedicineUsage(Person target, MedicineUsage medicineUsage);
 
     /**
-     * Deletes medicine usage from a person.
+     * Deletes a medicine usage from a person.
      */
     void deleteMedicineUsage(Person target, MedicineUsage medicineUsage);
+
+    /**
+     * Clears all medicine usages from a person
+     */
+    void clearMedicineUsage(Person target);
 }

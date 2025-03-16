@@ -99,6 +99,10 @@ public class MedicineUsageList implements Iterable<MedicineUsage> {
         internalList.setAll(replacement);
     }
 
+    public void reset() {
+        internalList.clear();
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

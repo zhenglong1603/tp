@@ -70,6 +70,10 @@ public class MedicalReport {
         medicineUsages.setMedicineUsages(newData);
     }
 
+    public void reset() {
+        medicineUsages.reset();
+    }
+
     @Override
     public String toString() {
         return (
