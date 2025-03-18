@@ -84,11 +84,11 @@ public class MedicalReport {
             return false;
         }
         MedicalReport that = (MedicalReport) obj;
-        return Objects.equals(allergens, that.allergens) &&
-                Objects.equals(illnesses, that.illnesses) &&
-                Objects.equals(surgeries, that.surgeries) &&
-                Objects.equals(immunizations, that.immunizations) &&
-                Objects.equals(medicineUsages, that.medicineUsages);
+        return Objects.equals(allergens, that.allergens)
+                && Objects.equals(illnesses, that.illnesses)
+                && Objects.equals(surgeries, that.surgeries)
+                && Objects.equals(immunizations, that.immunizations)
+                && Objects.equals(medicineUsages, that.medicineUsages);
     }
 
     @Override
