@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
@@ -12,8 +14,6 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Person;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Panel containing the list of persons.
@@ -42,6 +42,9 @@ public class PersonListPanel extends UiPart<Region> {
         });
     }
 
+    /**
+     * Parses the selected person's details and updates the result display.
+     */
     public String parsePersonData(Person person) {
         requireNonNull(person);
         StringBuilder result = new StringBuilder();
