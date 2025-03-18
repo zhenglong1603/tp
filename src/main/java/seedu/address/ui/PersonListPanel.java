@@ -45,7 +45,7 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Parses the selected person's details and updates the result display.
      */
-    public String parsePersonData(Person person) {
+    public static String parsePersonData(Person person) {
         requireNonNull(person);
         StringBuilder result = new StringBuilder();
         result.append("Name: ").append(person.getName()).append("\n");
