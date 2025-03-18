@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
@@ -135,7 +137,8 @@ public class ModelManager implements Model {
                 target.getBirthDate(),
                 target.getAddress(),
                 target.getTags(),
-                medicalReport
+                medicalReport,
+                target.getAppointmentList()
         );
 
         klinix.setPerson(target, updatedPerson);
@@ -154,12 +157,69 @@ public class ModelManager implements Model {
                 target.getBirthDate(),
                 target.getAddress(),
                 target.getTags(),
-                MedicalReport.EMPTY_MEDICAL_REPORT
+                MedicalReport.EMPTY_MEDICAL_REPORT,
+                target.getAppointmentList()
         );
 
         klinix.setPerson(target, updatedPerson);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+    //=========== Appointment =============================================================
+    @Override
+    public void addAppointment(Person target, Appointment appointment) {
+        requireAllNonNull(target, appointment);
+
+        AppointmentList updatedAppointments = target.getAppointmentList(); // Get current appointments
+        updatedAppointments.add(appointment); // Add the new appointment
+
+        Person updatedPerson = new Person(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getNric(),
+                target.getBirthDate(),
+                target.getAddress(),
+                target.getTags(),
+                target.getMedicalReport(),
+                updatedAppointments // Use updated list of appointments
+        );
+
+        klinix.setPerson(target, updatedPerson);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+
+    @Override
+    public void deleteAppointment(Person target, Appointment appointmentToDelete) {
+        requireAllNonNull(target, appointmentToDelete);
+
+        AppointmentList updatedAppointments = target.getAppointmentList(); // Get current appointments
+        updatedAppointments.remove(appointmentToDelete); // Remove the specific appointment
+
+        Person updatedPerson = new Person(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getNric(),
+                target.getBirthDate(),
+                target.getAddress(),
+                target.getTags(),
+                target.getMedicalReport(),
+                updatedAppointments // Use updated list of appointments
+        );
+
+        klinix.setPerson(target, updatedPerson);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void clearAppointments(Person target) {
+        requireNonNull(target);
+        AppointmentList appointmentList = target.getAppointmentList();
+        appointmentList.reset();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
 
     //=========== Medicine Usage =============================================================================
     @Override

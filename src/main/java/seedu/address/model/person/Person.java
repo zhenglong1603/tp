@@ -4,10 +4,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,12 +30,13 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final MedicalReport medicalReport;
+    private final AppointmentList appointmentList;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Nric nric, BirthDate birthDate,
-            Address address, Set<Tag> tags, MedicalReport medicalReport) {
+                  Address address, Set<Tag> tags, MedicalReport medicalReport, AppointmentList appointmentList) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -42,6 +46,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.medicalReport = medicalReport;
+        this.appointmentList = appointmentList;
     }
 
     public Name getName() {
@@ -91,6 +96,29 @@ public class Person {
     }
 
     /**
+     * Returns the appointmentList of the person.
+     */
+    public AppointmentList getAppointmentList() {
+        return appointmentList;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointmentList.asUnmodifiableObservableList();
+    }
+
+    public void add(Appointment toAdd) {
+        appointmentList.add(toAdd);
+    }
+
+    public void remove(Appointment toRemove) {
+        appointmentList.remove(toRemove);
+    }
+
+    public void setAppointment(List<Appointment> newData) {
+        appointmentList.setAppointment(newData);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -113,7 +141,6 @@ public class Person {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof Person)) {
             return false;
         }
@@ -122,19 +149,23 @@ public class Person {
         return nric.equals(otherPerson.nric) && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone) && email.equals(otherPerson.email)
                 && birthDate.equals(otherPerson.birthDate) && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags) && medicalReport.equals(otherPerson.medicalReport)
+                && appointmentList.equals(otherPerson.appointmentList);
     }
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, email, nric, birthDate, address, tags);
+        return Objects.hash(name, phone, email, nric, birthDate, address, tags, medicalReport, appointmentList);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("name", name).add("phone", phone).add("email", email)
+        return new ToStringBuilder(this).add("name", name)
+                .add("phone", phone).add("email", email)
                 .add("nric", nric).add("birthDate", birthDate).add("address", address)
-                .add("tags", tags).toString();
+                .add("tags", tags).add("medicalReport", medicalReport)
+                .add("appointmentList", appointmentList).toString();
     }
 
 }
