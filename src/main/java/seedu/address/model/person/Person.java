@@ -167,5 +167,4 @@ public class Person {
                 .add("tags", tags).add("medicalReport", medicalReport)
                 .add("appointmentList", appointmentList).toString();
     }
-
 }
