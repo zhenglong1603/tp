@@ -26,12 +26,13 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final MedicalReport medicalReport;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Nric nric, BirthDate birthDate,
-            Address address, Set<Tag> tags) {
+            Address address, Set<Tag> tags, MedicalReport medicalReport) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -40,6 +41,7 @@ public class Person {
         this.birthDate = birthDate;
         this.address = address;
         this.tags.addAll(tags);
+        this.medicalReport = medicalReport;
     }
 
     public Name getName() {
@@ -82,6 +84,13 @@ public class Person {
     }
 
     /**
+     * Returns the medical report of the person.
+     */
+    public MedicalReport getMedicalReport() {
+        return medicalReport;
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -90,8 +99,9 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getNric().equals(getNric());
     }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
