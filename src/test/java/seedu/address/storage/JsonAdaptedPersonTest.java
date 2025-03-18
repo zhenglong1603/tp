@@ -103,7 +103,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidNric_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                INVALID_NRIC, VALID_BIRTH_DATE, VALID_ADDRESS, VALID_TAGS, VALID_MEDICAL_REPORT, VALID_APPOINTMENT_LIST);
+                INVALID_NRIC, VALID_BIRTH_DATE, VALID_ADDRESS, VALID_TAGS,
+                VALID_MEDICAL_REPORT, VALID_APPOINTMENT_LIST);
         String expectedMessage = Nric.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -120,7 +121,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidBirthDate_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_NRIC, INVALID_BIRTH_DATE, VALID_ADDRESS, VALID_TAGS, VALID_MEDICAL_REPORT, VALID_APPOINTMENT_LIST);
+                VALID_NRIC, INVALID_BIRTH_DATE, VALID_ADDRESS, VALID_TAGS,
+                VALID_MEDICAL_REPORT, VALID_APPOINTMENT_LIST);
         String expectedMessage = BirthDate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -137,7 +139,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_NRIC, VALID_BIRTH_DATE, INVALID_ADDRESS, VALID_TAGS, VALID_MEDICAL_REPORT, VALID_APPOINTMENT_LIST);
+                VALID_NRIC, VALID_BIRTH_DATE, INVALID_ADDRESS, VALID_TAGS,
+                VALID_MEDICAL_REPORT, VALID_APPOINTMENT_LIST);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

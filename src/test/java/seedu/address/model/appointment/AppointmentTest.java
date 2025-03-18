@@ -1,11 +1,13 @@
 package seedu.address.model.appointment;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class AppointmentTest {
 
@@ -28,9 +30,10 @@ public class AppointmentTest {
         assertNotNull(appointment);
         assertEquals("Doctor Visit", appointment.getDescription());
 
-        // Check if LocalDateTime is correctly set for start and end date
-        assertEquals(LocalDate.parse("2025-03-20", DateTimeFormatter.ofPattern("yyyy-MM-dd")), appointment.getStartDate());
-        assertEquals(LocalDate.parse("2025-03-20", DateTimeFormatter.ofPattern("yyyy-MM-dd")), appointment.getEndDate());
+        assertEquals(LocalDate.parse("2025-03-20",
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")), appointment.getStartDate());
+        assertEquals(LocalDate.parse("2025-03-20",
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")), appointment.getEndDate());
         assertEquals("T1234567B", appointment.getDoctorNric());
     }
 
