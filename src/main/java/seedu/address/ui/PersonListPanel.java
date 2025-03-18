@@ -10,6 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Person;
 
 import static java.util.Objects.requireNonNull;
@@ -55,7 +56,15 @@ public class PersonListPanel extends UiPart<Region> {
         result.append("\n");
         result.append("Drug Allergies: ").append(person.getMedicalReport().getAllergens()).append("\n");
         result.append("Illnesses: ").append(person.getMedicalReport().getIllnesses()).append("\n");
-        result.append("Medicine Usages: ").append(person.getMedicalReport().getMedicineUsages()).append("\n");
+        result.append("Surgeries: ").append(person.getMedicalReport().getSurgeries()).append("\n");
+        result.append("Immunizations: ").append(person.getMedicalReport().getImmunizations()).append("\n");
+        result.append("\n");
+
+        ObservableList<MedicineUsage> list = person.getMedicalReport().getMedicineUsages();
+        result.append("Medicine Usages: ").append("\n");
+        for (int i = 0; i < list.size(); i++) {
+            result.append(i + 1).append(": ").append(list.get(i).toString()).append("\n");
+        }
 
         return result.toString();
     }
