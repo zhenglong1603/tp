@@ -31,6 +31,7 @@ public class TestPersonCard extends ApplicationTest {
 
     @BeforeEach
     public void setUp() throws Exception {
+        System.setProperty("jdk.gtk.version", "2");
         registerPrimaryStage();
         Set<Tag> tags = new HashSet<>();
         Person person = new Person(
