@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.medicineusage.MedicineUsage;
@@ -72,6 +73,27 @@ public class MedicalReport {
 
     public void reset() {
         medicineUsages.reset();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        MedicalReport that = (MedicalReport) obj;
+        return Objects.equals(allergens, that.allergens) &&
+                Objects.equals(illnesses, that.illnesses) &&
+                Objects.equals(surgeries, that.surgeries) &&
+                Objects.equals(immunizations, that.immunizations) &&
+                Objects.equals(medicineUsages, that.medicineUsages);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(allergens, illnesses, surgeries, immunizations, medicineUsages);
     }
 
     @Override

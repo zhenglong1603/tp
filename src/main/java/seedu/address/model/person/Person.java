@@ -149,7 +149,8 @@ public class Person {
         return nric.equals(otherPerson.nric) && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone) && email.equals(otherPerson.email)
                 && birthDate.equals(otherPerson.birthDate) && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags) && medicalReport.equals(otherPerson.medicalReport)
+                && tags.equals(otherPerson.tags)
+                && medicalReport.equals(otherPerson.medicalReport)
                 && appointmentList.equals(otherPerson.appointmentList);
     }
 

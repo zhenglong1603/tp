@@ -48,7 +48,7 @@ public class JsonAdaptedAppointmentList {
      */
     public static JsonAdaptedAppointmentList fromModelType(AppointmentList source) {
         List<JsonAdaptedAppointment> adaptedAppointments = source.asUnmodifiableObservableList().stream()
-                .map(JsonAdaptedAppointment::new) // Converts each Appointment to JsonAdaptedAppointment
+                .map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList());
         return new JsonAdaptedAppointmentList(adaptedAppointments);
     }
