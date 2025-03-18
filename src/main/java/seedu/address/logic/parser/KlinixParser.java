@@ -10,7 +10,9 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMedicalReportCommand;
+import seedu.address.logic.commands.AddMedicineUsageCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearMedicineUsageCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteMedicalReportCommand;
@@ -31,7 +33,6 @@ public class KlinixParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(KlinixParser.class);
-
     /**
      * Parses user input into command for execution.
      *
@@ -85,6 +86,11 @@ public class KlinixParser {
         case DeleteMedicalReportCommand.COMMAND_WORD:
             return new DeleteMedicalReportCommandParser().parse(arguments);
 
+        case AddMedicineUsageCommand.COMMAND_WORD:
+            return new AddMedicineUsageCommandParser().parse(arguments);
+
+        case ClearMedicineUsageCommand.COMMAND_WORD:
+            return new ClearMedicineUsageCommandParser().parse(arguments);
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

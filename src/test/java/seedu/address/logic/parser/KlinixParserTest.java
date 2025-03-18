@@ -7,6 +7,7 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +15,9 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMedicineUsageCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearMedicineUsageCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -23,7 +26,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -97,5 +102,40 @@ public class KlinixParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+    @Test
+    void parseCommand_addMedicineUsage_success() throws Exception {
+        String input = "addmu ic/S1234567A n/Paracetamol dos/500mg from/01-01-2025 to/05-01-2025";
+        AddMedicineUsageCommand command = (AddMedicineUsageCommand) parser.parseCommand(input);
+        Nric expectedNric = new Nric("S1234567A");
+        MedicineUsage expectedMedicineUsage = new MedicineUsage("Paracetamol", "500mg",
+                LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 5));
+        assertEquals(new AddMedicineUsageCommand(expectedNric, expectedMedicineUsage), command);
+    }
+
+    @Test
+    void parseCommand_clearMedicineUsage_success() throws Exception {
+        String input = "clearmu ic/S1234567A";
+        ClearMedicineUsageCommand command = (ClearMedicineUsageCommand) parser.parseCommand(input);
+        Nric expectedNric = new Nric("S1234567A");
+        assertEquals(new ClearMedicineUsageCommand(expectedNric), command);
+    }
+
+    @Test
+    void parseCommand_clearMedicineUsageInvalidInput_throwsParseException() {
+        String input = "clearmu";
+        assertThrows(ParseException.class, () -> parser.parseCommand(input));
+    }
+
+    @Test
+    void parseCommand_addMedicineUsageUnrecognizedCommand_throwsParseException() {
+        String input = "addmed ic/S1234567A n/Paracetamol dos/500mg from/01-01-2025 to/05-01-2025";
+        assertThrows(ParseException.class, () -> parser.parseCommand(input));
+    }
+
+    @Test
+    void parseCommand_clearMedicineUsageUnrecognizedCommand_throwsParseException() {
+        String input = "clearmeds ic/S1234567A";
+        assertThrows(ParseException.class, () -> parser.parseCommand(input));
     }
 }

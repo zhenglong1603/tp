@@ -59,6 +59,7 @@
         <Label fx:id="medicalReport" text="\$medicalReport" styleClass="cell_small_label"
           GridPane.rowIndex="5" GridPane.columnIndex="1" />
       </GridPane>
+      <FlowPane fx:id="medicineUsages" />
     </VBox>
   </GridPane>
 </HBox>
