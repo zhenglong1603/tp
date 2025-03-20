@@ -54,8 +54,6 @@
           GridPane.columnIndex="0" />
         <Label fx:id="email" text="\$email" styleClass="cell_small_label" GridPane.rowIndex="4"
           GridPane.columnIndex="1" />
-        <Label text="Appointments:" styleClass="cell_small_label" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-        <FlowPane fx:id="appointments" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
       </GridPane>
       <FlowPane fx:id="medicineUsages" />
     </VBox>

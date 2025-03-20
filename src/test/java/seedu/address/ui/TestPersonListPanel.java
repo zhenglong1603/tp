@@ -68,7 +68,12 @@ public class TestPersonListPanel {
             + "Illnesses: None\n"
             + "Surgeries: None\n"
             + "Immunizations: None\n\n"
-            + "Medicine Usages: \n";
+            + "Medicine Usages: \n"
+            + "No medicine usages found\n"
+            + "\n"
+            + "Appointments: \n"
+            + "No appointments found"
+            + "\n";
 
         assertEquals(expected, PersonListPanel.parsePersonData(person));
     }
@@ -117,7 +122,11 @@ public class TestPersonListPanel {
             + "Immunizations: Flu\n\n"
             + "Medicine Usages: \n"
             + "1: Medicine1, Dosage1, from 01 January 2020 to 31 December 2020\n"
-            + "2: Medicine2, Dosage2, from 01 January 2020 to 31 December 2020\n";
+            + "2: Medicine2, Dosage2, from 01 January 2020 to 31 December 2020\n"
+            + "\n"
+            + "Appointments: \n"
+            + "No appointments found"
+            + "\n";
 
         assertEquals(expected, PersonListPanel.parsePersonData(person));
     }
