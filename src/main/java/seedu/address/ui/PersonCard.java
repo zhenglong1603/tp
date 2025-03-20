@@ -67,9 +67,6 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        person.getAppointments().stream()
-                .forEach(appointment -> appointments.getChildren()
-                        .add(new Label(formatAppointment(appointment))));
     }
 
     private String formatAppointment(Appointment appointment) {
