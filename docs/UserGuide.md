@@ -167,15 +167,15 @@ Examples:
 1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
 
-### Delete medical report: `dmr`
+### Delete medical report: `deletemr`
 
 Delete a patient's existing medical report.
 
-Format: `dmr ic/<NRIC>`
+Format: `deletemr ic/<NRIC>`
 
 Examples: 
-* `dmr ic/S1234567A`
-* `dmr ic/T0260144G`
+* `deletemr ic/S1234567A`
+* `deletemr ic/T0260144G`
 
 **Warning**
 
@@ -300,7 +300,7 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Add Medical Report** | `addmr ic/<NRIC> al/<Allergies> ill/<Illnesses> sur/<Surgeries> imm/<Immunizations>` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
-**Delete Medical Report** | `dmr ic/<NRIC>` <br> e.g., `dmr ic/S1234567A`
+**Delete Medical Report** | `deletemr ic/<NRIC>` <br> e.g., `deletemr ic/S1234567A`
 **Add Medicine Usage** | `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<YYYY-MM-DD> to/<YYYY-MM-DD>` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/2025-02-23 to/2025-02-25`
 **Clear Medicine Usage** | `clearmu ic/<NRIC>` <br> e.g., `clearmu ic/S1234567A`
 **Add Appointment** | `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYY> to/<DD-MM-YYYY>` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 to/23-02-2025`
