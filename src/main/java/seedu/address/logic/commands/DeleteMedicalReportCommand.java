@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
  */
 public class DeleteMedicalReportCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteMedicalReport";
+    public static final String COMMAND_WORD = "deletemr";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a medical report from a person identified by NRIC.\n"
