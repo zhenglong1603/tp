@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.exceptions.OverlappingAppointmentException;
 import seedu.address.model.medicineusage.exceptions.OverlappingMedicineUsageException;
 
 /**
@@ -111,11 +112,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), resultDisplay);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getKlinixFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -188,7 +189,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException | OverlappingMedicineUsageException e) {
+        } catch (CommandException | ParseException | OverlappingAppointmentException
+                 | OverlappingMedicineUsageException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

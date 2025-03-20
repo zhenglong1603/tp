@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
@@ -117,4 +118,19 @@ public interface Model {
      * Clears all medicine usages from a person
      */
     void clearMedicineUsage(Person target);
+
+    /**
+     * Adds appointment to a person
+     */
+    void addAppointment(Person target, Appointment appointment);
+
+    /**
+     * Deletes a specific appointment from the person's list of appointments.
+     */
+    void deleteAppointment(Person target, Appointment appointmentToDelete);
+
+    /**
+     * Clears all appointments from a person
+     */
+    void clearAppointments(Person target);
 }

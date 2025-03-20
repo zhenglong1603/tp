@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
@@ -152,5 +153,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String appointmentDescription} into a {@code String appointmentDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code appointmentDescription} is empty.
+     */
+    public static String parseAppointmentDescription(String appointmentDescription) throws ParseException {
+        requireNonNull(appointmentDescription);
+        String trimmedAppointmentDescription = appointmentDescription.trim();
+        if (!Appointment.isValidDescription(trimmedAppointmentDescription)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedAppointmentDescription;
+    }
+
+    /**
+     * Parses a {@code String appointmentDescription} into a {@code String appointmentDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code appointmentDescription} is empty.
+     */
+    public static String parseDoctorNric(String doctorNric) throws ParseException {
+        requireNonNull(doctorNric);
+        String trimmedDoctorNric = doctorNric.trim();
+        if (!Appointment.isValidDescription(trimmedDoctorNric)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDoctorNric;
     }
 }

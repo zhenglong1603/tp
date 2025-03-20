@@ -24,6 +24,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE = new Prefix("date/");
     public static final Prefix PREFIX_AGE = new Prefix("age/");
     public static final Prefix PREFIX_ID = new Prefix("id/");
-    public static final Prefix PREFIX_APPOINTMENT_DESCRIPTION = new Prefix("appd/");
+    public static final Prefix PREFIX_APPOINTMENT_DESCRIPTION = new Prefix("appt/");
     public static final Prefix PREFIX_BIRTHDATE = new Prefix("b/");
 }

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
+import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
@@ -42,7 +43,8 @@ class AddMedicineUsageCommandTest {
                 new BirthDate("01/01/1990"),
                 new Address("123 Street"),
                 new HashSet<Tag>(),
-                new MedicalReport("None", "None", "None", "None")
+                new MedicalReport("None", "None", "None", "None"),
+                new AppointmentList()
         );
         medicineUsage = new MedicineUsage("Paracetamol", "500mg", LocalDate.now(), LocalDate.now().plusDays(5));
         model.addPerson(person);

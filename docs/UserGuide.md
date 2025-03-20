@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# Klinix User Guide
 
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
@@ -148,9 +148,76 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the clinic.
 
 Format: `clear`
+
+### Add medicine usage records: `addmu`
+
+Add a new medicine usage record as part of a patient’s medical history or medical needs.
+
+Format: `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<YYYY-MM-DD> to/<YYYY-MM-DD>`
+
+Example:
+* `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/2025-02-23 to/2025-02-25`
+* `addmu ic/S1234567A n/Panadol Extra dos/Two 250mg tablets, once per day from/2025-03-01 to/2025-03-05`
+
+**Warning:** 
+
+1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+2. Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.
+Klinix will detect such overlapping instances and give an error message when you try to add them.
+
+### Clear all medicine usage records: `clearmu`
+
+Clear all medicine usage records of a patient's medical history.
+
+Format: `clearmu ic/<NRIC>`
+
+Examples: `clearmu ic/S1234567A`
+
+**Warning:**
+
+1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+
+### Delete medicine usage records: `deletemu`
+
+Delete a particular medicine usage record of a patient's medical history.
+
+_To be added in the next version_
+
+### Add appointment: `addappt`
+
+Add a new appointment to the patient.
+
+Format: `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYY> to/<DD-MM-YYYY>`
+
+Example:
+* `addappt ic/S1234567A dic/S9876543A appt/Check-up from/22-02-2025 to/23-02-2025`
+
+**Warning:**
+
+1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+2. Two appointments from the same patient are overlapped if they have the same name and overlapping duration.
+   Klinix will detect such overlapping instances and give an error message when you try to add them.
+
+### Clear all appointment records: `clearappt`
+
+Clear all appointments of a patient.
+
+Format: `clearappt ic/<NRIC>`
+
+Examples: `clearappt ic/S1234567A`
+
+**Warning:**
+
+1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+
+### Delete appointment records: `deleteappt`
+
+Delete a particular appointment of a patient.
+
+_To be added in the next version_
 
 ### Exiting the program : `exit`
 
@@ -202,5 +269,9 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add Medicine Usage** | `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<YYYY-MM-DD> to/<YYYY-MM-DD>` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/2025-02-23 to/2025-02-25`
+**Clear Medicine Usage** | `clearmu ic/<NRIC>` <br> e.g., `clearmu ic/S1234567A`
+**Add Appointment** | `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYY> to/<DD-MM-YYYY>` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 to/23-02-2025`
+**Clear Appointments** | `clearappt ic/<NRIC>` <br> e.g., `clearappt ic/S1234567A`
 **List**   | `list`
 **Help**   | `help`
