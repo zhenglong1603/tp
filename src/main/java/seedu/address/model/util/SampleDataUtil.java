@@ -1,7 +1,9 @@
 package seedu.address.model.util;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,32 +26,32 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
 
-    public static Person[] getSamplePersons() {
-        Person[] persons = new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                        new Nric("S1234567A"),
-                        new BirthDate("01/01/1999"),
-                        new Address("Blk 30 Geylang Street 29, #06-40"),
-                        getTagSet("friends"),
-                        new MedicalReport("Pollen", "Asthma", "Appendectomy", "COVID-19"),
-                        new AppointmentList())
-        };
+    public static List<Person> getSamplePersons() {
+        List<Person> persons = new ArrayList<>();
 
-        // Add appointment after the object is created since addAppointment is void
-        persons[0].add(new Appointment("S1234567A" , "Checkup",
+        Person p1 = new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                new Nric("S1234567A"),
+                new BirthDate("01/01/1999"),
+                new Address("Blk 30 Geylang Street 29, #06-40"),
+                getTagSet("friends"),
+                new MedicalReport("Pollen", "Asthma", "Appendectomy", "COVID-19"),
+                new AppointmentList());
+        p1.add(new Appointment("S1234567A", "Checkup",
                 LocalDate.of(2025, 5, 10), LocalDate.of(2025, 5, 10)));
+        persons.add(p1);
 
-        persons[1] = new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+        Person p2 = new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Nric("S1234568B"),
                 new BirthDate("02/01/1999"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends"),
                 new MedicalReport("None", "Diabetes", "None", "Hepatitis B"),
                 new AppointmentList());
-        persons[1].add(new Appointment("S1234567A", "Dental Appointment",
+        p2.add(new Appointment("S1234567A", "Dental Appointment",
                 LocalDate.of(2025, 6, 15), LocalDate.of(2025, 6, 15)));
+        persons.add(p2);
 
-        persons[2] = new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
+        Person p3 = new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                 new Email("charlotte@example.com"),
                 new Nric("S1234569C"),
                 new BirthDate("03/01/1999"),
@@ -57,36 +59,40 @@ public class SampleDataUtil {
                 getTagSet("neighbours"),
                 new MedicalReport("Dust", "None", "Tonsillectomy", "Flu"),
                 new AppointmentList());
-        persons[2].add(new Appointment("S1234567A", "Flu Vaccination",
+        p3.add(new Appointment("S1234567A", "Flu Vaccination",
                 LocalDate.of(2025, 7, 20), LocalDate.of(2025, 7, 20)));
+        persons.add(p3);
 
-        persons[3] = new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+        Person p4 = new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Nric("S1234569D"),
                 new BirthDate("04/01/1999"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family"),
                 new MedicalReport("Peanuts", "Hypertension", "None", "None"),
                 new AppointmentList());
-        persons[3].add(new Appointment("S1234567A", "Eye Checkup",
+        p4.add(new Appointment("S1234567A", "Eye Checkup",
                 LocalDate.of(2025, 8, 25), LocalDate.of(2025, 8, 25)));
+        persons.add(p4);
 
-        persons[4] = new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+        Person p5 = new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Nric("S1234569E"),
                 new BirthDate("05/01/1999"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates"),
                 new MedicalReport("None", "None", "None", "None"),
                 new AppointmentList());
+        persons.add(p5);
 
-        persons[5] = new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+        Person p6 = new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Nric("S1234569F"),
                 new BirthDate("06/01/1999"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"),
                 new MedicalReport("Shellfish", "Gout", "Gallbladder Removal", "None"),
                 new AppointmentList());
-        persons[5].add(new Appointment("S1234567A", "Routine Checkup",
+        p6.add(new Appointment("S1234567A", "Routine Checkup",
                 LocalDate.of(2025, 9, 30), LocalDate.of(2025, 9, 30)));
+        persons.add(p6);
 
         return persons;
     }
