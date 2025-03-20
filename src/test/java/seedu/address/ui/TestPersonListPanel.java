@@ -69,7 +69,7 @@ public class TestPersonListPanel {
             + "Surgeries: None\n"
             + "Immunizations: None\n\n"
             + "Medicine Usages: \n"
-            + "No medicine usages found.\n"
+            + "No medicine usages found\n"
             + "\n"
             + "Appointments: \n"
             + "No appointments found"
