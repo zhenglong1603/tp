@@ -51,7 +51,7 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane medicineUsages;
     @FXML
     private FlowPane appointments;
-
+    
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -78,6 +78,10 @@ public class PersonCard extends UiPart<Region> {
                 appointment.getStartDate(),
                 appointment.getEndDate(),
                 appointment.getDoctorNric());
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8273fa4fa07eaead58958cd4460e36eab3e76b65
     }
 }
 
