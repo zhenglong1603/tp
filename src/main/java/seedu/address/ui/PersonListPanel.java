@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
@@ -12,6 +13,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Person;
 
@@ -68,7 +70,20 @@ public class PersonListPanel extends UiPart<Region> {
         for (int i = 0; i < list.size(); i++) {
             result.append(i + 1).append(": ").append(list.get(i).toString()).append("\n");
         }
+        if (list.isEmpty()) {
+            result.append("No medicine usages found").append("\n");
+        }
 
+        result.append("\n");
+        List<Appointment> appointments = person.getAppointments();
+        result.append("Appointments: ").append("\n");
+        for (int i = 0; i < appointments.size(); i++) {
+            result.append(i + 1).append(": ").append(appointments.get(i).toString()).append("\n");
+        }
+
+        if (appointments.isEmpty()) {
+            result.append("No appointments found").append("\n");
+        }
         return result.toString();
     }
 
