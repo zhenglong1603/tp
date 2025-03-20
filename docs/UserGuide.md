@@ -156,11 +156,11 @@ Format: `clear`
 
 Add a new medicine usage record as part of a patient’s medical history or medical needs.
 
-Format: `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<YYYY-MM-DD> to/<YYYY-MM-DD>`
+Format: `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<DD-MM-YYYY> to/<DD-MM-YYYY>`
 
 Example:
-* `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/2025-02-23 to/2025-02-25`
-* `addmu ic/S1234567A n/Panadol Extra dos/Two 250mg tablets, once per day from/2025-03-01 to/2025-03-05`
+* `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
+* `addmu ic/S1234567A n/Panadol Extra dos/Two 250mg tablets, once per day from/01-03-2025 to/05-03-2025`
 
 **Warning:** 
 
@@ -190,7 +190,7 @@ _To be added in the next version_
 
 Add a new appointment to the patient.
 
-Format: `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYY> to/<DD-MM-YYYY>`
+Format: `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYYY> to/<DD-MM-YYYY>`
 
 Example:
 * `addappt ic/S1234567A dic/S9876543A appt/Check-up from/22-02-2025 to/23-02-2025`
@@ -269,9 +269,9 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Add Medicine Usage** | `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<YYYY-MM-DD> to/<YYYY-MM-DD>` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/2025-02-23 to/2025-02-25`
+**Add Medicine Usage** | `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<DD-MM-YYYY> to/<DD-MM-YYYY>` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/2025-02-23 to/2025-02-25`
 **Clear Medicine Usage** | `clearmu ic/<NRIC>` <br> e.g., `clearmu ic/S1234567A`
-**Add Appointment** | `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYY> to/<DD-MM-YYYY>` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 to/23-02-2025`
+**Add Appointment** | `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYYY> to/<DD-MM-YYYY>` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 to/23-02-2025`
 **Clear Appointments** | `clearappt ic/<NRIC>` <br> e.g., `clearappt ic/S1234567A`
 **List**   | `list`
 **Help**   | `help`
