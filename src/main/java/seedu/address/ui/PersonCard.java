@@ -52,8 +52,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane appointments;
 
-
-
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -67,12 +65,8 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        medicalReport.setText(person.getMedicalReport().value);
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        person.getMedicalReport().getMedicineUsages().stream()
-                .forEach(medicineUsage -> medicineUsages.getChildren()
-                        .add(new Label(medicineUsage.toString())));
         person.getAppointments().stream()
                 .forEach(appointment -> appointments.getChildren()
                         .add(new Label(formatAppointment(appointment))));

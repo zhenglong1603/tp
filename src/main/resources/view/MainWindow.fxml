@@ -11,7 +11,7 @@
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="650" minHeight="600" onCloseRequest="#handleExit" maxHeight="Infinity">
     <icons>
-        <Image url="@/images/Klinix_logo.png"/>
+        <Image url="@/images/Klinix_logo_square.png"/>
     </icons>
     <scene>
         <Scene>
