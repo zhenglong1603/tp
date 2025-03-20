@@ -53,3 +53,4 @@ public class DateUtil {
         return date != null && date.equals(LocalDate.now());
     }
 }
+

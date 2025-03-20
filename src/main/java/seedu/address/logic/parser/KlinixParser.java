@@ -8,9 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMedicalReportCommand;
 import seedu.address.logic.commands.AddMedicineUsageCommand;
+import seedu.address.logic.commands.ClearAppointmentsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ClearMedicineUsageCommand;
 import seedu.address.logic.commands.Command;
@@ -91,6 +93,13 @@ public class KlinixParser {
 
         case ClearMedicineUsageCommand.COMMAND_WORD:
             return new ClearMedicineUsageCommandParser().parse(arguments);
+
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
+
+        case ClearAppointmentsCommand.COMMAND_WORD:
+            return new ClearAppointmentsCommandParser().parse(arguments);
+
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

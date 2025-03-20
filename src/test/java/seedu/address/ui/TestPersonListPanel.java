@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
@@ -42,6 +43,7 @@ public class TestPersonListPanel {
     @Test
     public void parsePersonData_validPerson_correctString() {
         MedicalReport medicalReport = new MedicalReport("None", "None", "None", "None");
+        AppointmentList appointmentList = AppointmentList.EMPTY_APPOINTMENT_LIST;
         Set<Tag> tags = new HashSet<>();
         Person person = new Person(
                 new Name("John Doe"),
@@ -51,7 +53,8 @@ public class TestPersonListPanel {
                 new BirthDate("05/05/1985"),
                 new Address("123 Main St"),
                 tags,
-                medicalReport
+                medicalReport,
+                appointmentList
         );
 
         String expected = "Name: John Doe\n"
@@ -84,6 +87,7 @@ public class TestPersonListPanel {
                 new MedicineUsage("Medicine1", "Dosage1", startdate, enddate),
                 new MedicineUsage("Medicine2", "Dosage2", startdate, enddate)
         );
+        AppointmentList appointmentList = AppointmentList.EMPTY_APPOINTMENT_LIST;
 
         Person person = new Person(
                 new Name("Jane Doe"),
@@ -93,7 +97,8 @@ public class TestPersonListPanel {
                 new BirthDate("05/05/1985"),
                 new Address("456 Another St"),
                 tags,
-                medicalReport
+                medicalReport,
+                appointmentList
         );
 
         medicalReport.add(medicineUsages.get(0));

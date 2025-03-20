@@ -94,10 +94,13 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone="
-                + ALICE.getPhone() + ", email=" + ALICE.getEmail() + ", nric=" + ALICE.getNric()
-                + ", birthDate=" + ALICE.getBirthDate() + ", address=" + ALICE.getAddress()
-                + ", tags=" + ALICE.getTags() + "}";
+        String expected = "seedu.address.model.person.Person{name=" + ALICE.getName()
+                + ", phone=" + ALICE.getPhone() + ", email=" + ALICE.getEmail()
+                + ", nric=" + ALICE.getNric() + ", birthDate=" + ALICE.getBirthDate()
+                + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags()
+                + ", medicalReport="
+                + "  ➤ Allergens: None\n  ➤ Illnesses: None\n  ➤ Surgeries: None\n  ➤ Immunizations: None"
+                + ", appointmentList=" + ALICE.getAppointmentList() + "}";
         assertEquals(expected, ALICE.toString());
     }
 
