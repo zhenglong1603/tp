@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
  */
 public class AddMedicalReportCommand extends Command {
 
-    public static final String COMMAND_WORD = "addMedicalReport";
+    public static final String COMMAND_WORD = "addmr";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a medical report to a person identified by NRIC.\n"
