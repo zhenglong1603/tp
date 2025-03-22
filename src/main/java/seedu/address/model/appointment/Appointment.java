@@ -18,6 +18,7 @@ public class Appointment {
     private final String doctorNric;
     private final LocalDate startDate;
     private final LocalDate endDate;
+    private final String patientNric;
 
     /**
      * Constructs an {@code Appointment}.
@@ -27,7 +28,7 @@ public class Appointment {
      * @param startDate the start time in dd-MM-yyyy-HH-mm format.
      * @param endDate the end time in dd-MM-yyyy-HH-mm format.
      */
-    public Appointment(String doctorNric, String description, LocalDate startDate, LocalDate endDate) {
+    public Appointment(String doctorNric, String description, LocalDate startDate, LocalDate endDate, String patientNric) {
         requireNonNull(description);
         requireNonNull(startDate);
         requireNonNull(endDate);
@@ -36,6 +37,7 @@ public class Appointment {
         this.doctorNric = doctorNric;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.patientNric = patientNric;
     }
 
     public String getDescription() {
@@ -54,6 +56,10 @@ public class Appointment {
         return this.endDate;
     }
 
+    public String getPatientNric() {
+        return this.patientNric;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -69,7 +75,8 @@ public class Appointment {
         return description.equals(otherAppt.description)
                 && doctorNric.equals(otherAppt.doctorNric)
                 && startDate.equals(otherAppt.startDate)
-                && endDate.equals(otherAppt.endDate);
+                && endDate.equals(otherAppt.endDate)
+                && patientNric.equals(otherAppt.patientNric);
     }
 
     /**

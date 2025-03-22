@@ -188,6 +188,7 @@ public class ModelManager implements Model {
         );
 
         klinix.setPerson(target, updatedPerson);
+        klinix.addAppointment(appointment);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -219,18 +220,16 @@ public class ModelManager implements Model {
     public void clearAppointments(Person target) {
         requireNonNull(target);
         AppointmentList appointmentList = target.getAppointmentList();
+        for (Appointment a : appointmentList) {
+            klinix.deleteAppointment(a);
+        }
         appointmentList.reset();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public ObservableList<Appointment> getAppointments(LocalDate date) {
-        ArrayList<Appointment> appointmentList = klinix.getAppointmentsListByDate(date);
-        if (appointmentList != null) {
-            return FXCollections.observableArrayList(appointmentList);
-        } else {
-            return FXCollections.observableArrayList();
-        }
+        return klinix.getAppointmentsListByDate(date);
     }
 
 

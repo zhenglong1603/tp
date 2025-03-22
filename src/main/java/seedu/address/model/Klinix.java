@@ -161,11 +161,19 @@ public class Klinix implements ReadOnlyKlinix {
         }
     }
 
-    public ArrayList<Appointment> getAppointmentsListByDate(LocalDate date) {
+    public void addAppointment(Appointment appointment) {
+        this.appointmentsByDate.addAppointment(appointment);
+    }
+
+    public ObservableList<Appointment> getAppointmentsListByDate(LocalDate date) {
         return this.appointmentsByDate.getAppointmentListByDate(date);
     }
 
     public AppointmentListByDate getAppointmentsByDate() {
         return this.appointmentsByDate;
+    }
+
+    public void deleteAppointment(Appointment appointmentToDelete) {
+        this.appointmentsByDate.deleteAppointment(appointmentToDelete);
     }
 }

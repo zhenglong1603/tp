@@ -37,7 +37,7 @@ public class SampleDataUtil {
                 new MedicalReport("Pollen", "Asthma", "Appendectomy", "COVID-19"),
                 new AppointmentList());
         p1.add(new Appointment("S1234567A", "Checkup",
-                LocalDate.of(2025, 5, 10), LocalDate.of(2025, 5, 10)));
+                LocalDate.of(2025, 5, 10), LocalDate.of(2025, 5, 10), "S1234567A"));
         persons.add(p1);
 
         Person p2 = new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
@@ -48,7 +48,7 @@ public class SampleDataUtil {
                 new MedicalReport("None", "Diabetes", "None", "Hepatitis B"),
                 new AppointmentList());
         p2.add(new Appointment("S1234567A", "Dental Appointment",
-                LocalDate.of(2025, 6, 15), LocalDate.of(2025, 6, 15)));
+                LocalDate.of(2025, 6, 15), LocalDate.of(2025, 6, 15), "S1234568B"));
         persons.add(p2);
 
         Person p3 = new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
@@ -60,7 +60,7 @@ public class SampleDataUtil {
                 new MedicalReport("Dust", "None", "Tonsillectomy", "Flu"),
                 new AppointmentList());
         p3.add(new Appointment("S1234567A", "Flu Vaccination",
-                LocalDate.of(2025, 7, 20), LocalDate.of(2025, 7, 20)));
+                LocalDate.of(2025, 7, 20), LocalDate.of(2025, 7, 20), "S1234569C"));
         persons.add(p3);
 
         Person p4 = new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
@@ -71,7 +71,7 @@ public class SampleDataUtil {
                 new MedicalReport("Peanuts", "Hypertension", "None", "None"),
                 new AppointmentList());
         p4.add(new Appointment("S1234567A", "Eye Checkup",
-                LocalDate.of(2025, 8, 25), LocalDate.of(2025, 8, 25)));
+                LocalDate.of(2025, 8, 25), LocalDate.of(2025, 8, 25), "S1234569D"));
         persons.add(p4);
 
         Person p5 = new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
@@ -91,7 +91,7 @@ public class SampleDataUtil {
                 new MedicalReport("Shellfish", "Gout", "Gallbladder Removal", "None"),
                 new AppointmentList());
         p6.add(new Appointment("S1234567A", "Routine Checkup",
-                LocalDate.of(2025, 9, 30), LocalDate.of(2025, 9, 30)));
+                LocalDate.of(2025, 9, 30), LocalDate.of(2025, 9, 30), "S1234569F"));
         persons.add(p6);
 
         return persons;

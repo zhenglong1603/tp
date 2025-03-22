@@ -13,6 +13,7 @@
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
+                <Label fx:id="patientNric" text="\$patientNric" styleClass="cell_big_label" />
             <GridPane hgap="5" vgap="5">
                 <columnConstraints>
                     <ColumnConstraints minWidth="60" />
