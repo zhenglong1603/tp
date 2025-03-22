@@ -68,13 +68,5 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-
-    private String formatAppointment(Appointment appointment) {
-        return String.format("%s: %s to %s (Doctor: %s)",
-                appointment.getDescription(),
-                appointment.getStartDate(),
-                appointment.getEndDate(),
-                appointment.getDoctorNric());
-    }
 }
 

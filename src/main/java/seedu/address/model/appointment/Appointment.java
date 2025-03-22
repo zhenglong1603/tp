@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.DateUtil.DATE_FORMATTER;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * Represents a Appointment.
