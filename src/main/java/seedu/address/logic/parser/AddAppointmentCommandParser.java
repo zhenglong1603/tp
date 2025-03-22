@@ -49,7 +49,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         LocalDate endDate = LocalDate.parse(argMultimap.getValue(PREFIX_TO).get(),
                 DateUtil.getDateFormatter());
 
-        Appointment medicineUsage = new Appointment(doctorNric, appointmentDescription, startDate, endDate, nric.toString());
+        Appointment medicineUsage = new Appointment(
+                doctorNric, appointmentDescription, startDate, endDate, nric.toString());
 
         return new AddAppointmentCommand(nric, medicineUsage);
     }

@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -123,7 +122,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), resultDisplay);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        AppointmentListPanel appointmentListPanel = new AppointmentListPanel(logic.getAppointmentList(LocalDate.now()));
+        AppointmentListPanel appointmentListPanel = new AppointmentListPanel(
+                logic.getAppointmentList(LocalDate.now()), logic.getKlinix());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getKlinixFilePath());

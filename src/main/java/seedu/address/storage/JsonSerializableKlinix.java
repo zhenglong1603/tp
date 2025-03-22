@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Klinix;
 import seedu.address.model.ReadOnlyKlinix;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.person.Person;
 
 /**

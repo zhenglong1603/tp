@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.DateUtil.DATE_FORMATTER;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 /**
  * Represents a Appointment.
@@ -27,8 +26,11 @@ public class Appointment {
      * @param doctorNric the string of the doctor in charge.
      * @param startDate the start time in dd-MM-yyyy-HH-mm format.
      * @param endDate the end time in dd-MM-yyyy-HH-mm format.
+     * @param patientNric the string of the patient.
      */
-    public Appointment(String doctorNric, String description, LocalDate startDate, LocalDate endDate, String patientNric) {
+    public Appointment(
+            String doctorNric, String description, LocalDate startDate, LocalDate endDate,
+            String patientNric) {
         requireNonNull(description);
         requireNonNull(startDate);
         requireNonNull(endDate);

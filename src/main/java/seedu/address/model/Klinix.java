@@ -3,7 +3,6 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -140,10 +139,7 @@ public class Klinix implements ReadOnlyKlinix {
         return persons.hashCode();
     }
 
-    /**
-     * Returns the person with the given {@code nric}.
-     *
-     */
+    @Override
     public Person findPersonByNric(Nric nric) {
         requireNonNull(nric);
 
@@ -155,6 +151,10 @@ public class Klinix implements ReadOnlyKlinix {
         return null;
     }
 
+    /**
+     * Adds a list of appointments to the address book.
+     * @param appointments
+     */
     public void addAppointment(List<Appointment> appointments) {
         for (Appointment a : appointments) {
             this.appointmentsByDate.addAppointment(a);
