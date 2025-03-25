@@ -31,7 +31,7 @@ Klinix Level 3  is a **desktop app for managing contacts, optimized for use via 
 
    * `list` : Lists all contacts.
 
-   * `add ` : Adds a contact to the Address Book.
+   * `add ` : Adds a contact to Klinix.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
