@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -117,6 +121,10 @@ public class MainWindow extends UiPart<Stage> {
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), resultDisplay);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        AppointmentListPanel appointmentListPanel = new AppointmentListPanel(
+                logic.getAppointmentList(LocalDate.now()), logic.getKlinix());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getKlinixFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());

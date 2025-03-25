@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -67,14 +66,6 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
-    private String formatAppointment(Appointment appointment) {
-        return String.format("%s: %s to %s (Doctor: %s)",
-                appointment.getDescription(),
-                appointment.getStartDate(),
-                appointment.getEndDate(),
-                appointment.getDoctorNric());
     }
 }
 

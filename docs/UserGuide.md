@@ -173,7 +173,7 @@ Delete a patient's existing medical report.
 
 Format: `deletemr ic/<NRIC>`
 
-Examples: 
+Examples:
 * `deletemr ic/S1234567A`
 * `deletemr ic/T0260144G`
 
@@ -192,7 +192,7 @@ Examples:
 * `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/2025-02-23 to/2025-02-25`
 * `addmu ic/S1234567A n/Panadol Extra dos/Two 250mg tablets, once per day from/2025-03-01 to/2025-03-05`
 
-**Warning:** 
+**Warning:**
 
 1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
 2. Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.

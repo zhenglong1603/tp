@@ -10,6 +10,11 @@
     -fx-opacity: 0.9;
 }
 
+.debug-border {
+    -fx-border-color: red;
+    -fx-border-width: 2;
+}
+
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";

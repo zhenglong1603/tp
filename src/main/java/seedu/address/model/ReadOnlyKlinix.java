@@ -1,6 +1,8 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.AppointmentListByDate;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
@@ -14,4 +16,11 @@ public interface ReadOnlyKlinix {
      */
     ObservableList<Person> getPersonList();
 
+    /**
+     * Returns the person with the given {@code nric}.
+     *
+     */
+    Person findPersonByNric(Nric nric);
+
+    AppointmentListByDate getAppointmentsByDate();
 }

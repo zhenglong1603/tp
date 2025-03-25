@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.AppointmentListByDate;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -102,6 +104,16 @@ public class KlinixTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public Person findPersonByNric(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public AppointmentListByDate getAppointmentsByDate() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
