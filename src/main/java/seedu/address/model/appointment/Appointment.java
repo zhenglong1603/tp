@@ -18,6 +18,7 @@ public class Appointment {
     private final LocalDate startDate;
     private final LocalDate endDate;
     private final String patientNric;
+    private Boolean visited;
 
     /**
      * Constructs an {@code Appointment}.
@@ -40,6 +41,7 @@ public class Appointment {
         this.startDate = startDate;
         this.endDate = endDate;
         this.patientNric = patientNric;
+        this.visited = false;
     }
 
     public String getDescription() {
@@ -116,4 +118,11 @@ public class Appointment {
                 + endDate.format(DATE_FORMATTER);
     }
 
+    public Object getVisited() {
+        return visited;
+    }
+
+    public void setVisited(Boolean visited) {
+        this.visited = visited;
+    }
 }

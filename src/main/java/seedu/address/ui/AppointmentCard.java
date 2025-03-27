@@ -27,6 +27,8 @@ public class AppointmentCard extends UiPart<Region> {
     private Label patientNric;
     @FXML
     private Label patientName;
+    @FXML
+    private Label visited;
 
     /**
      * Creates a {@code AppointmentCard} with the given {@code Appointment} and index to display.
@@ -34,11 +36,12 @@ public class AppointmentCard extends UiPart<Region> {
     public AppointmentCard(Appointment appointment, int displayedIndex, String pn) {
         super(FXML);
         this.appointment = appointment;
+        visited.setText(appointment.getVisited().toString());
         doctorNric.setText(appointment.getDoctorNric());
         description.setText(appointment.getDescription());
         startDate.setText(appointment.getStartDate().toString());
         endDate.setText(appointment.getEndDate().toString());
-        patientName.setText(pn);
+        patientName.setText(displayedIndex + ". " + pn);
         patientNric.setText(appointment.getPatientNric());
     }
 }
