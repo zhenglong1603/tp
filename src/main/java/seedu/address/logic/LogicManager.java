@@ -3,7 +3,6 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -18,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyKlinix;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.ObservableLocalDate;
 import seedu.address.storage.Storage;
 
 /**
@@ -74,8 +74,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Appointment> getAppointmentList(LocalDate date) {
-        return model.getAppointments(date);
+    public ObservableList<Appointment> getAppointmentList() {
+        return model.getAppointments();
     }
 
     @Override
@@ -91,5 +91,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableLocalDate getAppointmentListDate() {
+        return model.getAppointmentListDate();
     }
 }

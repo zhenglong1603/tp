@@ -11,6 +11,7 @@ import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.ObservableLocalDate;
 
 /**
  * The API of the Model component.
@@ -105,7 +106,9 @@ public interface Model {
      */
     void deleteMedicalReport(Person target);
 
-    ObservableList<Appointment> getAppointments(LocalDate date);
+    ObservableList<Appointment> getAppointments();
+
+    void changeDisplayedAppointments(LocalDate date);
 
     /**
      * Adds a medicine usage to a person
@@ -136,4 +139,6 @@ public interface Model {
      * Clears all appointments from a person
      */
     void clearAppointments(Person target);
+
+    ObservableLocalDate getAppointmentListDate();
 }

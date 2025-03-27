@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -11,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyKlinix;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.ObservableLocalDate;
 
 /**
  * API of the Logic component
@@ -35,7 +35,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
-    ObservableList<Appointment> getAppointmentList(LocalDate date);
+    ObservableList<Appointment> getAppointmentList();
 
     /**
      * Returns the user prefs' address book file path.
@@ -51,4 +51,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ObservableLocalDate getAppointmentListDate();
 }

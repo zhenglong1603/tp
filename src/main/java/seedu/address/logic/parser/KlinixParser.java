@@ -26,6 +26,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindMedicineUsageCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ViewAppointmentByDateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -111,6 +112,9 @@ public class KlinixParser {
 
         case ClearAppointmentsCommand.COMMAND_WORD:
             return new ClearAppointmentsCommandParser().parse(arguments);
+
+        case ViewAppointmentByDateCommand.COMMAND_WORD:
+            return new ViewAppointmentByDateParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

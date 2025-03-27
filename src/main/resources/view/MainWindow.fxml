@@ -49,7 +49,7 @@
                                 </image>
                             </ImageView>
                         </StackPane>
-                        <Label text="Today's Appointments: " styleClass="sub-title">
+                        <Label fx:id="appointmentListTitle" text="Today's Appointments: " styleClass="sub-title">
                             <padding>
                                 <Insets top="10" right="10" bottom="10" left="10"/>
                             </padding>
