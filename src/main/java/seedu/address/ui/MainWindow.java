@@ -137,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         appointmentListTitle.textProperty().bind(
-                Bindings.createStringBinding(() -> "Current date: "
+                Bindings.createStringBinding(() -> "Appointments on "
                                 + logic.getAppointmentListDate().getDate(),
                         logic.getAppointmentListDate().dateProperty()));
     }

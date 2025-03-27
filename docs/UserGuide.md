@@ -263,6 +263,15 @@ Delete a particular appointment of a patient.
 
 _To be added in the next version_
 
+### View appointments on specific date: `appton`
+
+Display all appointments on a specific date.
+
+Format: `appton date/<DATE>`
+
+Examples: `appton date/22-03-2025`
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -321,3 +330,4 @@ Action     | Format, Examples
 **Clear Appointments** | `clearappt ic/<NRIC>` <br> e.g., `clearappt ic/S1234567A`
 **List**   | `list`
 **Help**   | `help`
+**View Appointment on specific date** | `appton date/<DATE>` <br> e.g., `appton date/22-03-2025`
