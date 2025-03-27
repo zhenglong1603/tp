@@ -1,26 +1,30 @@
 package seedu.address.model.util;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import java.time.LocalDate;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
+/**
+ * Wraps a {@link LocalDate} as a JavaFX property.
+ */
 public class ObservableLocalDate {
-    private ObjectProperty<LocalDate> ObservableLocalDate =
+    private ObjectProperty<LocalDate> observableLocalDate =
             new SimpleObjectProperty<>(LocalDate.now()); // Initialize with today's date
 
     // Getter for the property (used for binding)
     public ObjectProperty<LocalDate> dateProperty() {
-        return ObservableLocalDate;
+        return observableLocalDate;
     }
 
     // Getter for the value
     public LocalDate getDate() {
-        return ObservableLocalDate.get();
+        return observableLocalDate.get();
     }
 
     // Setter for the value
     public void setDate(LocalDate newDate) {
-        ObservableLocalDate.set(newDate);
+        observableLocalDate.set(newDate);
     }
 
 }

@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -27,6 +28,7 @@ import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.ObservableLocalDate;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -178,6 +180,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Appointment> getAppointments() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void changeDisplayedAppointments(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addMedicineUsage(Person person, MedicineUsage medicineUsage) {
             // Since this is a stub, you can leave it empty or simulate behavior
             throw new UnsupportedOperationException("This method should not be called");
@@ -211,6 +223,11 @@ public class AddCommandTest {
         public void clearAppointments(Person person) {
             // Since this is a stub, you can leave it empty or simulate behavior
             throw new UnsupportedOperationException("This method should not be called");
+        }
+
+        @Override
+        public ObservableLocalDate getAppointmentListDate() {
+            return null;
         }
     }
 

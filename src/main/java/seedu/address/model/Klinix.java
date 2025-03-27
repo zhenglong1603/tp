@@ -176,6 +176,10 @@ public class Klinix implements ReadOnlyKlinix {
         return this.displayedAppointments;
     }
 
+    /**
+     * Changes the displayed appointments to the appointments on the given date.
+     * @param date
+     */
     public void changeDisplayedAppointments(LocalDate date) {
         this.displayedAppointmentDate.setDate(date);
         this.displayedAppointments.clear();

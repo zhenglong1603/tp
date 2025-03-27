@@ -1,15 +1,18 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.ViewappointmentByDateCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.ViewappointmentByDateCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ViewappointmentByDateCommand object
+ */
 public class ViewappointmentByDateParser implements Parser<ViewappointmentByDateCommand> {
 
     @Override

@@ -1,10 +1,8 @@
 package seedu.address.ui;
 
-import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.StringBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -139,8 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         appointmentListTitle.textProperty().bind(
-                Bindings.createStringBinding(
-                        () -> "Current date: "
+                Bindings.createStringBinding(() -> "Current date: "
                                 + logic.getAppointmentListDate().getDate(),
                         logic.getAppointmentListDate().dateProperty()));
     }

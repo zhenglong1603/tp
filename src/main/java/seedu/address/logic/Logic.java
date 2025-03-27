@@ -1,9 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
