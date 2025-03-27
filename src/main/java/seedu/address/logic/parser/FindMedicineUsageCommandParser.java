@@ -9,13 +9,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.MedicineUsageContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindMedicineUsageCommand object
  */
 public class FindMedicineUsageCommandParser implements Parser<FindMedicineUsageCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindMedicineUsageCommand
+     * and returns a FindMedicineUsageCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindMedicineUsageCommand parse(String args) throws ParseException {
