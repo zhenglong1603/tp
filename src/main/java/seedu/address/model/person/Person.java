@@ -122,11 +122,11 @@ public class Person {
         return appointmentList.asUnmodifiableObservableList();
     }
 
-    public void add(Appointment toAdd) {
+    public void addAppointment(Appointment toAdd) {
         appointmentList.add(toAdd);
     }
 
-    public void remove(Appointment toRemove) {
+    public void deleteAppointment(Appointment toRemove) {
         appointmentList.remove(toRemove);
     }
 
