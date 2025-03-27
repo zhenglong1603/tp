@@ -211,6 +211,7 @@ public class ModelManager implements Model {
         );
 
         klinix.setPerson(target, updatedPerson);
+        klinix.deleteAppointment(appointmentToDelete);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

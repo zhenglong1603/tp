@@ -36,7 +36,7 @@ public class SampleDataUtil {
                 getTagSet("friends"),
                 new MedicalReport("Pollen", "Asthma", "Appendectomy", "COVID-19"),
                 new AppointmentList());
-        p1.add(new Appointment("S1234567A", "Checkup",
+        p1.addAppointment(new Appointment("S1234567A", "Checkup",
                 LocalDate.of(2025, 5, 10), LocalDate.of(2025, 5, 10), "S1234567A"));
         persons.add(p1);
 
@@ -47,7 +47,7 @@ public class SampleDataUtil {
                 getTagSet("colleagues", "friends"),
                 new MedicalReport("None", "Diabetes", "None", "Hepatitis B"),
                 new AppointmentList());
-        p2.add(new Appointment("S1234567A", "Dental Appointment",
+        p2.addAppointment(new Appointment("S1234567A", "Dental Appointment",
                 LocalDate.of(2025, 6, 15), LocalDate.of(2025, 6, 15), "S1234568B"));
         persons.add(p2);
 
@@ -59,7 +59,7 @@ public class SampleDataUtil {
                 getTagSet("neighbours"),
                 new MedicalReport("Dust", "None", "Tonsillectomy", "Flu"),
                 new AppointmentList());
-        p3.add(new Appointment("S1234567A", "Flu Vaccination",
+        p3.addAppointment(new Appointment("S1234567A", "Flu Vaccination",
                 LocalDate.of(2025, 7, 20), LocalDate.of(2025, 7, 20), "S1234569C"));
         persons.add(p3);
 
@@ -70,7 +70,7 @@ public class SampleDataUtil {
                 getTagSet("family"),
                 new MedicalReport("Peanuts", "Hypertension", "None", "None"),
                 new AppointmentList());
-        p4.add(new Appointment("S1234567A", "Eye Checkup",
+        p4.addAppointment(new Appointment("S1234567A", "Eye Checkup",
                 LocalDate.of(2025, 8, 25), LocalDate.of(2025, 8, 25), "S1234569D"));
         persons.add(p4);
 
@@ -90,7 +90,7 @@ public class SampleDataUtil {
                 getTagSet("colleagues"),
                 new MedicalReport("Shellfish", "Gout", "Gallbladder Removal", "None"),
                 new AppointmentList());
-        p6.add(new Appointment("S1234567A", "Routine Checkup",
+        p6.addAppointment(new Appointment("S1234567A", "Routine Checkup",
                 LocalDate.of(2025, 9, 30), LocalDate.of(2025, 9, 30), "S1234569F"));
         persons.add(p6);
 

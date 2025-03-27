@@ -16,6 +16,7 @@ import seedu.address.logic.commands.ClearAppointmentsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ClearMedicineUsageCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteMedicalReportCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -96,6 +97,9 @@ public class KlinixParser {
 
         case AddAppointmentCommand.COMMAND_WORD:
             return new AddAppointmentCommandParser().parse(arguments);
+
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
 
         case ClearAppointmentsCommand.COMMAND_WORD:
             return new ClearAppointmentsCommandParser().parse(arguments);
