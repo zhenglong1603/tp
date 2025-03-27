@@ -3,16 +3,25 @@ package seedu.address.logic;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Stores the history of commands entered by the user.
+ */
 public class CommandHistory implements ICommandHistory {
     private static final int MAX_SIZE = 100;
     private final List<String> history;
     private int pointer;
 
+    /**
+     * Creates a CommandHistory object with the given history.
+     */
     public CommandHistory(List<String> history) {
         this.history = history;
         this.pointer = history.size();
     }
 
+    /**
+     * Creates a CommandHistory object with an empty history.
+     */
     public CommandHistory() {
         this.history = new ArrayList<>();
         pointer = 0;

@@ -1,5 +1,8 @@
 package seedu.address.logic;
 
+/**
+ * Stores the history of commands entered by the user.
+ */
 public interface ICommandHistory {
     void add(String command);
 
