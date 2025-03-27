@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentListByDate;
+import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -200,5 +202,11 @@ public class Klinix implements ReadOnlyKlinix {
 
     public ObservableLocalDate getAppointmentListDate() {
         return this.displayedAppointmentDate;
+
+    public ObservableList<MedicineUsage> getMedicineUsageListFromPersons() {
+        ObservableList<Person> targetPersons = this.persons.asUnmodifiableObservableList();
+        return targetPersons.stream()
+                .flatMap(person -> person.getMedicineUsages().stream())
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
 }

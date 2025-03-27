@@ -50,6 +50,7 @@ Klinix Level 3  is a **desktop app for managing contacts, optimized for use via 
    * `deletemu` : Delete a particular medicine usage record of a patient's medical history.
   
    * `addappt` : Add a new appointment to the patient.
+   * `deleteappt` : Delete an appointment from the patient by index.
   
    * `clearappt` : Clear all appointments of a patient.
 
@@ -245,6 +246,20 @@ Example:
 2. Two appointments from the same patient are overlapped if they have the same name and overlapping duration.
    Klinix will detect such overlapping instances and give an error message when you try to add them.
 
+### Delete appointment: `deleteappt`
+
+Delete the specified appointment from the patient.
+
+Format: `deleteappt INDEX ic/<NRIC>`
+
+Example:
+* `deleteappt 2 ic/S1234567A`
+
+**Warning:**
+
+1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+2. The index given must also be valid, a positive integer and within the appointment list size.
+
 ### Clear all appointment records: `clearappt`
 
 Clear all appointments of a patient.
@@ -327,6 +342,7 @@ Action     | Format, Examples
 **Add Medicine Usage** | `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<DD-MM-YYYY> to/<DD-MM-YYYY>` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
 **Clear Medicine Usage** | `clearmu ic/<NRIC>` <br> e.g., `clearmu ic/S1234567A`
 **Add Appointment** | `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYYY> to/<DD-MM-YYYY>` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 to/23-02-2025`
+**Delete Appointment** | `deleteappt INDEX ic/<NRIC>` <br> e.g., `deleteappt 3 ic/S1234567A`
 **Clear Appointments** | `clearappt ic/<NRIC>` <br> e.g., `clearappt ic/S1234567A`
 **List**   | `list`
 **Help**   | `help`
