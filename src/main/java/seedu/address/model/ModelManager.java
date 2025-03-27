@@ -18,6 +18,7 @@ import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.ObservableLocalDate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -211,6 +212,7 @@ public class ModelManager implements Model {
         );
 
         klinix.setPerson(target, updatedPerson);
+        klinix.deleteAppointment(appointmentToDelete);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -226,8 +228,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Appointment> getAppointments(LocalDate date) {
-        return klinix.getAppointmentsListByDate(date);
+    public ObservableLocalDate getAppointmentListDate() {
+        return klinix.getAppointmentListDate();
+    }
+
+    @Override
+    public ObservableList<Appointment> getAppointments() {
+        return klinix.getDisplayedAppointments();
+    }
+
+    @Override
+    public void changeDisplayedAppointments(LocalDate date) {
+        klinix.changeDisplayedAppointments(date);
     }
 
 
@@ -243,8 +255,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteMedicineUsage(Person target, MedicineUsage medicineUsage) {
         requireAllNonNull(target, medicineUsage);
-        MedicalReport medicalReport = target.getMedicalReport();
-        medicalReport.remove(medicineUsage);
+        target.deleteMedicineUsage(medicineUsage);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

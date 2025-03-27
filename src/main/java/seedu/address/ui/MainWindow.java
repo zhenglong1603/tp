@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
-import java.time.LocalDate;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -55,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane appointmentListPanelPlaceholder;
+
+    @FXML
+    private Label appointmentListTitle;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -123,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         AppointmentListPanel appointmentListPanel = new AppointmentListPanel(
-                logic.getAppointmentList(LocalDate.now()), logic.getKlinix());
+                logic.getAppointmentList(), logic.getKlinix());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getKlinixFilePath());
@@ -131,6 +135,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        appointmentListTitle.textProperty().bind(
+                Bindings.createStringBinding(() -> "Appointments on "
+                                + logic.getAppointmentListDate().getDate(),
+                        logic.getAppointmentListDate().dateProperty()));
     }
 
     /**

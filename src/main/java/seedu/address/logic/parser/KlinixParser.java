@@ -16,13 +16,17 @@ import seedu.address.logic.commands.ClearAppointmentsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ClearMedicineUsageCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteMedicalReportCommand;
+import seedu.address.logic.commands.DeleteMedicineUsageCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindMedicineUsageCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ViewAppointmentByDateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -94,11 +98,23 @@ public class KlinixParser {
         case ClearMedicineUsageCommand.COMMAND_WORD:
             return new ClearMedicineUsageCommandParser().parse(arguments);
 
+        case FindMedicineUsageCommand.COMMAND_WORD:
+            return new FindMedicineUsageCommandParser().parse(arguments);
+
+        case DeleteMedicineUsageCommand.COMMAND_WORD:
+            return new DeleteMedicineUsageCommandParser().parse(arguments);
+
         case AddAppointmentCommand.COMMAND_WORD:
             return new AddAppointmentCommandParser().parse(arguments);
 
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
+
         case ClearAppointmentsCommand.COMMAND_WORD:
             return new ClearAppointmentsCommandParser().parse(arguments);
+
+        case ViewAppointmentByDateCommand.COMMAND_WORD:
+            return new ViewAppointmentByDateParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

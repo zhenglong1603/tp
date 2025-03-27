@@ -4,14 +4,18 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentListByDate;
+import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.util.ObservableLocalDate;
 
 /**
  * Wraps all data at the address-book level
@@ -21,6 +25,8 @@ public class Klinix implements ReadOnlyKlinix {
 
     private final UniquePersonList persons;
     private AppointmentListByDate appointmentsByDate;
+    private ObservableList<Appointment> displayedAppointments;
+    private ObservableLocalDate displayedAppointmentDate;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,6 +38,8 @@ public class Klinix implements ReadOnlyKlinix {
     {
         persons = new UniquePersonList();
         appointmentsByDate = new AppointmentListByDate();
+        displayedAppointments = FXCollections.observableArrayList();
+        displayedAppointmentDate = new ObservableLocalDate();
     }
 
     public Klinix() {}
@@ -166,7 +174,22 @@ public class Klinix implements ReadOnlyKlinix {
     }
 
     public ObservableList<Appointment> getAppointmentsListByDate(LocalDate date) {
-        return this.appointmentsByDate.getAppointmentListByDate(date);
+        this.displayedAppointments = this.appointmentsByDate.getAppointmentListByDate(date);
+        return this.displayedAppointments;
+    }
+
+    /**
+     * Changes the displayed appointments to the appointments on the given date.
+     * @param date
+     */
+    public void changeDisplayedAppointments(LocalDate date) {
+        this.displayedAppointmentDate.setDate(date);
+        this.displayedAppointments.clear();
+        this.displayedAppointments.addAll(this.appointmentsByDate.getAppointmentListByDate(date));
+    }
+
+    public ObservableList<Appointment> getDisplayedAppointments() {
+        return this.displayedAppointments;
     }
 
     public AppointmentListByDate getAppointmentsByDate() {
@@ -175,5 +198,16 @@ public class Klinix implements ReadOnlyKlinix {
 
     public void deleteAppointment(Appointment appointmentToDelete) {
         this.appointmentsByDate.deleteAppointment(appointmentToDelete);
+    }
+
+    public ObservableLocalDate getAppointmentListDate() {
+        return this.displayedAppointmentDate;
+    }
+
+    public ObservableList<MedicineUsage> getMedicineUsageListFromPersons() {
+        ObservableList<Person> targetPersons = this.persons.asUnmodifiableObservableList();
+        return targetPersons.stream()
+                .flatMap(person -> person.getMedicineUsages().stream())
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
 }
