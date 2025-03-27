@@ -105,6 +105,12 @@ public class Person {
         medicalReport.remove(medicineUsage);
     }
 
+    public List<String> getMedicineUsageNames() {
+        return getMedicineUsages().stream()
+                .map(MedicineUsage::getName)
+                .toList();
+    }
+
     /**
      * Returns the appointmentList of the person.
      */

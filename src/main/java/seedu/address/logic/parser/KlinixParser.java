@@ -22,6 +22,7 @@ import seedu.address.logic.commands.DeleteMedicineUsageCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindMedicineUsageCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -94,6 +95,9 @@ public class KlinixParser {
 
         case ClearMedicineUsageCommand.COMMAND_WORD:
             return new ClearMedicineUsageCommandParser().parse(arguments);
+
+        case FindMedicineUsageCommand.COMMAND_WORD:
+            return new FindMedicineUsageCommandParser().parse(arguments);
 
         case DeleteMedicineUsageCommand.COMMAND_WORD:
             return new DeleteMedicineUsageCommandParser().parse(arguments);
