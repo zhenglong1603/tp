@@ -4,6 +4,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import seedu.address.logic.CommandHistory;
+import seedu.address.logic.ICommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -17,6 +19,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final ICommandHistory commandHistory = new CommandHistory();
+    private String partiallyTypedCommand = "";
 
     @FXML
     private TextField commandTextField;
@@ -28,7 +32,53 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.textProperty()
+                .addListener((unused1, unused2, unused3) -> setStyleToDefault());
+
+        // if the user types a character, the command history pointer should be set to the end
+        commandTextField.setOnKeyTyped(event -> {
+            if (event.getCharacter() != null) {
+                commandHistory.setPointerToEnd();
+            }
+        });
+
+        // event listener to handle up and down arrow key presses for browsing command history
+        commandTextField.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+            case UP:
+                if (this.commandHistory.isEmpty() || this.commandHistory.isPointerAtStart()) {
+                    break;
+                }
+                if (this.commandHistory.isPointerAtEnd()) {
+                    partiallyTypedCommand = commandTextField.getText();
+                }
+                String previousCommand = commandHistory.getPrevious();
+                if (previousCommand == null) {
+                    previousCommand = "";
+                }
+                commandTextField.setText(previousCommand);
+                commandTextField.positionCaret(previousCommand.length());
+                break;
+            case DOWN:
+                if (this.commandHistory.isEmpty() || this.commandHistory.isPointerAtEnd()) {
+                    break;
+                }
+                String nextCommand = commandHistory.getNext();
+                if (nextCommand == null) {
+                    nextCommand = "";
+                }
+                if (commandHistory.isPointerAtEnd()) {
+                    commandTextField.setText(partiallyTypedCommand);
+                    commandTextField.positionCaret(partiallyTypedCommand.length());
+                } else {
+                    commandTextField.setText(nextCommand);
+                    commandTextField.positionCaret(nextCommand.length());
+                }
+                break;
+            default:
+                break;
+            }
+        });
     }
 
     /**
@@ -41,11 +91,16 @@ public class CommandBox extends UiPart<Region> {
             return;
         }
 
+        if (!commandText.isBlank()) {
+            commandHistory.add(commandText);
+        }
+
         try {
             commandExecutor.execute(commandText);
-            commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        } finally {
+            commandTextField.setText("");
         }
     }
 
