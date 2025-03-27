@@ -12,7 +12,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a medicine usage of a person by unique id.
+ * Deletes a medicine usage of a person identified by Nric and the index number displayed in the person's details.
  */
 public class DeleteMedicineUsageCommand extends Command {
 
@@ -36,8 +36,8 @@ public class DeleteMedicineUsageCommand extends Command {
     private final Nric nric;
 
     /**
-     * Creates an ClearMedicineUsageCommand to delete all medicine usages of
-     * the person identified by {@code Nric}.
+     * Creates an DeleteMedicineUsageCommand to delete a medicine usage of
+     * the person identified by {@code Nric} at index {@code Index}.
      */
     public DeleteMedicineUsageCommand(Nric nric, Index targetId) {
         requireNonNull(targetId);

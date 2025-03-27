@@ -11,13 +11,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Nric;
 
 /**
- * Parses input arguments and creates a new AddMedicalReportCommand object
+ * Parses input arguments and creates a new DeleteMedicineUsageCommandParser object
  */
 public class DeleteMedicineUsageCommandParser implements Parser<DeleteMedicineUsageCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddMedicineUsageCommand
-     * and returns an AddMedicineUsage object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteMedicineUsageCommand
+     * and returns a DeleteMedicineUsageCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteMedicineUsageCommand parse(String args) throws ParseException {
