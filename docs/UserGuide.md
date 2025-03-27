@@ -6,7 +6,7 @@
 
 # Klinix User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Klinix Level 3  is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, you can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -18,11 +18,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/se-edu/Klinix-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Klinix.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Klinix.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -31,13 +31,27 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add ` : Adds a contact to Klinix.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
+  
+   * `addmr` : Add a new medical report to a patient's record.
+  
+   * `deletemr` : Delete a patient's existing medical report.
+  
+   * `addmu` : Add a new medicine usage record as part of a patient’s medical history or medical needs.
+  
+   * `clearmu` : Clear all medicine usage records of a patient's medical history.
+  
+   * `deletemu` : Delete a particular medicine usage record of a patient's medical history.
+  
+   * `addappt` : Add a new appointment to the patient.
+  
+   * `clearappt` : Clear all appointments of a patient.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -152,17 +166,47 @@ Clears all entries from the clinic.
 
 Format: `clear`
 
+### Add medical report: `addmr`
+
+Add a new medical report to a patient's record.
+
+Format: `addmr ic/<NRIC> al/<Allergies> ill/<Illnesses> sur/<Surgeries> imm/<Immunizations>`
+
+Examples:
+* `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
+* `addmr ic/T0260144G al/None ill/None sur/None imm/None`
+
+**Warning:**
+
+1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+2. If the patient already has a medical report, adding a new one will overwrite the existing one.
+
+### Delete medical report: `deletemr`
+
+Delete a patient's existing medical report.
+
+Format: `deletemr ic/<NRIC>`
+
+Examples:
+* `deletemr ic/S1234567A`
+* `deletemr ic/T0260144G`
+
+**Warning**
+
+1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+2. If the patient does not have an existing medical report, nothing will happen.
+
 ### Add medicine usage records: `addmu`
 
 Add a new medicine usage record as part of a patient’s medical history or medical needs.
 
-Format: `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<YYYY-MM-DD> to/<YYYY-MM-DD>`
+Format: `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<DD-MM-YYYY> to/<DD-MM-YYYY>`
 
-Example:
+Examples:
 * `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/2025-02-23 to/2025-02-25`
 * `addmu ic/S1234567A n/Panadol Extra dos/Two 250mg tablets, once per day from/2025-03-01 to/2025-03-05`
 
-**Warning:** 
+**Warning:**
 
 1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
 2. Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.
@@ -190,7 +234,7 @@ _To be added in the next version_
 
 Add a new appointment to the patient.
 
-Format: `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYY> to/<DD-MM-YYYY>`
+Format: `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYYY> to/<DD-MM-YYYY>`
 
 Example:
 * `addappt ic/S1234567A dic/S9876543A appt/Check-up from/22-02-2025 to/23-02-2025`
@@ -227,17 +271,17 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Klinix data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Klinix data are saved automatically as a JSON file `[JAR file location]/data/Klinix.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, Klinix will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Archiving data files `[coming in v2.0]`
@@ -249,7 +293,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Klinix home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -269,9 +313,11 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Add Medicine Usage** | `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<YYYY-MM-DD> to/<YYYY-MM-DD>` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/2025-02-23 to/2025-02-25`
+**Add Medical Report** | `addmr ic/<NRIC> al/<Allergies> ill/<Illnesses> sur/<Surgeries> imm/<Immunizations>` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
+**Delete Medical Report** | `deletemr ic/<NRIC>` <br> e.g., `deletemr ic/S1234567A`
+**Add Medicine Usage** | `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<DD-MM-YYYY> to/<DD-MM-YYYY>` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
 **Clear Medicine Usage** | `clearmu ic/<NRIC>` <br> e.g., `clearmu ic/S1234567A`
-**Add Appointment** | `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYY> to/<DD-MM-YYYY>` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 to/23-02-2025`
+**Add Appointment** | `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYYY> to/<DD-MM-YYYY>` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 to/23-02-2025`
 **Clear Appointments** | `clearappt ic/<NRIC>` <br> e.g., `clearappt ic/S1234567A`
 **List**   | `list`
 **Help**   | `help`

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -103,6 +104,8 @@ public interface Model {
      * Deletes medical report from the person.
      */
     void deleteMedicalReport(Person target);
+
+    ObservableList<Appointment> getAppointments(LocalDate date);
 
     /**
      * Adds a medicine usage to a person

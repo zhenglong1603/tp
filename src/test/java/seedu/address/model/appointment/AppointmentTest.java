@@ -22,7 +22,7 @@ public class AppointmentTest {
         appointment = new Appointment("T1234567B",
                 "Doctor Visit",
                 LocalDate.parse("2025-03-20", formatter),
-                LocalDate.parse("2025-03-20", formatter));
+                LocalDate.parse("2025-03-20", formatter), "name 1");
     }
 
     @Test

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Klinix;
 import seedu.address.model.ReadOnlyKlinix;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ class JsonSerializableKlinix {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
@@ -53,6 +55,7 @@ class JsonSerializableKlinix {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+            addressBook.addAppointment(person.getAppointments());
         }
         return addressBook;
     }

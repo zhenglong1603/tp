@@ -49,18 +49,18 @@
                                 </image>
                             </ImageView>
                         </StackPane>
-                        <Label text="Appointments: " styleClass="sub-title">
+                        <Label text="Today's Appointments: " styleClass="sub-title">
                             <padding>
                                 <Insets top="10" right="10" bottom="10" left="10"/>
                             </padding>
                         </Label>
-                        <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS"
-                                   styleClass="pane-with-border">
+                        <VBox fx:id="appointmentList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                             <padding>
-                                <Insets top="10" right="10" bottom="5" left="10"/>
+                                <Insets top="10" right="10" bottom="10" left="10"/>
                             </padding>
-                        </StackPane>
-                        <!-- This is the placeholder for the appointment list, add content after function is implements -->
+                        <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS"
+                                   styleClass="pane-with-border" minWidth="200"/>
+                            </VBox>
                     </VBox>
 
                     <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">

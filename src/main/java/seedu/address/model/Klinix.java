@@ -2,10 +2,13 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentListByDate;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -17,6 +20,7 @@ import seedu.address.model.person.UniquePersonList;
 public class Klinix implements ReadOnlyKlinix {
 
     private final UniquePersonList persons;
+    private AppointmentListByDate appointmentsByDate;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,6 +31,7 @@ public class Klinix implements ReadOnlyKlinix {
      */
     {
         persons = new UniquePersonList();
+        appointmentsByDate = new AppointmentListByDate();
     }
 
     public Klinix() {}
@@ -49,6 +54,10 @@ public class Klinix implements ReadOnlyKlinix {
         this.persons.setPersons(persons);
     }
 
+    public void setAppointmentsByDate(AppointmentListByDate appointmentsByDate) {
+        this.appointmentsByDate = appointmentsByDate;
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -56,6 +65,7 @@ public class Klinix implements ReadOnlyKlinix {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setAppointmentsByDate(newData.getAppointmentsByDate());
     }
 
     //// person-level operations
@@ -129,10 +139,7 @@ public class Klinix implements ReadOnlyKlinix {
         return persons.hashCode();
     }
 
-    /**
-     * Returns the person with the given {@code nric}.
-     *
-     */
+    @Override
     public Person findPersonByNric(Nric nric) {
         requireNonNull(nric);
 
@@ -142,5 +149,31 @@ public class Klinix implements ReadOnlyKlinix {
             }
         }
         return null;
+    }
+
+    /**
+     * Adds a list of appointments to the address book.
+     * @param appointments
+     */
+    public void addAppointment(List<Appointment> appointments) {
+        for (Appointment a : appointments) {
+            this.appointmentsByDate.addAppointment(a);
+        }
+    }
+
+    public void addAppointment(Appointment appointment) {
+        this.appointmentsByDate.addAppointment(appointment);
+    }
+
+    public ObservableList<Appointment> getAppointmentsListByDate(LocalDate date) {
+        return this.appointmentsByDate.getAppointmentListByDate(date);
+    }
+
+    public AppointmentListByDate getAppointmentsByDate() {
+        return this.appointmentsByDate;
+    }
+
+    public void deleteAppointment(Appointment appointmentToDelete) {
+        this.appointmentsByDate.deleteAppointment(appointmentToDelete);
     }
 }
