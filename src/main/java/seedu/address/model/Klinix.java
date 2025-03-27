@@ -202,6 +202,7 @@ public class Klinix implements ReadOnlyKlinix {
 
     public ObservableLocalDate getAppointmentListDate() {
         return this.displayedAppointmentDate;
+    }
 
     public ObservableList<MedicineUsage> getMedicineUsageListFromPersons() {
         ObservableList<Person> targetPersons = this.persons.asUnmodifiableObservableList();
