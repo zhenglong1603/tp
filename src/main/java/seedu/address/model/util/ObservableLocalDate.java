@@ -23,7 +23,10 @@ public class ObservableLocalDate {
     }
 
     // Setter for the value
-    public void setDate(LocalDate newDate) {
+    public void setDate(LocalDate newDate) throws NullPointerException {
+        if (newDate == null) {
+            throw new NullPointerException();
+        }
         observableLocalDate.set(newDate);
     }
 
