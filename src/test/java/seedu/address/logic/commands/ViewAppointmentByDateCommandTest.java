@@ -12,16 +12,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
-public class ViewappointmentByDateCommandTest {
+public class ViewAppointmentByDateCommandTest {
     @Test
     public void execute_validDate_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
         LocalDate testDate = LocalDate.of(2025, 3, 23);
 
-        ViewappointmentByDateCommand command = new ViewappointmentByDateCommand(testDate);
+        ViewAppointmentByDateCommand command = new ViewAppointmentByDateCommand(testDate);
         String expectedMessage = String.format(
-                ViewappointmentByDateCommand.MESSAGE_SUCCESS, testDate
+                ViewAppointmentByDateCommand.MESSAGE_SUCCESS, testDate
         );
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -30,7 +30,7 @@ public class ViewappointmentByDateCommandTest {
     @Test
     public void execute_nullModel_throwsNullPointerException() {
         LocalDate testDate = LocalDate.now();
-        ViewappointmentByDateCommand command = new ViewappointmentByDateCommand(testDate);
+        ViewAppointmentByDateCommand command = new ViewAppointmentByDateCommand(testDate);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
@@ -38,11 +38,11 @@ public class ViewappointmentByDateCommandTest {
     public void execute_noAppointmentsOnDate_showsNoAppointmentsMessage() throws CommandException {
         Model model = new ModelManager();
         LocalDate testDate = LocalDate.of(2025, 3, 23);
-        ViewappointmentByDateCommand command = new ViewappointmentByDateCommand(testDate);
+        ViewAppointmentByDateCommand command = new ViewAppointmentByDateCommand(testDate);
 
         CommandResult result = command.execute(model);
         assertEquals(
-                String.format(ViewappointmentByDateCommand.MESSAGE_SUCCESS, testDate),
+                String.format(ViewAppointmentByDateCommand.MESSAGE_SUCCESS, testDate),
                 result.getFeedbackToUser()
         );
     }

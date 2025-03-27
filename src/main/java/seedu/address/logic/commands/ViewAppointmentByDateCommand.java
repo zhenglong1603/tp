@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 /**
  * View appointments by date
  */
-public class ViewappointmentByDateCommand extends Command {
+public class ViewAppointmentByDateCommand extends Command {
     public static final String COMMAND_WORD = "appton";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": View appointments by date. "
             + "Parameters: "
@@ -23,7 +23,7 @@ public class ViewappointmentByDateCommand extends Command {
     public static final String MESSAGE_NO_APPOINTMENT = "No appointments on %1$s";
     private final LocalDate localDate;
 
-    public ViewappointmentByDateCommand(LocalDate localDate) {
+    public ViewAppointmentByDateCommand(LocalDate localDate) {
         this.localDate = localDate;
     }
 

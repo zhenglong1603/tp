@@ -7,22 +7,22 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.ViewappointmentByDateCommand;
+import seedu.address.logic.commands.ViewAppointmentByDateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new ViewappointmentByDateCommand object
  */
-public class ViewappointmentByDateParser implements Parser<ViewappointmentByDateCommand> {
+public class ViewAppointmentByDateParser implements Parser<ViewAppointmentByDateCommand> {
 
     @Override
-    public ViewappointmentByDateCommand parse(String args) throws ParseException {
+    public ViewAppointmentByDateCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ViewappointmentByDateCommand.MESSAGE_USAGE));
+                    ViewAppointmentByDateCommand.MESSAGE_USAGE));
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate date = LocalDate.now();
@@ -31,10 +31,10 @@ public class ViewappointmentByDateParser implements Parser<ViewappointmentByDate
             date = LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(), formatter);
         } catch (Exception e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ViewappointmentByDateCommand.MESSAGE_USAGE));
+                    ViewAppointmentByDateCommand.MESSAGE_USAGE));
         }
 
-        return new ViewappointmentByDateCommand(date);
+        return new ViewAppointmentByDateCommand(date);
     }
 
     /**
