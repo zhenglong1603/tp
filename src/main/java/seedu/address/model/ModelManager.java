@@ -18,6 +18,7 @@ import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.ObservableLocalDate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -226,8 +227,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Appointment> getAppointments(LocalDate date) {
-        return klinix.getAppointmentsListByDate(date);
+    public ObservableLocalDate getAppointmentListDate() {
+        return klinix.getAppointmentListDate();
+    }
+
+    @Override
+    public ObservableList<Appointment> getAppointments() {
+        return klinix.getDisplayedAppointments();
+    }
+
+    @Override
+    public void changeDisplayedAppointments(LocalDate date) {
+        klinix.changeDisplayedAppointments(date);
     }
 
 
