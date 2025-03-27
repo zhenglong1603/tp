@@ -30,7 +30,6 @@ class DeleteAppointmentCommandTest {
     private Appointment appointment;
     private AppointmentList appointmentList;
 
-    @SuppressWarnings("checkstyle:WhitespaceAfter")
     @BeforeEach
     void setUp() {
         model = new ModelManager(seedu.address.testutil.TypicalPersons.getTypicalKlinix(), new UserPrefs());
@@ -46,7 +45,7 @@ class DeleteAppointmentCommandTest {
         // Create a MedicalReport and add medicine usage
         MedicalReport medicalReport = new MedicalReport("", "", "", "");
 
-        AppointmentList appointmentList = new AppointmentList();
+        appointmentList = new AppointmentList();
         appointmentList.add(appointment);
 
         // Assign medical report to a person
