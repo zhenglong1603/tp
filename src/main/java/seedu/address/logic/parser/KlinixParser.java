@@ -98,7 +98,7 @@ public class KlinixParser {
 
         case FindMedicineUsageCommand.COMMAND_WORD:
             return new FindMedicineUsageCommandParser().parse(arguments);
-            
+
         case DeleteMedicineUsageCommand.COMMAND_WORD:
             return new DeleteMedicineUsageCommandParser().parse(arguments);
 
