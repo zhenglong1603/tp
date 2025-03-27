@@ -81,6 +81,25 @@ Klinix Level 3  is a **desktop app for managing contacts, optimized for use via 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+### Viewing past commands:
+
+You can scroll through your previously entered commands using the **Up** and **Down** arrow keys.
+
+- **Up Arrow**: Scrolls to the previous command in the history.
+- **Down Arrow**: Scrolls to the next command in the history.
+
+This feature allows you to quickly reuse or edit previously entered commands without retyping them.
+
+#### Example Usage:
+
+1. Enter a command, such as `list`, and press Enter.
+2. Press the **Up Arrow** key to bring up the `list` command in the command box.
+3. Press the **Down Arrow** key to navigate back to a more recent command.
+
+#### Notes:
+
+- The command history is saved only for the current session and will reset when the application is restarted.
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
