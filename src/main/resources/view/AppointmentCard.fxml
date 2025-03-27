@@ -20,19 +20,19 @@
                     <ColumnConstraints minWidth="60" />
                     <ColumnConstraints hgrow="ALWAYS" />
                 </columnConstraints>
-                <Label text="endDate:" styleClass="cell_small_label" GridPane.rowIndex="0"
+                <Label text="Start Date: " styleClass="cell_small_label" GridPane.rowIndex="0"
                        GridPane.columnIndex="0" />
-                <Label fx:id="endDate" text="\$endDate" styleClass="cell_small_label" GridPane.rowIndex="0"
+                <Label fx:id="startDate" text="\$startDate" styleClass="cell_small_label" GridPane.rowIndex="0"
                        GridPane.columnIndex="1" />
-                <Label text="startDate:" styleClass="cell_small_label" GridPane.rowIndex="1"
+                <Label text="End Date: " styleClass="cell_small_label" GridPane.rowIndex="1"
                        GridPane.columnIndex="0" />
-                <Label fx:id="startDate" text="\$startDate" styleClass="cell_small_label" GridPane.rowIndex="1"
+                <Label fx:id="endDate" text="\$endDate" styleClass="cell_small_label" GridPane.rowIndex="1"
                        GridPane.columnIndex="1" />
-                <Label text="doctorNric:" styleClass="cell_small_label" GridPane.rowIndex="2"
+                <Label text="Doctor's Nric: " styleClass="cell_small_label" GridPane.rowIndex="2"
                        GridPane.columnIndex="0" />
                 <Label fx:id="doctorNric" text="\$doctorNric" styleClass="cell_small_label" GridPane.rowIndex="2"
                        GridPane.columnIndex="1" />
-                <Label text="description:" styleClass="cell_small_label" GridPane.rowIndex="3"
+                <Label text="Description: " styleClass="cell_small_label" GridPane.rowIndex="3"
                        GridPane.columnIndex="0" />
                 <Label fx:id="description" text="\$description" styleClass="cell_small_label" GridPane.rowIndex="3"
                        GridPane.columnIndex="1" />
