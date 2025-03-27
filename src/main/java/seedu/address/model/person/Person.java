@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +95,20 @@ public class Person {
      */
     public MedicalReport getMedicalReport() {
         return medicalReport;
+    }
+
+    public ObservableList<MedicineUsage> getMedicineUsages() {
+        return medicalReport.getMedicineUsages();
+    }
+
+    public void deleteMedicineUsage(MedicineUsage medicineUsage) {
+        medicalReport.remove(medicineUsage);
+    }
+
+    public List<String> getMedicineUsageNames() {
+        return getMedicineUsages().stream()
+                .map(MedicineUsage::getName)
+                .toList();
     }
 
     /**
