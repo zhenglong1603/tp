@@ -24,9 +24,15 @@ public class ViewappointmentByDateParser implements Parser<ViewappointmentByDate
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ViewappointmentByDateCommand.MESSAGE_USAGE));
         }
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate date = LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(), formatter);
+        LocalDate date = LocalDate.now();
+
+        try {
+            date = LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(), formatter);
+        } catch (Exception e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ViewappointmentByDateCommand.MESSAGE_USAGE));
+        }
 
         return new ViewappointmentByDateCommand(date);
     }
