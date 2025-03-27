@@ -243,8 +243,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteMedicineUsage(Person target, MedicineUsage medicineUsage) {
         requireAllNonNull(target, medicineUsage);
-        MedicalReport medicalReport = target.getMedicalReport();
-        medicalReport.remove(medicineUsage);
+        target.deleteMedicineUsage(medicineUsage);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
