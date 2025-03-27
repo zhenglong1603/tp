@@ -338,7 +338,7 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Add Medical Report** | `addmr ic/<NRIC> al/<Allergies> ill/<Illnesses> sur/<Surgeries> imm/<Immunizations>` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
-**Delete Medical Report** | `deletemr ic/<NRIC>` <br> e.g., `deletemr ic/S1234567A`
+**Delete Medical Report** | `deletemr ic/<NRIC>` <br> e.g., `deletemr ic/S1234567B`
 **Add Medicine Usage** | `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<DD-MM-YYYY> to/<DD-MM-YYYY>` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
 **Clear Medicine Usage** | `clearmu ic/<NRIC>` <br> e.g., `clearmu ic/S1234567A`
 **Add Appointment** | `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYYY> to/<DD-MM-YYYY>` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 to/23-02-2025`
