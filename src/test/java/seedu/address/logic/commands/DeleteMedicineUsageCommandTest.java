@@ -29,7 +29,6 @@ class DeleteMedicineUsageCommandTest {
     private Index validIndex;
     private MedicineUsage medicineUsage;
 
-    @SuppressWarnings("checkstyle:WhitespaceAfter")
     @BeforeEach
     void setUp() {
         model = new ModelManager(seedu.address.testutil.TypicalPersons.getTypicalKlinix(), new UserPrefs());
