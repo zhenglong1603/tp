@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":KlinixParser" as KlinixParser LOGIC_COLOR
+participant "v:ViewAppointmentByDateCommand" as ViewAppointmentByDateCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("appton date/10-10-2020")
+activate LogicManager
+
+LogicManager -> KlinixParser : parseCommand("appton date/10-10-2020")
+activate KlinixParser
+
+create ViewAppointmentByDateCommand
+KlinixParser -> ViewAppointmentByDateCommand: new ViewAppointmentByDateCommand(new LocalDate("10-10-2020"))
+activate ViewAppointmentByDateCommand
+
+ViewAppointmentByDateCommand --> KlinixParser
+deactivate ViewAppointmentByDateCommand
+
+KlinixParser --> LogicManager : v
+deactivate KlinixParser
+
+LogicManager -> ViewAppointmentByDateCommand : execute()
+activate ViewAppointmentByDateCommand
+
+ViewAppointmentByDateCommand -> Model : changeDisplayedAppointments(LocalDate("10-10-2020"))
+activate Model
+
+Model --> ViewAppointmentByDateCommand
+deactivate Model
+
+ViewAppointmentByDateCommand --> LogicManager : result
+deactivate ViewAppointmentByDateCommand
+ViewAppointmentByDateCommand -[hidden]-> LogicManager : result
+destroy ViewAppointmentByDateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

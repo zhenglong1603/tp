@@ -158,6 +158,39 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### View appointment command
+
+#### Implementation
+
+The `ViewAppointmentCommand` is implemented as follows:
+
+##### Steps:
+1. **Initialization**
+    - The user sends a command `"appton date/10-10-2020"` to the `LogicManager`.
+
+2. **Command Parsing**
+    - `LogicManager` forwards the command to `KlinixParser` to parse it.
+    - `KlinixParser` processes the input and identifies it as a `ViewAppointmentByDateCommand`.
+
+3. **Command Creation**
+    - `KlinixParser` creates a new `ViewAppointmentByDateCommand` object, passing the parsed date (`10-10-2020`) as an argument.
+    - The newly created command is returned to `LogicManager`.
+
+4. **Command Execution**
+    - `LogicManager` calls `execute()` on the `ViewAppointmentByDateCommand`.
+    - The command interacts with the `Model` to update the displayed appointments for the given date (`10-10-2020`).
+
+5. **Result Handling**
+    - The `Model` confirms the update and returns a result to the command.
+    - The command forwards this result back to `LogicManager`.
+
+6. **Command Cleanup**
+    - The `ViewAppointmentByDateCommand` is destroyed after execution.
+    - `LogicManager` returns the final result to the user.
+
+<puml src="diagrams/ViewAppointmentSequenceDiagram.puml" alt="ViewAppointmentSequenceDiagram" />
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
