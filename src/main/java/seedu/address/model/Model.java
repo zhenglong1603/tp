@@ -141,4 +141,8 @@ public interface Model {
     void clearAppointments(Person target);
 
     ObservableLocalDate getAppointmentListDate();
+
+    void markAppointmentVisited(Person person, Appointment apptToMark);
+
+    void unmarkAppointmentVisited(Person person, Appointment apptToMark);
 }

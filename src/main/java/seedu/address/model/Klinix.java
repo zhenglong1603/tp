@@ -169,10 +169,18 @@ public class Klinix implements ReadOnlyKlinix {
         }
     }
 
+    /**
+     * Adds an appointment to the address book.
+     * @param appointment
+     */
     public void addAppointment(Appointment appointment) {
         this.appointmentsByDate.addAppointment(appointment);
+        refreshDisplayedAppointments();
     }
 
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     public ObservableList<Appointment> getAppointmentsListByDate(LocalDate date) {
         this.displayedAppointments = this.appointmentsByDate.getAppointmentListByDate(date);
         return this.displayedAppointments;
@@ -188,6 +196,13 @@ public class Klinix implements ReadOnlyKlinix {
         this.displayedAppointments.addAll(this.appointmentsByDate.getAppointmentListByDate(date));
     }
 
+    /**
+     * Refreshes the displayed appointments to the appointments on the current displayed date.
+     */
+    public void refreshDisplayedAppointments() {
+        changeDisplayedAppointments(displayedAppointmentDate.getDate());
+    }
+
     public ObservableList<Appointment> getDisplayedAppointments() {
         return this.displayedAppointments;
     }
@@ -196,8 +211,13 @@ public class Klinix implements ReadOnlyKlinix {
         return this.appointmentsByDate;
     }
 
+    /**
+     * Deletes the appointment from the address book.
+     * @param appointmentToDelete
+     */
     public void deleteAppointment(Appointment appointmentToDelete) {
         this.appointmentsByDate.deleteAppointment(appointmentToDelete);
+        refreshDisplayedAppointments();
     }
 
     public ObservableLocalDate getAppointmentListDate() {

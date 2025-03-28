@@ -229,6 +229,16 @@ public class AddCommandTest {
         public ObservableLocalDate getAppointmentListDate() {
             return null;
         }
+
+        @Override
+        public void markAppointmentVisited(Person person, Appointment apptToMark) {
+            throw new UnsupportedOperationException("This method should not be called");
+        }
+
+        @Override
+        public void unmarkAppointmentVisited(Person person, Appointment apptToMark) {
+            throw new UnsupportedOperationException("This method should not be called");
+        }
     }
 
     /**
