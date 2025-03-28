@@ -188,7 +188,7 @@ The `ViewAppointmentCommand` is implemented as follows:
     - The `ViewAppointmentByDateCommand` is destroyed after execution.
     - `LogicManager` returns the final result to the user.
 
-<puml src="diagrams/ViewAppointmentSequenceDiagram.puml" alt="ViewAppointmentSequenceDiagram" />
+<puml src="diagrams/ViewAppointmentByDateSequenceDiagram.puml" alt="ViewAppointmentSequenceDiagram" />
 
 
 ### \[Proposed\] Undo/redo feature
