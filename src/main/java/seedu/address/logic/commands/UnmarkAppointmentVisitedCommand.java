@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.DeleteAppointmentCommand.MESSAGE_PERSON_NOT_FOUND;
+import static seedu.address.logic.commands.DeleteMedicineUsageCommand.MESSAGE_INVALID_MEDICINE_USAGE_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import seedu.address.commons.core.index.Index;
@@ -13,10 +14,9 @@ import seedu.address.model.person.Person;
 
 import java.util.List;
 
-public class MarkAppointmentVisitedCommand extends Command {
-    public static final String COMMAND_WORD = "markappt";
+public class UnmarkAppointmentVisitedCommand extends Command {
+    public static final String COMMAND_WORD = "unmarkappt";
     public static final String MESSAGE_SUCCESS = "Marked appointment as visited for person %s:\n%s";
-    public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "Index is out of bounds.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an appointment as visited. "
             + "Parameters: "
             + "INDEX (must be a positive integer) "
@@ -27,7 +27,7 @@ public class MarkAppointmentVisitedCommand extends Command {
     private final Index index;
     private final Nric nric;
 
-    public MarkAppointmentVisitedCommand(Nric nric, Index index) {
+    public UnmarkAppointmentVisitedCommand(Nric nric, Index index) {
         super();
         this.index = index;
         this.nric = nric;
@@ -45,16 +45,16 @@ public class MarkAppointmentVisitedCommand extends Command {
         List<Appointment> appointmentList = person.getAppointments();
 
         if (index.getZeroBased() >= appointmentList.size()) {
-            throw new CommandException(String.format(MESSAGE_INDEX_OUT_OF_BOUNDS));
+            throw new CommandException(String.format(MESSAGE_INVALID_MEDICINE_USAGE_DISPLAYED_INDEX));
         }
 
         Appointment apptToMark = appointmentList.get(index.getZeroBased());
 
-        if (apptToMark.getVisited()) {
-            throw new CommandException("Appointment has already been marked as visited.");
+        if (!apptToMark.getVisited()) {
+            throw new CommandException("Appointment has already been marked as not visited.");
         }
 
-        model.markAppointmentVisited(person, apptToMark);
+        model.unmarkAppointmentVisited(person, apptToMark);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, nric, apptToMark.toString()));
     }

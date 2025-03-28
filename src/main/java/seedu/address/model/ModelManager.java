@@ -233,6 +233,78 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markAppointmentVisited(Person target, Appointment apptToMark) {
+        requireAllNonNull(target, apptToMark);
+
+        Appointment visited = new Appointment(
+                apptToMark.getDoctorNric(),
+                apptToMark.getDescription(),
+                apptToMark.getStartDate(),
+                apptToMark.getEndDate(),
+                apptToMark.getPatientNric(),
+                true
+        );
+
+        AppointmentList updatedAppointments = target.getAppointmentList(); // Get current appointments
+        updatedAppointments.remove(apptToMark); // Remove the specific appointment
+        updatedAppointments.add(visited);
+
+        Person updatedPerson = new Person(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getNric(),
+                target.getBirthDate(),
+                target.getAddress(),
+                target.getTags(),
+                target.getMedicalReport(),
+                updatedAppointments // Use updated list of appointments
+        );
+
+        klinix.setPerson(target, updatedPerson);
+        klinix.deleteAppointment(apptToMark);
+        klinix.addAppointment(visited);
+        klinix.refreshDisplayedAppointments();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void unmarkAppointmentVisited(Person target, Appointment apptToUnmark) {
+        requireAllNonNull(target, apptToUnmark);
+
+        Appointment visited = new Appointment(
+                apptToUnmark.getDoctorNric(),
+                apptToUnmark.getDescription(),
+                apptToUnmark.getStartDate(),
+                apptToUnmark.getEndDate(),
+                apptToUnmark.getPatientNric(),
+                false
+        );
+
+        AppointmentList updatedAppointments = target.getAppointmentList(); // Get current appointments
+        updatedAppointments.remove(apptToUnmark); // Remove the specific appointment
+        updatedAppointments.add(visited);
+
+        Person updatedPerson = new Person(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getNric(),
+                target.getBirthDate(),
+                target.getAddress(),
+                target.getTags(),
+                target.getMedicalReport(),
+                updatedAppointments // Use updated list of appointments
+        );
+
+        klinix.setPerson(target, updatedPerson);
+        klinix.deleteAppointment(apptToUnmark);
+        klinix.addAppointment(visited);
+        klinix.refreshDisplayedAppointments();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
     public ObservableList<Appointment> getAppointments() {
         return klinix.getDisplayedAppointments();
     }

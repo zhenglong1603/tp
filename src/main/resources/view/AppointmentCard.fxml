@@ -18,10 +18,12 @@
                        GridPane.columnIndex="0" />
                 <Label fx:id="patientNric" text="\$patientNric" styleClass="cell_big_label" GridPane.rowIndex="1"
                        GridPane.columnIndex="0" />
-                <Label text="Visited: " styleClass="cell_big_label" GridPane.rowIndex="2"
-                       GridPane.columnIndex="0" />
                 <Label fx:id="visited" text="\$visited" styleClass="cell_big_label" GridPane.rowIndex="2"
-                       GridPane.columnIndex="1"/>
+                       GridPane.columnIndex="0">
+                    <padding>
+                        <Insets top="1" right="5" bottom="1" left="5" />
+                    </padding>
+                </Label>
             </GridPane>
             <GridPane hgap="5" vgap="5">
                 <columnConstraints>

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentListByDate;
@@ -171,6 +172,7 @@ public class Klinix implements ReadOnlyKlinix {
 
     public void addAppointment(Appointment appointment) {
         this.appointmentsByDate.addAppointment(appointment);
+        refreshDisplayedAppointments();
     }
 
     public ObservableList<Appointment> getAppointmentsListByDate(LocalDate date) {
@@ -188,6 +190,10 @@ public class Klinix implements ReadOnlyKlinix {
         this.displayedAppointments.addAll(this.appointmentsByDate.getAppointmentListByDate(date));
     }
 
+    public void refreshDisplayedAppointments() {
+        changeDisplayedAppointments(displayedAppointmentDate.getDate());
+    }
+
     public ObservableList<Appointment> getDisplayedAppointments() {
         return this.displayedAppointments;
     }
@@ -198,6 +204,7 @@ public class Klinix implements ReadOnlyKlinix {
 
     public void deleteAppointment(Appointment appointmentToDelete) {
         this.appointmentsByDate.deleteAppointment(appointmentToDelete);
+        refreshDisplayedAppointments();
     }
 
     public ObservableLocalDate getAppointmentListDate() {

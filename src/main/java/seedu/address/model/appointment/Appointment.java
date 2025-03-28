@@ -18,7 +18,7 @@ public class Appointment {
     private final LocalDate startDate;
     private final LocalDate endDate;
     private final String patientNric;
-    private Boolean visited;
+    private final Boolean visited;
 
     /**
      * Constructs an {@code Appointment}.
@@ -29,6 +29,21 @@ public class Appointment {
      * @param endDate the end time in dd-MM-yyyy-HH-mm format.
      * @param patientNric the string of the patient.
      */
+    public Appointment(
+            String doctorNric, String description, LocalDate startDate, LocalDate endDate,
+            String patientNric, Boolean visited) {
+        requireNonNull(description);
+        requireNonNull(startDate);
+        requireNonNull(endDate);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        this.description = description;
+        this.doctorNric = doctorNric;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.patientNric = patientNric;
+        this.visited = visited;
+    }
+
     public Appointment(
             String doctorNric, String description, LocalDate startDate, LocalDate endDate,
             String patientNric) {
@@ -118,11 +133,8 @@ public class Appointment {
                 + endDate.format(DATE_FORMATTER);
     }
 
-    public Object getVisited() {
+    public boolean getVisited() {
         return visited;
     }
 
-    public void setVisited(Boolean visited) {
-        this.visited = visited;
-    }
 }

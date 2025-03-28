@@ -36,7 +36,14 @@ public class AppointmentCard extends UiPart<Region> {
     public AppointmentCard(Appointment appointment, int displayedIndex, String pn) {
         super(FXML);
         this.appointment = appointment;
-        visited.setText(appointment.getVisited().toString());
+        if (appointment.getVisited()) {
+            visited.setStyle("-fx-background-color: rgba(253,189,57,0.7); -fx-text-fill: rgba(0,0,0,0.69);");
+        } else {
+            visited.setStyle("-fx-background-color: rgba(200,207,45,0.68); -fx-text-fill: rgba(0,0,0,0.69);");
+        }
+
+
+        visited.setText(appointment.getVisited() ? "Visited" : "Not Visited");
         doctorNric.setText(appointment.getDoctorNric());
         description.setText(appointment.getDescription());
         startDate.setText(appointment.getStartDate().toString());

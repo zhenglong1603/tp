@@ -19,6 +19,7 @@ public class JsonAdaptedAppointment {
     private final LocalDate startDate;
     private final LocalDate endDate;
     private final String patientNric;
+    private final Boolean visited;
 
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
@@ -27,12 +28,14 @@ public class JsonAdaptedAppointment {
                                   @JsonProperty("appointmentDescription") String appointmentDescription,
                                   @JsonProperty("startDate") LocalDate startDate,
                                   @JsonProperty("endDate") LocalDate endDate,
-                                  @JsonProperty("patientNric") String patientNric) {
+                                  @JsonProperty("patientNric") String patientNric,
+                                  @JsonProperty("visited") Boolean visited) {
         this.doctorNric = doctorNric;
         this.appointmentDescription = appointmentDescription;
         this.startDate = startDate;
         this.endDate = endDate;
         this.patientNric = patientNric;
+        this.visited = visited;
     }
 
     /**
@@ -44,6 +47,7 @@ public class JsonAdaptedAppointment {
         startDate = source.getStartDate();
         endDate = source.getEndDate();
         patientNric = source.getPatientNric();
+        visited = source.getVisited();
     }
 
     /**
@@ -77,7 +81,12 @@ public class JsonAdaptedAppointment {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "patient nric"));
         }
 
-        return new Appointment(doctorNric, appointmentDescription, startDate, endDate, patientNric);
+        if (visited == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, "visited"));
+        }
+
+        return new Appointment(doctorNric, appointmentDescription, startDate, endDate, patientNric, visited);
     }
 }
 
