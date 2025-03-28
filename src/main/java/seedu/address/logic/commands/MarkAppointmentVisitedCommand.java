@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.DeleteAppointmentCommand.MESSAGE_PERSON_NOT_FOUND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -11,8 +13,9 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
+/**
+ * Marks an appointment as visited.
+ */
 public class MarkAppointmentVisitedCommand extends Command {
     public static final String COMMAND_WORD = "markappt";
     public static final String MESSAGE_SUCCESS = "Marked appointment as visited for person %s:\n%s";
@@ -27,6 +30,9 @@ public class MarkAppointmentVisitedCommand extends Command {
     private final Index index;
     private final Nric nric;
 
+    /**
+     * Creates a MarkAppointmentVisitedCommand to mark the specified {@code Appointment} as visited.
+     */
     public MarkAppointmentVisitedCommand(Nric nric, Index index) {
         super();
         this.index = index;

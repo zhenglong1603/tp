@@ -44,6 +44,15 @@ public class Appointment {
         this.visited = visited;
     }
 
+    /**
+     * Constructs an {@code Appointment}.
+     *
+     * @param description the description of the appointment.
+     * @param doctorNric the string of the doctor in charge.
+     * @param startDate the start time in dd-MM-yyyy-HH-mm format.
+     * @param endDate the end time in dd-MM-yyyy-HH-mm format.
+     * @param patientNric the string of the patient.
+     */
     public Appointment(
             String doctorNric, String description, LocalDate startDate, LocalDate endDate,
             String patientNric) {

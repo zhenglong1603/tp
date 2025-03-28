@@ -1,17 +1,19 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.MarkAppointmentVisitedCommand;
 import seedu.address.logic.commands.UnmarkAppointmentVisitedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Nric;
 
-import java.util.stream.Stream;
-
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
-
-public class UnmarkAppointmentVisitedCommandParser implements Parser<UnmarkAppointmentVisitedCommand>{
+/**
+ * Parses input arguments and creates a new UnmarkAppointmentVisitedCommand object
+ */
+public class UnmarkAppointmentVisitedCommandParser implements Parser<UnmarkAppointmentVisitedCommand> {
     @Override
     public UnmarkAppointmentVisitedCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

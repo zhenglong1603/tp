@@ -8,7 +8,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMedicalReportCommand;
+import seedu.address.logic.commands.AddMedicineUsageCommand;
+import seedu.address.logic.commands.ClearAppointmentsCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearMedicineUsageCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMedicalReportCommand;
+import seedu.address.logic.commands.DeleteMedicineUsageCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindMedicineUsageCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkAppointmentVisitedCommand;
+import seedu.address.logic.commands.UnmarkAppointmentVisitedCommand;
+import seedu.address.logic.commands.ViewAppointmentByDateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
