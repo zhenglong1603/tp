@@ -7,7 +7,9 @@ import java.time.format.DateTimeFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.EmptyListException;
+import seedu.address.model.appointment.exceptions.OverlappingAppointmentException;
 
 /**
  * Represents a map of appointments grouped by date.
@@ -119,6 +121,35 @@ public class AppointmentListByDate {
         String startDate = dateTmeFormatter(appointmentToDelete.getStartDate());
         if (appointmentsByDate.containsKey(startDate)) {
             appointmentsByDate.get(startDate).remove(appointmentToDelete);
+        }
+    }
+
+    /**
+     * Replaces the target appointment with the edited appointment.
+     * If the target appointment does not exist, an AppointmentNotFoundException is thrown.
+     * If the edited appointment overlaps with another appointment, an OverlappingAppointmentException is thrown.
+     *
+     * @param target the appointment to be replaced
+     * @param editedAppointment the appointment to replace the target appointment
+     * @throws AppointmentNotFoundException if the target appointment does not exist
+     * @throws OverlappingAppointmentException if the edited appointment overlaps with another appointment
+     */
+    public void replaceAppointment(Appointment target, Appointment editedAppointment) {
+        String startDate = dateTmeFormatter(target.getStartDate());
+        if (appointmentsByDate.containsKey(startDate)) {
+            ObservableList<Appointment> currentListOfAppointment = appointmentsByDate.get(startDate);
+            int index = currentListOfAppointment.indexOf(target);
+
+            if (index == -1) {
+                throw new AppointmentNotFoundException();
+            }
+
+            if (!target.hasOverlap(editedAppointment)) {
+                throw new OverlappingAppointmentException();
+            }
+
+            currentListOfAppointment.set(index, editedAppointment);
+            addAppointment(editedAppointment);
         }
     }
 }

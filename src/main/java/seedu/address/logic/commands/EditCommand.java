@@ -69,6 +69,7 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        super.setShowConfirmation(true);
     }
 
     @Override

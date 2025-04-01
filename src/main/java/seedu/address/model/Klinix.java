@@ -74,6 +74,7 @@ public class Klinix implements ReadOnlyKlinix {
 
         setPersons(newData.getPersonList());
         setAppointmentsByDate(newData.getAppointmentsByDate());
+        changeDisplayedAppointments(LocalDate.now());
     }
 
     //// person-level operations
@@ -167,6 +168,7 @@ public class Klinix implements ReadOnlyKlinix {
         for (Appointment a : appointments) {
             this.appointmentsByDate.addAppointment(a);
         }
+        refreshDisplayedAppointments();
     }
 
     /**
@@ -175,6 +177,17 @@ public class Klinix implements ReadOnlyKlinix {
      */
     public void addAppointment(Appointment appointment) {
         this.appointmentsByDate.addAppointment(appointment);
+        refreshDisplayedAppointments();
+    }
+
+    /**
+     * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
+     * {@code target} must exist in the address book.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment
+     * in the address book.
+     */
+    public void replaceAppointment(Appointment target, Appointment editedAppointment) {
+        this.appointmentsByDate.replaceAppointment(target, editedAppointment);
         refreshDisplayedAppointments();
     }
 
