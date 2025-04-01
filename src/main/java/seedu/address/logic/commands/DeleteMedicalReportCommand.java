@@ -35,6 +35,7 @@ public class DeleteMedicalReportCommand extends Command {
     public DeleteMedicalReportCommand(Nric nric) {
         requireNonNull(nric);
         this.nric = nric;
+        super.setShowConfirmation(true);
     }
 
     @Override

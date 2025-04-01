@@ -50,6 +50,7 @@ public class AddMedicineUsageCommand extends Command {
         requireNonNull(medicineUsage);
         this.nric = nric;
         this.medicineUsage = medicineUsage;
+        super.setShowConfirmation(true);
     }
 
     @Override

@@ -44,6 +44,7 @@ public class DeleteAppointmentCommand extends Command {
         requireNonNull(targetId);
         this.nric = nric;
         this.targetId = targetId;
+        super.setShowConfirmation(true);
     }
 
     @Override

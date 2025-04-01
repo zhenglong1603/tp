@@ -34,6 +34,7 @@ public class ClearMedicineUsageCommand extends Command {
     public ClearMedicineUsageCommand(Nric nric) {
         requireNonNull(nric);
         this.nric = nric;
+        super.setShowConfirmation(true);
     }
 
     @Override

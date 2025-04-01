@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ConfirmWindow confirmWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -76,6 +77,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        confirmWindow = new ConfirmWindow();
     }
 
     public Stage getPrimaryStage() {

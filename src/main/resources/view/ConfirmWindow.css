@@ -1,0 +1,45 @@
+/* Container styling */
+#confirmMessageContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: #c0c0c0;
+    -fx-border-width: 1;
+}
+
+/* Message label styling */
+#messageLabel {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+}
+
+/* Button container styling */
+#okButton, #cancelButton {
+    -fx-alignment: CENTER;
+    -fx-spacing: 10;
+}
+
+/* Buttons styling */
+#okButton, #cancelButton{
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14;
+    -fx-background-color: dimgray;
+    -fx-border-color: #c0c0c0;
+    -fx-border-width: 1;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+#okButton:hover, #cancelButton:hover {
+    -fx-background-color: gray;
+}
+
+#copyButton:armed {
+    -fx-background-color: darkgray;
+}

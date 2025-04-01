@@ -34,6 +34,7 @@ public class ClearAppointmentsCommand extends Command {
     public ClearAppointmentsCommand(Nric nric) {
         requireNonNull(nric);
         this.nric = nric;
+        super.setShowConfirmation(true);
     }
 
     @Override
