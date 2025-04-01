@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
+import seedu.address.model.appointment.exceptions.OverlappingAppointmentException;
 
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
@@ -126,6 +127,14 @@ public class AppointmentList implements Iterable<Appointment> {
     }
 
     /**
+     * Returns true if the list contains an overlap of appointment with the given argument.
+     */
+    public boolean containsOverlap(Appointment toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::hasOverlap);
+    }
+
+    /**
      * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
      * The appointment identity of {@code editedAppointment} must not be the same as another existing
@@ -140,7 +149,7 @@ public class AppointmentList implements Iterable<Appointment> {
         }
 
         if (!target.hasOverlap(editedAppointment) && containsOverlap(editedAppointment)) {
-            throw new OverlappingAppointmentException();
+            throw new OverlappingAppointmentException("Appointment has an overlap!!");
         }
 
         internalList.set(index, editedAppointment);

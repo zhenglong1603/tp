@@ -145,7 +145,7 @@ public class AppointmentListByDate {
             }
 
             if (!target.hasOverlap(editedAppointment)) {
-                throw new OverlappingAppointmentException();
+                throw new OverlappingAppointmentException("Appointment has an overlap!");
             }
 
             currentListOfAppointment.set(index, editedAppointment);
