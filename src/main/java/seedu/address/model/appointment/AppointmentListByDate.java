@@ -121,4 +121,14 @@ public class AppointmentListByDate {
             appointmentsByDate.get(startDate).remove(appointmentToDelete);
         }
     }
+
+    public void replaceAppointment(Appointment target, Appointment editedAppointment) {
+        String startDate = dateTmeFormatter(target.getStartDate());
+        if (appointmentsByDate.containsKey(startDate)) {
+            ObservableList<Appointment> currentListOfAppointment = appointmentsByDate.get(startDate);
+            int index = currentListOfAppointment.indexOf(target);
+            currentListOfAppointment.set(index, editedAppointment);
+            addAppointment(editedAppointment);
+        }
+    }
 }

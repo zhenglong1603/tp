@@ -178,6 +178,11 @@ public class Klinix implements ReadOnlyKlinix {
         refreshDisplayedAppointments();
     }
 
+    public void replaceAppointment(Appointment target, Appointment editedAppointment) {
+        this.appointmentsByDate.replaceAppointment(target, editedAppointment);
+        refreshDisplayedAppointments();
+    }
+
     /**
      * Returns an unmodifiable view of the filtered person list
      */

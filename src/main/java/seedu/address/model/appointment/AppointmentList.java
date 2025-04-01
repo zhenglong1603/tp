@@ -168,4 +168,19 @@ public class AppointmentList implements Iterable<Appointment> {
         return sb.toString();
     }
 
+    public void replaceAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new AppointmentNotFoundException();
+        }
+
+        if (!target.hasOverlap(editedAppointment) && containsOverlap(editedAppointment)) {
+            throw new OverlappingAppointmentException();
+        }
+
+        internalList.set(index, editedAppointment);
+    }
+
 }
