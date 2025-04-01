@@ -73,5 +73,10 @@ public class AddAppointmentCommand extends Command {
                 && nric.equals(((AddAppointmentCommand) other).nric)
                 && appointment.equals(((AddAppointmentCommand) other).appointment));
     }
+
+    @Override
+    public String toString() {
+        return String.format("AddAppointmentCommand{nric=%s, appointment=%s}", nric, appointment);
+    }
 }
 
