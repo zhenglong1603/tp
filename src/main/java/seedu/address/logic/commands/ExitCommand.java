@@ -11,6 +11,11 @@ public class ExitCommand extends Command {
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
+    public ExitCommand() {
+        super();
+        super.setShowConfirmation(true);
+    }
+
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);

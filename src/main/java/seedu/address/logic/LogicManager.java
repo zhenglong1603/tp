@@ -50,7 +50,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = klinixParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.executeCommand(model);
 
         try {
             storage.saveKlinix(model.getKlinix());
