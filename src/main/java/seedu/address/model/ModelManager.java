@@ -270,7 +270,7 @@ public class ModelManager implements Model {
     public void unmarkAppointmentVisited(Person target, Appointment apptToUnmark) {
         requireAllNonNull(target, apptToUnmark);
 
-        Appointment unvisited = new Appointment(
+        Appointment unvisitedAppointment = new Appointment(
                 apptToUnmark.getDoctorNric(),
                 apptToUnmark.getDescription(),
                 apptToUnmark.getStartDate(),
@@ -280,7 +280,7 @@ public class ModelManager implements Model {
         );
 
         AppointmentList updatedAppointments = target.getAppointmentList(); // Get current appointments
-        updatedAppointments.replaceAppointment(apptToUnmark, unvisited);
+        updatedAppointments.replaceAppointment(apptToUnmark, unvisitedAppointment);
 
         Person updatedPerson = new Person(
                 target.getName(),
@@ -295,7 +295,7 @@ public class ModelManager implements Model {
         );
 
         klinix.setPerson(target, updatedPerson);
-        klinix.replaceAppointment(apptToUnmark, unvisited);
+        klinix.replaceAppointment(apptToUnmark, unvisitedAppointment);
         klinix.refreshDisplayedAppointments();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
