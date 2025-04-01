@@ -15,7 +15,7 @@ import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.util.ObservableLocalDate;
+import seedu.address.model.util.ObservableLocalDateTime;
 
 /**
  * Wraps all data at the address-book level
@@ -26,7 +26,7 @@ public class Klinix implements ReadOnlyKlinix {
     private final UniquePersonList persons;
     private AppointmentListByDate appointmentsByDate;
     private ObservableList<Appointment> displayedAppointments;
-    private ObservableLocalDate displayedAppointmentDate;
+    private ObservableLocalDateTime displayedAppointmentDate;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -39,7 +39,7 @@ public class Klinix implements ReadOnlyKlinix {
         persons = new UniquePersonList();
         appointmentsByDate = new AppointmentListByDate();
         displayedAppointments = FXCollections.observableArrayList();
-        displayedAppointmentDate = new ObservableLocalDate();
+        displayedAppointmentDate = new ObservableLocalDateTime();
     }
 
     public Klinix() {}
@@ -200,7 +200,7 @@ public class Klinix implements ReadOnlyKlinix {
      * Refreshes the displayed appointments to the appointments on the current displayed date.
      */
     public void refreshDisplayedAppointments() {
-        changeDisplayedAppointments(displayedAppointmentDate.getDate());
+        changeDisplayedAppointments(displayedAppointmentDate.getDate().toLocalDate());
     }
 
     public ObservableList<Appointment> getDisplayedAppointments() {
@@ -220,7 +220,7 @@ public class Klinix implements ReadOnlyKlinix {
         refreshDisplayedAppointments();
     }
 
-    public ObservableLocalDate getAppointmentListDate() {
+    public ObservableLocalDateTime getAppointmentListDate() {
         return this.displayedAppointmentDate;
     }
 

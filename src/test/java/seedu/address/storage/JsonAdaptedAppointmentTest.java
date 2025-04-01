@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +14,8 @@ public class JsonAdaptedAppointmentTest {
 
     private static final String VALID_DOCTOR_NRIC = "S1234567A";
     private static final String VALID_APPOINTMENT_DESCRIPTION = "Dental Checkup";
-    private static final LocalDate VALID_START_DATE = LocalDate.of(2020, 1, 1);
-    private static final LocalDate VALID_END_DATE = LocalDate.of(2020, 1, 10);
+    private static final LocalDateTime VALID_START_DATE = LocalDateTime.of(2020, 1, 1, 11, 0);
+    private static final LocalDateTime VALID_END_DATE = LocalDateTime.of(2020, 1, 10, 11, 30);
     private static final String VALID_PATIENT_NRIC = "S1234567B";
 
     /**

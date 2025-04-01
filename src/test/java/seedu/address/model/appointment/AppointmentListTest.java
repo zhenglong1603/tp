@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,18 +31,18 @@ public class AppointmentListTest {
         // Create Appointment instances with LocalDateTime
         appointment1 = new Appointment("S1234567B",
                 "Visit",
-                LocalDate.parse("2025-03-20 10:00", formatter),
-                LocalDate.parse("2025-03-20 11:00", formatter), "name 1");
+                LocalDateTime.parse("2025-03-20 10:00", formatter),
+                LocalDateTime.parse("2025-03-20 11:00", formatter), "name 1");
 
         appointment2 = new Appointment("T7654321A",
                 "Surgery",
-                LocalDate.parse("2025-03-19 12:00", formatter),
-                LocalDate.parse("2025-03-23 13:00", formatter), "name 2");
+                LocalDateTime.parse("2025-03-19 12:00", formatter),
+                LocalDateTime.parse("2025-03-23 13:00", formatter), "name 2");
 
         overlappingAppointment = new Appointment("T1234567B",
                 "Checkup",
-                LocalDate.parse("2025-03-16 10:30", formatter),
-                LocalDate.parse("2025-03-23 11:30", formatter), "name 3");
+                LocalDateTime.parse("2025-03-16 10:30", formatter),
+                LocalDateTime.parse("2025-03-23 11:30", formatter), "name 3");
     }
 
     @Test
@@ -81,8 +81,8 @@ public class AppointmentListTest {
         appointmentList.add(appointment1);
         Appointment newAppointment = new Appointment("T1234567B",
                 "Updated Visit",
-                LocalDate.parse("2025-03-20 14:00", formatter),
-                LocalDate.parse("2025-03-20 15:00", formatter), "name 1");
+                LocalDateTime.parse("2025-03-20 14:00", formatter),
+                LocalDateTime.parse("2025-03-20 15:00", formatter), "name 1");
         appointmentList.setAppointment(appointment1, newAppointment);
 
         assertEquals(1, appointmentList.size());
@@ -95,7 +95,8 @@ public class AppointmentListTest {
         appointmentList.add(appointment1);
         appointmentList.add(appointment2);
 
-        String expectedString = "Visit FROM 20-03-2025 TO 20-03-2025\nSurgery FROM 19-03-2025 TO 23-03-2025\n";
+        String expectedString = "Visit FROM 20-03-2025 10:00 TO 20-03-2025 11:00\n"
+            + "Surgery FROM 19-03-2025 12:00 TO 23-03-2025 13:00\n";
         assertEquals(expectedString, appointmentList.toString());
     }
 }

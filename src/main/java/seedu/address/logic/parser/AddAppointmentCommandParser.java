@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateUtil;
@@ -44,10 +44,10 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         String doctorNric = argMultimap.getValue(PREFIX_DOCTOR_NRIC).get();
         String appointmentDescription = argMultimap.getValue(PREFIX_APPOINTMENT_DESCRIPTION).get();
-        LocalDate startDate = LocalDate.parse(argMultimap.getValue(PREFIX_FROM).get(),
-                DateUtil.getDateFormatter());
-        LocalDate endDate = LocalDate.parse(argMultimap.getValue(PREFIX_TO).get(),
-                DateUtil.getDateFormatter());
+        LocalDateTime startDate = LocalDateTime.parse(argMultimap.getValue(PREFIX_FROM).get(),
+                DateUtil.getDateTimeFormatter());
+        LocalDateTime endDate = LocalDateTime.parse(argMultimap.getValue(PREFIX_TO).get(),
+                DateUtil.getDateTimeFormatter());
 
         Appointment medicineUsage = new Appointment(
                 doctorNric, appointmentDescription, startDate, endDate, nric.toString());

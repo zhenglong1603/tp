@@ -2,9 +2,9 @@ package seedu.address.model.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.DateUtil.DATE_FORMATTER;
+import static seedu.address.commons.util.DateUtil.DATE_TIME_FORMATTER;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Represents a Appointment.
@@ -15,8 +15,8 @@ public class Appointment {
     public static final String VALIDATION_REGEX = "^(?!\\s*$)(?=.*[a-zA-Z]).{1,70}$";
     private final String description;
     private final String doctorNric;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
     private final String patientNric;
     private final Boolean visited;
 
@@ -30,7 +30,7 @@ public class Appointment {
      * @param patientNric the string of the patient.
      */
     public Appointment(
-            String doctorNric, String description, LocalDate startDate, LocalDate endDate,
+            String doctorNric, String description, LocalDateTime startDate, LocalDateTime endDate,
             String patientNric, Boolean visited) {
         requireNonNull(description);
         requireNonNull(startDate);
@@ -49,12 +49,12 @@ public class Appointment {
      *
      * @param description the description of the appointment.
      * @param doctorNric the string of the doctor in charge.
-     * @param startDate the start time in dd-MM-yyyy-HH-mm format.
-     * @param endDate the end time in dd-MM-yyyy-HH-mm format.
+     * @param startDate the start time in dd-MM-yyyy HH:mm format.
+     * @param endDate the end time in dd-MM-yyyy HH:mm format.
      * @param patientNric the string of the patient.
      */
     public Appointment(
-            String doctorNric, String description, LocalDate startDate, LocalDate endDate,
+            String doctorNric, String description, LocalDateTime startDate, LocalDateTime endDate,
             String patientNric) {
         requireNonNull(description);
         requireNonNull(startDate);
@@ -76,11 +76,11 @@ public class Appointment {
         return this.doctorNric;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return this.startDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return this.endDate;
     }
 
@@ -137,9 +137,9 @@ public class Appointment {
     public String toString() {
         return description
                 + " FROM "
-                + startDate.format(DATE_FORMATTER)
+                + startDate.format(DATE_TIME_FORMATTER)
                 + " TO "
-                + endDate.format(DATE_FORMATTER);
+                + endDate.format(DATE_TIME_FORMATTER);
     }
 
     public boolean getVisited() {

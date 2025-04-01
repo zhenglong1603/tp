@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,8 +16,8 @@ public class JsonAdaptedAppointment {
 
     private final String doctorNric;
     private final String appointmentDescription;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
     private final String patientNric;
     private final Boolean visited;
 
@@ -26,8 +26,8 @@ public class JsonAdaptedAppointment {
      */
     public JsonAdaptedAppointment(@JsonProperty("doctorNRIC") String doctorNric,
                                   @JsonProperty("appointmentDescription") String appointmentDescription,
-                                  @JsonProperty("startDate") LocalDate startDate,
-                                  @JsonProperty("endDate") LocalDate endDate,
+                                  @JsonProperty("startDate") LocalDateTime startDate,
+                                  @JsonProperty("endDate") LocalDateTime endDate,
                                   @JsonProperty("patientNric") String patientNric,
                                   @JsonProperty("visited") Boolean visited) {
         this.doctorNric = doctorNric;
