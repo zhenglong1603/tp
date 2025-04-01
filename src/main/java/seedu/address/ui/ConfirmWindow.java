@@ -1,15 +1,14 @@
 package seedu.address.ui;
 
-import javafx.scene.Scene;
+import javafx.fxml.FXML;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.fxml.FXML;
 /**
  * Controller for a confirm page
  */
-public class ConfirmWindow extends UiPart<Stage>{
+public class ConfirmWindow extends UiPart<Stage> {
 
-    public static  final String CONFIRM_MESSAGE = "Are you sure about this change?";
+    public static final String CONFIRM_MESSAGE = "Are you sure about this change?";
     private static final String FXML = "ConfirmWindow.fxml";
     private boolean confirmed = false;
 
@@ -21,6 +20,9 @@ public class ConfirmWindow extends UiPart<Stage>{
         this(new Stage());
     }
 
+    /**
+     * Sets up the confirm window
+     */
     public boolean showAndWait() {
         getRoot().initModality(Modality.APPLICATION_MODAL);
         getRoot().setTitle("Confirmation");

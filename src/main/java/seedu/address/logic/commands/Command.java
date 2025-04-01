@@ -20,7 +20,14 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
 
-        public CommandResult executeCommand(Model model) throws CommandException {
+    /**
+     * Executes the command and returns the result message.
+     * This method is used to show a confirmation dialog before executing the command.
+     * If the user confirms the operation, the command will be executed.
+     * @return CommandResult of the operation
+     * @throws CommandException
+     */
+    public CommandResult executeCommand(Model model) throws CommandException {
         this.confirmWindow = new ConfirmWindow();
         if (showConfirmation) {
             if (confirmWindow.showAndWait()) {

@@ -11,6 +11,10 @@ public class ExitCommand extends Command {
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
+    /**
+     * Creates an ExitCommand to exit the program.
+     *
+     */
     public ExitCommand() {
         super();
         super.setShowConfirmation(true);

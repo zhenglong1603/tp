@@ -52,6 +52,7 @@ public class AddCommand extends Command {
     public AddCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
+        super.setShowConfirmation(true);
     }
 
     @Override

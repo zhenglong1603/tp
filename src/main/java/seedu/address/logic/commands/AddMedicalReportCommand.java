@@ -50,6 +50,7 @@ public class AddMedicalReportCommand extends Command {
         requireNonNull(medicalReport);
         this.nric = nric;
         this.medicalReport = medicalReport;
+        super.setShowConfirmation(true);
     }
 
     @Override

@@ -25,6 +25,8 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    CommandResult executeWithoutConfirmation(String commandText) throws CommandException, ParseException;
+
     /**
      * Returns the AddressBook.
      *

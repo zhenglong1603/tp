@@ -50,6 +50,7 @@ public class AddAppointmentCommand extends Command {
         requireNonNull(appointment);
         this.nric = nric;
         this.appointment = appointment;
+        super.setShowConfirmation(true);
     }
 
     @Override
