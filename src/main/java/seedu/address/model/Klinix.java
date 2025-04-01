@@ -178,6 +178,12 @@ public class Klinix implements ReadOnlyKlinix {
         refreshDisplayedAppointments();
     }
 
+    /**
+     * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
+     * {@code target} must exist in the address book.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment
+     * in the address book.
+     */
     public void replaceAppointment(Appointment target, Appointment editedAppointment) {
         this.appointmentsByDate.replaceAppointment(target, editedAppointment);
         refreshDisplayedAppointments();
