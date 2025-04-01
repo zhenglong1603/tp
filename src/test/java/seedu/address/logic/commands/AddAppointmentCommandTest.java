@@ -130,4 +130,30 @@ class AddAppointmentCommandTest {
         AddAppointmentCommand command = new AddAppointmentCommand(nric, nonConflictingAppointment);
         assertThrows(OverlappingAppointmentException.class, () -> command.execute(model));
     }
+
+    @Test
+    void execute_overlappingAppointmentSameDoctor_failure() throws CommandException {
+        Nric nric = new Nric("S9856324A");
+        Appointment existingAppointment = new Appointment(
+                "S6543217A",
+                "Check-Up",
+                LocalDateTime.parse("22-02-2025 10:35", DATE_TIME_FORMATTER),
+                LocalDateTime.parse("22-02-2025 11:00", DATE_TIME_FORMATTER),
+                nric.toString()
+        );
+
+        model.addAppointment(model.findPersonByNric(nric), existingAppointment);
+
+        Nric nric1 = new Nric("S9999999B");
+        Appointment nonConflictingAppointment = new Appointment(
+                "S6543217A",
+                "Check-Up",
+                LocalDateTime.parse("22-02-2025 10:45", DATE_TIME_FORMATTER), // Overlaps but different doctor
+                LocalDateTime.parse("22-02-2025 11:15", DATE_TIME_FORMATTER),
+                nric1.toString()
+        );
+
+        AddAppointmentCommand command = new AddAppointmentCommand(nric, nonConflictingAppointment);
+        assertThrows(OverlappingAppointmentException.class, () -> command.execute(model));
+    }
 }
