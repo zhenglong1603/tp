@@ -1,6 +1,7 @@
 package seedu.address.model.appointment;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javafx.collections.FXCollections;
@@ -82,10 +83,21 @@ public class AppointmentListByDate {
         if (appointmentList.isEmpty()) {
             throw new EmptyListException();
         }
-        LocalDate startDate = appointmentList.get(0).getStartDate();
+        LocalDateTime startDate = appointmentList.get(0).getStartDate();
         appointmentsByDate.put(dateTmeFormatter(startDate), appointmentList);
     }
 
+    /**
+     * Formats the date to a string in the format "dd-MM-yyyy".
+     * This is used as the key in the map.
+     *
+     * @param date the date to be formatted
+     * @return the formatted date
+     */
+    public String dateTmeFormatter(LocalDateTime date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return date.format(formatter);
+    }
     /**
      * Formats the date to a string in the format "dd-MM-yyyy".
      * This is used as the key in the map.

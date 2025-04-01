@@ -138,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
 
         appointmentListTitle.textProperty().bind(
                 Bindings.createStringBinding(() -> "Appointments on "
-                                + logic.getAppointmentListDate().getDate(),
+                                + logic.getAppointmentListDate().getDate().toLocalDate(),
                         logic.getAppointmentListDate().dateProperty()));
     }
 

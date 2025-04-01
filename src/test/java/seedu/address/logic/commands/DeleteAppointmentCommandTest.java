@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,10 +37,13 @@ class DeleteAppointmentCommandTest {
         validNric = new Nric("S1234567A");
         validIndex = Index.fromZeroBased(0);
 
-        // Create an appointment entry
-        appointment = new Appointment("S9876543A", "Checkup",
-                LocalDate.of(2024, 1, 1), LocalDate.of(2024, 1, 10),
-                "S1234567A");
+        appointment = new Appointment(
+                "S9876543A",
+                "Checkup",
+                LocalDateTime.of(2024, 1, 1, 10, 30), // 1st Jan 2024, 10:30 AM
+                LocalDateTime.of(2024, 1, 10, 15, 0), // 10th Jan 2024, 3:00 PM
+                "S1234567A"
+        );
 
         // Create a MedicalReport and add medicine usage
         MedicalReport medicalReport = new MedicalReport("", "", "", "");

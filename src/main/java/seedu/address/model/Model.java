@@ -11,7 +11,7 @@ import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
-import seedu.address.model.util.ObservableLocalDate;
+import seedu.address.model.util.ObservableLocalDateTime;
 
 /**
  * The API of the Model component.
@@ -140,7 +140,7 @@ public interface Model {
      */
     void clearAppointments(Person target);
 
-    ObservableLocalDate getAppointmentListDate();
+    ObservableLocalDateTime getAppointmentListDate();
 
     void markAppointmentVisited(Person person, Appointment apptToMark);
 

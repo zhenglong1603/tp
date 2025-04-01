@@ -17,7 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyKlinix;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
-import seedu.address.model.util.ObservableLocalDate;
+import seedu.address.model.util.ObservableLocalDateTime;
 import seedu.address.storage.Storage;
 
 /**
@@ -94,7 +94,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableLocalDate getAppointmentListDate() {
+    public ObservableLocalDateTime getAppointmentListDate() {
         return model.getAppointmentListDate();
     }
 }
