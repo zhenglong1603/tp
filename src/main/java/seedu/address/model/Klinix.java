@@ -74,6 +74,7 @@ public class Klinix implements ReadOnlyKlinix {
 
         setPersons(newData.getPersonList());
         setAppointmentsByDate(newData.getAppointmentsByDate());
+        changeDisplayedAppointments(LocalDate.now());
     }
 
     //// person-level operations
@@ -167,6 +168,7 @@ public class Klinix implements ReadOnlyKlinix {
         for (Appointment a : appointments) {
             this.appointmentsByDate.addAppointment(a);
         }
+        refreshDisplayedAppointments();
     }
 
     /**
