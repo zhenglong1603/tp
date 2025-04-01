@@ -246,8 +246,7 @@ public class ModelManager implements Model {
         );
 
         AppointmentList updatedAppointments = target.getAppointmentList(); // Get current appointments
-        updatedAppointments.remove(apptToMark); // Remove the specific appointment
-        updatedAppointments.add(visited);
+        updatedAppointments.replaceAppointment(apptToMark, visited);
 
         Person updatedPerson = new Person(
                 target.getName(),
@@ -262,8 +261,7 @@ public class ModelManager implements Model {
         );
 
         klinix.setPerson(target, updatedPerson);
-        klinix.deleteAppointment(apptToMark);
-        klinix.addAppointment(visited);
+        klinix.replaceAppointment(apptToMark, visited);
         klinix.refreshDisplayedAppointments();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -272,7 +270,7 @@ public class ModelManager implements Model {
     public void unmarkAppointmentVisited(Person target, Appointment apptToUnmark) {
         requireAllNonNull(target, apptToUnmark);
 
-        Appointment visited = new Appointment(
+        Appointment unvisitedAppointment = new Appointment(
                 apptToUnmark.getDoctorNric(),
                 apptToUnmark.getDescription(),
                 apptToUnmark.getStartDate(),
@@ -282,8 +280,7 @@ public class ModelManager implements Model {
         );
 
         AppointmentList updatedAppointments = target.getAppointmentList(); // Get current appointments
-        updatedAppointments.remove(apptToUnmark); // Remove the specific appointment
-        updatedAppointments.add(visited);
+        updatedAppointments.replaceAppointment(apptToUnmark, unvisitedAppointment);
 
         Person updatedPerson = new Person(
                 target.getName(),
@@ -298,8 +295,7 @@ public class ModelManager implements Model {
         );
 
         klinix.setPerson(target, updatedPerson);
-        klinix.deleteAppointment(apptToUnmark);
-        klinix.addAppointment(visited);
+        klinix.replaceAppointment(apptToUnmark, unvisitedAppointment);
         klinix.refreshDisplayedAppointments();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
