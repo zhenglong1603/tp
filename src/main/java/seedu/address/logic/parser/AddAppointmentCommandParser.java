@@ -8,23 +8,21 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
 
-import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 
 /**
- * Parses input arguments and creates a new AddMedicalReportCommand object
+ * Parses input arguments and creates a new AddAppointmentCommand object
  */
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddMedicineUsageCommand
-     * and returns an AddMedicineUsage object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand
+     * and returns an AddAppointment object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddAppointmentCommand parse(String args) throws ParseException {
@@ -43,17 +41,16 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                 PREFIX_APPOINTMENT_DESCRIPTION, PREFIX_FROM, PREFIX_TO);
 
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
-        String doctorNric = argMultimap.getValue(PREFIX_DOCTOR_NRIC).get();
-        String appointmentDescription = argMultimap.getValue(PREFIX_APPOINTMENT_DESCRIPTION).get();
-        LocalDateTime startDate;
-        LocalDateTime endDate;
-        try {
-            startDate = LocalDateTime.parse(argMultimap.getValue(PREFIX_FROM).get(),
-                    DateUtil.getDateTimeFormatter());
-            endDate = LocalDateTime.parse(argMultimap.getValue(PREFIX_TO).get(),
-                    DateUtil.getDateTimeFormatter());
-        } catch (DateTimeParseException e) {
-            throw new ParseException("Invalid date format! Use dd-MM-yyy HH:mm.", e);
+        String doctorNric = ParserUtil.parseDoctorNric(argMultimap.getValue(PREFIX_DOCTOR_NRIC).get());
+        String appointmentDescription = ParserUtil.parseAppointmentDescription(
+                argMultimap.getValue(PREFIX_APPOINTMENT_DESCRIPTION).get());
+        LocalDateTime startDate = ParserUtil.parseLocalDateTime(
+                argMultimap.getValue(PREFIX_FROM).get());
+        LocalDateTime endDate = ParserUtil.parseLocalDateTime(
+                argMultimap.getValue(PREFIX_TO).get());
+
+        if (startDate.isAfter(endDate)) {
+            throw new ParseException("Ensure that start date and time is before the end date and time!");
         }
 
         Appointment medicineUsage = new Appointment(

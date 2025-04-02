@@ -3,6 +3,7 @@ package seedu.address.ui;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Address;
@@ -93,6 +95,10 @@ public class TestPersonListPanel {
                 new MedicineUsage("Medicine2", "Dosage2", startdate, enddate)
         );
         AppointmentList appointmentList = AppointmentList.EMPTY_APPOINTMENT_LIST;
+        appointmentList.add(new Appointment("S1234567A", "Injection",
+                        LocalDateTime.of(2025, 10, 1, 10, 30),
+                        LocalDateTime.of(2025, 10, 1, 11, 0),
+                        "S9876543G"));
 
         Person person = new Person(
                 new Name("Jane Doe"),
@@ -125,7 +131,7 @@ public class TestPersonListPanel {
             + "2: Medicine2, Dosage2, from 01 January 2020 to 31 December 2020\n"
             + "\n"
             + "Appointments: \n"
-            + "No appointments found"
+            + "1: Injection FROM 01-10-2025 10:30 TO 01-10-2025 11:00 (S1234567A)"
             + "\n";
 
         assertEquals(expected, PersonListPanel.parsePersonData(person));
