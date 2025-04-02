@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
 import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.medicineusage.Dosage;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
@@ -45,7 +47,8 @@ class ClearMedicineUsageCommandTest {
                 new MedicalReport("None", "None", "None", "None"),
                 new AppointmentList()
         );
-        medicineUsage = new MedicineUsage("Paracetamol", "500mg", LocalDate.now(), LocalDate.now().plusDays(5));
+        medicineUsage = new MedicineUsage(new MedicineName("Paracetamol"), new Dosage("500mg"),
+                LocalDate.now(), LocalDate.now().plusDays(5));
         person.getMedicalReport().add(medicineUsage);
         model.addPerson(person);
     }
