@@ -75,4 +75,9 @@ public class AddMedicalReportCommandParser implements Parser<AddMedicalReportCom
                 && input.matches("^[a-zA-Z0-9 ,\\-]+$") // Only letters, numbers, spaces, commas, hyphens
                 && input.matches(".*[a-zA-Z].*"); // Must contain at least one alphabet
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || other instanceof AddMedicalReportCommandParser;
+    }
 }
