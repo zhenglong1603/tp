@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.medicineusage.MedicineName;
 
 /**
  * Tests that a {@code Person}'s {@code Medicine Usage}s matches any of the keywords given.
@@ -18,10 +19,10 @@ public class MedicineUsageContainsKeywordsPredicate implements Predicate<Person>
 
     @Override
     public boolean test(Person person) {
-        List<String> medicineNames = person.getMedicineUsageNames();
+        List<MedicineName> medicineNames = person.getMedicineUsageNames();
         return keywords.stream().anyMatch(keyword ->
                 medicineNames.stream().anyMatch(name ->
-                        StringUtil.containsWordIgnoreCase(name, keyword)));
+                        StringUtil.containsWordIgnoreCase(name.toString(), keyword)));
     }
 
     @Override

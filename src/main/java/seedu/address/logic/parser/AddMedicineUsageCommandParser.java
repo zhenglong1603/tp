@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.AddMedicineUsageCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Nric;
 
@@ -40,7 +41,7 @@ public class AddMedicineUsageCommandParser implements Parser<AddMedicineUsageCom
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NRIC, PREFIX_NAME, PREFIX_DOSAGE, PREFIX_FROM, PREFIX_TO);
 
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
-        String name = argMultimap.getValue(PREFIX_NAME).get();
+        MedicineName name = ParserUtil.parseMedicineName(argMultimap.getValue(PREFIX_NAME).get());
         String dosage = argMultimap.getValue(PREFIX_DOSAGE).get();
 
         try {
