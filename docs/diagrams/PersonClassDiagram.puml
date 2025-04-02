@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Person as PersonPackage <<Rectangle>>{
+Class Person
+Class Address
+Class Email
+Class Name
+Class Phone
+Class Tag
+Class Nric
+Class BirthDate
+Class MedicalReport
+Class AppointmentList
+Class MedicineUsage
+Class MedicineUsageList
+Class Appointment
+
+}
+
+Person *-up-> Name
+Person *-up-> Phone
+Person *-up-> Email
+Person *-up-> Address
+Person *-up-> "*" Tag
+Person *-up-> Nric
+Person *-up-> BirthDate
+Person *--> MedicalReport
+Person *--> AppointmentList
+
+MedicalReport *--> "1" MedicineUsageList
+MedicineUsageList --> "*" MedicineUsage
+
+AppointmentList --> "*" Appointment
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+
+
+@enduml
