@@ -19,8 +19,8 @@ import seedu.address.model.person.Person;
  */
 public class UnmarkAppointmentVisitedCommand extends Command {
     public static final String COMMAND_WORD = "unmarkappt";
-    public static final String MESSAGE_SUCCESS = "Marked appointment as visited for person %s:\n%s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an appointment as visited. "
+    public static final String MESSAGE_SUCCESS = "Marked appointment as not visited for person %s:\n%s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an appointment as not visited."
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + PREFIX_NRIC + "[NRIC]'\n"
@@ -31,7 +31,7 @@ public class UnmarkAppointmentVisitedCommand extends Command {
     private final Nric nric;
 
     /**
-     * Creates a MarkAppointmentVisitedCommand to mark the specified {@code Appointment} as visited.
+     * Creates a MarkAppointmentVisitedCommand to mark the specified {@code Appointment} as not visited.
      */
     public UnmarkAppointmentVisitedCommand(Nric nric, Index index) {
         super();

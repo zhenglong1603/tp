@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +32,7 @@ class AddMedicineUsageCommandParserTest {
     @Test
     void parse_invalidDateFormat_throwsParseException() {
         String input = " ic/S1234567A n/Paracetamol dos/500mg from/2025-01-01 to/2025-01-05";
-        assertThrows(DateTimeParseException.class, () -> parser.parse(input));
+        assertThrows(ParseException.class, () -> parser.parse(input));
     }
 
     @Test

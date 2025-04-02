@@ -15,6 +15,7 @@ public class BirthDate implements Comparable<BirthDate> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Birth date should be in the format dd/MM/yyyy and should be a valid date";
+    public static final String DATE_IN_FUTURE_CONSTRAINTS = "Birth date should not be in the future";
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -31,13 +32,19 @@ public class BirthDate implements Comparable<BirthDate> {
         this.value = LocalDate.parse(birthDate, DATE_FORMATTER);
     }
 
+    private static boolean isDateInPast(String birthDate) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate date = LocalDate.parse(birthDate, DATE_FORMATTER);
+        return date.isBefore(currentDate) || date.isEqual(currentDate);
+    }
+
     /**
      * Returns true if a given string is a valid birth date.
      */
     public static boolean isValidBirthDate(String test) {
         try {
             LocalDate.parse(test, DATE_FORMATTER);
-            return true;
+            return isDateInPast(test);
         } catch (DateTimeParseException e) {
             return false;
         }

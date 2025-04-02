@@ -10,9 +10,14 @@ import java.time.LocalDateTime;
  * Represents a Appointment.
  */
 public class Appointment {
-    public static final String MESSAGE_CONSTRAINTS = "Appointment description must contain at least 1 alphabetic"
-            + " character and has a limit of 70 characters.";
-    public static final String VALIDATION_REGEX = "^(?!\\s*$)(?=.*[a-zA-Z]).{1,70}$";
+    public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
+            "Appointment description must contain at least 1 alphabetic"
+            + " character and has a limit of 40 characters.";
+    public static final String DOCTOR_NRIC_MESSAGE_CONSTRAINTS =
+            "Doctor NRIC should be a valid format starting with a letter, followed by 7 digits, "
+                    + "and ending with a letter.";
+    public static final String DESCRIPTION_VALIDATION_REGEX = "^(?!\\s*$)(?=.*[a-zA-Z]).{1,40}$";
+    public static final String DOCTOR_NRIC_VALIDATION_REGEX = "^[A-Z][0-9]{7}[A-Z]$";
     private final String description;
     private final String doctorNric;
     private final LocalDateTime startDate;
@@ -35,7 +40,8 @@ public class Appointment {
         requireNonNull(description);
         requireNonNull(startDate);
         requireNonNull(endDate);
-        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDoctorNric(doctorNric), DOCTOR_NRIC_MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(description), DESCRIPTION_MESSAGE_CONSTRAINTS);
         this.description = description;
         this.doctorNric = doctorNric;
         this.startDate = startDate;
@@ -59,7 +65,8 @@ public class Appointment {
         requireNonNull(description);
         requireNonNull(startDate);
         requireNonNull(endDate);
-        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDoctorNric(doctorNric), DOCTOR_NRIC_MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(description), DESCRIPTION_MESSAGE_CONSTRAINTS);
         this.description = description;
         this.doctorNric = doctorNric;
         this.startDate = startDate;
@@ -111,7 +118,14 @@ public class Appointment {
      * Returns true if a given string is a valid appointment description.
      */
     public static boolean isValidDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(DESCRIPTION_VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid doctor NRIC.
+     */
+    public static boolean isValidDoctorNric(String test) {
+        return test.matches(DOCTOR_NRIC_VALIDATION_REGEX);
     }
 
     /**

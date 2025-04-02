@@ -38,21 +38,6 @@ Klinix Level 3  is a **desktop app for managing contacts, optimized for use via 
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
-  
-   * `addmr` : Add a new medical report to a patient's record.
-  
-   * `deletemr` : Delete a patient's existing medical report.
-  
-   * `addmu` : Add a new medicine usage record as part of a patient’s medical history or medical needs.
-  
-   * `clearmu` : Clear all medicine usage records of a patient's medical history.
-  
-   * `deletemu` : Delete a particular medicine usage record of a patient's medical history.
-  
-   * `addappt` : Add a new appointment to the patient.
-   * `deleteappt` : Delete an appointment from the patient by index.
-  
-   * `clearappt` : Clear all appointments of a patient.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -190,7 +175,7 @@ Format: `clear`
 
 Add a new medical report to a patient's record.
 
-Format: `addmr ic/<NRIC> al/<Allergies> ill/<Illnesses> sur/<Surgeries> imm/<Immunizations>`
+Format: `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS`
 
 Examples:
 * `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
@@ -198,14 +183,14 @@ Examples:
 
 **Warning:**
 
-1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
 
 ### Delete medical report: `deletemr`
 
 Delete a patient's existing medical report.
 
-Format: `deletemr ic/<NRIC>`
+Format: `deletemr ic/NRIC`
 
 Examples:
 * `deletemr ic/S1234567A`
@@ -213,22 +198,23 @@ Examples:
 
 **Warning**
 
-1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient does not have an existing medical report, nothing will happen.
 
 ### Add medicine usage records: `addmu`
 
 Add a new medicine usage record as part of a patient’s medical history or medical needs.
 
-Format: `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<DD-MM-YYYY> to/<DD-MM-YYYY>`
+Format: `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END`
 
 Examples:
-* `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/2025-02-23 to/2025-02-25`
-* `addmu ic/S1234567A n/Panadol Extra dos/Two 250mg tablets, once per day from/2025-03-01 to/2025-03-05`
+* `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
+* `addmu ic/S1234567A n/Panadol Extra dos/Two 250mg tablets, once per day from/01-03-2025 to/05-03-2025`
 
 **Warning:**
 
-1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+1. `START` and `END`must be in the format of `dd-MM-yyyy`
+2. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.
 Klinix will detect such overlapping instances and give an error message when you try to add them.
 
@@ -236,13 +222,13 @@ Klinix will detect such overlapping instances and give an error message when you
 
 Clear all medicine usage records of a patient's medical history.
 
-Format: `clearmu ic/<NRIC>`
+Format: `clearmu ic/NRIC`
 
 Examples: `clearmu ic/S1234567A`
 
 **Warning:**
 
-1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 
 ### Delete medicine usage records: `deletemu`
 
@@ -254,14 +240,15 @@ _To be added in the next version_
 
 Add a new appointment to the patient.
 
-Format: `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYYY> to/<DD-MM-YYYY>`
+Format: `addappt ic/NRIC dic/DOCTOR_NRIC appt/DESCRIPTION from/START to/END`
 
 Example:
-* `addappt ic/S1234567A dic/S9876543A appt/Check-up from/22-02-2025 to/23-02-2025`
+* `addappt ic/S1234567A dic/S9876543A appt/Check-up from/22-02-2025 10:00 to/23-02-2025 10:15`
 
 **Warning:**
 
-1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+1. `START` and `END`must be in the format of `dd-MM-yyyy HH:mm`
+2. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. Two appointments from the same patient are overlapped if they have the same name and overlapping duration.
    Klinix will detect such overlapping instances and give an error message when you try to add them.
 
@@ -269,14 +256,14 @@ Example:
 
 Delete the specified appointment from the patient.
 
-Format: `deleteappt INDEX ic/<NRIC>`
+Format: `deleteappt INDEX ic/NRIC`
 
 Example:
 * `deleteappt 2 ic/S1234567A`
 
 **Warning:**
 
-1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
+1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. The index given must also be valid, a positive integer and within the appointment list size.
 
 ### Clear all appointment records: `clearappt`
@@ -289,19 +276,13 @@ Examples: `clearappt ic/S1234567A`
 
 **Warning:**
 
-1. The person with the given NRIC must exist, otherwise Klinix will show an error message.
-
-### Delete appointment records: `deleteappt`
-
-Delete a particular appointment of a patient.
-
-_To be added in the next version_
+1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 
 ### View appointments on specific date: `appton`
 
 Display all appointments on a specific date.
 
-Format: `appton date/<DATE>`
+Format: `appton date/DATE`
 
 Examples: `appton date/22-03-2025`
 
@@ -320,23 +301,19 @@ Klinix data are saved in the hard disk automatically after any command that chan
 
 Klinix data are saved automatically as a JSON file `[JAR file location]/data/Klinix.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<box type="warning" seamless>
-
 **Caution:**
 If your changes to the data file makes its format invalid, Klinix will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Klinix home folder.
+**A**: Install Klinix in the other computer and overwrite its data file with the old data file from your previous Klinix home folder.
+**Q**: How to edit an appointment since there is no command for it<br>
+**A**: We suggest deleting the existing appointment with `deleteappt` command first before using `addappt` command to create a new appointment with the edited details.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -356,13 +333,13 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Add Medical Report** | `addmr ic/<NRIC> al/<Allergies> ill/<Illnesses> sur/<Surgeries> imm/<Immunizations>` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
-**Delete Medical Report** | `deletemr ic/<NRIC>` <br> e.g., `deletemr ic/S1234567B`
-**Add Medicine Usage** | `addmu ic/<NRIC> n/<Medicine Name> dos/<Dosage> from/<DD-MM-YYYY> to/<DD-MM-YYYY>` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
-**Clear Medicine Usage** | `clearmu ic/<NRIC>` <br> e.g., `clearmu ic/S1234567A`
-**Add Appointment** | `addappt ic/<NRIC> dic/<Doctor NRIC> appt/<Description> from/<DD-MM-YYYY> to/<DD-MM-YYYY>` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 to/23-02-2025`
-**Delete Appointment** | `deleteappt INDEX ic/<NRIC>` <br> e.g., `deleteappt 3 ic/S1234567A`
-**Clear Appointments** | `clearappt ic/<NRIC>` <br> e.g., `clearappt ic/S1234567A`
+**Add Medical Report** | `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
+**Delete Medical Report** | `deletemr ic/NRIC` <br> e.g., `deletemr ic/S1234567B`
+**Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
+**Clear Medicine Usage** | `clearmu ic/NRIC` <br> e.g., `clearmu ic/S1234567A`
+**Add Appointment** | `addappt ic/NRIC dic/DOCTOR_NRICE appt/DESCRIPTION from/START to/END` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
+**Delete Appointment** | `deleteappt INDEX ic/NRIC` <br> e.g., `deleteappt 3 ic/S1234567A`
+**Clear Appointments** | `clearappt ic/NRIC` <br> e.g., `clearappt ic/S1234567A`
 **List**   | `list`
 **Help**   | `help`
-**View Appointment on specific date** | `appton date/<DATE>` <br> e.g., `appton date/22-03-2025`
+**View Appointment on specific date** | `appton date/DATE` <br> e.g., `appton date/22-03-2025`
