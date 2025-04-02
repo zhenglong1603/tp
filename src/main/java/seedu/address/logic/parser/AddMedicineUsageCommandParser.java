@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateUtil;
@@ -41,6 +42,15 @@ public class AddMedicineUsageCommandParser implements Parser<AddMedicineUsageCom
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         String name = argMultimap.getValue(PREFIX_NAME).get();
         String dosage = argMultimap.getValue(PREFIX_DOSAGE).get();
+
+        try {
+            LocalDate.parse(argMultimap.getValue(PREFIX_FROM).get(), DateUtil.getDateFormatter());
+            LocalDate.parse(argMultimap.getValue(PREFIX_TO).get(), DateUtil.getDateFormatter());
+        } catch (DateTimeParseException e) {
+            throw new ParseException(
+                    "Invalid date format! Please check if the date is valid and use dd-MM-yyyy.", e);
+        }
+
         LocalDate startDate = LocalDate.parse(argMultimap.getValue(PREFIX_FROM).get(),
                 DateUtil.getDateFormatter());
         LocalDate endDate = LocalDate.parse(argMultimap.getValue(PREFIX_TO).get(),

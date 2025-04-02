@@ -4,10 +4,9 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.stream.Stream;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.ViewAppointmentByDateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -25,12 +24,10 @@ public class ViewAppointmentByDateParser implements Parser<ViewAppointmentByDate
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ViewAppointmentByDateCommand.MESSAGE_USAGE));
         }
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu").withResolverStyle(ResolverStyle.STRICT);
         LocalDate date = LocalDate.now();
 
         try {
-            date = LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(), formatter);
+            date = LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(), DateUtil.getDateFormatter());
         } catch (Exception e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ViewAppointmentByDateCommand.MESSAGE_USAGE));
