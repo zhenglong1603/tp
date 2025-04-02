@@ -189,7 +189,7 @@ During this parsing process:
 #### 2. Executing the Command
 The **`AddAppointmentCommand`** class performs the following steps to add an appointment:
 
-1. **Retrieve Patient Information**:  
+1. **Retrieve Patient Information**:
    Uses the NRIC from the parser to locate the patient.
 
 2. **Create New Person Instance with Appointment added to Appointment List**:
@@ -203,7 +203,7 @@ The **`AddAppointmentCommand`** class performs the following steps to add an app
 The **`AddAppointmentCommandParser`** and **`AddAppointmentCommand`** classes enforce validation rules to ensure correct formats and scheduling logic:
 
 - **Format Verification**:
-   - **`AddAppointmentCommandParser`** checks if the date and time format follows `dd-MM-yyyy HH:mm`. 
+   - **`AddAppointmentCommandParser`** checks if the date and time format follows `dd-MM-yyyy HH:mm`.
    - It checks if the date and time are valid.
    - It also ensures the **Start Date** is before or equal to the **End Date**.
    - **`AddAppointmentCommandParser`** also checks if the NRIC of patient and doctor follows its format.
