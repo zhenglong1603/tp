@@ -163,6 +163,59 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Appointment Feature
+
+#### Overview
+The `addappt` command allows a user to add an appointment tied to a patient with the specified NRIC. The command requires:
+- **NRIC** – Patient's NRIC in the address book.
+- **Doctor NRIC** – Doctor's NRIC.
+- **Description** – Description of the appointment.
+- **Start Date** – Beginning date and time of the appointment.
+- **End Date** – Ending date and time of the appointment.
+
+<puml src="diagrams/AddAppointmentSequenceDiagram.puml" alt="AddAppointmentSequenceDiagram" />
+
+#### 1. Parsing User Input
+The **`AddAppointmentCommandParser`** class is responsible for parsing user input. It uses `ArgumentTokenizer` to tokenize the input string, extracting:
+- **NRIC** – Identifies the patient in the address book.
+- **Doctor NRIC** – Additional details about the doctor.
+- **Description** – Additional details about the appointment.
+- **Start Date** – Beginning of the appointment.
+- **End Date** – End of the appointment.
+
+During this parsing process:
+- An `Appointment` instance is created to hold the appointment details.
+
+#### 2. Executing the Command
+The **`AddAppointmentCommand`** class performs the following steps to add an appointment:
+
+1. **Retrieve Patient Information**:  
+   Uses the NRIC from the parser to locate the patient.
+
+2. **Create New Person Instance with Appointment added to Appointment List**:
+   - Utilises patient information from the current patient (identified by the NRIC) and the new `Appointment` details.
+   - Creates an new `Person` instance with patient information and `Appointment` instance.
+
+3. **Replace Existing Patient Record**:
+   The new `Person` instance, containing the `Appointment`, replaces the existing patient record in the `Model`.
+
+#### 3. Handling Invalid Inputs
+The **`AddAppointmentCommandParser`** and **`AddAppointmentCommand`** classes enforce validation rules to ensure correct formats and scheduling logic:
+
+- **Format Verification**:
+   - **`AddAppointmentCommandParser`** checks if the date and time format follows `dd-MM-yyyy HH:mm`. 
+   - It checks if the date and time are valid.
+   - It also ensures the **Start Date** is before or equal to the **End Date**.
+   - **`AddAppointmentCommandParser`** also checks if the NRIC of patient and doctor follows its format.
+   - **`AddAppointmentCommandParser`** also checks if the description of the appointment follows its format.
+     <br><br>
+
+- **Conflict Checking**:
+   - **`AddAppointmentCommand`** checks if the new appointment to be added overlaps with any existing appointments for the patient.
+   - **`AddAppointmentCommand`** also checks if the new appointment to be added overlaps with any existing appointments for the doctor.
+   - If there is an overlap for any of these scenarios, an error message is thrown, preventing the appointment from being created.
+   - If no overlap exists, the new appointment is added to the appointment list of the patient.
+
 ### View appointment command
 
 #### Implementation
