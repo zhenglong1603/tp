@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.DateUtil.DATE_TIME_FORMATTER;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +13,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.medicineusage.Dosage;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
@@ -24,6 +29,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String DATETIME_INVALID_SPECIFY = "\nInput to be corrected: ";
+    public static final String DATETIME_INVALID = "Sorry! Please use the format "
+            + "dd-MM-yyyy HH:mm and also check if it is a valid date.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -51,6 +59,36 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code MedicineName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static MedicineName parseMedicineName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!MedicineName.isValidName(trimmedName)) {
+            throw new ParseException(MedicineName.MESSAGE_CONSTRAINTS);
+        }
+        return new MedicineName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String dosage} into a {@code Dosage}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dosage} is invalid.
+     */
+    public static Dosage parseDosage(String dosage) throws ParseException {
+        requireNonNull(dosage);
+        String trimmedDosage = dosage.trim();
+        if (!Dosage.isValidDosage(trimmedDosage)) {
+            throw new ParseException(Dosage.MESSAGE_CONSTRAINTS);
+        }
+        return new Dosage(trimmedDosage);
     }
 
     /**
@@ -165,23 +203,39 @@ public class ParserUtil {
         requireNonNull(appointmentDescription);
         String trimmedAppointmentDescription = appointmentDescription.trim();
         if (!Appointment.isValidDescription(trimmedAppointmentDescription)) {
-            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Appointment.DESCRIPTION_MESSAGE_CONSTRAINTS);
         }
         return trimmedAppointmentDescription;
     }
 
     /**
-     * Parses a {@code String appointmentDescription} into a {@code String appointmentDescription}.
+     * Parses a {@code String doctorNric} into a {@code String doctorNric}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code appointmentDescription} is empty.
+     * @throws ParseException if the given {@code doctorNric} is empty.
      */
     public static String parseDoctorNric(String doctorNric) throws ParseException {
         requireNonNull(doctorNric);
         String trimmedDoctorNric = doctorNric.trim();
-        if (!Appointment.isValidDescription(trimmedDoctorNric)) {
-            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        if (!Appointment.isValidDoctorNric(trimmedDoctorNric)) {
+            throw new ParseException(Appointment.DOCTOR_NRIC_MESSAGE_CONSTRAINTS);
         }
         return trimmedDoctorNric;
+    }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code localDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static LocalDateTime parseLocalDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        try {
+            return LocalDateTime.parse(trimmedDateTime, DATE_TIME_FORMATTER);
+        } catch (DateTimeParseException exception) {
+            throw new ParseException(DATETIME_INVALID + DATETIME_INVALID_SPECIFY + trimmedDateTime, exception);
+        }
     }
 }

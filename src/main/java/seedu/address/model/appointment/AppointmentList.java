@@ -29,13 +29,6 @@ public class AppointmentList implements Iterable<Appointment> {
     private final ObservableList<Appointment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    /**
-     * Returns true if the list contains an overlap of appointment with the given argument.
-     */
-    public boolean containsOverlap(Appointment toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::hasOverlap);
-    }
 
     /**
      * Adds an appointment to the list.
@@ -43,9 +36,6 @@ public class AppointmentList implements Iterable<Appointment> {
      */
     public void add(Appointment toAdd) {
         requireNonNull(toAdd);
-        if (containsOverlap(toAdd)) {
-            throw new OverlappingAppointmentException();
-        }
         internalList.add(toAdd);
     }
 
@@ -61,30 +51,12 @@ public class AppointmentList implements Iterable<Appointment> {
         internalList.setAll(replacement.internalList);
     }
 
-    public void setAppointment(Appointment target, Appointment newAppointment) {
-        requireAllNonNull(target, newAppointment);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new AppointmentNotFoundException();
-        }
-
-        if (!target.hasOverlap(newAppointment) && containsOverlap(newAppointment)) {
-            throw new OverlappingAppointmentException();
-        }
-
-        internalList.set(index, newAppointment);
-    }
     /**
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setAppointment(List<Appointment> replacement) {
         requireAllNonNull(replacement);
-        if (!appointmentsAreUnique(replacement)) {
-            throw new OverlappingAppointmentException();
-        }
-
         internalList.setAll(replacement);
     }
 
@@ -131,20 +103,6 @@ public class AppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Returns true if {@code appointments} contains only unique appointments.
-     */
-    private boolean appointmentsAreUnique(List<Appointment> appointments) {
-        for (int i = 0; i < appointments.size() - 1; i++) {
-            for (int j = i + 1; j < appointments.size(); j++) {
-                if (appointments.get(i).hasOverlap(appointments.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
      * Returns the number of appointments in the list.
      */
     public int size() {
@@ -169,6 +127,14 @@ public class AppointmentList implements Iterable<Appointment> {
     }
 
     /**
+     * Returns true if the list contains an overlap of appointment with the given argument.
+     */
+    public boolean containsOverlap(Appointment toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::hasOverlap);
+    }
+
+    /**
      * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
      * The appointment identity of {@code editedAppointment} must not be the same as another existing
@@ -183,7 +149,7 @@ public class AppointmentList implements Iterable<Appointment> {
         }
 
         if (!target.hasOverlap(editedAppointment) && containsOverlap(editedAppointment)) {
-            throw new OverlappingAppointmentException();
+            throw new OverlappingAppointmentException("Appointment has an overlap!!");
         }
 
         internalList.set(index, editedAppointment);

@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.commons.util.DateUtil.DATE_TIME_FORMATTER;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
@@ -33,8 +32,8 @@ public class AddAppointmentCommandParserTest {
         AddAppointmentCommand expectedCommand = new AddAppointmentCommand(
                 new Nric("S1234567A"),
                 new Appointment("S7654321B", "Routine Checkup",
-                        LocalDateTime.parse("01-10-2025 10:00", DATE_TIME_FORMATTER),
-                        LocalDateTime.parse("01-10-2025 11:00", DATE_TIME_FORMATTER),
+                        LocalDateTime.of(2025, 10, 1, 10, 0),
+                        LocalDateTime.of(2025, 10, 1, 11, 0),
                         "S1234567A"));
 
         AddAppointmentCommand actualCommand = parser.parse(userInput);
@@ -43,6 +42,7 @@ public class AddAppointmentCommandParserTest {
         System.out.println("Expected: " + expectedCommand);
         System.out.println("Actual: " + actualCommand);
 
+        // Perform the assertion
         assertEquals(expectedCommand, actualCommand);
     }
 

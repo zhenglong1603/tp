@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.tag.Tag;
 
@@ -105,7 +106,7 @@ public class Person {
         medicalReport.remove(medicineUsage);
     }
 
-    public List<String> getMedicineUsageNames() {
+    public List<MedicineName> getMedicineUsageNames() {
         return getMedicineUsages().stream()
                 .map(MedicineUsage::getName)
                 .toList();

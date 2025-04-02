@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -139,6 +140,8 @@ public interface Model {
      * Clears all appointments from a person
      */
     void clearAppointments(Person target);
+
+    List<Appointment> getOverlappingAppointments(Appointment newAppointmentPerson, List<Person> allPersons);
 
     ObservableLocalDateTime getAppointmentListDate();
 

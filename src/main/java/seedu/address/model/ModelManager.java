@@ -5,6 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -225,6 +228,32 @@ public class ModelManager implements Model {
         }
         appointmentList.reset();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public List<Appointment> getOverlappingAppointments(Appointment newAppointment, List<Person> allPersons) {
+        LocalDateTime newStart = newAppointment.getStartDate();
+        LocalDateTime newEnd = newAppointment.getEndDate();
+
+        List<Appointment> overlappingAppointments = new ArrayList<>(); // List to store overlapping appointments
+
+        // Loop through all appointments in the system
+        for (Person person : allPersons) { // Assuming allPersons is a list of all persons in the system
+            for (Appointment existingAppointment : person.getAppointments()) {
+                LocalDateTime existingStart = existingAppointment.getStartDate();
+                LocalDateTime existingEnd = existingAppointment.getEndDate();
+
+                // Check if the new appointment overlaps with any existing appointment
+                boolean startsBeforeExistingEnds = newStart.isBefore(existingEnd);
+                boolean endsAfterExistingStarts = newEnd.isAfter(existingStart);
+
+                if (startsBeforeExistingEnds && endsAfterExistingStarts) {
+                    overlappingAppointments.add(existingAppointment); // Add to the list of overlaps
+                }
+            }
+        }
+
+        return overlappingAppointments; // Return the list of overlapping appointments
     }
 
     @Override

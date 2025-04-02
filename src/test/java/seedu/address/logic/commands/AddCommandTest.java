@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -221,6 +222,12 @@ public class AddCommandTest {
 
         @Override
         public void clearAppointments(Person person) {
+            // Since this is a stub, you can leave it empty or simulate behavior
+            throw new UnsupportedOperationException("This method should not be called");
+        }
+
+        @Override
+        public List<Appointment> getOverlappingAppointments(Appointment appointment, List<Person> allPersons) {
             // Since this is a stub, you can leave it empty or simulate behavior
             throw new UnsupportedOperationException("This method should not be called");
         }

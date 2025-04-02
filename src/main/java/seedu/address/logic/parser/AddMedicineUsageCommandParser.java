@@ -8,11 +8,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.AddMedicineUsageCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.medicineusage.Dosage;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Nric;
 
@@ -39,8 +42,17 @@ public class AddMedicineUsageCommandParser implements Parser<AddMedicineUsageCom
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NRIC, PREFIX_NAME, PREFIX_DOSAGE, PREFIX_FROM, PREFIX_TO);
 
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
-        String name = argMultimap.getValue(PREFIX_NAME).get();
-        String dosage = argMultimap.getValue(PREFIX_DOSAGE).get();
+        MedicineName name = ParserUtil.parseMedicineName(argMultimap.getValue(PREFIX_NAME).get());
+        Dosage dosage = ParserUtil.parseDosage(argMultimap.getValue(PREFIX_DOSAGE).get());
+
+        try {
+            LocalDate.parse(argMultimap.getValue(PREFIX_FROM).get(), DateUtil.getDateFormatter());
+            LocalDate.parse(argMultimap.getValue(PREFIX_TO).get(), DateUtil.getDateFormatter());
+        } catch (DateTimeParseException e) {
+            throw new ParseException(
+                    "Invalid date format! Please check if the date is valid and use dd-MM-yyyy.", e);
+        }
+
         LocalDate startDate = LocalDate.parse(argMultimap.getValue(PREFIX_FROM).get(),
                 DateUtil.getDateFormatter());
         LocalDate endDate = LocalDate.parse(argMultimap.getValue(PREFIX_TO).get(),

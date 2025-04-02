@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
-import seedu.address.model.appointment.exceptions.OverlappingAppointmentException;
 
 public class AppointmentListTest {
 
@@ -67,27 +66,6 @@ public class AppointmentListTest {
     @Test
     public void testRemoveNonExistingAppointment() {
         assertThrows(AppointmentNotFoundException.class, () -> appointmentList.remove(appointment1));
-    }
-
-    @Test
-    public void testContainsOverlap() {
-        appointmentList.add(appointment1);
-        assertThrows(OverlappingAppointmentException.class, () -> appointmentList.add(appointment1));
-    }
-
-    @Test
-    public void testSetAppointment() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        appointmentList.add(appointment1);
-        Appointment newAppointment = new Appointment("T1234567B",
-                "Updated Visit",
-                LocalDateTime.parse("2025-03-20 14:00", formatter),
-                LocalDateTime.parse("2025-03-20 15:00", formatter), "name 1");
-        appointmentList.setAppointment(appointment1, newAppointment);
-
-        assertEquals(1, appointmentList.size());
-        assertTrue(appointmentList.contains(newAppointment));
-        assertFalse(appointmentList.contains(appointment1));
     }
 
     @Test
