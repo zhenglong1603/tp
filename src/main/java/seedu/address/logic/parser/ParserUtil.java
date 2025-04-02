@@ -218,7 +218,7 @@ public class ParserUtil {
         }
         return trimmedInput;
     }
-  
+
     /**
      * Parses a {@code String dateTime} into a {@code localDateTime}.
      * Leading and trailing whitespaces will be trimmed.
