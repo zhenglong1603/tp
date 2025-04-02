@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.util.DateUtil.DATE_TIME_FORMATTER;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
@@ -9,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
@@ -43,23 +41,16 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                 PREFIX_APPOINTMENT_DESCRIPTION, PREFIX_FROM, PREFIX_TO);
 
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
-        String doctorNric = argMultimap.getValue(PREFIX_DOCTOR_NRIC).get();
-        String appointmentDescription = argMultimap.getValue(PREFIX_APPOINTMENT_DESCRIPTION).get();
-        String from = argMultimap.getValue(PREFIX_FROM).get().trim();
-        String to = argMultimap.getValue(PREFIX_TO).get().trim();
-        LocalDateTime startDate;
-        LocalDateTime endDate;
-        try {
-            startDate = LocalDateTime.parse(from,
-                    DATE_TIME_FORMATTER);
-            endDate = LocalDateTime.parse(to,
-                    DATE_TIME_FORMATTER);
-            if (startDate.isAfter(endDate)) {
-                throw new ParseException("Ensure that start date and time is before the end date and time!");
-            }
-        } catch (DateTimeParseException e) {
-            throw new ParseException(
-                    "Invalid date format! Please check if the date is valid and use dd-MM-yyyy HH:mm.", e);
+        String doctorNric = ParserUtil.parseDoctorNric(argMultimap.getValue(PREFIX_DOCTOR_NRIC).get());
+        String appointmentDescription = ParserUtil.parseAppointmentDescription(
+                argMultimap.getValue(PREFIX_APPOINTMENT_DESCRIPTION).get());
+        LocalDateTime startDate = ParserUtil.parseLocalDateTime(
+                argMultimap.getValue(PREFIX_FROM).get());
+        LocalDateTime endDate = ParserUtil.parseLocalDateTime(
+                argMultimap.getValue(PREFIX_TO).get());
+
+        if (startDate.isAfter(endDate)) {
+            throw new ParseException("Ensure that start date and time is before the end date and time!");
         }
 
         Appointment medicineUsage = new Appointment(
