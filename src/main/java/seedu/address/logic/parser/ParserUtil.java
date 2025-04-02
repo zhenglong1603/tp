@@ -18,6 +18,7 @@ import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
@@ -221,6 +222,24 @@ public class ParserUtil {
             throw new ParseException(Appointment.DOCTOR_NRIC_MESSAGE_CONSTRAINTS);
         }
         return trimmedDoctorNric;
+    }
+
+    /**
+     * Parses a medical report field (e.g. allergy, illness, etc.) and validates its format.
+     * Allowed characters: letters, numbers, spaces, commas, hyphens.
+     * Must not be empty or contain only numbers.
+     *
+     * @throws ParseException if the given {@code medicalField} is empty.
+     */
+    //Solution below inspired by:
+    //https://stackoverflow.com/questions/22990870/how-to-disable-emoji-from-being-entered-in-android-edittext
+    public static String parseMedicalField(String field) throws ParseException {
+        requireNonNull(field);
+        String trimmedField = field.trim();
+        if (!MedicalReport.isValidMedicalField(trimmedField)) {
+            throw new ParseException(MedicalReport.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedField;
     }
 
     /**
