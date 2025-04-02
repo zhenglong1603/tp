@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.DateUtil.DATE_TIME_FORMATTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
@@ -10,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.util.List;
 
+import seedu.address.commons.util.AppointmentConflictFormatter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
@@ -76,48 +76,21 @@ public class AddAppointmentCommand extends Command {
                 .filter(existingAppointment ->
                         existingAppointment.getPatientNric().equals(appointment.getPatientNric()))
                 .toList();
-
-        if (!patientConflicts.isEmpty()) {
-            StringBuilder overlapDetails = new StringBuilder("Patient has overlapping appointments:\n");
-
-            for (Appointment overlappingAppointment : patientConflicts) {
-                Person overlappedPerson = model.findPersonByNric(new Nric(overlappingAppointment.getPatientNric()));
-
-                String formattedTime = String.format("%s FROM %s TO %s",
-                        overlappedPerson.getName().toString(),
-                        overlappingAppointment.getStartDate().format(DATE_TIME_FORMATTER),
-                        overlappingAppointment.getEndDate().format(DATE_TIME_FORMATTER)
-                );
-
-                overlapDetails.append("- ").append(formattedTime).append("\n");
-            }
-
-            throw new OverlappingAppointmentException(overlapDetails.toString());
-        }
-
-        // Check doctor conflicts separately
         List<Appointment> doctorConflicts = overlappingAppointments.stream()
                 .filter(existingAppointment -> existingAppointment.getDoctorNric().equals(appointment.getDoctorNric()))
                 .toList();
 
-        if (!doctorConflicts.isEmpty()) {
-            StringBuilder overlapDetails = new StringBuilder("Doctor has overlapping appointments:\n");
-
-            for (Appointment overlappingAppointment : doctorConflicts) {
-                Person overlappedPerson = model.findPersonByNric(new Nric(overlappingAppointment.getPatientNric()));
-
-                String formattedTime = String.format("%s FROM %s TO %s",
-                        overlappedPerson.getName().toString(),
-                        overlappingAppointment.getStartDate().format(DATE_TIME_FORMATTER),
-                        overlappingAppointment.getEndDate().format(DATE_TIME_FORMATTER)
-                );
-
-                overlapDetails.append("- ").append(formattedTime).append("\n");
-            }
-
-            throw new OverlappingAppointmentException(overlapDetails.toString());
+        if (!patientConflicts.isEmpty()) {
+            throw new OverlappingAppointmentException(
+                    AppointmentConflictFormatter.formatConflicts("Patient", patientConflicts, model)
+            );
         }
 
+        if (!doctorConflicts.isEmpty()) {
+            throw new OverlappingAppointmentException(
+                    AppointmentConflictFormatter.formatConflicts("Doctor", doctorConflicts, model)
+            );
+        }
         model.addAppointment(person, appointment);
         return new CommandResult(String.format(MESSAGE_SUCCESS, nric));
     }

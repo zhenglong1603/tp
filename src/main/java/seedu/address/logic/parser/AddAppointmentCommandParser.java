@@ -55,7 +55,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
             endDate = LocalDateTime.parse(to,
                     DATE_TIME_FORMATTER);
             if (startDate.isAfter(endDate)) {
-                throw new ParseException("Start date must be before the end date!");
+                throw new ParseException("Ensure that start date and time is before the end date and time!");
             }
         } catch (DateTimeParseException e) {
             throw new ParseException(
