@@ -10,12 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.BirthDate;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -194,22 +189,12 @@ public class ParserUtil {
      */
     //Solution below inspired by:
     //https://stackoverflow.com/questions/22990870/how-to-disable-emoji-from-being-entered-in-android-edittext
-    public static String parseMedicalField(String input) throws ParseException {
-        requireNonNull(input);
-        String trimmedInput = input.trim();
-
-        if (trimmedInput.isEmpty()) {
-            throw new ParseException("Field cannot be empty");
+    public static String parseMedicalField(String field) throws ParseException {
+        requireNonNull(field);
+        String trimmedField = field.trim();
+        if (!MedicalReport.isValidMedicalField(trimmedField)) {
+            throw new ParseException(MedicalReport.MESSAGE_CONSTRAINTS);
         }
-
-        if (!trimmedInput.matches("^[a-zA-Z0-9 ,\\-]+$")) {
-            throw new ParseException(
-                    "Invalid input! Fields must contain only letters, numbers, spaces, commas, hyphens.");
-        }
-
-        if (!trimmedInput.matches(".*[a-zA-Z].*")) {
-            throw new ParseException("Field must contain at least one alphabet character.");
-        }
-        return trimmedInput;
+        return trimmedField;
     }
 }

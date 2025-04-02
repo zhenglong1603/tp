@@ -12,6 +12,10 @@ import seedu.address.model.medicineusage.MedicineUsageList;
  */
 public class MedicalReport {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Medical report should contain only letters, numbers, spaces, or hyphens, "
+                    + "and at least one alphabetic character";
+
     public static final MedicalReport EMPTY_MEDICAL_REPORT =
             new MedicalReport("None", "None", "None", "None");
 
@@ -104,6 +108,16 @@ public class MedicalReport {
                 + "  ➤ Surgeries: " + surgeries + "\n"
                 + "  ➤ Immunizations: " + immunizations
             );
+    }
+
+    /**
+     * Returns true if a given string is a valid medical report field
+     */
+    public static boolean isValidMedicalField(String input) {
+        return input != null
+                && !input.trim().isEmpty()
+                && input.matches("^[a-zA-Z0-9 ,\\-]+$")
+                && input.matches(".*[a-zA-Z].*");
     }
 }
 
