@@ -18,6 +18,7 @@ import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
