@@ -25,7 +25,7 @@ public class AddAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "addappt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an appointment to a person identified by NRIC.\n"
+            + ": Adds an appointment to a patient identified by NRIC.\n"
             + "Parameters: \n"
             + PREFIX_NRIC + "<NRIC> "
             + PREFIX_DOCTOR_NRIC + "<doctorNRIC> "
@@ -41,7 +41,7 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_TO + "22-02-2025 11:30\n";
 
     public static final String MESSAGE_SUCCESS = "Appointment successfully added to %s";
-    public static final String MESSAGE_PERSON_NOT_FOUND = "Person with NRIC %s not found";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
 
     private final Nric nric;
     private final Appointment appointment;

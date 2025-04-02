@@ -16,14 +16,16 @@ public class ClearMedicineUsageCommand extends Command {
     public static final String COMMAND_WORD = "clearmu";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Clears all medicine usages of a person identified by NRIC.\n"
+            + ": Clears all medicine usages of a patient identified by NRIC.\n"
             + "Parameters: "
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A\n";
 
-    public static final String MESSAGE_SUCCESS = "Medicine usages successfully deleted from %s";
-    public static final String MESSAGE_PERSON_NOT_FOUND = "Person with NRIC %s not found";
+    public static final String MESSAGE_SUCCESS_MEDICINE = "Medical usage successfully deleted from %s";
+    public static final String MESSAGE_SUCCESS_MEDICINES = "Medical usages successfully deleted from %s";
+    public static final String MESSAGE_NO_MEDICINE = "No medical usages to clear!";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
 
     private final Nric nric;
 
@@ -46,8 +48,16 @@ public class ClearMedicineUsageCommand extends Command {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, nric));
         }
 
-        model.clearMedicineUsage(person);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, nric));
+        int medicineCount = person.getMedicalReport().getMedicineUsages().size();
+        if (medicineCount == 0) {
+            return new CommandResult(MESSAGE_NO_MEDICINE);
+        } else if (medicineCount == 1) {
+            model.clearMedicineUsage(person);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_MEDICINE, nric));
+        } else {
+            model.clearMedicineUsage(person);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_MEDICINES, nric));
+        }
     }
 
     @Override
