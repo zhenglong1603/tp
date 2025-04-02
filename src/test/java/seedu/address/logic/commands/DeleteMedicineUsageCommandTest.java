@@ -15,6 +15,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.medicineusage.Dosage;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Nric;
@@ -36,8 +38,8 @@ class DeleteMedicineUsageCommandTest {
         validNric = new Nric("S1234567A");
         validIndex = Index.fromZeroBased(0);
 
-        // Create a medicine usage entry
-        medicineUsage = new MedicineUsage("Paracetamol", "2 times a day",
+        // Create a medicine usage entry using MedicineName and Dosage objects
+        medicineUsage = new MedicineUsage(new MedicineName("Paracetamol"), new Dosage("2 times a day"),
                 LocalDate.of(2024, 1, 1), LocalDate.of(2024, 1, 10));
 
         // Create a MedicalReport and add medicine usage

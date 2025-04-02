@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.medicineusage.Dosage;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.testutil.PersonBuilder;
 
@@ -19,7 +21,7 @@ public class MedicineUsageContainsKeywordsPredicateTest {
 
     @Test
     public void test_medicineNameContainsKeyword_returnsTrue() {
-        MedicineUsage med = new MedicineUsage("Paracetamol", "2 pills",
+        MedicineUsage med = new MedicineUsage(new MedicineName("Paracetamol"), new Dosage("2 pills"),
                 LocalDate.of(2024, 1, 1), LocalDate.of(2024, 1, 10));
         MedicalReport report = new MedicalReport("", "", "", "");
         report.add(med);
@@ -35,7 +37,7 @@ public class MedicineUsageContainsKeywordsPredicateTest {
 
     @Test
     public void test_medicineNameDoesNotMatch_returnsFalse() {
-        MedicineUsage med = new MedicineUsage("Ibuprofen", "1 tablet",
+        MedicineUsage med = new MedicineUsage(new MedicineName("Ibuprofen"), new Dosage("1 tablet"),
                 LocalDate.of(2024, 2, 1), LocalDate.of(2024, 2, 5));
         MedicalReport report = new MedicalReport("", "", "", "");
         report.add(med);
@@ -51,7 +53,7 @@ public class MedicineUsageContainsKeywordsPredicateTest {
 
     @Test
     public void test_multipleKeywords_oneMatch() {
-        MedicineUsage med = new MedicineUsage("Ibuprofen", "1 tablet",
+        MedicineUsage med = new MedicineUsage(new MedicineName("Ibuprofen"), new Dosage("1 tablet"),
                 LocalDate.of(2024, 2, 1), LocalDate.of(2024, 2, 5));
         MedicalReport report = new MedicalReport("", "", "", "");
         report.add(med);

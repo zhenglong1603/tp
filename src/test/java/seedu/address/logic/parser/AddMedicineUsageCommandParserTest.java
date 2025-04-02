@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddMedicineUsageCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.medicineusage.Dosage;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Nric;
 
@@ -59,7 +61,7 @@ class AddMedicineUsageCommandParserTest {
         String input = " ic/S1234567A n/Paracetamol dos/500mg from/01-01-2025 to/05-01-2025";
         AddMedicineUsageCommand command = parser.parse(input);
         Nric expectedNric = new Nric("S1234567A");
-        MedicineUsage expectedMedicineUsage = new MedicineUsage("Paracetamol", "500mg",
+        MedicineUsage expectedMedicineUsage = new MedicineUsage(new MedicineName("Paracetamol"), new Dosage("500mg"),
                 LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 5));
         assertEquals(new AddMedicineUsageCommand(expectedNric, expectedMedicineUsage), command);
     }

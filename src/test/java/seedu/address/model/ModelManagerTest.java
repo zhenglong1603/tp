@@ -16,6 +16,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.medicineusage.Dosage;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.KlinixBuilder;
@@ -136,7 +138,7 @@ public class ModelManagerTest {
     void addMedicineUsage_personExists_success() {
         ModelManager modelManager = new ModelManager();
         modelManager.addPerson(ALICE);
-        MedicineUsage medicineUsage = new MedicineUsage("Paracetamol", "500mg",
+        MedicineUsage medicineUsage = new MedicineUsage(new MedicineName("Paracetamol"), new Dosage("500mg"),
                 LocalDate.now(), LocalDate.now().plusDays(5));
         modelManager.addMedicineUsage(ALICE, medicineUsage);
         assertTrue(ALICE.getMedicalReport().getMedicineUsages().contains(medicineUsage));
@@ -146,7 +148,7 @@ public class ModelManagerTest {
     void clearMedicineUsage_personExists_success() {
         ModelManager modelManager = new ModelManager();
         modelManager.addPerson(ALICE);
-        MedicineUsage medicineUsage = new MedicineUsage("Panadol", "500mg",
+        MedicineUsage medicineUsage = new MedicineUsage(new MedicineName("Panadol"), new Dosage("500mg"),
                 LocalDate.now(), LocalDate.now().plusDays(5));
         modelManager.addMedicineUsage(ALICE, medicineUsage);
         modelManager.clearMedicineUsage(ALICE);

@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
 import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.medicineusage.Dosage;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
@@ -46,7 +48,8 @@ class AddMedicineUsageCommandTest {
                 new MedicalReport("None", "None", "None", "None"),
                 new AppointmentList()
         );
-        medicineUsage = new MedicineUsage("Paracetamol", "500mg", LocalDate.now(), LocalDate.now().plusDays(5));
+        medicineUsage = new MedicineUsage(new MedicineName("Paracetamol"), new Dosage("500mg"),
+                LocalDate.now(), LocalDate.now().plusDays(5));
         model.addPerson(person);
     }
 
@@ -92,8 +95,8 @@ class AddMedicineUsageCommandTest {
 
     @Test
     void equals_differentMedicineUsage_returnsFalse() {
-        MedicineUsage differentMedicineUsage = new MedicineUsage("Ibuprofen", "200mg", LocalDate.now(),
-                LocalDate.now().plusDays(5));
+        MedicineUsage differentMedicineUsage = new MedicineUsage(new MedicineName("Ibuprofen"), new Dosage("200mg"),
+                LocalDate.now(), LocalDate.now().plusDays(5));
         AddMedicineUsageCommand command1 = new AddMedicineUsageCommand(nric, differentMedicineUsage);
         AddMedicineUsageCommand command2 = new AddMedicineUsageCommand(nric, medicineUsage);
         assertFalse(command1.equals(command2));
