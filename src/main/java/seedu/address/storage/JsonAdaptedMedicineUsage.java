@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateUtil;
+import seedu.address.model.medicineusage.Dosage;
+import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 
 /**
@@ -36,8 +38,8 @@ public class JsonAdaptedMedicineUsage {
      * Converts a given {@code MedicineUsage} into this class for Jackson use.
      */
     public JsonAdaptedMedicineUsage(MedicineUsage source) {
-        name = source.getName();
-        dosage = source.getDosage();
+        name = source.getName().fullName;
+        dosage = source.getDosage().dosage;
         startDate = source.getStringStartDate();
         endDate = source.getStringEndDate();
     }
@@ -50,13 +52,18 @@ public class JsonAdaptedMedicineUsage {
     public MedicineUsage toModelType() throws IllegalValueException, DateTimeParseException {
         if (name == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, "medicine name"));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, MedicineName.class.getSimpleName()));
         }
+        if (!MedicineName.isValidName(name)) {
+            throw new IllegalValueException(MedicineName.MESSAGE_CONSTRAINTS);
+        }
+        final MedicineName modelName = new MedicineName(name);
 
         if (dosage == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, "dosage"));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Dosage.class.getSimpleName()));
         }
+        final Dosage modelDosage = new Dosage(dosage);
 
         if (startDate == null) {
             throw new IllegalValueException(
@@ -71,6 +78,6 @@ public class JsonAdaptedMedicineUsage {
         LocalDate formattedStartDate = LocalDate.parse(startDate, DateUtil.getDisplayDateFormatter());
         LocalDate formattedEndDate = LocalDate.parse(endDate, DateUtil.getDisplayDateFormatter());
 
-        return new MedicineUsage(name, dosage, formattedStartDate, formattedEndDate);
+        return new MedicineUsage(modelName, modelDosage, formattedStartDate, formattedEndDate);
     }
 }

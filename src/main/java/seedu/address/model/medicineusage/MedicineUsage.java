@@ -10,8 +10,8 @@ import seedu.address.commons.util.DateUtil;
  * Represents a Medicine Usage of a patient in the clinic.
  */
 public class MedicineUsage {
-    private final String name;
-    private final String dosage;
+    private final MedicineName name;
+    private final Dosage dosage;
     private final LocalDate startDate;
     private final LocalDate endDate;
 
@@ -22,7 +22,7 @@ public class MedicineUsage {
      * @param startDate Patient starts taking medicine on this date
      * @param endDate Patient stops taking medicine on this date
      */
-    public MedicineUsage(String name, String dosage, LocalDate startDate, LocalDate endDate) {
+    public MedicineUsage(MedicineName name, Dosage dosage, LocalDate startDate, LocalDate endDate) {
         requireAllNonNull(name, dosage, startDate, endDate);
         this.name = name;
         this.dosage = dosage;
@@ -30,11 +30,11 @@ public class MedicineUsage {
         this.endDate = endDate;
     }
 
-    public String getName() {
+    public MedicineName getName() {
         return name;
     }
 
-    public String getDosage() {
+    public Dosage getDosage() {
         return dosage;
     }
 

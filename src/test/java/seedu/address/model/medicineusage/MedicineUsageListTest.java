@@ -24,11 +24,13 @@ class MedicineUsageListTest {
     @BeforeEach
     void setUp() {
         medicineUsageList = new MedicineUsageList();
-        medicineUsage1 = new MedicineUsage("Paracetamol", "500mg", LocalDate.now(),
+
+        // Using MedicineName and Dosage objects instead of raw strings
+        medicineUsage1 = new MedicineUsage(new MedicineName("Paracetamol"), new Dosage("500mg"), LocalDate.now(),
                 LocalDate.now().plusDays(5));
-        medicineUsage2 = new MedicineUsage("Ibuprofen", "200mg", LocalDate.now().plusDays(6),
-                LocalDate.now().plusDays(10));
-        overlappingMedicineUsage = new MedicineUsage("Paracetamol", "500mg",
+        medicineUsage2 = new MedicineUsage(new MedicineName("Ibuprofen"), new Dosage("200mg"),
+                LocalDate.now().plusDays(6), LocalDate.now().plusDays(10));
+        overlappingMedicineUsage = new MedicineUsage(new MedicineName("Paracetamol"), new Dosage("500mg"),
                 LocalDate.now().plusDays(2), LocalDate.now().plusDays(7));
     }
 
