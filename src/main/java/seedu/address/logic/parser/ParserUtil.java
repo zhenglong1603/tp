@@ -184,4 +184,32 @@ public class ParserUtil {
         }
         return trimmedDoctorNric;
     }
+
+    /**
+     * Parses a medical report field (e.g. allergy, illness, etc.) and validates its format.
+     * Allowed characters: letters, numbers, spaces, commas, hyphens.
+     * Must not be empty or contain only numbers.
+     *
+     * @throws ParseException if the given {@code medicalField} is empty.
+     */
+    //Solution below inspired by:
+    //https://stackoverflow.com/questions/22990870/how-to-disable-emoji-from-being-entered-in-android-edittext
+    public static String parseMedicalField(String input) throws ParseException {
+        requireNonNull(input);
+        String trimmedInput = input.trim();
+
+        if (trimmedInput.isEmpty()) {
+            throw new ParseException("Field cannot be empty");
+        }
+
+        if (!trimmedInput.matches("^[a-zA-Z0-9 ,\\-]+$")) {
+            throw new ParseException(
+                    "Invalid input! Fields must contain only letters, numbers, spaces, commas, hyphens.");
+        }
+
+        if (!trimmedInput.matches(".*[a-zA-Z].*")) {
+            throw new ParseException("Field must contain at least one alphabet character.");
+        }
+        return trimmedInput;
+    }
 }
