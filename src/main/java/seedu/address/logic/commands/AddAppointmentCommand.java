@@ -7,9 +7,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
+import java.util.List;
+
+import seedu.address.commons.util.AppointmentConflictFormatter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.exceptions.OverlappingAppointmentException;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
@@ -38,6 +42,8 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Appointment successfully added to %s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Person with NRIC %s not found";
+    public static final String MESSAGE_OVERLAPPING_APPOINTMENT =
+            "Appointment overlaps with a pre-existing appointment! Please check your schedule and try again";
 
     private final Nric nric;
     private final Appointment appointment;
@@ -55,14 +61,36 @@ public class AddAppointmentCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, OverlappingAppointmentException {
         requireNonNull(model);
+        List<Person> allPersons = model.getFilteredPersonList();
 
         Person person = model.findPersonByNric(nric);
         if (person == null) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, nric));
         }
 
+        List<Appointment> overlappingAppointments = model.getOverlappingAppointments(appointment, allPersons);
+
+        List<Appointment> patientConflicts = overlappingAppointments.stream()
+                .filter(existingAppointment ->
+                        existingAppointment.getPatientNric().equals(appointment.getPatientNric()))
+                .toList();
+        List<Appointment> doctorConflicts = overlappingAppointments.stream()
+                .filter(existingAppointment -> existingAppointment.getDoctorNric().equals(appointment.getDoctorNric()))
+                .toList();
+
+        if (!patientConflicts.isEmpty()) {
+            throw new OverlappingAppointmentException(
+                    AppointmentConflictFormatter.formatConflicts("Patient", patientConflicts, model)
+            );
+        }
+
+        if (!doctorConflicts.isEmpty()) {
+            throw new OverlappingAppointmentException(
+                    AppointmentConflictFormatter.formatConflicts("Doctor", doctorConflicts, model)
+            );
+        }
         model.addAppointment(person, appointment);
         return new CommandResult(String.format(MESSAGE_SUCCESS, nric));
     }
