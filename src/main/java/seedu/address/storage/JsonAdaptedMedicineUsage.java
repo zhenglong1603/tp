@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateUtil;
+import seedu.address.model.medicineusage.Dosage;
 import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 
@@ -38,7 +39,7 @@ public class JsonAdaptedMedicineUsage {
      */
     public JsonAdaptedMedicineUsage(MedicineUsage source) {
         name = source.getName().fullName;
-        dosage = source.getDosage();
+        dosage = source.getDosage().dosage;
         startDate = source.getStringStartDate();
         endDate = source.getStringEndDate();
     }
@@ -60,8 +61,9 @@ public class JsonAdaptedMedicineUsage {
 
         if (dosage == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, "dosage"));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Dosage.class.getSimpleName()));
         }
+        final Dosage modelDosage = new Dosage(dosage);
 
         if (startDate == null) {
             throw new IllegalValueException(
@@ -76,6 +78,6 @@ public class JsonAdaptedMedicineUsage {
         LocalDate formattedStartDate = LocalDate.parse(startDate, DateUtil.getDisplayDateFormatter());
         LocalDate formattedEndDate = LocalDate.parse(endDate, DateUtil.getDisplayDateFormatter());
 
-        return new MedicineUsage(modelName, dosage, formattedStartDate, formattedEndDate);
+        return new MedicineUsage(modelName, modelDosage, formattedStartDate, formattedEndDate);
     }
 }

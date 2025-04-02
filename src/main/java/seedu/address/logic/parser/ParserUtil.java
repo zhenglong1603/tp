@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.medicineusage.Dosage;
 import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
@@ -73,6 +74,21 @@ public class ParserUtil {
             throw new ParseException(MedicineName.MESSAGE_CONSTRAINTS);
         }
         return new MedicineName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String dosage} into a {@code Dosage}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dosage} is invalid.
+     */
+    public static Dosage parseDosage(String dosage) throws ParseException {
+        requireNonNull(dosage);
+        String trimmedDosage = dosage.trim();
+        if (!Dosage.isValidDosage(trimmedDosage)) {
+            throw new ParseException(Dosage.MESSAGE_CONSTRAINTS);
+        }
+        return new Dosage(trimmedDosage);
     }
 
     /**

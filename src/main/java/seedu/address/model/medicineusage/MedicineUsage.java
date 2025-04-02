@@ -11,7 +11,7 @@ import seedu.address.commons.util.DateUtil;
  */
 public class MedicineUsage {
     private final MedicineName name;
-    private final String dosage;
+    private final Dosage dosage;
     private final LocalDate startDate;
     private final LocalDate endDate;
 
@@ -22,7 +22,7 @@ public class MedicineUsage {
      * @param startDate Patient starts taking medicine on this date
      * @param endDate Patient stops taking medicine on this date
      */
-    public MedicineUsage(MedicineName name, String dosage, LocalDate startDate, LocalDate endDate) {
+    public MedicineUsage(MedicineName name, Dosage dosage, LocalDate startDate, LocalDate endDate) {
         requireAllNonNull(name, dosage, startDate, endDate);
         this.name = name;
         this.dosage = dosage;
@@ -34,7 +34,7 @@ public class MedicineUsage {
         return name;
     }
 
-    public String getDosage() {
+    public Dosage getDosage() {
         return dosage;
     }
 
