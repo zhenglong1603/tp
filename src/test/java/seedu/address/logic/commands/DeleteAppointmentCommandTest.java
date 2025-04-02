@@ -74,7 +74,7 @@ class DeleteAppointmentCommandTest {
         DeleteAppointmentCommand command = new DeleteAppointmentCommand(validNric, invalidIndex);
 
         assertThrows(CommandException.class, () -> command.execute(model),
-                DeleteAppointmentCommand.MESSAGE_INVALID_MEDICINE_USAGE_DISPLAYED_INDEX);
+                DeleteAppointmentCommand.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     @Test

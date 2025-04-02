@@ -22,8 +22,10 @@ public class ClearAppointmentsCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A\n";
 
-    public static final String MESSAGE_SUCCESS = "Appointments successfully deleted from %s";
-    public static final String MESSAGE_PERSON_NOT_FOUND = "Person with NRIC %s not found";
+    public static final String MESSAGE_SUCCESS_APPOINTMENT = "Appointment successfully deleted from %s";
+    public static final String MESSAGE_SUCCESS_APPOINTMENTS = "Appointments successfully deleted from %s";
+    public static final String MESSAGE_NO_APPOINTMENT = "No appointments to clear!";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
 
     private final Nric nric;
 
@@ -41,13 +43,22 @@ public class ClearAppointmentsCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+
         Person person = model.findPersonByNric(nric);
         if (person == null) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, nric));
         }
 
-        model.clearAppointments(person);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, nric));
+        int appointmentCount = person.getAppointmentList().size();
+        if (appointmentCount == 0) {
+            return new CommandResult(MESSAGE_NO_APPOINTMENT);
+        } else if (appointmentCount == 1) {
+            model.clearAppointments(person);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_APPOINTMENT, nric));
+        } else {
+            model.clearAppointments(person);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_APPOINTMENTS, nric));
+        }
     }
 
     @Override

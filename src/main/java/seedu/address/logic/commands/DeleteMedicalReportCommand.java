@@ -16,14 +16,14 @@ public class DeleteMedicalReportCommand extends Command {
     public static final String COMMAND_WORD = "deletemr";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a medical report from a person identified by NRIC.\n"
+            + ": Deletes a medical report from a patient identified by NRIC.\n"
             + "Parameters: "
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A";
 
     public static final String MESSAGE_SUCCESS = "Medical report successfully deleted from %s";
-    public static final String MESSAGE_PERSON_NOT_FOUND = "Person with NRIC %s not found";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
     public static final String MESSAGE_MEDICAL_REPORT_NOT_FOUND = "Medical report not found for %s";
 
     private final Nric nric;
