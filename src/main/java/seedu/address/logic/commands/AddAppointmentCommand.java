@@ -42,8 +42,6 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Appointment successfully added to %s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Person with NRIC %s not found";
-    public static final String MESSAGE_OVERLAPPING_APPOINTMENT =
-            "Appointment overlaps with a pre-existing appointment! Please check your schedule and try again";
 
     private final Nric nric;
     private final Appointment appointment;

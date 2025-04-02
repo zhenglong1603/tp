@@ -29,7 +29,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String DATETIME_INVALID_SPECIFY = "\nInput to be corrected: ";
     public static final String DATETIME_INVALID = "Sorry! Please use the format "
-            + "dd-MM-yyyy HH:mm.";
+            + "dd-MM-yyyy HH:mm and also check if it is a valid date.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
