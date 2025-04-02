@@ -10,14 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Dosage {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Dosage description should only contain alphanumeric characters, spaces, periods(.), forward slashes(/),"
+            "Dosage description should only contain alphanumeric characters, spaces, periods(.),"
                     + "hyphens(-), parentheses() and it should not be blank";
 
     /*
      * The first character of the dosage description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9.,/\\-()][a-zA-Z0-9\\s.,/\\-()]*$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9.,\\-()][a-zA-Z0-9\\s.,\\-()]*$";
 
     public final String dosage;
 
