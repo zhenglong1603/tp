@@ -151,7 +151,17 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [b/BIRTHDATE] [a/ADDRESS] [t/TAG]..​`
+
+parameters:
+* `INDEX`: The index of the person in the displayed list. It must be a positive integer.
+* `NAME`: (Optional) The name of the person. It should not be blank.
+* `PHONE`: (Optional) The phone number of the person. It should be a valid phone number.
+* `EMAIL`: (Optional) The email of the person. It should be a valid email address.
+* `NRIC`: (Optional) The NRIC of the person. It should be a valid NRIC number.
+* `BIRTHDATE`: (Optional) The birthdate of the person. It should be a valid date in the format `dd-MM-yyyy`.
+* `ADDRESS`: (Optional) The address of the person. It should not be blank.
+* `TAG`: (Optional) The tag of the person.
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -208,6 +218,13 @@ Add a new medical report to a patient's record.
 
 Format: `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS`
 
+parameters:
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `ALLERGIES`: The allergies of the patient. It can be `None` or a list of allergies separated by spaces.
+- `ILLNESSES`: The illnesses of the patient. It can be `None` or a list of illnesses separated by spaces.
+- `SURGERIES`: The surgeries of the patient. It can be `None` or a list of surgeries separated by spaces.
+- `IMMUNIZATIONS`: The immunizations of the patient. It can be `None` or a list of immunizations separated by spaces.
+
 Examples:
 * `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 * `addmr ic/T0260144G al/None ill/None sur/None imm/None`
@@ -223,6 +240,9 @@ Delete a patient's existing medical report.
 
 Format: `deletemr ic/NRIC`
 
+Parameters:
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
 Examples:
 * `deletemr ic/S1234567A`
 * `deletemr ic/T0260144G`
@@ -237,6 +257,13 @@ Examples:
 Add a new medicine usage record as part of a patient’s medical history or medical needs.
 
 Format: `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END`
+
+Parameters:
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `MEDICINE_NAME`: The name of the medicine. It should not be blank.
+- `DOSAGE`: The dosage of the medicine. It should not be blank.
+- `START`: The start date of the medicine usage. It must be in the format `dd-MM-yyyy`.
+- `END`: The end date of the medicine usage. It must be in the format `dd-MM-yyyy`.
 
 Examples:
 * `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
@@ -265,7 +292,14 @@ Examples: `clearmu ic/S1234567A`
 
 Delete a particular medicine usage record of a patient's medical history.
 
-_To be added in the next version_
+Format: `deletemu INDEX ic/NRIC`
+
+Parameters:
+- `INDEX`: The index of the medicine usage record in the displayed list. It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
+Examples:
+* `deletemu 2 ic/S1234567A`
 
 ### Add appointment: `addappt`
 
@@ -289,6 +323,10 @@ Delete the specified appointment from the patient.
 
 Format: `deleteappt INDEX ic/NRIC`
 
+Parameters:
+- `INDEX`: The index of the appointment in the displayed list. It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
 Example:
 * `deleteappt 2 ic/S1234567A`
 
@@ -303,6 +341,9 @@ Clear all appointments of a patient.
 
 Format: `clearappt ic/<NRIC>`
 
+Parameters:
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
 Examples: `clearappt ic/S1234567A`
 
 **Warning:**
@@ -314,6 +355,9 @@ Examples: `clearappt ic/S1234567A`
 Display all appointments on a specific date.
 
 Format: `appton date/DATE`
+
+Parameters:
+- `DATE`: The date to view appointments on. It must be in the format `dd-MM-yyyy`.
 
 Examples: `appton date/22-03-2025`
 
@@ -359,18 +403,22 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Add Medical Report** | `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
-**Delete Medical Report** | `deletemr ic/NRIC` <br> e.g., `deletemr ic/S1234567B`
-**Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
-**Clear Medicine Usage** | `clearmu ic/NRIC` <br> e.g., `clearmu ic/S1234567A`
+**Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add Appointment** | `addappt ic/NRIC dic/DOCTOR_NRICE appt/DESCRIPTION from/START to/END` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
-**Delete Appointment** | `deleteappt INDEX ic/NRIC` <br> e.g., `deleteappt 3 ic/S1234567A`
+**Add Medical Report** | `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
+**Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
+**Clear**  | `clear`
 **Clear Appointments** | `clearappt ic/NRIC` <br> e.g., `clearappt ic/S1234567A`
-**List**   | `list`
+**Clear Medicine Usage** | `clearmu ic/NRIC` <br> e.g., `clearmu ic/S1234567A`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete Appointment** | `deleteappt INDEX ic/NRIC` <br> e.g., `deleteappt 3 ic/S1234567A`
+**Delete Medical Report** | `deletemr ic/NRIC` <br> e.g., `deletemr ic/S1234567B`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Exit**   | `exit`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find Medicine Usage** | `findmu ic/NRIC`<br> e.g., `findmu ic/S1234567A`
+**Mark Appointment** | `markappt INDEX ic/NRIC`<br> e.g., `markappt 2 ic/S1234567A`
 **Help**   | `help`
+**List**   | `list`
+**Unmark Appointment** | `unmarkappt INDEX ic/NRIC`<br> e.g., `unmarkappt 2 ic/S1234567A`
 **View Appointment on specific date** | `appton date/DATE` <br> e.g., `appton date/22-03-2025`
