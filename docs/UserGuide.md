@@ -210,11 +210,11 @@ Delete a patient's existing medical report.
 Format: `deletemr ic/NRIC`
 
 Parameters:
-- `ic/NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples:
-* `deletemr S1234567A`
-* `deletemr T0260144G`
+* `deletemr ic/S1234567A`
+* `deletemr ic/T0260144G`
 
 **Warning**
 
