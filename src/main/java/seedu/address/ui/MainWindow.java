@@ -21,6 +21,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.exceptions.OverlappingAppointmentException;
 import seedu.address.model.medicineusage.exceptions.OverlappingMedicineUsageException;
 
+import static seedu.address.commons.util.DateUtil.DATE_DISPLAY_FORMATTER;
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -140,7 +142,7 @@ public class MainWindow extends UiPart<Stage> {
 
         appointmentListTitle.textProperty().bind(
                 Bindings.createStringBinding(() -> "Appointments on "
-                                + logic.getAppointmentListDate().getDate().toLocalDate(),
+                                + logic.getAppointmentListDate().getDate().toLocalDate().format(DATE_DISPLAY_FORMATTER),
                         logic.getAppointmentListDate().dateProperty()));
     }
 
