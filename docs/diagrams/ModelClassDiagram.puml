@@ -5,7 +5,7 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model as ModelPackage <<Rectangle>>{
-Class "<<interface>>\nReadOnlyKlinix" as ReadOnlyKlinix
+Class "<<interface>>\nReadOnlyKlinixBook" as ReadOnlyKlinixBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
 Class Klinix
@@ -30,7 +30,7 @@ ModelManager -left-> "1" Klinix
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-Klinix *--> "1" UniquePersonList
+KlinixBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 
 Person -[hidden]up--> I
