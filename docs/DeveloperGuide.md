@@ -530,7 +530,7 @@ Use case ends.
 
 ---
 
-#### **Use Case: Delete Medicine Usage Record** *(Missing in User Guide)*
+#### **Use Case: Delete Medicine Usage Record**
 **MSS**
 1. User requests to delete a medicine record by ID and NRIC.
 2. System validates the NRIC and ID.
