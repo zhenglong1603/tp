@@ -131,6 +131,10 @@ public class Person {
         appointmentList.remove(toRemove);
     }
 
+    public void addMedicineUsage(MedicineUsage toAdd) {
+        medicalReport.add(toAdd);
+    }
+
     public void setAppointment(List<Appointment> newData) {
         appointmentList.setAppointment(newData);
     }

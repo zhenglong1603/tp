@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +12,9 @@ import seedu.address.model.Klinix;
 import seedu.address.model.ReadOnlyKlinix;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.medicineusage.Dosage;
+import seedu.address.model.medicineusage.MedicineName;
+import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
@@ -39,6 +43,12 @@ public class SampleDataUtil {
         p1.addAppointment(new Appointment("S1234567A", "Checkup",
                 LocalDateTime.of(2025, 5, 10, 9, 00),
                 LocalDateTime.of(2025, 5, 10, 9, 15), "S1234567A"));
+        p1.addMedicineUsage(new MedicineUsage(
+                new MedicineName("Paracetamol"),
+                new Dosage("500 mg per day"),
+                LocalDate.of(2025, 5, 1),
+                LocalDate.of(2025, 5, 10)
+        ));
         persons.add(p1);
 
         Person p2 = new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
@@ -51,6 +61,19 @@ public class SampleDataUtil {
         p2.addAppointment(new Appointment("S1234567A", "Dental Appointment",
                 LocalDateTime.of(2025, 6, 15, 13, 30),
                 LocalDateTime.of(2025, 6, 15, 14, 00), "S1234568B"));
+
+        p2.addMedicineUsage(new MedicineUsage(
+                new MedicineName("Amoxicillin"),
+                new Dosage("500 mg per day"),
+                LocalDate.of(2025, 5, 1),
+                LocalDate.of(2025, 5, 10)
+        ));
+        p2.addMedicineUsage(new MedicineUsage(
+                new MedicineName("Ibuprofen"),
+                new Dosage("200 mg twice daily"),
+                LocalDate.of(2025, 5, 5),
+                LocalDate.of(2025, 5, 15)
+        ));
         persons.add(p2);
 
         Person p3 = new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
@@ -64,6 +87,7 @@ public class SampleDataUtil {
         p3.addAppointment(new Appointment("S1234567A", "Flu Vaccination",
                 LocalDateTime.of(2025, 7, 20, 12, 00),
                 LocalDateTime.of(2025, 7, 20, 12, 15), "S1234569C"));
+
         persons.add(p3);
 
         Person p4 = new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
@@ -76,6 +100,19 @@ public class SampleDataUtil {
         p4.addAppointment(new Appointment("S1234567A", "Eye Checkup",
                 LocalDateTime.of(2025, 8, 25, 10, 00),
                 LocalDateTime.of(2025, 8, 25, 10, 15), "S1234569D"));
+
+        p4.addMedicineUsage(new MedicineUsage(
+                new MedicineName("Lisinopril"),
+                new Dosage("10 mg daily"),
+                LocalDate.of(2025, 4, 1),
+                LocalDate.of(2025, 5, 1)
+        ));
+        p4.addMedicineUsage(new MedicineUsage(
+                new MedicineName("Amlodipine"),
+                new Dosage("5 mg daily"),
+                LocalDate.of(2025, 4, 1),
+                LocalDate.of(2025, 5, 1)
+        ));
         persons.add(p4);
 
         Person p5 = new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
@@ -85,6 +122,7 @@ public class SampleDataUtil {
                 getTagSet("classmates"),
                 new MedicalReport("None", "None", "None", "None"),
                 new AppointmentList());
+
         persons.add(p5);
 
         Person p6 = new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
@@ -97,6 +135,12 @@ public class SampleDataUtil {
         p6.addAppointment(new Appointment("S1234567A", "Routine Checkup",
                 LocalDateTime.of(2025, 9, 30, 11, 00),
                 LocalDateTime.of(2025, 9, 30, 11, 30), "S1234569F"));
+        p6.addMedicineUsage(new MedicineUsage(
+                new MedicineName("Allopurinol"),
+                new Dosage("100 mg daily"),
+                LocalDate.of(2025, 4, 15),
+                LocalDate.of(2025, 5, 15)
+        ));
         persons.add(p6);
 
         return persons;
