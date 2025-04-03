@@ -152,6 +152,7 @@ public class SampleDataUtil {
         Klinix sampleAb = new Klinix();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+            sampleAb.addAppointment(samplePerson.getAppointments());
         }
         return sampleAb;
     }
