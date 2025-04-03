@@ -246,6 +246,11 @@ public class AddCommandTest {
         public void unmarkAppointmentVisited(Person person, Appointment apptToMark) {
             throw new UnsupportedOperationException("This method should not be called");
         }
+
+        @Override
+        public boolean checkValidMedicineUsage(Person person, MedicineUsage medicineUsage) {
+            throw new UnsupportedOperationException("This method should not be called");
+        }
     }
 
     /**
