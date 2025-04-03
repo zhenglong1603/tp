@@ -64,6 +64,7 @@ public class Index {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("zeroBasedIndex", zeroBasedIndex).toString();
+        return new ToStringBuilder(this).add("zeroBasedIndex", zeroBasedIndex)
+                .toString();
     }
 }
