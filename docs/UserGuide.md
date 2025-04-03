@@ -13,33 +13,41 @@ Klinix Level 3  is a **desktop app for managing contacts, optimized for use via 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+1. **Install Java:**  
+   Ensure you have Java `17` or above installed on your computer.  
+   - **Windows & Linux Users:** Download and install Java from [Oracle JDK 17 Archive Downloads](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).  
+   - **Mac Users:** Install the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/Klinix-level3/releases).
+2. **Download the Application:**  
+   Get the latest `.jar` file from [this release page](https://github.com/AY2425S2-CS2103T-T09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Klinix.
+3. **Prepare Your Folder:**  
+   Create an empty folder that will serve as your _home folder_ for Klinix, and copy the downloaded `.jar` file into that folder.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Klinix.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. **Run the Application:**  
+   - Open a command terminal.
+   - Navigate to the folder where you copied the `.jar` file:  
+     - **Windows:** Open Command Prompt, type `cd ` followed by the folder path, then press Enter.  
+     - **macOS/Linux:** Open Terminal, type `cd ` followed by the folder path, then press Enter.
+   - Run the application by entering the following command:
+     ```
+     java -jar Klinix.jar
+     ```
+     After a few seconds, a GUI will appear. Note that when you first start the app, there will be sample data. You may wish to clear the sample data using the `clear` command.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. **Using the Application:**  
+   - Type a command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
+   - Here are some example commands you can try:
+     - `list` : Lists all contacts.
+     - `add <name> <details>` : Adds a new contact to Klinix.
+     - `delete 3` : Deletes the 3rd contact shown in the current list.
+     - `clear` : Deletes all contacts.
+     - `exit` : Exits the app.
 
-   * `list` : Lists all contacts.
-
-   * `add ` : Adds a contact to Klinix.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+6. **More Information:**  
+   Refer to the [Features](#features) section below for detailed descriptions of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 # Input parameters
