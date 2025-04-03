@@ -112,7 +112,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `KlinixParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `KlinixParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `KlinixParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -136,7 +136,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `KlinixStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Person class
@@ -271,15 +271,15 @@ General Clinic Counter Receptionist
 Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely to have) - *
 
 | Priority     | As a ...                            | I want to ...                                                     | So that ...                                                                   |
-| ------------ | ----------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| ------------ | ----------------------------------- |-------------------------------------------------------------------| ----------------------------------------------------------------------------- |
 | `***`    | Basic User                          | add medicine usage records                                        | the supply management system remains accurate.                                |
 | `***`    | Basic User                          | delete medicine usage records                                     | the supply management system remains accurate.                                |
-| `***`    | Basic User                          | view detailed patient medical history                             | I have the necessary context during patient check-in.                         |
+| `***`    | Basic User                          | view detailed patient medical report                              | I have the necessary context during patient check-in.                         |
 | `***`    | Basic User                          | view patients’ medicine needs                                     | I can manage the clinic’s medicine supply efficiently.                        |
 | `***`    | Basic User                          | view patient records                                              | I always work with the most current information.                              |
 | `***`    | Basic User                          | view patient's appointments                                       | I always work with the most current information.                              |
-| `***`    | Basic User                          | add medical history                                               | the clinic database remains current and accurate.                             |
-| `***`    | Basic User                          | delete medical history                                            | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | add medical report                                                | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | delete medical report                                             | the clinic database remains current and accurate.                             |
 | `***`    | Basic User                          | quickly add new patient details                                   | the clinic database remains current and accurate.                             |
 | `***`    | Basic User                          | quickly delete new patient details                                | the clinic database remains current and accurate.                             |
 | `***`    | Basic User                          | add appointments                                                  | the clinic database remains current and accurate.                             |
@@ -495,7 +495,7 @@ Use case ends.
 5. System displays the medical report (allergies, illnesses, surgeries, immunizations).
 6. System displays the medicine usage records (name, dosage, start date, end date).
 7. System displays the appointments (description, time).
-8. 
+
 **Use case ends.**
 
 ---
@@ -636,21 +636,20 @@ testers are expected to do more *exploratory* testing.
         * Immunizations: `Flu Shot, Tetanus`
         * Other fields remain unchanged
           <br><br>
-      
+
 2. Adding a medical report to a patient with an existing medical report
    * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
         * That patient has an existing medical report
     * **Test Case:** `addmr ic/S1234567A al/Peanut Allergy ill/Diabetes sur/Appendectomy imm/Flu Shot, Tetanus`
-    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields, overwriting the 
-   the previous fields:
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields, overwriting the previous fields:
         * Drug Allergies: `Peanut Allergy`
         * Illnesses: `Diabetes`
         * Surgeries: `Appendectomy`
         * Immunizations: `Flu Shot, Tetanus`
         * Other fields remain unchanged
           <br><br>
-      
+
 3. Adding a medical report with missing parameters
    * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
@@ -750,10 +749,3 @@ testers are expected to do more *exploratory* testing.
           <br><br>
     * **Test Case:** `clearappt ic/S1234567A`
     * **Expected:** Klinix throws the error message `No appointments to clear`
-      <br><br>
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
