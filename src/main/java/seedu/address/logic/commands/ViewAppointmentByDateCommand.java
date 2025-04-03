@@ -32,7 +32,9 @@ public class ViewAppointmentByDateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.changeDisplayedAppointments(localDate);
-
+        if (model.isAppointmentListEmpty()) {
+            return new CommandResult(String.format(MESSAGE_NO_APPOINTMENT, localDate));
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, localDate));
     }
 }
