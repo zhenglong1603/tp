@@ -15,7 +15,7 @@ Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
 package "Klinix Storage" #F4F6F6{
-Class "<<interface>>\KlinixStorage" as KlinixStorage
+Class "<<interface>>\nKlinixStorage" as KlinixStorage
 Class JsonKlinixStorage
 Class JsonSerializableKlinix
 Class JsonAdaptedPerson
