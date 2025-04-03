@@ -35,6 +35,12 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.textProperty()
                 .addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
+        commandTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                setStyleToDefault();
+            }
+        });
+
         // if the user types a character, the command history pointer should be set to the end
         commandTextField.setOnKeyTyped(event -> {
             if (event.getCharacter() != null) {
@@ -97,10 +103,10 @@ public class CommandBox extends UiPart<Region> {
 
         try {
             commandExecutor.execute(commandText);
+            commandTextField.setText(""); // this is making the revert style revert
         } catch (CommandException | ParseException e) {
+            commandTextField.setText(""); // this is making the revert style revert
             setStyleToIndicateCommandFailure();
-        } finally {
-            commandTextField.setText("");
         }
     }
 

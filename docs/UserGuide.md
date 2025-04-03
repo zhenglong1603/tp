@@ -175,8 +175,6 @@ Let me know if you'd like to add/modify any constraints!
 4. **User Guide Sync**
     - Commands like `viewmr`/`viewappt` can now reference these use cases for behavior.
 
-<box type="info" seamless>
-
 ## Features
 
 <box type="info" seamless>
@@ -480,6 +478,8 @@ Klinix data are saved in the hard disk automatically after any command that chan
 ### Editing the data file
 
 Klinix data are saved automatically as a JSON file `[JAR file location]/data/Klinix.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<box type="info" seamless>
 
 **Caution:**
 If your changes to the data file makes its format invalid, Klinix will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>

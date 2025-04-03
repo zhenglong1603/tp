@@ -570,24 +570,65 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a patient
 
-### Deleting a person
+1. Addding a patient with all valid fields
 
-1. Deleting a person while all persons are being shown
+   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456Z b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`<br>
+      Expected: Patient is added to the list. Details of the new patient shown in the status message.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+2. Adding a patient with missing mandatory fields
+
+   1. Test case: `add n/Lam Tan ic/S1234567Y b/01-01-1990`<br>
+      Expected: Patient is not added. Error details shown in the status message.
+
+3. Adding a patient with invalid NRIC format
+
+   1. Test case: `add n/Pam Tan ic/1234567X b/01-01-1990`<br>
+      Expected: Patient is not added. Error details shown in the status message.
+
+4. Additional test cases to try: invalid date format, invalid email format, invalid phone number format, etc.<br>
+   Expected: Patient is not added. Error details shown in the status message.
+
+### Editing a patient
+
+1. Editing an existing patient (the first patient in the list)
+
+   1. Prerequisites: Ensure at least one patient is in the list. If not, add a patient using the `add` command. Eg:<br>
+      `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
+
+   1. Test case: `edit 1 p/91234567 e/johndoe@example.com`<br>
+      Expected: Patient details are updated. Details of the edited patient shown in the status message.
+
+   1. Test case (invalid email format): `edit 1 e/wpeodkwoedpk`<br>
+      Expected: Patient details are not updated. Error details shown in the status message.
+
+   1. Additional test cases to try: editing the NRIC, name, age, contact number, address, tags, etc
+
+1. Editing an invalid patient index
+
+   1. Test case: `edit 0 p/91234567`<br>
+      Expected: Patient details are not updated. Error details shown in the status message.
+
+1. Invalid edit command
+
+   1. Test case: `edit 1 wrfwefwefwef`<br>
+      Expected: Patient details are not updated. Error details shown in the status message.
+
+### Deleting a patient
+
+1. Deleting a patient while all patients are being shown
+
+   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First patient is deleted from the list. Details of the deleted patient shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Adding a medical report
 
@@ -725,5 +766,3 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
