@@ -529,15 +529,75 @@ Use case ends.
 Use case ends.
 
 ---
-*{More to be added}*
 
+#### **Use Case: Delete Medicine Usage Record** *(Missing in User Guide)*
+**MSS**
+1. User requests to delete a medicine record by ID and NRIC.
+2. System validates the NRIC and ID.
+3. System checks if the record exists.
+4. System deletes the record.
+5. System confirms deletion.
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 2b. Invalid ID → System returns "Error: ID must be a positive integer."
+- 3a. Record not found → System returns "Error: No medicine record found for ID <ID>."
+
+**Use case ends.**
+
+---
+
+
+#### **Use Case: View Medical Report**
+**MSS**
+1. User requests to view a patient’s medical report by NRIC.
+2. System validates the NRIC.
+3. System retrieves the medical report.
+4. System displays the report (allergies, illnesses, surgeries, immunizations).
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 3a. No medical report found → System returns "Error: No medical report found for NRIC <NRIC>."
+
+**Use case ends.**
+
+---
+
+#### **Use Case: View Patient Records**
+**MSS**
+1. User requests to view a patient’s details by NRIC.
+2. System validates the NRIC.
+3. System retrieves and displays the patient’s records (name, age, contact, address).
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: NRIC is required."
+- 3a. No matching record → System returns "Error: Patient not found."
+
+**Use case ends.**
+
+---
+
+#### **Use Case: View Appointments**
+**MSS**
+1. User requests to view appointments for a patient by NRIC.
+2. System validates the NRIC.
+3. System retrieves and displays all appointments (doctor NRIC, description, time).
+
+**Extensions**
+- 2a. Missing NRIC → System returns "Error: NRIC is required."
+- 3a. No appointments → System returns "Info: No appointments found for NRIC <NRIC>."
+
+**Use case ends.**
+
+---
+
+*{More to be added}*
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
