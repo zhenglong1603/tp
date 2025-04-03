@@ -74,7 +74,7 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code Klinix} with all the typical persons.
      */
     public static Klinix getTypicalKlinix() {
         Klinix ab = new Klinix();

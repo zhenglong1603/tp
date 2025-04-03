@@ -47,10 +47,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonKlinixStorage addressBookStorage =
-                new JsonKlinixStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonKlinixStorage klinixStorage =
+                new JsonKlinixStorage(temporaryFolder.resolve("klinix.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(klinixStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -151,8 +151,8 @@ public class LogicManagerTest {
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
-        // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
-        JsonKlinixStorage addressBookStorage = new JsonKlinixStorage(prefPath) {
+        // Inject LogicManager with an KlinixStorage that throws the IOException e when saving
+        JsonKlinixStorage klinixStorage = new JsonKlinixStorage(prefPath) {
             @Override
             public void saveKlinix(ReadOnlyKlinix klinix, Path filePath)
                     throws IOException {
@@ -162,11 +162,11 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(klinixStorage, userPrefsStorage);
 
         logic = new LogicManager(model, storage);
 
-        // Triggers the saveAddressBook method by executing an add command
+        // Triggers the saveKlinix method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + NRIC_DESC_AMY + BIRTHDATE_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
