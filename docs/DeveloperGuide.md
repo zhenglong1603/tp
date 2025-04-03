@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is based on the AdressBook-Level 3 project created by the [SE-EDU initiative](https://se-education.org/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -200,7 +200,7 @@ The **`AddAppointmentCommandParser`** and **`AddAppointmentCommand`** classes en
      <br><br>
 
 - **Conflict Checking**:
-   - **`AddAppointmentCommand`** checks if the new appointment to be added overlaps with any existing appointments for the patient.
+   - **`AddAppointmentCommand`** checks if the new appointment to be added overlaps with any existing appointments for the patient or other patients.
    - If there is an overlap for any of these scenarios, an error message is thrown, preventing the appointment from being created.
    - If no overlap exists, the new appointment is added to the appointment list of the patient.
 
@@ -263,8 +263,6 @@ General Clinic Counter Receptionist
 * Ensures accurate patient information handling
 * Help set up and manage appointments with patients
 * Powerful search and filtering
-
-
 
 ### User stories
 
@@ -457,33 +455,54 @@ Use case ends.
 3. System checks for existing appointments to prevent overlaps.
 4. System records the appointment details.
 5. System confirms successful addition.
+   Use case ends.
 
 **Extensions**
-- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 2a. Overlapping appointment detected → System returns "Error: Appointment overlaps with an existing one."
-- 3a. Invalid date format → System returns "Error: Date must be in dd-MM-yyyy HH:mm format."
+- 1a. Patient with NRIC not registered → System returns an invalid Patient error message, "Patient with NRIC <NRIC> not found"
+   * 1a1 Use case resumes at step 1.
+- 1b. Invalid NRIC format → System returns an invalid format error message.
+   * 1b1 Use case resumes at step 1.
+- 1c. Overlapping appointment detected → System returns an error message, listing all the appointments that overlap as well.
+   * 1c1 Use case resumes at step 1.
+- 1d. Invalid date format → System returns an invalid format error message.
+  * 1d1 Use case resumes at step 1.
 
 Use case ends.
 
 ---
 
 **Use case: Delete Appointment**
+**Preconditions**: Klinix is displaying a non-empty list of patients and the patient is displaying a non-empty list of appointments.
 
 **MSS**
-1. User requests to delete an appointment by ID.
-2. System validates the NRIC and appointment ID.
+1. User requests to delete an appointment by Index.
+2. System validates the NRIC and appointment Index.
 3. System checks if the appointment exists.
 4. If the appointment exists, the system deletes it.
 5. System confirms successful deletion.
+   Use case ends.
 
 **Extensions**
-- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 1b. Missing appointment ID → System returns "Error: Appointment ID is missing."
-- 2a. No matching appointment found → System returns "Error: Invalid appointment ID."
+- 1a. Patient with NRIC not registered → System returns an invalid Patient error message
+   * 1a1 Use case resumes at step 1.
+- 1b. Missing appointment Index → System returns an invalid format error message.
+   * 1b1 Use case resumes at step 1.
+---
 
-Use case ends.
+**Use case: Clear Appointment**
+**Preconditions**: Klinix is displaying a non-empty list of patients and the patient is displaying a non-empty list of appointments.
 
+**MSS**
+1. User requests to clear the list of appointments of a particular patient.
+2. System validates the NRIC.
+3. System checks if list of appointments exist.
+4. If any appointment exists, the system deletes it.
+5. System confirms successful deletion.
+   Use case ends.
+
+**Extensions**
+- 1a. Patient with NRIC not registered → System returns an invalid Patient error message
+   * 1a1 Use case resumes at step 1.
 ---
 
 **Use Case: View Patient details**
@@ -515,7 +534,6 @@ Use case ends.
 
 ---
 
-*{More to be added}*
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
@@ -698,7 +716,7 @@ testers are expected to do more *exploratory* testing.
         * The appointment the user adds must overlap with an existing appointment
           <br><br>
     * **Test Case:** `addappt ic/S1234567A appt/Injection from/22-02-2025 11:15 to/22-02-2025 11:45`
-    * **Expected:** Klinix throws the error message `Patient has overlapping appointments with the following patients: -Alex Yeoh FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
+    * **Expected:** Klinix throws the error message `Patient has overlapping appointments with the following patients: <Patients' Details>`
       <br><br>
 
 ### Deleting an appointment
@@ -739,8 +757,7 @@ testers are expected to do more *exploratory* testing.
        * **Expected:** The patient with  in the list is updated with the following fields:
            * Appointment: `No appointments found`
            * Other fields remain unchanged.
-           * Klinix will return a confirmation message `From patient S1234567A, successfully deleted appointment:
-             Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
+           * Klinix will return a confirmation message `Appointments successfully deleted from <Patient's NRIC>`
              <br><br>
 2. Clearing appointments from a patient who has no appointment
     * **Prerequisites:**
@@ -749,4 +766,3 @@ testers are expected to do more *exploratory* testing.
           <br><br>
     * **Test Case:** `clearappt ic/S1234567A`
     * **Expected:** Klinix throws the error message `No appointments to clear`
- 
