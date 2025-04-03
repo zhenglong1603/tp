@@ -23,7 +23,8 @@ public class Name {
      * otherwise " " (a blank string) becomes a valid input.[A-Za-z\\p{L}]+
      */
     public static final String VALIDATION_REGEX =
-            "^[A-Za-z0-9\\p{L}]+(?:['\\.\\-\\s]+[A-Za-z0-9\\p{L}]+)*(?:\\s+(?:s/o|d/o|c/o|@)\\s+[A-Za-z0-9\\p{L}]+(?:['\\.\\-\\s]+[A-Za-z0-9\\p{L}]+)*)?$";
+            "^[A-Za-z0-9\\p{L}]+(?:['\\.\\-\\s]+[A-Za-z0-9\\p{L}]+)*"
+            + "(?:\\s+(?:s/o|d/o|c/o|@)\\s+[A-Za-z0-9\\p{L}]+(?:['\\.\\-\\s]+[A-Za-z0-9\\p{L}]+)*)?$";
     public final String fullName;
 
     /**
