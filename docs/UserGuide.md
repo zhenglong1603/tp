@@ -13,33 +13,41 @@ Klinix Level 3  is a **desktop app for managing contacts, optimized for use via 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+1. **Install Java:**  
+   Ensure you have Java `17` or above installed on your computer.  
+   - **Windows & Linux Users:** Download and install Java from [Oracle JDK 17 Archive Downloads](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).  
+   - **Mac Users:** Install the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/Klinix-level3/releases).
+2. **Download the Application:**  
+   Get the latest `.jar` file from [this release page](https://github.com/AY2425S2-CS2103T-T09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Klinix.
+3. **Prepare Your Folder:**  
+   Create an empty folder that will serve as your _home folder_ for Klinix, and copy the downloaded `.jar` file into that folder.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Klinix.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. **Run the Application:**  
+   - Open a command terminal.
+   - Navigate to the folder where you copied the `.jar` file:  
+     - **Windows:** Open Command Prompt, type `cd ` followed by the folder path, then press Enter.  
+     - **macOS/Linux:** Open Terminal, type `cd ` followed by the folder path, then press Enter.
+   - Run the application by entering the following command:
+     ```
+     java -jar Klinix.jar
+     ```
+     After a few seconds, a GUI will appear. Note that when you first start the app, there will be sample data. You may wish to clear the sample data using the `clear` command.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. **Using the Application:**  
+   - Type a command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
+   - Here are some example commands you can try:
+     - `list` : Lists all contacts.
+     - `add <name> <details>` : Adds a new contact to Klinix.
+     - `delete 3` : Deletes the 3rd contact shown in the current list.
+     - `clear` : Deletes all contacts.
+     - `exit` : Exits the app.
 
-   * `list` : Lists all contacts.
-
-   * `add ` : Adds a contact to Klinix.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+6. **More Information:**  
+   Refer to the [Features](#features) section below for detailed descriptions of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 # Input parameters
@@ -59,7 +67,6 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 | Symbol     | Parameter      | Constraints                                                                                                                                                    |
 |------------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **`ic`**   | `PATIENT_NRIC` | - Must be a **9-character alphanumeric string** that starts with **an uppercase letter (A-Z)**, followed by **7 digits (0-9)** and ends with **an uppercase letter (A-Z)**.
-| **`dic`**  | `DOCTOR_NRIC`  | - Must be a **9-character alphanumeric string** that starts with **an uppercase letter (A-Z)**, followed by **7 digits (0-9)** and ends with **an uppercase letter (A-Z)**.
 | **`appt`** | `DESCRIPTION`  | - Must contain **at least 1 alphabetic** character and has a character **limit of 40**.                                                                        |
 | **`from`** | `START_DATE`   | - A singular`DATE-TIME` in the form `dd-MM-yyyy HH:mm`, where `dd` is the day, `MM` is the month, `yyyy` is the year, `HH` is the hour and `mm` is the minute. |
 | **`to`**   | `END_DATE`     | - A singular`DATE-TIME` in the form `dd-MM-yyyy HH:mm`, where `dd` is the day, `MM` is the month, `yyyy` is the year, `HH` is the hour and `mm` is the minute. |
@@ -151,7 +158,17 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [b/BIRTHDATE] [a/ADDRESS] [t/TAG]..​`
+
+parameters:
+* `INDEX`: The index of the person in the displayed list. It must be a positive integer.
+* `NAME`: (Optional) The name of the person. It should not be blank.
+* `PHONE`: (Optional) The phone number of the person. It should be a valid phone number.
+* `EMAIL`: (Optional) The email of the person. It should be a valid email address.
+* `NRIC`: (Optional) The NRIC of the person. It should be a valid NRIC number.
+* `BIRTHDATE`: (Optional) The birthdate of the person. It should be a valid date in the format `dd-MM-yyyy`.
+* `ADDRESS`: (Optional) The address of the person. It should not be blank.
+* `TAG`: (Optional) The tag of the person.
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -206,26 +223,38 @@ Format: `clear`
 
 Add a new medical report to a patient's record.
 
-Format: `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS`
+Format: `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]`
+
+parameters:
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `ALLERGIES`: (Optional) The allergies of the patient. It can be `None` or a string of allergies separated by commas.
+- `ILLNESSES`: (Optional) The illnesses of the patient. It can be `None` or a string of illnesses separated by commas.
+- `SURGERIES`: (Optional) The surgeries of the patient. It can be `None` or a string of surgeries separated by commas.
+- `IMMUNIZATIONS`: (Optional) The immunizations of the patient. 
+It can be `None` or a string of immunizations separated by commas.
 
 Examples:
 * `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 * `addmr ic/T0260144G al/None ill/None sur/None imm/None`
+* `addmr ic/S1234567A al/Peanuts, Penicillin ill/None sur/Appendectomy imm/Flu Vaccine, Hepatitis B`
 
 **Warning:**
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
 
-### Delete medical report: `deletemr`
+### Delete medical report: `dmr`
 
 Delete a patient's existing medical report.
 
-Format: `deletemr ic/NRIC`
+Format: `dmr ic/NRIC`
+
+Parameters:
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples:
-* `deletemr ic/S1234567A`
-* `deletemr ic/T0260144G`
+* `dmr ic/S1234567A`
+* `dmr ic/T0260144G`
 
 **Warning**
 
@@ -237,6 +266,13 @@ Examples:
 Add a new medicine usage record as part of a patient’s medical history or medical needs.
 
 Format: `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END`
+
+Parameters:
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `MEDICINE_NAME`: The name of the medicine. It should not be blank.
+- `DOSAGE`: The dosage of the medicine. It should not be blank.
+- `START`: The start date of the medicine usage. It must be in the format `dd-MM-yyyy`.
+- `END`: The end date of the medicine usage. It must be in the format `dd-MM-yyyy`.
 
 Examples:
 * `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
@@ -265,16 +301,23 @@ Examples: `clearmu ic/S1234567A`
 
 Delete a particular medicine usage record of a patient's medical history.
 
-_To be added in the next version_
+Format: `deletemu INDEX ic/NRIC`
+
+Parameters:
+- `INDEX`: The index of the medicine usage record in the displayed list. It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
+Examples:
+* `deletemu 2 ic/S1234567A`
 
 ### Add appointment: `addappt`
 
 Add a new appointment to the patient.
 
-Format: `addappt ic/NRIC dic/DOCTOR_NRIC appt/DESCRIPTION from/START to/END`
+Format: `addappt ic/NRIC appt/DESCRIPTION from/START to/END`
 
 Example:
-* `addappt ic/S1234567A dic/S9876543A appt/Check-up from/22-02-2025 10:00 to/23-02-2025 10:15`
+* `addappt ic/S1234567A appt/Check-up from/22-02-2025 10:00 to/23-02-2025 10:15`
 
 **Warning:**
 
@@ -288,6 +331,10 @@ Example:
 Delete the specified appointment from the patient.
 
 Format: `deleteappt INDEX ic/NRIC`
+
+Parameters:
+- `INDEX`: The index of the appointment in the displayed list. It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Example:
 * `deleteappt 2 ic/S1234567A`
@@ -303,6 +350,9 @@ Clear all appointments of a patient.
 
 Format: `clearappt ic/<NRIC>`
 
+Parameters:
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
 Examples: `clearappt ic/S1234567A`
 
 **Warning:**
@@ -314,6 +364,9 @@ Examples: `clearappt ic/S1234567A`
 Display all appointments on a specific date.
 
 Format: `appton date/DATE`
+
+Parameters:
+- `DATE`: The date to view appointments on. It must be in the format `dd-MM-yyyy`.
 
 Examples: `appton date/22-03-2025`
 
@@ -359,18 +412,22 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Appointment** | `addappt ic/NRIC appt/DESCRIPTION from/START to/END` <br> e.g., `addappt ic/T0260144G appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
 **Add Medical Report** | `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
-**Delete Medical Report** | `deletemr ic/NRIC` <br> e.g., `deletemr ic/S1234567B`
 **Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
-**Clear Medicine Usage** | `clearmu ic/NRIC` <br> e.g., `clearmu ic/S1234567A`
-**Add Appointment** | `addappt ic/NRIC dic/DOCTOR_NRICE appt/DESCRIPTION from/START to/END` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
-**Delete Appointment** | `deleteappt INDEX ic/NRIC` <br> e.g., `deleteappt 3 ic/S1234567A`
+**Clear**  | `clear`
 **Clear Appointments** | `clearappt ic/NRIC` <br> e.g., `clearappt ic/S1234567A`
-**List**   | `list`
+**Clear Medicine Usage** | `clearmu ic/NRIC` <br> e.g., `clearmu ic/S1234567A`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete Appointment** | `deleteappt INDEX ic/NRIC` <br> e.g., `deleteappt 3 ic/S1234567A`
+**Delete Medical Report** | `deletemr ic/NRIC` <br> e.g., `deletemr ic/S1234567B`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Exit**   | `exit`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find Medicine Usage** | `findmu ic/NRIC`<br> e.g., `findmu ic/S1234567A`
+**Mark Appointment** | `markappt INDEX ic/NRIC`<br> e.g., `markappt 2 ic/S1234567A`
 **Help**   | `help`
+**List**   | `list`
+**Unmark Appointment** | `unmarkappt INDEX ic/NRIC`<br> e.g., `unmarkappt 2 ic/S1234567A`
 **View Appointment on specific date** | `appton date/DATE` <br> e.g., `appton date/22-03-2025`

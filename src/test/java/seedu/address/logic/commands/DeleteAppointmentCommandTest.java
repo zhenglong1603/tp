@@ -38,7 +38,6 @@ class DeleteAppointmentCommandTest {
         validIndex = Index.fromZeroBased(0);
 
         appointment = new Appointment(
-                "S9876543A",
                 "Checkup",
                 LocalDateTime.of(2024, 1, 1, 10, 30), // 1st Jan 2024, 10:30 AM
                 LocalDateTime.of(2024, 1, 10, 15, 0), // 10th Jan 2024, 3:00 PM

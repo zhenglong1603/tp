@@ -14,7 +14,6 @@ import seedu.address.model.appointment.Appointment;
 public class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
-    private final String doctorNric;
     private final String appointmentDescription;
     private final LocalDateTime startDate;
     private final LocalDateTime endDate;
@@ -24,13 +23,11 @@ public class JsonAdaptedAppointment {
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
      */
-    public JsonAdaptedAppointment(@JsonProperty("doctorNRIC") String doctorNric,
-                                  @JsonProperty("appointmentDescription") String appointmentDescription,
+    public JsonAdaptedAppointment(@JsonProperty("appointmentDescription") String appointmentDescription,
                                   @JsonProperty("startDate") LocalDateTime startDate,
                                   @JsonProperty("endDate") LocalDateTime endDate,
                                   @JsonProperty("patientNric") String patientNric,
                                   @JsonProperty("visited") Boolean visited) {
-        this.doctorNric = doctorNric;
         this.appointmentDescription = appointmentDescription;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -42,7 +39,6 @@ public class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        doctorNric = source.getDoctorNric();
         appointmentDescription = source.getDescription();
         startDate = source.getStartDate();
         endDate = source.getEndDate();
@@ -56,11 +52,6 @@ public class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
     public Appointment toModelType() throws IllegalValueException, DateTimeParseException {
-        if (doctorNric == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, "doctor nric"));
-        }
-
         if (appointmentDescription == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "appointment description"));
@@ -86,7 +77,7 @@ public class JsonAdaptedAppointment {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "visited"));
         }
 
-        return new Appointment(doctorNric, appointmentDescription, startDate, endDate, patientNric, visited);
+        return new Appointment(appointmentDescription, startDate, endDate, patientNric, visited);
     }
 }
 

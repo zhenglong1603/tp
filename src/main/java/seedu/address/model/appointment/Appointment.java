@@ -13,13 +13,9 @@ public class Appointment {
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
             "Appointment description must contain at least 1 alphabetic"
             + " character and has a limit of 40 characters.";
-    public static final String DOCTOR_NRIC_MESSAGE_CONSTRAINTS =
-            "Doctor NRIC should be a valid format starting with a letter, followed by 7 digits, "
-                    + "and ending with a letter.";
+
     public static final String DESCRIPTION_VALIDATION_REGEX = "^(?!\\s*$)(?=.*[a-zA-Z]).{1,40}$";
-    public static final String DOCTOR_NRIC_VALIDATION_REGEX = "^[A-Z][0-9]{7}[A-Z]$";
     private final String description;
-    private final String doctorNric;
     private final LocalDateTime startDate;
     private final LocalDateTime endDate;
     private final String patientNric;
@@ -29,21 +25,18 @@ public class Appointment {
      * Constructs an {@code Appointment}.
      *
      * @param description the description of the appointment.
-     * @param doctorNric the string of the doctor in charge.
      * @param startDate the start time in dd-MM-yyyy-HH-mm format.
      * @param endDate the end time in dd-MM-yyyy-HH-mm format.
      * @param patientNric the string of the patient.
      */
     public Appointment(
-            String doctorNric, String description, LocalDateTime startDate, LocalDateTime endDate,
+            String description, LocalDateTime startDate, LocalDateTime endDate,
             String patientNric, Boolean visited) {
         requireNonNull(description);
         requireNonNull(startDate);
         requireNonNull(endDate);
-        checkArgument(isValidDoctorNric(doctorNric), DOCTOR_NRIC_MESSAGE_CONSTRAINTS);
         checkArgument(isValidDescription(description), DESCRIPTION_MESSAGE_CONSTRAINTS);
         this.description = description;
-        this.doctorNric = doctorNric;
         this.startDate = startDate;
         this.endDate = endDate;
         this.patientNric = patientNric;
@@ -54,21 +47,18 @@ public class Appointment {
      * Constructs an {@code Appointment}.
      *
      * @param description the description of the appointment.
-     * @param doctorNric the string of the doctor in charge.
      * @param startDate the start time in dd-MM-yyyy HH:mm format.
      * @param endDate the end time in dd-MM-yyyy HH:mm format.
      * @param patientNric the string of the patient.
      */
     public Appointment(
-            String doctorNric, String description, LocalDateTime startDate, LocalDateTime endDate,
+            String description, LocalDateTime startDate, LocalDateTime endDate,
             String patientNric) {
         requireNonNull(description);
         requireNonNull(startDate);
         requireNonNull(endDate);
-        checkArgument(isValidDoctorNric(doctorNric), DOCTOR_NRIC_MESSAGE_CONSTRAINTS);
         checkArgument(isValidDescription(description), DESCRIPTION_MESSAGE_CONSTRAINTS);
         this.description = description;
-        this.doctorNric = doctorNric;
         this.startDate = startDate;
         this.endDate = endDate;
         this.patientNric = patientNric;
@@ -77,10 +67,6 @@ public class Appointment {
 
     public String getDescription() {
         return this.description;
-    }
-
-    public String getDoctorNric() {
-        return this.doctorNric;
     }
 
     public LocalDateTime getStartDate() {
@@ -108,7 +94,6 @@ public class Appointment {
 
         Appointment otherAppt = (Appointment) other;
         return description.equals(otherAppt.description)
-                && doctorNric.equals(otherAppt.doctorNric)
                 && startDate.equals(otherAppt.startDate)
                 && endDate.equals(otherAppt.endDate)
                 && patientNric.equals(otherAppt.patientNric);
@@ -119,13 +104,6 @@ public class Appointment {
      */
     public static boolean isValidDescription(String test) {
         return test.matches(DESCRIPTION_VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is a valid doctor NRIC.
-     */
-    public static boolean isValidDoctorNric(String test) {
-        return test.matches(DOCTOR_NRIC_VALIDATION_REGEX);
     }
 
     /**
@@ -142,7 +120,6 @@ public class Appointment {
 
         // Modify logic to check for same date overlap (same start and end date)
         return other.getDescription().equals(this.getDescription())
-                && other.getDoctorNric().equals(this.getDoctorNric())
                 && !hasNoTimeOverlap;
     }
 

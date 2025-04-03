@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
@@ -24,14 +23,13 @@ public class AddAppointmentCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() throws ParseException {
         String userInput = " " + PREFIX_NRIC + "S1234567A "
-                + PREFIX_DOCTOR_NRIC + "S7654321B "
                 + PREFIX_APPOINTMENT_DESCRIPTION + "Routine Checkup "
                 + PREFIX_FROM + "01-10-2025 10:00 "
                 + PREFIX_TO + "01-10-2025 11:00";
 
         AddAppointmentCommand expectedCommand = new AddAppointmentCommand(
                 new Nric("S1234567A"),
-                new Appointment("S7654321B", "Routine Checkup",
+                new Appointment("Routine Checkup",
                         LocalDateTime.of(2025, 10, 1, 10, 0),
                         LocalDateTime.of(2025, 10, 1, 11, 0),
                         "S1234567A"));
@@ -49,14 +47,13 @@ public class AddAppointmentCommandParserTest {
 
     @Test
     public void parse_missingFields_failure() {
-        String userInput = " " + PREFIX_NRIC + "S1234567A " + PREFIX_DOCTOR_NRIC + "S7654321B";
+        String userInput = " " + PREFIX_NRIC + "S1234567A ";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
     @Test
     public void parse_invalidDateFormat_failure() {
         String userInput = " " + PREFIX_NRIC + "S1234567A "
-                + PREFIX_DOCTOR_NRIC + "S7654321B "
                 + PREFIX_APPOINTMENT_DESCRIPTION + "Routine Checkup "
                 + PREFIX_FROM + "10:00 2024-10-01 "
                 + PREFIX_TO + "11:00 2024-10-01";

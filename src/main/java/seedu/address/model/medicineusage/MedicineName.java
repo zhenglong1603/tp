@@ -38,6 +38,15 @@ public class MedicineName {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Checks if two medicine names have same name, this is a weaker equality.
+     * @param toCompare medicine name to compare.
+     * @return true if two medicine names are the same lowercase.
+     */
+    public boolean isSameName(MedicineName toCompare) {
+        return fullName.equalsIgnoreCase(toCompare.fullName);
+    }
+
 
     @Override
     public String toString() {

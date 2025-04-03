@@ -213,21 +213,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String doctorNric} into a {@code String doctorNric}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code doctorNric} is empty.
-     */
-    public static String parseDoctorNric(String doctorNric) throws ParseException {
-        requireNonNull(doctorNric);
-        String trimmedDoctorNric = doctorNric.trim();
-        if (!Appointment.isValidDoctorNric(trimmedDoctorNric)) {
-            throw new ParseException(Appointment.DOCTOR_NRIC_MESSAGE_CONSTRAINTS);
-        }
-        return trimmedDoctorNric;
-    }
-
-    /**
      * Parses a medical report field (e.g. allergy, illness, etc.) and validates its format.
      * Allowed characters: letters, numbers, spaces, commas, hyphens.
      * Must not be empty or contain only numbers.
