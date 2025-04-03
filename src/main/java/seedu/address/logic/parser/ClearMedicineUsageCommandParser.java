@@ -11,13 +11,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Nric;
 
 /**
- * Parses input arguments and creates a new AddMedicalReportCommand object
+ * Parses input arguments and creates a new ClearMedicineUsageCommandParser object
  */
 public class ClearMedicineUsageCommandParser implements Parser<ClearMedicineUsageCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddMedicineUsageCommand
-     * and returns an AddMedicineUsage object for execution.
+     * Parses the given {@code String} of arguments in the context of the ClearMedicineUsageCommand
+     * and returns an ClearMedicineUsageCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ClearMedicineUsageCommand parse(String args) throws ParseException {
@@ -31,8 +31,8 @@ public class ClearMedicineUsageCommandParser implements Parser<ClearMedicineUsag
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddMedicineUsageCommand
-     * and returns an AddMedicineUsage object for execution.
+     * Parses the given {@code String} of arguments in the context of the ClearMedicineUsageCommand
+     * and returns an ClearMedicineUsageCommand object for execution.
      * Expects the format uses nric.
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -54,8 +54,8 @@ public class ClearMedicineUsageCommandParser implements Parser<ClearMedicineUsag
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddMedicineUsageCommand
-     * and returns an AddMedicineUsage object for execution.
+     * Parses the given {@code String} of arguments in the context of the ClearMedicineUsageCommand
+     * and returns an ClearMedicineUsageCommand object for execution.
      * Expects the format uses index.
      * @throws ParseException if the user input does not conform the expected format
      */
