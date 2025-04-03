@@ -339,10 +339,8 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 4. System confirms successful patient registration.
 
 **Extensions**
-- 2a. Missing required parameters → System returns an appropriate error message.
-- 2b. Invalid NRIC, name, age, or contact number → System returns an appropriate error message.
-- 3a. Duplicate NRIC detected → System returns "Error: Duplicate patient detected. Patient with NRIC <NRIC> already exists."
-- 4a. System error occurs → System returns "Error: Unable to add patient due to system error."
+- 1a. Missing required parameters → System returns an appropriate error message.
+- 1b. Invalid NRIC, name, age, or contact number → System returns an appropriate error message.
 
 Use case ends.
 
@@ -358,14 +356,32 @@ Use case ends.
 5. System confirms successful deletion.
 
 **Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 3a. No matching patient found → System returns "Error: No patient found with the given NRIC."
-- 3b. Unexpected duplicate records → System returns "Error: Duplicate patient records detected. Contact administrator."
-- 4a. System error occurs → System returns "Error: Unable to delete patient due to system error."
+- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 2a. No matching patient found → System returns "Error: No patient found with the given NRIC."
+- 2b. Unexpected duplicate records → System returns "Error: Duplicate patient records detected. Contact administrator."
+- 3a. System error occurs → System returns "Error: Unable to delete patient due to system error."
 
 Use case ends.
 
+---
+
+**Use case: Edit Patient**
+
+**MSS**
+1. User requests to edit a patient by NRIC.
+2. System validates the NRIC.
+3. System checks if a matching patient exists.
+4. System updates the patient details (name, age, contact number, address).
+5. System confirms successful update.
+6. System displays the updated patient details.
+
+
+**Extensions**
+- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 2a. No matching patient found → System returns "Error: No patient found with the given NRIC."
+- 3a. Invalid input format → System returns "Error: Invalid input format. Please check the details."
 ---
 
 **Use case: Add Medical Report**
@@ -378,10 +394,9 @@ Use case ends.
 5. System confirms successful addition.
 
 **Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 3a. No matching patient found → System returns "Error: No medical report found with the given NRIC."
-- 4a. Duplicate entry detected → System returns "Error: Duplicate entry detected. No changes were made."
+- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 2a. No matching patient found → System returns "Error: No medical report found with the given NRIC."
 
 Use case ends.
 
@@ -397,9 +412,9 @@ Use case ends.
 5. System confirms successful deletion.
 
 **Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 3a. No medical report found → System returns "Error: No medical report found with the given NRIC."
+- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 2a. No medical report found → System returns "Error: No medical report found with the given NRIC."
 
 Use case ends.
 
@@ -415,11 +430,11 @@ Use case ends.
 5. System confirms successful addition.
 
 **Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 3a. No medical report found → System returns "Error: Medical report for Patient [NRIC] is missing."
-- 4a. Duplicate entry detected → System returns "Error: Duplicate entry detected. No changes were made."
-- 4b. Start date is after end date → System returns "Error: Date must be in dd-MM-yyyy format."
+- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 2a. No medical report found → System returns "Error: Medical report for Patient [NRIC] is missing."
+- 3a. Duplicate entry detected → System returns "Error: Duplicate entry detected. No changes were made."
+- 3b. Start date is after end date → System returns "Error: Date must be in dd-MM-yyyy format."
 
 Use case ends.
 
@@ -435,9 +450,9 @@ Use case ends.
 5. System confirms successful deletion.
 
 **Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Missing medicine usage ID → System returns "Error: ID must contain only numbers."
-- 3a. No record found → System returns "Error: No medicine usage record found for the given ID."
+- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 1b. Missing medicine usage ID → System returns "Error: ID must contain only numbers."
+- 2a. No record found → System returns "Error: No medicine usage record found for the given ID."
 
 Use case ends.
 
@@ -453,10 +468,10 @@ Use case ends.
 5. System confirms successful addition.
 
 **Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 3a. Overlapping appointment detected → System returns "Error: Appointment overlaps with an existing one."
-- 4a. Invalid date format → System returns "Error: Date must be in dd-MM-yyyy HH:mm format."
+- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
+- 2a. Overlapping appointment detected → System returns "Error: Appointment overlaps with an existing one."
+- 3a. Invalid date format → System returns "Error: Date must be in dd-MM-yyyy HH:mm format."
 
 Use case ends.
 
@@ -472,32 +487,16 @@ Use case ends.
 5. System confirms successful deletion.
 
 **Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Missing appointment ID → System returns "Error: Appointment ID is missing."
-- 3a. No matching appointment found → System returns "Error: Invalid appointment ID."
+- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
+- 1b. Missing appointment ID → System returns "Error: Appointment ID is missing."
+- 2a. No matching appointment found → System returns "Error: Invalid appointment ID."
 
 Use case ends.
 
 ---
 
-**Use Case: Delete Medicine Usage Record**
-**MSS**
-1. User requests to delete a medicine record by ID and NRIC.
-2. System validates the NRIC and ID.
-3. System checks if the record exists.
-4. System deletes the record.
-5. System confirms deletion.
-
-**Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Invalid ID → System returns "Error: ID must be a positive integer."
-- 3a. Record not found → System returns "Error: No medicine record found for ID <ID>."
-
-**Use case ends.**
-
----
-
 **Use Case: View Patient details**
+
 **MSS**
 1. User requests to view a patient’s details by clicking on the list of patients.
 3. System retrieves the patient details.
@@ -511,14 +510,15 @@ Use case ends.
 ---
 
 **Use Case: View Appointments on Date**
+
 **MSS**
 1. User requests to view appointments for a date.
 2. System validates the date.
 3. System retrieves and displays all appointments on the date.
 
 **Extensions**
-- 2a. Missing DATE → System returns "Error: DATE is required."
-- 3a. No appointments → System returns "Info: No appointments found for DATE <DATE>."
+- 1a. Missing DATE → System returns "Error: DATE is required."
+- 2a. No appointments → System returns "Info: No appointments found for DATE <DATE>."
 
 **Use case ends.**
 
@@ -697,9 +697,9 @@ testers are expected to do more *exploratory* testing.
         * The patient with that NRIC must be present in the patient list
         * The appointment the user adds must not overlap with any existing appointment of that patient
           <br><br>
-    * **Test Case:** `addappt ic/S1234567A dic/S9876543A appt/Check-Up from/22-02-2025 11:00 to/22-02-2025 11:30`
+    * **Test Case:** `addappt ic/S1234567A dic/S9876542a appt/Check-Up from/22-02-2025 11:00 to/22-02-2025 11:30`
     * **Expected:** The patient with NRIC S123457A in the list is updated with the following fields:
-        * Appointment: `Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30 (S9876543A)`
+        * Appointment: `Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30 (S9876542a)`
         * Other fields remain unchanged
           <br><br>
 2. Adding an appointment that overlaps with existing patient's appointments
@@ -707,7 +707,7 @@ testers are expected to do more *exploratory* testing.
         * The patient with that NRIC must be present in the patient list
         * The appointment the user adds must overlap with an existing appointment
           <br><br>
-    * **Test Case:** `addappt ic/S1234567A dic/S9876543A appt/Injection from/22-02-2025 11:15 to/22-02-2025 11:45`
+    * **Test Case:** `addappt ic/S1234567A dic/S9876542a appt/Injection from/22-02-2025 11:15 to/22-02-2025 11:45`
     * **Expected:** Klinix throws the error message `Patient has overlapping appointments with the following patients: -Alex Yeoh FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
       <br><br>
 
