@@ -504,7 +504,7 @@ Use case ends.
 5. System displays the medical report (allergies, illnesses, surgeries, immunizations).
 6. System displays the medicine usage records (name, dosage, start date, end date).
 7. System displays the appointments (description, time).
-8. 
+
 **Use case ends.**
 
 ---
@@ -645,13 +645,13 @@ testers are expected to do more *exploratory* testing.
         * Immunizations: `Flu Shot, Tetanus`
         * Other fields remain unchanged
           <br><br>
-      
+
 2. Adding a medical report to a patient with an existing medical report
    * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
         * That patient has an existing medical report
     * **Test Case:** `addmr ic/S1234567A al/Peanut Allergy ill/Diabetes sur/Appendectomy imm/Flu Shot, Tetanus`
-    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields, overwriting the 
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields, overwriting the
    the previous fields:
         * Drug Allergies: `Peanut Allergy`
         * Illnesses: `Diabetes`
@@ -659,7 +659,7 @@ testers are expected to do more *exploratory* testing.
         * Immunizations: `Flu Shot, Tetanus`
         * Other fields remain unchanged
           <br><br>
-      
+
 3. Adding a medical report with missing parameters
    * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list

@@ -15,21 +15,21 @@ Klinix Level 3  is a **desktop app for managing contacts, optimized for use via 
 
 ## Quick Start
 
-1. **Install Java:**  
-   Ensure you have Java `17` or above installed on your computer.  
-   - **Windows & Linux Users:** Download and install Java from [Oracle JDK 17 Archive Downloads](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).  
+1. **Install Java:**
+   Ensure you have Java `17` or above installed on your computer.
+   - **Windows & Linux Users:** Download and install Java from [Oracle JDK 17 Archive Downloads](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).
    - **Mac Users:** Install the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-2. **Download the Application:**  
+2. **Download the Application:**
    Get the latest `.jar` file from [this release page](https://github.com/AY2425S2-CS2103T-T09-2/tp/releases).
 
-3. **Prepare Your Folder:**  
+3. **Prepare Your Folder:**
    Create an empty folder that will serve as your _home folder_ for Klinix, and copy the downloaded `.jar` file into that folder.
 
-4. **Run the Application:**  
+4. **Run the Application:**
    - Open a command terminal.
-   - Navigate to the folder where you copied the `.jar` file:  
-     - **Windows:** Open Command Prompt, type `cd ` followed by the folder path, then press Enter.  
+   - Navigate to the folder where you copied the `.jar` file:
+     - **Windows:** Open Command Prompt, type `cd ` followed by the folder path, then press Enter.
      - **macOS/Linux:** Open Terminal, type `cd ` followed by the folder path, then press Enter.
    - Run the application by entering the following command:
      ```
@@ -37,7 +37,7 @@ Klinix Level 3  is a **desktop app for managing contacts, optimized for use via 
      ```
      After a few seconds, a GUI will appear. Note that when you first start the app, there will be sample data. You may wish to clear the sample data using the `clear` command.
 
-5. **Using the Application:**  
+5. **Using the Application:**
    - Type a command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
    - Here are some example commands you can try:
      - `list` : Lists all contacts.
@@ -46,7 +46,7 @@ Klinix Level 3  is a **desktop app for managing contacts, optimized for use via 
      - `clear` : Deletes all contacts.
      - `exit` : Exits the app.
 
-6. **More Information:**  
+6. **More Information:**
    Refer to the [Features](#features) section below for detailed descriptions of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -295,7 +295,7 @@ parameters:
 - `ALLERGIES`: (Optional) The allergies of the patient. It can be `None` or a string of allergies separated by commas.
 - `ILLNESSES`: (Optional) The illnesses of the patient. It can be `None` or a string of illnesses separated by commas.
 - `SURGERIES`: (Optional) The surgeries of the patient. It can be `None` or a string of surgeries separated by commas.
-- `IMMUNIZATIONS`: (Optional) The immunizations of the patient. 
+- `IMMUNIZATIONS`: (Optional) The immunizations of the patient.
 It can be `None` or a string of immunizations separated by commas.
 
 Examples:
