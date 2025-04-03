@@ -593,6 +593,64 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a medical report
+
+**Command:** `addmr`<br>
+
+1. Adding a medical report to a patient
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+    * **Test Case:** `addmr ic/S1234567A al/Peanut Allergy ill/Diabetes sur/Appendectomy imm/Flu Shot, Tetanus`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+        * Drug Allergies: `Peanut Allergy`
+        * Illnesses: `Diabetes`
+        * Surgeries: `Appendectomy`
+        * Immunizations: `Flu Shot, Tetanus`
+        * Other fields remain unchanged
+          <br><br>
+      
+2. Adding a medical report to a patient with an existing medical report
+   * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has an existing medical report
+    * **Test Case:** `addmr ic/S1234567A al/Peanut Allergy ill/Diabetes sur/Appendectomy imm/Flu Shot, Tetanus`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields, overwriting the 
+   the previous fields:
+        * Drug Allergies: `Peanut Allergy`
+        * Illnesses: `Diabetes`
+        * Surgeries: `Appendectomy`
+        * Immunizations: `Flu Shot, Tetanus`
+        * Other fields remain unchanged
+          <br><br>
+      
+3. Adding a medical report with missing parameters
+   * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+    * **Test Case:** `addmr ic/S1234567A al/Peanut Allergy ill/Diabetes`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+        * Drug Allergies: `Peanut Allergy`
+        * Illnesses: `Diabetes`
+        * Surgeries: `None`
+        * Immunizations: `None`
+        * Other fields remain unchanged
+          <br><br>
+
+### Deleting a medical report
+
+**Command:** `dmr`<br>
+
+1. Deleting a medical report from a patient
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+    * **Test Case:** `dmr ic/S1234567A`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+        * Drug Allergies: `None`
+        * Illnesses: `None`
+        * Surgeries: `None`
+        * Immunizations: `None`
+        * Other fields remain unchanged
+          <br><br>
+
 ### Making an appointment
 
 **Command:** `addappt`<br>
