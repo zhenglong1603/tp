@@ -73,14 +73,9 @@ public class AddAppointmentCommand extends Command {
 
         List<Appointment> overlappingAppointments = model.getOverlappingAppointments(appointment, allPersons);
 
-        List<Appointment> patientConflicts = overlappingAppointments.stream()
-                .filter(existingAppointment ->
-                        existingAppointment.getPatientNric().equals(appointment.getPatientNric()))
-                .toList();
-
-        if (!patientConflicts.isEmpty()) {
+        if (!overlappingAppointments.isEmpty()) {
             throw new OverlappingAppointmentException(
-                    AppointmentConflictFormatter.formatConflicts("Patient", patientConflicts, model)
+                    AppointmentConflictFormatter.formatConflicts("Patient", overlappingAppointments, model)
             );
         }
 
