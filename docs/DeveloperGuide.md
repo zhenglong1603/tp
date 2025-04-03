@@ -484,52 +484,6 @@ Use case ends.
 
 ---
 
-**Use case: View Medical Report**
-
-**MSS**
-1. User requests to view a patient’s medical report.
-2. System validates the NRIC.
-3. System retrieves the medical report details.
-4. System displays the report to the user.
-
-**Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 3a. No medical report found → System returns "Error: No medical history found with the given NRIC."
-
-Use case ends.
-
----
-
-**Use case: View Patient Records**
-
-**MSS**
-1. User requests to view a patient’s details.
-2. System validates the NRIC.
-3. System retrieves and displays patient records.
-
-**Extensions**
-- 2a. Missing NRIC → System returns "Error: NRIC is required."
-- 3a. No matching record found → System returns "Error: Patient record not found."
-
-Use case ends.
-
----
-
-**Use case: View Appointments**
-
-**MSS**
-1. User requests to view appointments for a patient.
-2. System validates the NRIC.
-3. System retrieves and displays upcoming appointments.
-
-**Extensions**
-- 2a. Missing NRIC → System returns "Error: NRIC is required."
-- 3a. No appointments found → System returns "Error: No appointments found for the specified date."
-
-Use case ends.
-
----
-
 **Use Case: Delete Medicine Usage Record**
 **MSS**
 1. User requests to delete a medicine record by ID and NRIC.
@@ -547,46 +501,28 @@ Use case ends.
 
 ---
 
-
-**Use Case: View Medical Report**
+**Use Case: View Patient details**
 **MSS**
-1. User requests to view a patient’s medical report by NRIC.
-2. System validates the NRIC.
-3. System retrieves the medical report.
-4. System displays the report (allergies, illnesses, surgeries, immunizations).
-
-**Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 3a. No medical report found → System returns "Error: No medical report found for NRIC <NRIC>."
-
+1. User requests to view a patient’s details by clicking on the list of patients.
+3. System retrieves the patient details.
+4. System displays the details (name, age, contact, address).
+5. System displays the medical report (allergies, illnesses, surgeries, immunizations).
+6. System displays the medicine usage records (name, dosage, start date, end date).
+7. System displays the appointments (doctor NRIC, description, time).
+8. 
 **Use case ends.**
 
 ---
 
-**Use Case: View Patient Records**
+**Use Case: View Appointments on Date**
 **MSS**
-1. User requests to view a patient’s details by NRIC.
-2. System validates the NRIC.
-3. System retrieves and displays the patient’s records (name, age, contact, address).
+1. User requests to view appointments for a date.
+2. System validates the date.
+3. System retrieves and displays all appointments on the date.
 
 **Extensions**
-- 2a. Missing NRIC → System returns "Error: NRIC is required."
-- 3a. No matching record → System returns "Error: Patient not found."
-
-**Use case ends.**
-
----
-
-**Use Case: View Appointments**
-**MSS**
-1. User requests to view appointments for a patient by NRIC.
-2. System validates the NRIC.
-3. System retrieves and displays all appointments (doctor NRIC, description, time).
-
-**Extensions**
-- 2a. Missing NRIC → System returns "Error: NRIC is required."
-- 3a. No appointments → System returns "Info: No appointments found for NRIC <NRIC>."
+- 2a. Missing DATE → System returns "Error: DATE is required."
+- 3a. No appointments → System returns "Info: No appointments found for DATE <DATE>."
 
 **Use case ends.**
 
