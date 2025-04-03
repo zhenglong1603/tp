@@ -32,7 +32,7 @@ public class DeleteMedicalReportCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS_NRIC = "Medical report successfully deleted from %s";
-    public static final String MESSAGE_SUCCESS_ID = "Medical report successfully deleted from person"
+    public static final String MESSAGE_SUCCESS_ID = "Medical report successfully deleted from patient"
             + " at index %d";
     public static final String MESSAGE_PERSON_NOT_FOUND_NRIC = "Patient with NRIC %s not found";
     public static final String MESSAGE_PERSON_NOT_FOUND_ID = "Patient at index %d not found";

@@ -32,8 +32,8 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Patient: %1$s";
-    public static final String MESSAGE_PERSON_NOT_FOUND_NRIC = "Person with NRIC %s not found";
-    public static final String MESSAGE_PERSON_NOT_FOUND_ID = "Person at index %d not found";
+    public static final String MESSAGE_PERSON_NOT_FOUND_NRIC = "Patient with NRIC %s not found";
+    public static final String MESSAGE_PERSON_NOT_FOUND_ID = "Patient at index %d not found";
 
     private final Nric nric;
     private final Index targetIndex;
