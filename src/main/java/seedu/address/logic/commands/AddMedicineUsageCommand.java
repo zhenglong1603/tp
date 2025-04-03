@@ -65,7 +65,7 @@ public class AddMedicineUsageCommand extends Command {
         }
 
         if (!model.checkValidMedicineUsage(person, medicineUsage)) {
-            throw new CommandException(String.format(MESSAGE_MEDICINE_BEFORE_BIRTHDAY, nric));
+            throw new CommandException(String.format(MESSAGE_MEDICINE_BEFORE_BIRTHDAY));
         }
 
         model.addMedicineUsage(person, medicineUsage);

@@ -231,22 +231,28 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean checkValidAppointment(Person target, Appointment appointment) {
+        requireAllNonNull(target, appointment);
+        return !target.bornAfter(appointment.getStartDate());
+    }
+
+    @Override
     public boolean isAppointmentListEmpty() {
         return klinix.getDisplayedAppointments().isEmpty();
     }
 
     @Override
     public List<Appointment> getOverlappingAppointments(Appointment newAppointment, List<Person> allPersons) {
-        LocalDateTime newStart = newAppointment.getStartDate();
-        LocalDateTime newEnd = newAppointment.getEndDate();
+        LocalDateTime newStart = newAppointment.getStartDateTime();
+        LocalDateTime newEnd = newAppointment.getEndDateTime();
 
         List<Appointment> overlappingAppointments = new ArrayList<>(); // List to store overlapping appointments
 
         // Loop through all appointments in the system
         for (Person person : allPersons) { // Assuming allPersons is a list of all persons in the system
             for (Appointment existingAppointment : person.getAppointments()) {
-                LocalDateTime existingStart = existingAppointment.getStartDate();
-                LocalDateTime existingEnd = existingAppointment.getEndDate();
+                LocalDateTime existingStart = existingAppointment.getStartDateTime();
+                LocalDateTime existingEnd = existingAppointment.getEndDateTime();
 
                 // Check if the new appointment overlaps with any existing appointment
                 boolean startsBeforeExistingEnds = newStart.isBefore(existingEnd);
@@ -272,8 +278,8 @@ public class ModelManager implements Model {
 
         Appointment visited = new Appointment(
                 apptToMark.getDescription(),
-                apptToMark.getStartDate(),
-                apptToMark.getEndDate(),
+                apptToMark.getStartDateTime(),
+                apptToMark.getEndDateTime(),
                 apptToMark.getPatientNric(),
                 true
         );
@@ -305,8 +311,8 @@ public class ModelManager implements Model {
 
         Appointment unvisitedAppointment = new Appointment(
                 apptToUnmark.getDescription(),
-                apptToUnmark.getStartDate(),
-                apptToUnmark.getEndDate(),
+                apptToUnmark.getStartDateTime(),
+                apptToUnmark.getEndDateTime(),
                 apptToUnmark.getPatientNric(),
                 false
         );

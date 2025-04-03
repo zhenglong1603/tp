@@ -31,8 +31,8 @@ public class AppointmentConflictFormatter {
 
             String formattedTime = String.format("%s FROM %s TO %s",
                     overlappedPerson.getName().toString(),
-                    overlappingAppointment.getStartDate().format(DATE_TIME_FORMATTER),
-                    overlappingAppointment.getEndDate().format(DATE_TIME_FORMATTER)
+                    overlappingAppointment.getStartDateTime().format(DATE_TIME_FORMATTER),
+                    overlappingAppointment.getEndDateTime().format(DATE_TIME_FORMATTER)
             );
 
             overlapDetails.append("- ").append(formattedTime).append("\n");

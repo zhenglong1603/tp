@@ -46,8 +46,8 @@ public class AppointmentCard extends UiPart<Region> {
 
         visited.setText(appointment.getVisited() ? "Visited" : "Not Visited");
         description.setText(appointment.getDescription());
-        startDate.setText(appointment.getStartDate().format(DATE_TIME_FORMATTER));
-        endDate.setText(appointment.getEndDate().format(DATE_TIME_FORMATTER));
+        startDate.setText(appointment.getStartDateTime().format(DATE_TIME_FORMATTER));
+        endDate.setText(appointment.getEndDateTime().format(DATE_TIME_FORMATTER));
         patientName.setText(displayedIndex + ". " + pn);
         patientNric.setText(appointment.getPatientNric());
     }

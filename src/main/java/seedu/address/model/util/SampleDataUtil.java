@@ -84,7 +84,7 @@ public class SampleDataUtil {
                 getTagSet("neighbours"),
                 new MedicalReport("Dust", "None", "Tonsillectomy", "Flu"),
                 new AppointmentList());
-        p3.addAppointment(new Appointment( "Flu Vaccination",
+        p3.addAppointment(new Appointment("Flu Vaccination",
                 LocalDateTime.of(2025, 7, 20, 12, 00),
                 LocalDateTime.of(2025, 7, 20, 12, 15), "S1234569C"));
 
@@ -97,7 +97,7 @@ public class SampleDataUtil {
                 getTagSet("family"),
                 new MedicalReport("Peanuts", "Hypertension", "None", "None"),
                 new AppointmentList());
-        p4.addAppointment(new Appointment( "Eye Checkup",
+        p4.addAppointment(new Appointment("Eye Checkup",
                 LocalDateTime.of(2025, 8, 25, 10, 00),
                 LocalDateTime.of(2025, 8, 25, 10, 15), "S1234569D"));
 
