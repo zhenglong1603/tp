@@ -1,5 +1,7 @@
 package seedu.address.model.appointment;
 
+import static seedu.address.commons.util.DateUtil.DATE_FORMATTER;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -97,7 +99,7 @@ public class AppointmentListByDate {
      * @return the formatted date
      */
     public String dateTmeFormatter(LocalDateTime date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DATE_FORMATTER;
         return date.format(formatter);
     }
     /**
@@ -108,7 +110,7 @@ public class AppointmentListByDate {
      * @return the formatted date
      */
     public String dateTmeFormatter(LocalDate date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DATE_FORMATTER;
         return date.format(formatter);
     }
 

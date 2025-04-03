@@ -422,7 +422,7 @@ Use case ends.
 - 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
 - 3a. No medical report found → System returns "Error: Medical report for Patient [NRIC] is missing."
 - 4a. Duplicate entry detected → System returns "Error: Duplicate entry detected. No changes were made."
-- 4b. Start date is after end date → System returns "Error: Date must be in YYYY-MM-DD format."
+- 4b. Start date is after end date → System returns "Error: Date must be in dd-MM-yyyy format."
 
 Use case ends.
 
@@ -460,7 +460,7 @@ Use case ends.
 - 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
 - 2c. Missing doctor NRIC → System returns "Error: Doctor NRIC is missing."
 - 3a. Overlapping appointment detected → System returns "Error: Appointment overlaps with an existing one."
-- 4a. Invalid date format → System returns "Error: Date must be in YYYY-MM-DD-HHmm format."
+- 4a. Invalid date format → System returns "Error: Date must be in dd-MM-yyyy HH:mm format."
 
 Use case ends.
 

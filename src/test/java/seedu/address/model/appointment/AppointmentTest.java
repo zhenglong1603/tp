@@ -2,6 +2,7 @@ package seedu.address.model.appointment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.commons.util.DateUtil.DATE_TIME_FORMATTER;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,13 +17,13 @@ public class AppointmentTest {
     @BeforeEach
     public void setUp() {
         // Define DateTimeFormatter for the expected format
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DATE_TIME_FORMATTER;
 
         // Create Appointment with LocalDateTime
         appointment = new Appointment("T1234567B",
                 "Doctor Visit",
-                LocalDateTime.parse("2025-03-20 12:00", formatter),
-                LocalDateTime.parse("2025-03-20 12:30", formatter), "name 1");
+                LocalDateTime.parse("20-03-2025 12:00", formatter),
+                LocalDateTime.parse("20-03-2025 12:30", formatter), "name 1");
     }
 
     @Test
@@ -30,10 +31,10 @@ public class AppointmentTest {
         assertNotNull(appointment);
         assertEquals("Doctor Visit", appointment.getDescription());
 
-        assertEquals(LocalDateTime.parse("2025-03-20 12:00",
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")), appointment.getStartDate());
-        assertEquals(LocalDateTime.parse("2025-03-20 12:30",
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")), appointment.getEndDate());
+        DateTimeFormatter formatter = DATE_TIME_FORMATTER;
+
+        assertEquals(LocalDateTime.parse("20-03-2025 12:00", formatter), appointment.getStartDate());
+        assertEquals(LocalDateTime.parse("20-03-2025 12:30", formatter), appointment.getEndDate());
         assertEquals("T1234567B", appointment.getDoctorNric());
     }
 
@@ -44,4 +45,3 @@ public class AppointmentTest {
         assertEquals(expectedString, appointment.toString());
     }
 }
-
