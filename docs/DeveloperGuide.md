@@ -651,8 +651,7 @@ testers are expected to do more *exploratory* testing.
         * The patient with that NRIC must be present in the patient list
         * That patient has an existing medical report
     * **Test Case:** `addmr ic/S1234567A al/Peanut Allergy ill/Diabetes sur/Appendectomy imm/Flu Shot, Tetanus`
-    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields, overwriting the
-   the previous fields:
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields, overwriting the previous fields:
         * Drug Allergies: `Peanut Allergy`
         * Illnesses: `Diabetes`
         * Surgeries: `Appendectomy`
@@ -759,10 +758,4 @@ testers are expected to do more *exploratory* testing.
           <br><br>
     * **Test Case:** `clearappt ic/S1234567A`
     * **Expected:** Klinix throws the error message `No appointments to clear`
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
+ 
