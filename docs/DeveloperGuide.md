@@ -697,7 +697,7 @@ testers are expected to do more *exploratory* testing.
         * The patient with that NRIC must be present in the patient list
         * The appointment the user adds must not overlap with any existing appointment of that patient
           <br><br>
-    * **Test Case:** `addappt ic/S1234567A dic/S9876542a appt/Check-Up from/22-02-2025 11:00 to/22-02-2025 11:30`
+    * **Test Case:** `addappt ic/S1234567A appt/Check-Up from/22-02-2025 11:00 to/22-02-2025 11:30`
     * **Expected:** The patient with NRIC S123457A in the list is updated with the following fields:
         * Appointment: `Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30 (S9876542a)`
         * Other fields remain unchanged
@@ -707,7 +707,7 @@ testers are expected to do more *exploratory* testing.
         * The patient with that NRIC must be present in the patient list
         * The appointment the user adds must overlap with an existing appointment
           <br><br>
-    * **Test Case:** `addappt ic/S1234567A dic/S9876542a appt/Injection from/22-02-2025 11:15 to/22-02-2025 11:45`
+    * **Test Case:** `addappt ic/S1234567A appt/Injection from/22-02-2025 11:15 to/22-02-2025 11:45`
     * **Expected:** Klinix throws the error message `Patient has overlapping appointments with the following patients: -Alex Yeoh FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
       <br><br>
 
