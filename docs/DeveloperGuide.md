@@ -484,60 +484,56 @@ Use case ends.
 
 ---
 
-**Use case: View Medical Report**
-
+**Use Case: Delete Medicine Usage Record**
 **MSS**
-1. User requests to view a patient’s medical report.
-2. System validates the NRIC.
-3. System retrieves the medical report details.
-4. System displays the report to the user.
+1. User requests to delete a medicine record by ID and NRIC.
+2. System validates the NRIC and ID.
+3. System checks if the record exists.
+4. System deletes the record.
+5. System confirms deletion.
 
 **Extensions**
 - 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 3a. No medical report found → System returns "Error: No medical history found with the given NRIC."
+- 2b. Invalid ID → System returns "Error: ID must be a positive integer."
+- 3a. Record not found → System returns "Error: No medicine record found for ID <ID>."
 
-Use case ends.
+**Use case ends.**
 
 ---
 
-**Use case: View Patient Records**
-
+**Use Case: View Patient details**
 **MSS**
-1. User requests to view a patient’s details.
-2. System validates the NRIC.
-3. System retrieves and displays patient records.
+1. User requests to view a patient’s details by clicking on the list of patients.
+3. System retrieves the patient details.
+4. System displays the details (name, age, contact, address).
+5. System displays the medical report (allergies, illnesses, surgeries, immunizations).
+6. System displays the medicine usage records (name, dosage, start date, end date).
+7. System displays the appointments (doctor NRIC, description, time).
+8. 
+**Use case ends.**
+
+---
+
+**Use Case: View Appointments on Date**
+**MSS**
+1. User requests to view appointments for a date.
+2. System validates the date.
+3. System retrieves and displays all appointments on the date.
 
 **Extensions**
-- 2a. Missing NRIC → System returns "Error: NRIC is required."
-- 3a. No matching record found → System returns "Error: Patient record not found."
+- 2a. Missing DATE → System returns "Error: DATE is required."
+- 3a. No appointments → System returns "Info: No appointments found for DATE <DATE>."
 
-Use case ends.
-
----
-
-**Use case: View Appointments**
-
-**MSS**
-1. User requests to view appointments for a patient.
-2. System validates the NRIC.
-3. System retrieves and displays upcoming appointments.
-
-**Extensions**
-- 2a. Missing NRIC → System returns "Error: NRIC is required."
-- 3a. No appointments found → System returns "Error: No appointments found for the specified date."
-
-Use case ends.
+**Use case ends.**
 
 ---
+
 *{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
