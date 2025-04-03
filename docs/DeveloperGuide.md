@@ -760,6 +760,7 @@ testers are expected to do more *exploratory* testing.
     * **Test Case:** `clearappt ic/S1234567A`
     * **Expected:** Klinix throws the error message `No appointments to clear`
 
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
