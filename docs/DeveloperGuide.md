@@ -633,12 +633,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a medical report
 
-**Command:** `dmr`<br>
+**Command:** `deletemr`<br>
 
 1. Deleting a medical report from a patient
     * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
-    * **Test Case:** `dmr ic/S1234567A`
+    * **Test Case:** `deletemr ic/S1234567A`
     * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
         * Drug Allergies: `None`
         * Illnesses: `None`

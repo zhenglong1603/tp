@@ -339,18 +339,18 @@ Examples:
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
 
-### Delete medical report: `dmr`
+### Delete medical report: `deletemr`
 
 Delete a patient's existing medical report.
 
-Format: `dmr ic/NRIC`
+Format: `deletemr ic/NRIC`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples:
-* `dmr ic/S1234567A`
-* `dmr ic/T0260144G`
+* `deletemr ic/S1234567A`
+* `deletemr ic/T0260144G`
 
 **Warning**
 
@@ -510,7 +510,7 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add Appointment** | `addappt ic/NRIC appt/DESCRIPTION from/START to/END` <br> e.g., `addappt ic/T0260144G appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
-**Add Medical Report** | `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
+**Add Medical Report** | `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 **Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
 **Clear**  | `clear`
 **Clear Appointments** | `clearappt ic/NRIC` <br> e.g., `clearappt ic/S1234567A`
