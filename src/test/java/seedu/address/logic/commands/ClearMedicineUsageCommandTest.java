@@ -139,4 +139,43 @@ class ClearMedicineUsageCommandTest {
         assertTrue(secondPerson.getMedicalReport().getMedicineUsages().isEmpty());
     }
 
+    @Test
+    void execute_nricWithNoMedicineUsages_showsCorrectMessage() {
+        person.getMedicalReport().reset(); // clear usages
+        ClearMedicineUsageCommand command = new ClearMedicineUsageCommand(nric);
+        CommandResult result = assertDoesNotThrow(() -> command.execute(model));
+        assertTrue(result.getFeedbackToUser().contains("has no medicine usages"));
+        assertTrue(result.getFeedbackToUser().contains(nric.toString()));
+    }
+
+    @Test
+    void execute_byIndexWithSingleUsage_showsCorrectMessage() {
+        person.getMedicalReport().reset();
+        MedicineUsage singleUsage = new MedicineUsage(
+                new MedicineName("Amoxicillin"), new Dosage("250mg"),
+                LocalDate.now(), LocalDate.now().plusDays(2)
+        );
+        person.getMedicalReport().add(singleUsage);
+
+        ClearMedicineUsageCommand command = new ClearMedicineUsageCommand(Index.fromOneBased(1));
+        CommandResult result = assertDoesNotThrow(() -> command.execute(model));
+        assertTrue(result.getFeedbackToUser().contains("successfully deleted"));
+        assertTrue(result.getFeedbackToUser().contains("index 1"));
+    }
+
+    @Test
+    void execute_nricWithSingleUsage_showsCorrectMessage() {
+        person.getMedicalReport().reset();
+        MedicineUsage singleUsage = new MedicineUsage(
+                new MedicineName("Cough Syrup"), new Dosage("10ml"),
+                LocalDate.now(), LocalDate.now().plusDays(1)
+        );
+        person.getMedicalReport().add(singleUsage);
+
+        ClearMedicineUsageCommand command = new ClearMedicineUsageCommand(nric);
+        CommandResult result = assertDoesNotThrow(() -> command.execute(model));
+        assertTrue(result.getFeedbackToUser().contains("successfully deleted"));
+        assertTrue(result.getFeedbackToUser().contains(nric.toString()));
+    }
+
 }

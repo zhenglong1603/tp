@@ -71,5 +71,16 @@ class ClearMedicineUsageCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse(""));
     }
 
+    @Test
+    void parse_nricWithPreamble_throwsParseException() {
+        String input = "garbage ic/S1234567A";
+        assertThrows(ParseException.class, () -> parser.parse(input));
+    }
+
+    @Test
+    void parse_indexWithMultipleNrics_throwsParseException() {
+        String input = "ic/S1234567A ic/S7654321B";
+        assertThrows(ParseException.class, () -> parser.parse(input));
+    }
 }
 
