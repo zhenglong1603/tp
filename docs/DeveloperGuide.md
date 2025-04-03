@@ -597,6 +597,79 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Making an appointment
+
+**Command:** `addappt`<br>
+
+1. Adding an appointment to a patient
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * The appointment the user adds must not overlap with any existing appointment of that patient and also the doctor
+          <br><br>
+    * **Test Case:** `addappt ic/S1234567A dic/S9876543A appt/Check-Up from/22-02-2025 11:00 to/22-02-2025 11:30`
+    * **Expected:** The patient with NRIC S123457A in the list is updated with the following fields:
+        * Appointment: `Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30 (S9876543A)`
+        * Other fields remain unchanged
+          <br><br>
+2. Adding an appointment that overlaps with existing patient's appointments
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * The appointment the user adds must overlap with an existing appointment
+          <br><br>
+    * **Test Case:** `addappt ic/S1234567A dic/S9876543A appt/Injection from/22-02-2025 11:15 to/22-02-2025 11:45`
+    * **Expected:** Klinix throws the error message `Patient has overlapping appointments with the following patients: -Alex Yeoh FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
+      <br><br>
+
+### Deleting an appointment
+
+**Command:** `deleteappt`<br>
+
+1. Deleting an appointment from a patient who has an appointment
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `deleteappt 1 ic/S1234567A`
+    * **Expected:** The patient with  in the list is updated with the following fields:
+        * Appointment: `No appointments found`
+        * Other fields remain unchanged.
+        * Klinix will return a confirmation message `From patient S1234567A, successfully deleted appointment:
+          Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
+          <br><br>
+2. Deleting an appointment from a patient who has no appointment
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has no existing appointment
+          <br><br>
+    * **Test Case:** `deleteappt 1 ic/S1234567A`
+    * **Expected:** Klinix throws the error message `The patient has no existing appointments`
+      <br><br>
+
+### Clearing appointments
+
+**Command:** `clearappt`<br>
+
+1. Clearing appointments from a patient who has existing appointment(s)
+   * **Prerequisites:**
+     * The patient with that NRIC must be present in the patient list
+     * That patient has existing appointment(s)
+     <br><br>
+       * **Test Case:** `clearappt ic/S1234567A`
+       * **Expected:** The patient with  in the list is updated with the following fields:
+           * Appointment: `No appointments found`
+           * Other fields remain unchanged.
+           * Klinix will return a confirmation message `From patient S1234567A, successfully deleted appointment:
+             Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
+             <br><br>
+2. Clearing appointments from a patient who has no appointment
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has no existing appointment
+          <br><br>
+    * **Test Case:** `clearappt ic/S1234567A`
+    * **Expected:** Klinix throws the error message `No appointments to clear`
+      <br><br>
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files

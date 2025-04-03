@@ -49,7 +49,7 @@ public class ClearAppointmentsCommand extends Command {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, nric));
         }
 
-        int appointmentCount = person.getAppointmentList().size();
+        int appointmentCount = person.getAppointments().size();
         if (appointmentCount == 0) {
             return new CommandResult(MESSAGE_NO_APPOINTMENT);
         } else if (appointmentCount == 1) {
