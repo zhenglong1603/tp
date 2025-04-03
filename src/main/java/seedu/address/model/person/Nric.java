@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "NRIC should be a valid format starting with an uppercase letter, followed by 7 digits, "
+            "NRIC should be a valid format starting with an uppercase letter, followed by 7 digits "
                     + "and ending with an uppercase letter.";
 
     /*
