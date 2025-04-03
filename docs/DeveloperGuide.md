@@ -699,7 +699,7 @@ testers are expected to do more *exploratory* testing.
           <br><br>
     * **Test Case:** `addappt ic/S1234567A appt/Check-Up from/22-02-2025 11:00 to/22-02-2025 11:30`
     * **Expected:** The patient with NRIC S123457A in the list is updated with the following fields:
-        * Appointment: `Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30 (S9876542a)`
+        * Appointment: `Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
         * Other fields remain unchanged
           <br><br>
 2. Adding an appointment that overlaps with existing patient's appointments
