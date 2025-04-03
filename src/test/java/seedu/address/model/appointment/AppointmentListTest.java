@@ -3,6 +3,7 @@ package seedu.address.model.appointment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.DateUtil.DATE_TIME_FORMATTER;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
@@ -25,23 +26,23 @@ public class AppointmentListTest {
         appointmentList = new AppointmentList();
 
         // Define DateTimeFormatter
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DATE_TIME_FORMATTER;
 
         // Create Appointment instances with LocalDateTime
         appointment1 = new Appointment("S1234567B",
                 "Visit",
-                LocalDateTime.parse("2025-03-20 10:00", formatter),
-                LocalDateTime.parse("2025-03-20 11:00", formatter), "name 1");
+                LocalDateTime.parse("20-03-2025 10:00", formatter),
+                LocalDateTime.parse("20-03-2025 11:00", formatter), "name 1");
 
         appointment2 = new Appointment("T7654321A",
                 "Surgery",
-                LocalDateTime.parse("2025-03-19 12:00", formatter),
-                LocalDateTime.parse("2025-03-23 13:00", formatter), "name 2");
+                LocalDateTime.parse("19-03-2025 12:00", formatter),
+                LocalDateTime.parse("23-03-2025 13:00", formatter), "name 2");
 
         overlappingAppointment = new Appointment("T1234567B",
                 "Checkup",
-                LocalDateTime.parse("2025-03-16 10:30", formatter),
-                LocalDateTime.parse("2025-03-23 11:30", formatter), "name 3");
+                LocalDateTime.parse("16-03-2025 10:30", formatter),
+                LocalDateTime.parse("23-03-2025 11:30", formatter), "name 3");
     }
 
     @Test

@@ -41,7 +41,7 @@ class ClearMedicineUsageCommandTest {
                 new Phone("12345678"),
                 new Email("john@example.com"),
                 nric,
-                new BirthDate("01/01/1990"),
+                new BirthDate("01-01-1990"),
                 new Address("123 Street"),
                 new HashSet<>(),
                 new MedicalReport("None", "None", "None", "None"),
