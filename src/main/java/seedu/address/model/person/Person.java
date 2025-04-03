@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -145,6 +146,14 @@ public class Person {
         }
 
         return otherPerson != null && otherPerson.getNric().equals(getNric());
+    }
+
+    public boolean bornBefore(LocalDate toCompare) {
+        return birthDate.isBefore(toCompare);
+    }
+
+    public boolean bornAfter(LocalDate toCompare) {
+        return birthDate.isAfter(toCompare);
     }
 
 

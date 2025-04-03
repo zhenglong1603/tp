@@ -37,6 +37,8 @@ public class AddMedicineUsageCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Medicine usage successfully added to %s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
+    public static final String MESSAGE_MEDICINE_BEFORE_BIRTHDAY = "The added medicine usage starts before the "
+            + "patient's birthday!";
 
     private final Nric nric;
     private final MedicineUsage medicineUsage;
@@ -60,6 +62,10 @@ public class AddMedicineUsageCommand extends Command {
         Person person = model.findPersonByNric(nric);
         if (person == null) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, nric));
+        }
+
+        if (!model.checkValidMedicineUsage(person, medicineUsage)) {
+            throw new CommandException(String.format(MESSAGE_MEDICINE_BEFORE_BIRTHDAY, nric));
         }
 
         model.addMedicineUsage(person, medicineUsage);

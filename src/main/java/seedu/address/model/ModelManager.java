@@ -363,6 +363,18 @@ public class ModelManager implements Model {
         medicalReport.reset();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    /**
+     * Checks if a person is born before a medicine usage start day (for validity check)
+     * @param target person to compare
+     * @param medicineUsage medicine usage to compare
+     * @return true if the person's birthday is before the medicine usage's start date
+     */
+    @Override
+    public boolean checkValidMedicineUsage(Person target, MedicineUsage medicineUsage) {
+        requireAllNonNull(target, medicineUsage);
+        return !target.bornAfter(medicineUsage.getStartDate());
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
