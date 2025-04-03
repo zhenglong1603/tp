@@ -80,71 +80,57 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 ### **Medical Report Parameters**
 
-| Symbol    | Parameter         | Constraints                                                                                     |
-|-----------|-------------------|-------------------------------------------------------------------------------------------------|
-| **`ic`**  | `PATIENT_NRIC`    | - Same as Patient NRIC (9-character alphanumeric).                                              |
-| **`al`**  | `ALLERGIES`       | - Free-text. No constraints.                                                                   |
-| **`ill`** | `ILLNESSES`       | - Free-text. No constraints.                                                                   |
-| **`sur`** | `SURGERIES`       | - Free-text. No constraints.                                                                   |
-| **`imm`** | `IMMUNIZATIONS`   | - Free-text. No constraints.                                                                   |
+| Symbol    | Parameter         | Constraints                                                                                                 |
+|-----------|-------------------|-------------------------------------------------------------------------------------------------------------|
+| **`ic`**  | `PATIENT_NRIC`    | - Same as Patient NRIC (9-character alphanumeric).                                                          |
+| **`al`**  | `ALLERGIES`       | - Contains at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`ill`** | `ILLNESSES`       | - Contains at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`sur`** | `SURGERIES`       | - Contains at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`imm`** | `IMMUNIZATIONS`   | - Contains at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
 
 ---
 
 ### **Medicine Usage Parameters**
 
-| Symbol     | Parameter          | Constraints                                                                                     |
-|------------|--------------------|-------------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                         |
-| **`n`**    | `MEDICINE_NAME`    | - Must contain **at least 1 alphabetic character**.                                             |
-| **`dos`**  | `DOSAGE`           | - Free-text (e.g., `Two 500mg tablets, 4 times daily`).                                        |
-| **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy` (e.g., `23-02-2025`).                                                   |
-| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy` (e.g., `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**.  |
+| Symbol     | Parameter          | Constraints                                                                                    |
+|------------|--------------------|------------------------------------------------------------------------------------------------|
+| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                        |
+| **`n`**    | `MEDICINE_NAME`    | - Must contain **at least 1 alphabetic character**.                                            |
+| **`dos`**  | `DOSAGE`           | - Free-text (e.g., `Two 500mg tablets, 4 times daily`).                                       |
+| **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                  |
+| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**.  |
 
 ---
 
 ### **Appointment Parameters**
 
-| Symbol     | Parameter          | Constraints                                                                                                                                                    |
-|------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                                                                                        |
-| **`appt`** | `DESCRIPTION`      | - **1–40 alphabetic characters** (e.g., `Dental Check-up`).                                                                                                   |
-| **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy HH:mm` (e.g., `22-02-2025 10:00`).                                                                                                      |
-| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy HH:mm` (e.g., `22-02-2025 10:15`).<br>- Must be **after `START_DATE`**.                                                                 |
+| Symbol     | Parameter          | Constraints                                                                                                                                                 |
+|------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                                                                                     |
+| **`appt`** | `DESCRIPTION`      | - **1–40 alphabetic characters** (e.g. `Dental Check-up`).                                                                                                 |
+| **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy HH:mm` (e.g. `22-02-2025 10:00`).                                                                                                    |
+| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy HH:mm` (e.g. `22-02-2025 10:15`).<br>- Must be **after `START_DATE`**.                                                               |
 
 ---
 
 ### **General Parameters**
 
-| Symbol      | Parameter       | Constraints                                                                                     |
-|-------------|-----------------|-------------------------------------------------------------------------------------------------|
-| **`INDEX`** | `INDEX`         | - **Positive integer** (1, 2, 3, ...).<br>- Must exist in the current displayed list.           |
-| **`date`**  | `DATE`          | - Format: `dd-MM-yyyy` (e.g., `22-03-2025`). Used in `appton`.                                 |
-| **`KEYWORD`**| `KEYWORD`       | - Non-empty string (used in `find`).                                                            |
+| Symbol      | Parameter       | Constraints                                                                                    |
+|-------------|-----------------|------------------------------------------------------------------------------------------------|
+| **`INDEX`** | `INDEX`         | - **Positive integer** (1, 2, 3, ...).<br>- Must exist in the current displayed list.          |
+| **`date`**  | `DATE`          | - Format: `dd-MM-yyyy` (e.g. `22-03-2025`). Used in `appton`.                                 |
+| **`KEYWORD`**| `KEYWORD`       | - Non-empty string (used in `find`).                                                           |
 
 ---
 
 ### **Notes**:
-1. **NRIC Consistency**: All NRIC fields (`ic`, `dic`) follow the same 9-character alphanumeric rule.
+1. **NRIC Consistency**: All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.
 2. **Date Formats**:
     - `dd-MM-yyyy` for birthdates/medicine dates.
     - `dd-MM-yyyy HH:mm` for appointments.
-3. **Error Handling**: Refer to your use cases for validation messages (e.g., "Invalid NRIC format").
+3. **Error Handling**: Refer to the use cases for validation messages (e.g. "Invalid NRIC format").
 
 ---
-
-### **Alignment Notes**
-1. **Consistent Error Messages**
-    - All use cases now follow the same pattern (e.g., "Error: [Cause]. [Action]").
-    - Matches the style in your existing `Delete Patient`/`Add Appointment` use cases.
-
-2. **NRIC Validation**
-    - Explicit checks for format (9-character alphanumeric) and existence.
-
-3. **Missing Commands Added**
-    - `View Medical Report`, `View Patient Records`, `View Appointments`, and `Delete Medicine Usage` now have dedicated use cases.
-
-4. **User Guide Sync**
-    - Commands like `viewmr`/`viewappt` can now reference these use cases for behavior.
 
 ## Features
 
@@ -196,7 +182,6 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a person: `add`
 
@@ -413,7 +398,7 @@ Example:
 
 Clear all appointments of a patient.
 
-Format: `clearappt ic/<NRIC>`
+Format: `clearappt ic/NRIC`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
@@ -454,7 +439,7 @@ Klinix data are saved automatically as a JSON file `[JAR file location]/data/Kli
 
 **Caution:**
 If your changes to the data file makes its format invalid, Klinix will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.g. if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -468,6 +453,15 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+1. Command Line Interface (CLI): A user interface where individuals interact with a computer or software by typing text-based commands. Instead of using icons or buttons, users enter specific instructions in a terminal or command prompt to execute tasks.
+
+2. Graphical User Interface (GUI): A user interface that enables users to interact with electronic devices through visual elements like icons, buttons, and windows, rather than through text-based commands. GUIs simplify navigation and usage of software applications through a visual approach.
+
+3. Hard Disk Drive (HDD): A storage device within a computer that utilizes rotating magnetic disks to read and write data. It is primarily used for long-term storage of files, applications, and the operating system.
+--------------------------------------------------------------------------------------------------------------------
+
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
@@ -479,22 +473,23 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Add Appointment** | `addappt ic/NRIC appt/DESCRIPTION from/START to/END` <br> e.g., `addappt ic/T0260144G appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
-**Add Medical Report** | `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
-**Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
+**Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Appointment** | `addappt ic/NRIC appt/DESCRIPTION from/START to/END` <br> e.g. `addappt ic/T0260144G appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
+**Add Medical Report** | `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]` <br> e.g. `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
+**Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g. `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
 **Clear**  | `clear`
-**Clear Appointments** | `clearappt ic/NRIC` <br> e.g., `clearappt ic/S1234567A`
-**Clear Medicine Usage** | `clearmu ic/NRIC` <br> e.g., `clearmu ic/S1234567A`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Delete Appointment** | `deleteappt INDEX ic/NRIC` <br> e.g., `deleteappt 3 ic/S1234567A`
-**Delete Medical Report** | `deletemr ic/NRIC` <br> e.g., `deletemr ic/S1234567B`
+**Clear Appointments** | `clearappt ic/NRIC` <br> e.g. `clearappt ic/S1234567A`
+**Clear Medicine Usage** | `clearmu ic/NRIC` <br> e.g. `clearmu ic/S1234567A`
+**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**Delete Appointment** | `deleteappt INDEX ic/NRIC` <br> e.g. `deleteappt 3 ic/S1234567A`
+**Delete Medical Report** | `deletemr ic/NRIC` <br> e.g. `deletemr ic/S1234567B`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Exit**   | `exit`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Find Medicine Usage** | `findmu ic/NRIC`<br> e.g., `findmu ic/S1234567A`
-**Mark Appointment** | `markappt INDEX ic/NRIC`<br> e.g., `markappt 2 ic/S1234567A`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
+**Find Medicine Usage** | `findmu ic/NRIC`<br> e.g. `findmu ic/S1234567A`
+**Mark Appointment** | `markappt INDEX ic/NRIC`<br> e.g. `markappt 2 ic/S1234567A`
+**Unmark Appointment** | `unmarkappt INDEX ic/NRIC`<br> e.g. `unmarkappt 2 ic/S1234567A`
 **Help**   | `help`
 **List**   | `list`
-**Unmark Appointment** | `unmarkappt INDEX ic/NRIC`<br> e.g., `unmarkappt 2 ic/S1234567A`
-**View Appointment on specific date** | `appton date/DATE` <br> e.g., `appton date/22-03-2025`
+**Unmark Appointment** | `unmarkappt INDEX ic/NRIC`<br> e.g. `unmarkappt 2 ic/S1234567A`
+**View Appointment on specific date** | `appton date/DATE` <br> e.g. `appton date/22-03-2025`
