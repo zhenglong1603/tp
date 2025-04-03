@@ -124,13 +124,13 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [b/BIRTHDATE] [a/ADDR
 
 parameters:
 * `INDEX`: The index of the person in the displayed list. It must be a positive integer.
-* `n/NAME`: (Optional) The name of the person. It should not be blank.
-* `p/PHONE`: (Optional) The phone number of the person. It should be a valid phone number.
-* `e/EMAIL`: (Optional) The email of the person. It should be a valid email address.
-* `ic/NRIC`: (Optional) The NRIC of the person. It should be a valid NRIC number.
-* `b/BIRTHDATE`: (Optional) The birthdate of the person. It should be a valid date in the format `dd/MM/yyyy`.
-* `a/ADDRESS`: (Optional) The address of the person. It should not be blank.
-* `t/TAG`: (Optional) The tag of the person.
+* `NAME`: (Optional) The name of the person. It should not be blank.
+* `PHONE`: (Optional) The phone number of the person. It should be a valid phone number.
+* `EMAIL`: (Optional) The email of the person. It should be a valid email address.
+* `NRIC`: (Optional) The NRIC of the person. It should be a valid NRIC number.
+* `BIRTHDATE`: (Optional) The birthdate of the person. It should be a valid date in the format `dd/MM/yyyy`.
+* `ADDRESS`: (Optional) The address of the person. It should not be blank.
+* `TAG`: (Optional) The tag of the person.
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -188,11 +188,11 @@ Add a new medical report to a patient's record.
 Format: `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS`
 
 parameters:
-- `ic/NRIC`: The NRIC of the patient. It must be a valid NRIC number.
-- `al/ALLERGIES`: The allergies of the patient. It can be `None` or a list of allergies separated by spaces.
-- `ill/ILLNESSES`: The illnesses of the patient. It can be `None` or a list of illnesses separated by spaces.
-- `sur/SURGERIES`: The surgeries of the patient. It can be `None` or a list of surgeries separated by spaces.
-- `imm/IMMUNIZATIONS`: The immunizations of the patient. It can be `None` or a list of immunizations separated by spaces.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `ALLERGIES`: The allergies of the patient. It can be `None` or a list of allergies separated by spaces.
+- `ILLNESSES`: The illnesses of the patient. It can be `None` or a list of illnesses separated by spaces.
+- `SURGERIES`: The surgeries of the patient. It can be `None` or a list of surgeries separated by spaces.
+- `IMMUNIZATIONS`: The immunizations of the patient. It can be `None` or a list of immunizations separated by spaces.
 
 Examples:
 * `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
@@ -213,8 +213,8 @@ Parameters:
 - `ic/NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples:
-* `deletemr ic/S1234567A`
-* `deletemr ic/T0260144G`
+* `deletemr S1234567A`
+* `deletemr T0260144G`
 
 **Warning**
 
@@ -228,11 +228,11 @@ Add a new medicine usage record as part of a patient’s medical history or medi
 Format: `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END`
 
 Parameters:
-- `ic/NRIC`: The NRIC of the patient. It must be a valid NRIC number.
-- `n/MEDICINE_NAME`: The name of the medicine. It should not be blank.
-- `dos/DOSAGE`: The dosage of the medicine. It should not be blank.
-- `from/START`: The start date of the medicine usage. It must be in the format `dd-MM-yyyy`.
-- `to/END`: The end date of the medicine usage. It must be in the format `dd-MM-yyyy`.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `MEDICINE_NAME`: The name of the medicine. It should not be blank.
+- `DOSAGE`: The dosage of the medicine. It should not be blank.
+- `START`: The start date of the medicine usage. It must be in the format `dd-MM-yyyy`.
+- `END`: The end date of the medicine usage. It must be in the format `dd-MM-yyyy`.
 
 Examples:
 * `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
@@ -265,7 +265,7 @@ Format: `deletemu INDEX ic/NRIC`
 
 Parameters:
 - `INDEX`: The index of the medicine usage record in the displayed list. It must be a positive integer.
-- `ic/NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples:
 * `deletemu 2 ic/S1234567A`
