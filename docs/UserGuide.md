@@ -42,6 +42,37 @@ Klinix Level 3  is a **desktop app for managing contacts, optimized for use via 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+# Input parameters
+
+<box type="info" seamless>
+
+**Notes about parameters:**<br>
+
+Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbol. For example, the command `add n/John`<br>
+
+- `n/` -> parameter symbol<br>
+- `John` -> parameter
+  </box>
+
+### Appointment Parameters
+
+| Symbol     | Parameter      | Constraints                                                                                                                                                    |
+|------------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`ic`**   | `PATIENT_NRIC` | - Must be a **9-character alphanumeric string** that starts with **an uppercase letter (A-Z)**, followed by **7 digits (0-9)** and ends with **an uppercase letter (A-Z)**.
+| **`dic`**  | `DOCTOR_NRIC`  | - Must be a **9-character alphanumeric string** that starts with **an uppercase letter (A-Z)**, followed by **7 digits (0-9)** and ends with **an uppercase letter (A-Z)**.
+| **`appt`** | `DESCRIPTION`  | - Must contain **at least 1 alphabetic** character and has a character **limit of 40**.                                                                        |
+| **`from`** | `START_DATE`   | - A singular`DATE-TIME` in the form `dd-MM-yyyy HH:mm`, where `dd` is the day, `MM` is the month, `yyyy` is the year, `HH` is the hour and `mm` is the minute. |
+| **`to`**   | `END_DATE`     | - A singular`DATE-TIME` in the form `dd-MM-yyyy HH:mm`, where `dd` is the day, `MM` is the month, `yyyy` is the year, `HH` is the hour and `mm` is the minute. |
+
+### Other Parameters
+
+Symbol     | Parameter   | Constraints
+-----------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------
+**-**  | `INDEX`     |- Refers to the index number shown in the displayed patient list.<br>- **Must be a positive integer** 1, 2, 3, …​<br>- Must not be greater than `Integer.MAX_VALUE` of **2147483647**.
+**-**  | `DATE`      |- Must be of the form **`dd-MM-yyyy`**, where `dd` is the day, `MM` is the month, and `yyyy` is the year.
+**-**  | `KEYWORD`   |- Cannot be empty.<br>- Accepts any character.
+
+<box type="info" seamless>
 
 ## Features
 
