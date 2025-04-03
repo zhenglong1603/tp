@@ -231,6 +231,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isAppointmentListEmpty() {
+        return klinix.getDisplayedAppointments().isEmpty();
+    }
+
+    @Override
     public List<Appointment> getOverlappingAppointments(Appointment newAppointment, List<Person> allPersons) {
         LocalDateTime newStart = newAppointment.getStartDate();
         LocalDateTime newEnd = newAppointment.getEndDate();
@@ -266,7 +271,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, apptToMark);
 
         Appointment visited = new Appointment(
-                apptToMark.getDoctorNric(),
                 apptToMark.getDescription(),
                 apptToMark.getStartDate(),
                 apptToMark.getEndDate(),
@@ -300,7 +304,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, apptToUnmark);
 
         Appointment unvisitedAppointment = new Appointment(
-                apptToUnmark.getDoctorNric(),
                 apptToUnmark.getDescription(),
                 apptToUnmark.getStartDate(),
                 apptToUnmark.getEndDate(),

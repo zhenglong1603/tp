@@ -29,17 +29,17 @@ public class AppointmentListTest {
         DateTimeFormatter formatter = DATE_TIME_FORMATTER;
 
         // Create Appointment instances with LocalDateTime
-        appointment1 = new Appointment("S1234567B",
+        appointment1 = new Appointment(
                 "Visit",
                 LocalDateTime.parse("20-03-2025 10:00", formatter),
                 LocalDateTime.parse("20-03-2025 11:00", formatter), "name 1");
 
-        appointment2 = new Appointment("T7654321A",
+        appointment2 = new Appointment(
                 "Surgery",
                 LocalDateTime.parse("19-03-2025 12:00", formatter),
                 LocalDateTime.parse("23-03-2025 13:00", formatter), "name 2");
 
-        overlappingAppointment = new Appointment("T1234567B",
+        overlappingAppointment = new Appointment(
                 "Checkup",
                 LocalDateTime.parse("16-03-2025 10:30", formatter),
                 LocalDateTime.parse("23-03-2025 11:30", formatter), "name 3");

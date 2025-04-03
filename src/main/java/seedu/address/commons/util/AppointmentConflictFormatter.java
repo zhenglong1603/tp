@@ -15,9 +15,9 @@ import seedu.address.model.person.Person;
 public class AppointmentConflictFormatter {
 
     /**
-     * Formats a message detailing overlapping appointments for a given role (e.g., patient or doctor).
+     * Formats a message detailing overlapping appointments for a given role (e.g., patient).
      *
-     * @param role      The role of the person with conflicting appointments (e.g., "Patient" or "Doctor").
+     * @param role      The role of the person with conflicting appointments (e.g., "Patient").
      * @param conflicts The list of overlapping appointments.
      * @param model     The model instance used to retrieve person details.
      * @return A formatted string describing the overlapping appointments.

@@ -168,7 +168,6 @@ This section describes some noteworthy details on how certain features are imple
 #### Overview
 The `addappt` command allows a user to add an appointment tied to a patient with the specified NRIC. The command requires:
 - **NRIC** – Patient's NRIC in the address book.
-- **Doctor NRIC** – Doctor's NRIC.
 - **Description** – Description of the appointment.
 - **Start Date** – Beginning date and time of the appointment.
 - **End Date** – Ending date and time of the appointment.
@@ -178,7 +177,6 @@ The `addappt` command allows a user to add an appointment tied to a patient with
 #### 1. Parsing User Input
 The **`AddAppointmentCommandParser`** class is responsible for parsing user input. It uses `ArgumentTokenizer` to tokenize the input string, extracting:
 - **NRIC** – Identifies the patient in the address book.
-- **Doctor NRIC** – Additional details about the doctor.
 - **Description** – Additional details about the appointment.
 - **Start Date** – Beginning of the appointment.
 - **End Date** – End of the appointment.
@@ -206,13 +204,12 @@ The **`AddAppointmentCommandParser`** and **`AddAppointmentCommand`** classes en
    - **`AddAppointmentCommandParser`** checks if the date and time format follows `dd-MM-yyyy HH:mm`.
    - It checks if the date and time are valid.
    - It also ensures the **Start Date** is before or equal to the **End Date**.
-   - **`AddAppointmentCommandParser`** also checks if the NRIC of patient and doctor follows its format.
+   - **`AddAppointmentCommandParser`** also checks if the NRIC of patient follows its format.
    - **`AddAppointmentCommandParser`** also checks if the description of the appointment follows its format.
      <br><br>
 
 - **Conflict Checking**:
    - **`AddAppointmentCommand`** checks if the new appointment to be added overlaps with any existing appointments for the patient.
-   - **`AddAppointmentCommand`** also checks if the new appointment to be added overlaps with any existing appointments for the doctor.
    - If there is an overlap for any of these scenarios, an error message is thrown, preventing the appointment from being created.
    - If no overlap exists, the new appointment is added to the appointment list of the patient.
 
@@ -450,7 +447,7 @@ Use case ends.
 
 **MSS**
 1. User requests to add an appointment for a patient.
-2. System validates the NRIC and doctor NRIC.
+2. System validates the NRIC.
 3. System checks for existing appointments to prevent overlaps.
 4. System records the appointment details.
 5. System confirms successful addition.
@@ -458,7 +455,6 @@ Use case ends.
 **Extensions**
 - 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
 - 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 2c. Missing doctor NRIC → System returns "Error: Doctor NRIC is missing."
 - 3a. Overlapping appointment detected → System returns "Error: Appointment overlaps with an existing one."
 - 4a. Invalid date format → System returns "Error: Date must be in dd-MM-yyyy HH:mm format."
 
@@ -508,7 +504,7 @@ Use case ends.
 4. System displays the details (name, age, contact, address).
 5. System displays the medical report (allergies, illnesses, surgeries, immunizations).
 6. System displays the medicine usage records (name, dosage, start date, end date).
-7. System displays the appointments (doctor NRIC, description, time).
+7. System displays the appointments (description, time).
 8. 
 **Use case ends.**
 
@@ -658,7 +654,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding an appointment to a patient
     * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
-        * The appointment the user adds must not overlap with any existing appointment of that patient and also the doctor
+        * The appointment the user adds must not overlap with any existing appointment of that patient
           <br><br>
     * **Test Case:** `addappt ic/S1234567A dic/S9876543A appt/Check-Up from/22-02-2025 11:00 to/22-02-2025 11:30`
     * **Expected:** The patient with NRIC S123457A in the list is updated with the following fields:

@@ -100,7 +100,7 @@ public class TestPersonListPanel {
         );
 
         AppointmentList appointmentList = AppointmentList.EMPTY_APPOINTMENT_LIST;
-        appointmentList.add(new Appointment("S1234567A", "Injection",
+        appointmentList.add(new Appointment("Injection",
                 LocalDateTime.of(2025, 10, 1, 10, 30),
                 LocalDateTime.of(2025, 10, 1, 11, 0),
                 "S9876543G"));
@@ -137,7 +137,7 @@ public class TestPersonListPanel {
                 + "2: Medicine2, Dosage2, from 01-01-2020 to 31-12-2020\n"
                 + "\n"
                 + "Appointments: \n"
-                + "1: Injection FROM 01-10-2025 10:30 TO 01-10-2025 11:00 (S1234567A)"
+                + "1: Injection FROM 01-10-2025 10:30 TO 01-10-2025 11:00"
                 + "\n";
 
         assertEquals(expected, PersonListPanel.parsePersonData(person));

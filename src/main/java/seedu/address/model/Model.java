@@ -141,6 +141,8 @@ public interface Model {
      */
     void clearAppointments(Person target);
 
+    boolean isAppointmentListEmpty();
+
     List<Appointment> getOverlappingAppointments(Appointment newAppointmentPerson, List<Person> allPersons);
 
     ObservableLocalDateTime getAppointmentListDate();
