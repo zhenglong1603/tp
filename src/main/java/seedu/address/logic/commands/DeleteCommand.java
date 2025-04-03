@@ -27,7 +27,8 @@ public class DeleteCommand extends Command {
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters for second method: "
+            + "INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Patient: %1$s";
