@@ -530,7 +530,7 @@ Use case ends.
 
 ---
 
-#### **Use Case: Delete Medicine Usage Record**
+**Use Case: Delete Medicine Usage Record**
 **MSS**
 1. User requests to delete a medicine record by ID and NRIC.
 2. System validates the NRIC and ID.
@@ -548,7 +548,7 @@ Use case ends.
 ---
 
 
-#### **Use Case: View Medical Report**
+**Use Case: View Medical Report**
 **MSS**
 1. User requests to view a patient’s medical report by NRIC.
 2. System validates the NRIC.
@@ -564,7 +564,7 @@ Use case ends.
 
 ---
 
-#### **Use Case: View Patient Records**
+**Use Case: View Patient Records**
 **MSS**
 1. User requests to view a patient’s details by NRIC.
 2. System validates the NRIC.
@@ -578,7 +578,7 @@ Use case ends.
 
 ---
 
-#### **Use Case: View Appointments**
+**Use Case: View Appointments**
 **MSS**
 1. User requests to view appointments for a patient by NRIC.
 2. System validates the NRIC.
