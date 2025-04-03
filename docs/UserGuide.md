@@ -216,36 +216,38 @@ Format: `clear`
 
 Add a new medical report to a patient's record.
 
-Format: `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS`
+Format: `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]`
 
 parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
-- `ALLERGIES`: The allergies of the patient. It can be `None` or a list of allergies separated by spaces.
-- `ILLNESSES`: The illnesses of the patient. It can be `None` or a list of illnesses separated by spaces.
-- `SURGERIES`: The surgeries of the patient. It can be `None` or a list of surgeries separated by spaces.
-- `IMMUNIZATIONS`: The immunizations of the patient. It can be `None` or a list of immunizations separated by spaces.
+- `ALLERGIES`: (Optional) The allergies of the patient. It can be `None` or a string of allergies separated by commas.
+- `ILLNESSES`: (Optional) The illnesses of the patient. It can be `None` or a string of illnesses separated by commas.
+- `SURGERIES`: (Optional) The surgeries of the patient. It can be `None` or a string of surgeries separated by commas.
+- `IMMUNIZATIONS`: (Optional) The immunizations of the patient. 
+It can be `None` or a string of immunizations separated by commas.
 
 Examples:
 * `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 * `addmr ic/T0260144G al/None ill/None sur/None imm/None`
+* `addmr ic/S1234567A al/Peanuts, Penicillin ill/None sur/Appendectomy imm/Flu Vaccine, Hepatitis B`
 
 **Warning:**
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
 
-### Delete medical report: `deletemr`
+### Delete medical report: `dmr`
 
 Delete a patient's existing medical report.
 
-Format: `deletemr ic/NRIC`
+Format: `dmr ic/NRIC`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples:
-* `deletemr ic/S1234567A`
-* `deletemr ic/T0260144G`
+* `dmr ic/S1234567A`
+* `dmr ic/T0260144G`
 
 **Warning**
 
