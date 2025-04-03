@@ -62,18 +62,6 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 - `John` -> parameter
   </box>
 
-### Appointment Parameters
-
-Here’s the formatted version of your **use cases**, updated to include missing commands and aligned with your existing structure:
-
----
-
-### **Use Cases**
-*(For all use cases below, the **System** is `Klinix` and the **Actor** is the `user`, unless specified otherwise.)*
-
----
-Here are all parameters extracted from your commands, organized into tables by category (Patient, Medical Report, Medicine Usage, Appointment):
-
 ---
 
 ### **Patient Parameters**
@@ -141,23 +129,6 @@ Here are all parameters extracted from your commands, organized into tables by c
     - `dd-MM-yyyy` for birthdates/medicine dates.
     - `dd-MM-yyyy HH:mm` for appointments.
 3. **Error Handling**: Refer to your use cases for validation messages (e.g., "Invalid NRIC format").
-
-Let me know if you'd like to add/modify any constraints!
-
-#### **Use Case: Delete Medicine Usage Record** *(Missing in User Guide)*
-**MSS**
-1. User requests to delete a medicine record by ID and NRIC.
-2. System validates the NRIC and ID.
-3. System checks if the record exists.
-4. System deletes the record.
-5. System confirms deletion.
-
-**Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Invalid ID → System returns "Error: ID must be a positive integer."
-- 3a. Record not found → System returns "Error: No medicine record found for ID <ID>."
-
-**Use case ends.**
 
 ---
 
