@@ -14,7 +14,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
- * Clears all medicine usages of a person by NRIC.
+ * Clears all medicine usages of a person by NRIC or index.
  */
 public class ClearMedicineUsageCommand extends Command {
 
@@ -23,11 +23,11 @@ public class ClearMedicineUsageCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears all medicine usages of a patient identified by NRIC, OR by the index number used in the "
             + "displayed patient list. However, it cannot be both NRIC and index.\n"
-            + "Parameters for first approach: "
+            + "Parameters for first method: "
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A\n"
-            + "Parameters for second approach: "
+            + "Parameters for second method: "
             + "INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -46,8 +46,8 @@ public class ClearMedicineUsageCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an ClearMedicineUsageCommand to delete all medicine usages of
-     * the person identified by {@code nric}.
+     * Creates a ClearMedicineUsageCommand to delete all medicine usages of
+     * the person identified by {@code Nric}.
      */
     public ClearMedicineUsageCommand(Nric nric) {
         requireNonNull(nric);
@@ -57,8 +57,8 @@ public class ClearMedicineUsageCommand extends Command {
     }
 
     /**
-     * Creates an ClearMedicineUsageCommand to delete all medicine usages of
-     * the person at the specified {@code targetIndex}
+     * Creates a ClearMedicineUsageCommand to delete all medicine usages of
+     * the person at the specified {@code Index}
      */
     public ClearMedicineUsageCommand(Index targetIndex) {
         requireNonNull(targetIndex);
