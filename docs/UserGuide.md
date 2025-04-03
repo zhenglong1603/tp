@@ -294,7 +294,7 @@ Format: `deleteappt INDEX ic/NRIC`
 
 Parameters:
 - `INDEX`: The index of the appointment in the displayed list. It must be a positive integer.
-- `ic/NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Example:
 * `deleteappt 2 ic/S1234567A`
@@ -311,7 +311,7 @@ Clear all appointments of a patient.
 Format: `clearappt ic/<NRIC>`
 
 Parameters:
-- `ic/NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples: `clearappt ic/S1234567A`
 
@@ -326,7 +326,7 @@ Display all appointments on a specific date.
 Format: `appton date/DATE`
 
 Parameters:
-- `date/DATE`: The date to view appointments on. It must be in the format `dd-MM-yyyy`.
+- `DATE`: The date to view appointments on. It must be in the format `dd-MM-yyyy`.
 
 Examples: `appton date/22-03-2025`
 
