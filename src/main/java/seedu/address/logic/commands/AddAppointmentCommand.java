@@ -39,6 +39,8 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Appointment successfully added to %s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
+    public static final String MESSAGE_APPOINTMENT_BEFORE_BIRTHDAY = "The added appointment starts before the "
+            + "patient's birthday!";
 
     private final Nric nric;
     private final Appointment appointment;
@@ -63,6 +65,10 @@ public class AddAppointmentCommand extends Command {
         Person person = model.findPersonByNric(nric);
         if (person == null) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, nric));
+        }
+
+        if (!model.checkValidAppointment(person, appointment)) {
+            throw new CommandException(String.format(MESSAGE_APPOINTMENT_BEFORE_BIRTHDAY));
         }
 
         List<Appointment> overlappingAppointments = model.getOverlappingAppointments(appointment, allPersons);

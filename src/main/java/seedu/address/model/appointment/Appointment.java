@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.DateUtil.DATE_TIME_FORMATTER;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -69,12 +70,16 @@ public class Appointment {
         return this.description;
     }
 
-    public LocalDateTime getStartDate() {
+    public LocalDateTime getStartDateTime() {
         return this.startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public LocalDateTime getEndDateTime() {
         return this.endDate;
+    }
+
+    public LocalDate getStartDate() {
+        return this.startDate.toLocalDate();
     }
 
     public String getPatientNric() {
@@ -115,8 +120,8 @@ public class Appointment {
             return true;
         }
 
-        boolean hasNoTimeOverlap = other.getStartDate().isAfter(this.getEndDate())
-                || other.getEndDate().isBefore(this.getStartDate());
+        boolean hasNoTimeOverlap = other.getStartDateTime().isAfter(this.getEndDateTime())
+                || other.getEndDateTime().isBefore(this.getStartDateTime());
 
         // Modify logic to check for same date overlap (same start and end date)
         return other.getDescription().equals(this.getDescription())

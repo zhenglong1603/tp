@@ -40,8 +40,8 @@ public class JsonAdaptedAppointment {
      */
     public JsonAdaptedAppointment(Appointment source) {
         appointmentDescription = source.getDescription();
-        startDate = source.getStartDate();
-        endDate = source.getEndDate();
+        startDate = source.getStartDateTime();
+        endDate = source.getEndDateTime();
         patientNric = source.getPatientNric();
         visited = source.getVisited();
     }

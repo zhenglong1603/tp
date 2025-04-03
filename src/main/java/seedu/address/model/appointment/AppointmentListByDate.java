@@ -34,7 +34,7 @@ public class AppointmentListByDate {
      * @param appointment the appointment to be added
      */
     public void addAppointment(Appointment appointment) {
-        String formattedDate = dateTmeFormatter(appointment.getStartDate());
+        String formattedDate = dateTmeFormatter(appointment.getStartDateTime());
         if (appointmentsByDate.containsKey(formattedDate)) {
             if (appointmentsByDate.get(formattedDate).contains(appointment)) {
                 return;
@@ -54,7 +54,7 @@ public class AppointmentListByDate {
      * @param appointment the appointment to be removed
      */
     public void removeAppointment(Appointment appointment) {
-        String startDate = dateTmeFormatter(appointment.getStartDate());
+        String startDate = dateTmeFormatter(appointment.getStartDateTime());
         if (appointmentsByDate.containsKey(startDate)) {
             appointmentsByDate.get(startDate).remove(appointment);
         }
@@ -87,7 +87,7 @@ public class AppointmentListByDate {
         if (appointmentList.isEmpty()) {
             throw new EmptyListException();
         }
-        LocalDateTime startDate = appointmentList.get(0).getStartDate();
+        LocalDateTime startDate = appointmentList.get(0).getStartDateTime();
         appointmentsByDate.put(dateTmeFormatter(startDate), appointmentList);
     }
 
@@ -120,7 +120,7 @@ public class AppointmentListByDate {
      * @param appointmentToDelete the appointment to be deleted
      */
     public void deleteAppointment(Appointment appointmentToDelete) {
-        String startDate = dateTmeFormatter(appointmentToDelete.getStartDate());
+        String startDate = dateTmeFormatter(appointmentToDelete.getStartDateTime());
         if (appointmentsByDate.containsKey(startDate)) {
             appointmentsByDate.get(startDate).remove(appointmentToDelete);
         }
@@ -137,7 +137,7 @@ public class AppointmentListByDate {
      * @throws OverlappingAppointmentException if the edited appointment overlaps with another appointment
      */
     public void replaceAppointment(Appointment target, Appointment editedAppointment) {
-        String startDate = dateTmeFormatter(target.getStartDate());
+        String startDate = dateTmeFormatter(target.getStartDateTime());
         if (appointmentsByDate.containsKey(startDate)) {
             ObservableList<Appointment> currentListOfAppointment = appointmentsByDate.get(startDate);
             int index = currentListOfAppointment.indexOf(target);

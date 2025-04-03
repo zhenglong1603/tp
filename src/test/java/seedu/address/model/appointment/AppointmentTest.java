@@ -33,8 +33,8 @@ public class AppointmentTest {
 
         DateTimeFormatter formatter = DATE_TIME_FORMATTER;
 
-        assertEquals(LocalDateTime.parse("20-03-2025 12:00", formatter), appointment.getStartDate());
-        assertEquals(LocalDateTime.parse("20-03-2025 12:30", formatter), appointment.getEndDate());
+        assertEquals(LocalDateTime.parse("20-03-2025 12:00", formatter), appointment.getStartDateTime());
+        assertEquals(LocalDateTime.parse("20-03-2025 12:30", formatter), appointment.getEndDateTime());
         assertEquals("T0207730I", appointment.getPatientNric());
     }
 

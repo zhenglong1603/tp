@@ -152,4 +152,6 @@ public interface Model {
     void unmarkAppointmentVisited(Person person, Appointment apptToMark);
 
     boolean checkValidMedicineUsage(Person person, MedicineUsage medicineUsage);
+    boolean checkValidAppointment(Person person, Appointment appointment);
+
 }
