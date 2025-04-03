@@ -24,7 +24,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.util.ObservableLocalDateTime;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the klinix data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -34,12 +34,12 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given klinix and userPrefs.
      */
     public ModelManager(ReadOnlyKlinix klinix, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(klinix, userPrefs);
 
-        logger.fine("Initializing with address book: " + klinix + " and user prefs " + userPrefs);
+        logger.fine("Initializing with klinix: " + klinix + " and user prefs " + userPrefs);
 
         this.klinix = new Klinix(klinix);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -80,12 +80,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setKlinixFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setKlinixFilePath(addressBookFilePath);
+    public void setKlinixFilePath(Path klinixFilePath) {
+        requireNonNull(klinixFilePath);
+        userPrefs.setKlinixFilePath(klinixFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Klinix ==================================================================================
 
     @Override
     public void setKlinix(ReadOnlyKlinix klinix) {
@@ -382,7 +382,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedKlinix}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {

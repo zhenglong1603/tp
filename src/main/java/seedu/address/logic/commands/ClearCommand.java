@@ -6,12 +6,12 @@ import seedu.address.model.Klinix;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears all data in the the klinix.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Klinix has been cleared!";
 
     /**
      * Creates a ClearCommand.

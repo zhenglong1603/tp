@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonKlinixStorage addressBookStorage = new JsonKlinixStorage(getTempFilePath("ab"));
+        JsonKlinixStorage klinixStorage = new JsonKlinixStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(klinixStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -51,8 +51,8 @@ public class StorageManagerTest {
     public void klinixReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonKlinixStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonKlinixStorageTest} class.
          */
         Klinix original = getTypicalKlinix();
         storageManager.saveKlinix(original);

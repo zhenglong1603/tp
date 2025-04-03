@@ -4,9 +4,9 @@ import seedu.address.model.Klinix;
 import seedu.address.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Klinix objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code KlinixBuilder kb = new KlinixBuilder().withPerson("John", "Doe").build();}
  */
 public class KlinixBuilder {
 
@@ -21,7 +21,7 @@ public class KlinixBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code Klinix} that we are building.
      */
     public KlinixBuilder withPerson(Person person) {
         klinix.addPerson(person);
