@@ -137,7 +137,7 @@ public class TestPersonListPanel {
                 + "2: Medicine2, Dosage2, from 01-01-2020 to 31-12-2020\n"
                 + "\n"
                 + "Appointments: \n"
-                + "1: Injection FROM 01-10-2025 10:30 TO 01-10-2025 11:00"
+                + "1: Injection FROM 01-10-2025 10:30 TO 01-10-2025 11:00 [Not visited]"
                 + "\n";
 
         assertEquals(expected, PersonListPanel.parsePersonData(person));
