@@ -39,7 +39,7 @@ public class BirthDate implements Comparable<BirthDate> {
     }
 
     /**
-     * Returns true if a given string is a valid birth date.
+     * Returns true if a given string is a valid birthdate.
      */
     public static boolean isValidBirthDate(String test) {
         try {
