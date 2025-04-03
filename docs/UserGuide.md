@@ -128,7 +128,7 @@ parameters:
 * `PHONE`: (Optional) The phone number of the person. It should be a valid phone number.
 * `EMAIL`: (Optional) The email of the person. It should be a valid email address.
 * `NRIC`: (Optional) The NRIC of the person. It should be a valid NRIC number.
-* `BIRTHDATE`: (Optional) The birthdate of the person. It should be a valid date in the format `dd/MM/yyyy`.
+* `BIRTHDATE`: (Optional) The birthdate of the person. It should be a valid date in the format `dd-MM-yyyy`.
 * `ADDRESS`: (Optional) The address of the person. It should not be blank.
 * `TAG`: (Optional) The tag of the person.
 
