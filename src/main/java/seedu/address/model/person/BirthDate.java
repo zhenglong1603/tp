@@ -2,9 +2,9 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.DateUtil.DATE_FORMATTER;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -14,10 +14,8 @@ import java.time.format.DateTimeParseException;
 public class BirthDate implements Comparable<BirthDate> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Birth date should be in the format dd/MM/yyyy and should be a valid date";
+            "Birth date should be in the format dd-MM-yyyy and should be a valid date";
     public static final String DATE_IN_FUTURE_CONSTRAINTS = "Birth date should not be in the future";
-
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public final LocalDate value;
 
@@ -60,6 +58,24 @@ public class BirthDate implements Comparable<BirthDate> {
             age--;
         }
         return age;
+    }
+
+    /**
+     * Checks if birthday is after a certain day
+     * @param toCompare day to compare
+     * @return true if it is after {@code toCompare}, false otherwise
+     */
+    public boolean isAfter(LocalDate toCompare) {
+        return value.isAfter(toCompare);
+    }
+
+    /**
+     * Checks if birthday is before a certain day
+     * @param toCompare day to compare
+     * @return true if it is before {@code toCompare}, false otherwise
+     */
+    public boolean isBefore(LocalDate toCompare) {
+        return value.isBefore(toCompare);
     }
 
     @Override

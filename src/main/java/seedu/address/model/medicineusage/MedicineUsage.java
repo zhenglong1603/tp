@@ -24,6 +24,7 @@ public class MedicineUsage {
      */
     public MedicineUsage(MedicineName name, Dosage dosage, LocalDate startDate, LocalDate endDate) {
         requireAllNonNull(name, dosage, startDate, endDate);
+        assert startDate.isBefore(endDate);
         this.name = name;
         this.dosage = dosage;
         this.startDate = startDate;
@@ -80,7 +81,7 @@ public class MedicineUsage {
         boolean hasNoTimeOverlap = other.getStartDate().isAfter(this.getEndDate())
                 || other.getEndDate().isBefore(this.getStartDate());
 
-        return other.getName().equals(this.getName()) && !hasNoTimeOverlap;
+        return other.getName().isSameName(this.getName()) && !hasNoTimeOverlap;
     }
 
     /**

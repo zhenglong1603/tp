@@ -50,7 +50,6 @@ class AddAppointmentCommandTest {
     void execute_successfulAddition() throws CommandException {
         Nric nric = new Nric("S9856324A");
         Appointment appointment = new Appointment(
-                "S9876543A",
                 "Check-Up",
                 LocalDateTime.parse("22-02-2025 12:00", DATE_TIME_FORMATTER),
                 LocalDateTime.parse("22-02-2025 12:30", DATE_TIME_FORMATTER),
@@ -68,7 +67,6 @@ class AddAppointmentCommandTest {
     void execute_personNotFound_throwsCommandException() {
         Nric invalidNric = new Nric("S9999999Z");
         Appointment appointment = new Appointment(
-                "S9876543A",
                 "Check-Up",
                 LocalDateTime.parse("22-02-2025 12:00", DATE_TIME_FORMATTER),
                 LocalDateTime.parse("22-02-2025 12:30", DATE_TIME_FORMATTER),
@@ -81,10 +79,9 @@ class AddAppointmentCommandTest {
     }
 
     @Test
-    void execute_overlappingAppointmentSameDoctor_throwsOverlappingAppointmentException() {
+    void execute_overlappingAppointment_throwsOverlappingAppointmentException() {
         Nric nric = new Nric("S9856324A");
         Appointment existingAppointment = new Appointment(
-                "S9876543A",
                 "Check-Up",
                 LocalDateTime.parse("22-02-2025 10:30", DATE_TIME_FORMATTER),
                 LocalDateTime.parse("22-02-2025 11:00", DATE_TIME_FORMATTER),
@@ -94,7 +91,6 @@ class AddAppointmentCommandTest {
         model.addAppointment(model.findPersonByNric(nric), existingAppointment);
 
         Appointment overlappingAppointment = new Appointment(
-                "S9856324A",
                 "Check-Up",
                 LocalDateTime.parse("22-02-2025 10:45", DATE_TIME_FORMATTER), // Overlaps with existing
                 LocalDateTime.parse("22-02-2025 11:15", DATE_TIME_FORMATTER),
@@ -103,57 +99,6 @@ class AddAppointmentCommandTest {
 
         AddAppointmentCommand command = new AddAppointmentCommand(nric, overlappingAppointment);
 
-        assertThrows(OverlappingAppointmentException.class, () -> command.execute(model));
-    }
-
-    @Test
-    void execute_overlappingAppointmentDifferentDoctor_failure() throws CommandException {
-        Nric nric = new Nric("S9856324A");
-        Appointment existingAppointment = new Appointment(
-                "S9876543A",
-                "Check-Up",
-                LocalDateTime.parse("22-02-2025 10:35", DATE_TIME_FORMATTER),
-                LocalDateTime.parse("22-02-2025 11:00", DATE_TIME_FORMATTER),
-                nric.toString()
-        );
-
-        model.addAppointment(model.findPersonByNric(nric), existingAppointment);
-
-        Appointment nonConflictingAppointment = new Appointment(
-                "S8888888X", // Different doctor
-                "Check-Up",
-                LocalDateTime.parse("22-02-2025 10:45", DATE_TIME_FORMATTER), // Overlaps but different doctor
-                LocalDateTime.parse("22-02-2025 11:15", DATE_TIME_FORMATTER),
-                nric.toString()
-        );
-
-        AddAppointmentCommand command = new AddAppointmentCommand(nric, nonConflictingAppointment);
-        assertThrows(OverlappingAppointmentException.class, () -> command.execute(model));
-    }
-
-    @Test
-    void execute_overlappingAppointmentSameDoctor_failure() throws CommandException {
-        Nric nric = new Nric("S9856324A");
-        Appointment existingAppointment = new Appointment(
-                "S6543217A",
-                "Check-Up",
-                LocalDateTime.parse("22-02-2025 10:35", DATE_TIME_FORMATTER),
-                LocalDateTime.parse("22-02-2025 11:00", DATE_TIME_FORMATTER),
-                nric.toString()
-        );
-
-        model.addAppointment(model.findPersonByNric(nric), existingAppointment);
-
-        Nric nric1 = new Nric("S9999999B");
-        Appointment nonConflictingAppointment = new Appointment(
-                "S6543217A",
-                "Check-Up",
-                LocalDateTime.parse("22-02-2025 10:45", DATE_TIME_FORMATTER), // Overlaps but different doctor
-                LocalDateTime.parse("22-02-2025 11:15", DATE_TIME_FORMATTER),
-                nric1.toString()
-        );
-
-        AddAppointmentCommand command = new AddAppointmentCommand(nric, nonConflictingAppointment);
         assertThrows(OverlappingAppointmentException.class, () -> command.execute(model));
     }
 }

@@ -31,6 +31,7 @@ public class DeleteAppointmentCommand extends Command {
     public static final String MESSAGE_SUCCESS = "From patient %s, successfully deleted appointment:\n%s";
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX = "The appointment "
             + "index provided is invalid";
+    public static final String MESSAGE_INVALID_NO_APPOINTMENT = "The patient has no existing appointments";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
 
     private final Index targetId;
@@ -57,6 +58,10 @@ public class DeleteAppointmentCommand extends Command {
         }
 
         List<Appointment> appointmentList = person.getAppointments();
+        int appointmentCount = appointmentList.size();
+        if (appointmentCount == 0) {
+            throw new CommandException(String.format(MESSAGE_INVALID_NO_APPOINTMENT));
+        }
 
         if (targetId.getZeroBased() >= appointmentList.size()) {
             throw new CommandException(String.format(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX));

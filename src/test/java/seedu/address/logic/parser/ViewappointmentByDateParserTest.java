@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.commons.util.DateUtil.DATE_FORMATTER;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
@@ -14,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ViewappointmentByDateParserTest {
 
     private final ViewAppointmentByDateParser parser = new ViewAppointmentByDateParser();
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private final DateTimeFormatter formatter = DATE_FORMATTER;
 
     @Test
     public void parse_missingDatePrefix_throwsParseException() {

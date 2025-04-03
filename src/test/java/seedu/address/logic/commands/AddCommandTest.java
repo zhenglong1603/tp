@@ -227,6 +227,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isAppointmentListEmpty() {
+            return false;
+        }
+
+        @Override
         public List<Appointment> getOverlappingAppointments(Appointment appointment, List<Person> allPersons) {
             // Since this is a stub, you can leave it empty or simulate behavior
             throw new UnsupportedOperationException("This method should not be called");
@@ -244,6 +249,11 @@ public class AddCommandTest {
 
         @Override
         public void unmarkAppointmentVisited(Person person, Appointment apptToMark) {
+            throw new UnsupportedOperationException("This method should not be called");
+        }
+
+        @Override
+        public boolean checkValidMedicineUsage(Person person, MedicineUsage medicineUsage) {
             throw new UnsupportedOperationException("This method should not be called");
         }
     }

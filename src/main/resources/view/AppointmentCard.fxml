@@ -38,10 +38,6 @@
                        GridPane.columnIndex="0" />
                 <Label fx:id="endDate" text="\$endDate" styleClass="cell_small_label" GridPane.rowIndex="1"
                        GridPane.columnIndex="1" />
-                <Label text="Doctor's Nric: " styleClass="cell_small_label" GridPane.rowIndex="2"
-                       GridPane.columnIndex="0" />
-                <Label fx:id="doctorNric" text="\$doctorNric" styleClass="cell_small_label" GridPane.rowIndex="2"
-                       GridPane.columnIndex="1" />
                 <Label text="Description: " styleClass="cell_small_label" GridPane.rowIndex="3"
                        GridPane.columnIndex="0" />
                 <Label fx:id="description" text="\$description" styleClass="cell_small_label" GridPane.rowIndex="3"

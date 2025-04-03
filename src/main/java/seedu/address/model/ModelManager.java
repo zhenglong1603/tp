@@ -231,6 +231,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isAppointmentListEmpty() {
+        return klinix.getDisplayedAppointments().isEmpty();
+    }
+
+    @Override
     public List<Appointment> getOverlappingAppointments(Appointment newAppointment, List<Person> allPersons) {
         LocalDateTime newStart = newAppointment.getStartDate();
         LocalDateTime newEnd = newAppointment.getEndDate();
@@ -266,7 +271,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, apptToMark);
 
         Appointment visited = new Appointment(
-                apptToMark.getDoctorNric(),
                 apptToMark.getDescription(),
                 apptToMark.getStartDate(),
                 apptToMark.getEndDate(),
@@ -300,7 +304,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, apptToUnmark);
 
         Appointment unvisitedAppointment = new Appointment(
-                apptToUnmark.getDoctorNric(),
                 apptToUnmark.getDescription(),
                 apptToUnmark.getStartDate(),
                 apptToUnmark.getEndDate(),
@@ -362,6 +365,18 @@ public class ModelManager implements Model {
         MedicalReport medicalReport = target.getMedicalReport();
         medicalReport.reset();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    /**
+     * Checks if a person is born before a medicine usage start day (for validity check)
+     * @param target person to compare
+     * @param medicineUsage medicine usage to compare
+     * @return true if the person's birthday is before the medicine usage's start date
+     */
+    @Override
+    public boolean checkValidMedicineUsage(Person target, MedicineUsage medicineUsage) {
+        requireAllNonNull(target, medicineUsage);
+        return !target.bornAfter(medicineUsage.getStartDate());
     }
     //=========== Filtered Person List Accessors =============================================================
 

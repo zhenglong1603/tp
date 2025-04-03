@@ -168,7 +168,6 @@ This section describes some noteworthy details on how certain features are imple
 #### Overview
 The `addappt` command allows a user to add an appointment tied to a patient with the specified NRIC. The command requires:
 - **NRIC** – Patient's NRIC in the address book.
-- **Doctor NRIC** – Doctor's NRIC.
 - **Description** – Description of the appointment.
 - **Start Date** – Beginning date and time of the appointment.
 - **End Date** – Ending date and time of the appointment.
@@ -178,7 +177,6 @@ The `addappt` command allows a user to add an appointment tied to a patient with
 #### 1. Parsing User Input
 The **`AddAppointmentCommandParser`** class is responsible for parsing user input. It uses `ArgumentTokenizer` to tokenize the input string, extracting:
 - **NRIC** – Identifies the patient in the address book.
-- **Doctor NRIC** – Additional details about the doctor.
 - **Description** – Additional details about the appointment.
 - **Start Date** – Beginning of the appointment.
 - **End Date** – End of the appointment.
@@ -206,13 +204,12 @@ The **`AddAppointmentCommandParser`** and **`AddAppointmentCommand`** classes en
    - **`AddAppointmentCommandParser`** checks if the date and time format follows `dd-MM-yyyy HH:mm`.
    - It checks if the date and time are valid.
    - It also ensures the **Start Date** is before or equal to the **End Date**.
-   - **`AddAppointmentCommandParser`** also checks if the NRIC of patient and doctor follows its format.
+   - **`AddAppointmentCommandParser`** also checks if the NRIC of patient follows its format.
    - **`AddAppointmentCommandParser`** also checks if the description of the appointment follows its format.
      <br><br>
 
 - **Conflict Checking**:
    - **`AddAppointmentCommand`** checks if the new appointment to be added overlaps with any existing appointments for the patient.
-   - **`AddAppointmentCommand`** also checks if the new appointment to be added overlaps with any existing appointments for the doctor.
    - If there is an overlap for any of these scenarios, an error message is thrown, preventing the appointment from being created.
    - If no overlap exists, the new appointment is added to the appointment list of the patient.
 
@@ -422,7 +419,7 @@ Use case ends.
 - 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
 - 3a. No medical report found → System returns "Error: Medical report for Patient [NRIC] is missing."
 - 4a. Duplicate entry detected → System returns "Error: Duplicate entry detected. No changes were made."
-- 4b. Start date is after end date → System returns "Error: Date must be in YYYY-MM-DD format."
+- 4b. Start date is after end date → System returns "Error: Date must be in dd-MM-yyyy format."
 
 Use case ends.
 
@@ -450,7 +447,7 @@ Use case ends.
 
 **MSS**
 1. User requests to add an appointment for a patient.
-2. System validates the NRIC and doctor NRIC.
+2. System validates the NRIC.
 3. System checks for existing appointments to prevent overlaps.
 4. System records the appointment details.
 5. System confirms successful addition.
@@ -458,9 +455,8 @@ Use case ends.
 **Extensions**
 - 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
 - 2b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 2c. Missing doctor NRIC → System returns "Error: Doctor NRIC is missing."
 - 3a. Overlapping appointment detected → System returns "Error: Appointment overlaps with an existing one."
-- 4a. Invalid date format → System returns "Error: Date must be in YYYY-MM-DD-HHmm format."
+- 4a. Invalid date format → System returns "Error: Date must be in dd-MM-yyyy HH:mm format."
 
 Use case ends.
 
@@ -484,60 +480,56 @@ Use case ends.
 
 ---
 
-**Use case: View Medical Report**
-
+**Use Case: Delete Medicine Usage Record**
 **MSS**
-1. User requests to view a patient’s medical report.
-2. System validates the NRIC.
-3. System retrieves the medical report details.
-4. System displays the report to the user.
+1. User requests to delete a medicine record by ID and NRIC.
+2. System validates the NRIC and ID.
+3. System checks if the record exists.
+4. System deletes the record.
+5. System confirms deletion.
 
 **Extensions**
 - 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 3a. No medical report found → System returns "Error: No medical history found with the given NRIC."
+- 2b. Invalid ID → System returns "Error: ID must be a positive integer."
+- 3a. Record not found → System returns "Error: No medicine record found for ID <ID>."
 
-Use case ends.
+**Use case ends.**
 
 ---
 
-**Use case: View Patient Records**
-
+**Use Case: View Patient details**
 **MSS**
-1. User requests to view a patient’s details.
-2. System validates the NRIC.
-3. System retrieves and displays patient records.
+1. User requests to view a patient’s details by clicking on the list of patients.
+3. System retrieves the patient details.
+4. System displays the details (name, age, contact, address).
+5. System displays the medical report (allergies, illnesses, surgeries, immunizations).
+6. System displays the medicine usage records (name, dosage, start date, end date).
+7. System displays the appointments (description, time).
+8. 
+**Use case ends.**
+
+---
+
+**Use Case: View Appointments on Date**
+**MSS**
+1. User requests to view appointments for a date.
+2. System validates the date.
+3. System retrieves and displays all appointments on the date.
 
 **Extensions**
-- 2a. Missing NRIC → System returns "Error: NRIC is required."
-- 3a. No matching record found → System returns "Error: Patient record not found."
+- 2a. Missing DATE → System returns "Error: DATE is required."
+- 3a. No appointments → System returns "Info: No appointments found for DATE <DATE>."
 
-Use case ends.
-
----
-
-**Use case: View Appointments**
-
-**MSS**
-1. User requests to view appointments for a patient.
-2. System validates the NRIC.
-3. System retrieves and displays upcoming appointments.
-
-**Extensions**
-- 2a. Missing NRIC → System returns "Error: NRIC is required."
-- 3a. No appointments found → System returns "Error: No appointments found for the specified date."
-
-Use case ends.
+**Use case ends.**
 
 ---
+
 *{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -596,6 +588,137 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Adding a medical report
+
+**Command:** `addmr`<br>
+
+1. Adding a medical report to a patient
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+    * **Test Case:** `addmr ic/S1234567A al/Peanut Allergy ill/Diabetes sur/Appendectomy imm/Flu Shot, Tetanus`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+        * Drug Allergies: `Peanut Allergy`
+        * Illnesses: `Diabetes`
+        * Surgeries: `Appendectomy`
+        * Immunizations: `Flu Shot, Tetanus`
+        * Other fields remain unchanged
+          <br><br>
+      
+2. Adding a medical report to a patient with an existing medical report
+   * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has an existing medical report
+    * **Test Case:** `addmr ic/S1234567A al/Peanut Allergy ill/Diabetes sur/Appendectomy imm/Flu Shot, Tetanus`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields, overwriting the 
+   the previous fields:
+        * Drug Allergies: `Peanut Allergy`
+        * Illnesses: `Diabetes`
+        * Surgeries: `Appendectomy`
+        * Immunizations: `Flu Shot, Tetanus`
+        * Other fields remain unchanged
+          <br><br>
+      
+3. Adding a medical report with missing parameters
+   * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+    * **Test Case:** `addmr ic/S1234567A al/Peanut Allergy ill/Diabetes`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+        * Drug Allergies: `Peanut Allergy`
+        * Illnesses: `Diabetes`
+        * Surgeries: `None`
+        * Immunizations: `None`
+        * Other fields remain unchanged
+          <br><br>
+
+### Deleting a medical report
+
+**Command:** `dmr`<br>
+
+1. Deleting a medical report from a patient
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+    * **Test Case:** `dmr ic/S1234567A`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+        * Drug Allergies: `None`
+        * Illnesses: `None`
+        * Surgeries: `None`
+        * Immunizations: `None`
+        * Other fields remain unchanged
+          <br><br>
+
+### Making an appointment
+
+**Command:** `addappt`<br>
+
+1. Adding an appointment to a patient
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * The appointment the user adds must not overlap with any existing appointment of that patient
+          <br><br>
+    * **Test Case:** `addappt ic/S1234567A dic/S9876543A appt/Check-Up from/22-02-2025 11:00 to/22-02-2025 11:30`
+    * **Expected:** The patient with NRIC S123457A in the list is updated with the following fields:
+        * Appointment: `Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30 (S9876543A)`
+        * Other fields remain unchanged
+          <br><br>
+2. Adding an appointment that overlaps with existing patient's appointments
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * The appointment the user adds must overlap with an existing appointment
+          <br><br>
+    * **Test Case:** `addappt ic/S1234567A dic/S9876543A appt/Injection from/22-02-2025 11:15 to/22-02-2025 11:45`
+    * **Expected:** Klinix throws the error message `Patient has overlapping appointments with the following patients: -Alex Yeoh FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
+      <br><br>
+
+### Deleting an appointment
+
+**Command:** `deleteappt`<br>
+
+1. Deleting an appointment from a patient who has an appointment
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `deleteappt 1 ic/S1234567A`
+    * **Expected:** The patient with  in the list is updated with the following fields:
+        * Appointment: `No appointments found`
+        * Other fields remain unchanged.
+        * Klinix will return a confirmation message `From patient S1234567A, successfully deleted appointment:
+          Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
+          <br><br>
+2. Deleting an appointment from a patient who has no appointment
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has no existing appointment
+          <br><br>
+    * **Test Case:** `deleteappt 1 ic/S1234567A`
+    * **Expected:** Klinix throws the error message `The patient has no existing appointments`
+      <br><br>
+
+### Clearing appointments
+
+**Command:** `clearappt`<br>
+
+1. Clearing appointments from a patient who has existing appointment(s)
+   * **Prerequisites:**
+     * The patient with that NRIC must be present in the patient list
+     * That patient has existing appointment(s)
+     <br><br>
+       * **Test Case:** `clearappt ic/S1234567A`
+       * **Expected:** The patient with  in the list is updated with the following fields:
+           * Appointment: `No appointments found`
+           * Other fields remain unchanged.
+           * Klinix will return a confirmation message `From patient S1234567A, successfully deleted appointment:
+             Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
+             <br><br>
+2. Clearing appointments from a patient who has no appointment
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has no existing appointment
+          <br><br>
+    * **Test Case:** `clearappt ic/S1234567A`
+    * **Expected:** Klinix throws the error message `No appointments to clear`
+      <br><br>
 
 ### Saving data
 
