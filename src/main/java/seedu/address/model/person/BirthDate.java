@@ -60,6 +60,24 @@ public class BirthDate implements Comparable<BirthDate> {
         return age;
     }
 
+    /**
+     * Checks if birthday is after a certain day
+     * @param toCompare day to compare
+     * @return true if it is after {@code toCompare}, false otherwise
+     */
+    public boolean isAfter(LocalDate toCompare) {
+        return value.isAfter(toCompare);
+    }
+
+    /**
+     * Checks if birthday is before a certain day
+     * @param toCompare day to compare
+     * @return true if it is before {@code toCompare}, false otherwise
+     */
+    public boolean isBefore(LocalDate toCompare) {
+        return value.isBefore(toCompare);
+    }
+
     @Override
     public String toString() {
         return value.format(DATE_FORMATTER);

@@ -81,7 +81,7 @@ public class MedicineUsage {
         boolean hasNoTimeOverlap = other.getStartDate().isAfter(this.getEndDate())
                 || other.getEndDate().isBefore(this.getStartDate());
 
-        return other.getName().equals(this.getName()) && !hasNoTimeOverlap;
+        return other.getName().isSameName(this.getName()) && !hasNoTimeOverlap;
     }
 
     /**
