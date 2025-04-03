@@ -8,7 +8,7 @@ import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.medicineusage.MedicineUsageList;
 
 /**
- * Represents a Person's medical report in the address book.
+ * Represents a Person's medical report in the klinix.
  */
 public class MedicalReport {
 

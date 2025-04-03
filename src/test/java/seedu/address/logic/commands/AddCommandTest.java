@@ -121,7 +121,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setKlinixFilePath(Path addressBookFilePath) {
+        public void setKlinixFilePath(Path klinixFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -254,6 +254,11 @@ public class AddCommandTest {
 
         @Override
         public boolean checkValidMedicineUsage(Person person, MedicineUsage medicineUsage) {
+            throw new UnsupportedOperationException("This method should not be called");
+        }
+
+        @Override
+        public boolean checkValidAppointment(Person person, Appointment appointment) {
             throw new UnsupportedOperationException("This method should not be called");
         }
     }

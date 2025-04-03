@@ -62,18 +62,6 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 - `John` -> parameter
   </box>
 
-### Appointment Parameters
-
-Here’s the formatted version of your **use cases**, updated to include missing commands and aligned with your existing structure:
-
----
-
-### **Use Cases**
-*(For all use cases below, the **System** is `Klinix` and the **Actor** is the `user`, unless specified otherwise.)*
-
----
-Here are all parameters extracted from your commands, organized into tables by category (Patient, Medical Report, Medicine Usage, Appointment):
-
 ---
 
 ### **Patient Parameters**
@@ -142,23 +130,6 @@ Here are all parameters extracted from your commands, organized into tables by c
     - `dd-MM-yyyy HH:mm` for appointments.
 3. **Error Handling**: Refer to your use cases for validation messages (e.g., "Invalid NRIC format").
 
-Let me know if you'd like to add/modify any constraints!
-
-#### **Use Case: Delete Medicine Usage Record** *(Missing in User Guide)*
-**MSS**
-1. User requests to delete a medicine record by ID and NRIC.
-2. System validates the NRIC and ID.
-3. System checks if the record exists.
-4. System deletes the record.
-5. System confirms deletion.
-
-**Extensions**
-- 2a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 2b. Invalid ID → System returns "Error: ID must be a positive integer."
-- 3a. Record not found → System returns "Error: No medicine record found for ID <ID>."
-
-**Use case ends.**
-
 ---
 
 ### **Alignment Notes**
@@ -174,8 +145,6 @@ Let me know if you'd like to add/modify any constraints!
 
 4. **User Guide Sync**
     - Commands like `viewmr`/`viewappt` can now reference these use cases for behavior.
-
-<box type="info" seamless>
 
 ## Features
 
@@ -339,18 +308,18 @@ Examples:
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
 
-### Delete medical report: `dmr`
+### Delete medical report: `deletemr`
 
 Delete a patient's existing medical report.
 
-Format: `dmr ic/NRIC`
+Format: `deletemr ic/NRIC`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples:
-* `dmr ic/S1234567A`
-* `dmr ic/T0260144G`
+* `deletemr ic/S1234567A`
+* `deletemr ic/T0260144G`
 
 **Warning**
 
@@ -481,6 +450,8 @@ Klinix data are saved in the hard disk automatically after any command that chan
 
 Klinix data are saved automatically as a JSON file `[JAR file location]/data/Klinix.json`. Advanced users are welcome to update data directly by editing that data file.
 
+<box type="info" seamless>
+
 **Caution:**
 If your changes to the data file makes its format invalid, Klinix will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
@@ -510,7 +481,7 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add Appointment** | `addappt ic/NRIC appt/DESCRIPTION from/START to/END` <br> e.g., `addappt ic/T0260144G appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
-**Add Medical Report** | `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
+**Add Medical Report** | `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 **Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
 **Clear**  | `clear`
 **Clear Appointments** | `clearappt ic/NRIC` <br> e.g., `clearappt ic/S1234567A`

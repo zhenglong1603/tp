@@ -92,7 +92,7 @@ public class KlinixTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyKlinix whose persons list can violate interface constraints.
      */
     private static class KlinixStub implements ReadOnlyKlinix {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();

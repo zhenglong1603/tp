@@ -28,7 +28,7 @@ public interface Logic {
     CommandResult executeWithoutConfirmation(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Klinix.
      *
      * @see seedu.address.model.Model#getKlinix()
      */

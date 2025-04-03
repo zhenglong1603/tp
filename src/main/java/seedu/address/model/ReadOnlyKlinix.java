@@ -6,7 +6,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an klinix
  */
 public interface ReadOnlyKlinix {
 

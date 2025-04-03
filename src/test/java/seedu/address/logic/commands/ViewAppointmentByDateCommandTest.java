@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.commons.util.DateUtil.DATE_DISPLAY_FORMATTER;
 import static seedu.address.commons.util.DateUtil.DATE_TIME_FORMATTER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -58,7 +59,8 @@ public class ViewAppointmentByDateCommandTest {
 
         LocalDate testDate = LocalDate.of(2025, 2, 22);
         ViewAppointmentByDateCommand command = new ViewAppointmentByDateCommand(testDate);
-        String expectedMessage = String.format(ViewAppointmentByDateCommand.MESSAGE_SUCCESS, testDate);
+        String expectedMessage = String.format(ViewAppointmentByDateCommand.MESSAGE_SUCCESS,
+                testDate.format(DATE_DISPLAY_FORMATTER));
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false);
         assertCommandSuccess(command, model, expectedCommandResult, model);
     }
@@ -78,7 +80,8 @@ public class ViewAppointmentByDateCommandTest {
 
         CommandResult result = command.execute(model);
         assertEquals(
-                String.format(ViewAppointmentByDateCommand.MESSAGE_NO_APPOINTMENT, testDate),
+                String.format(ViewAppointmentByDateCommand.MESSAGE_NO_APPOINTMENT,
+                        testDate.format(DATE_DISPLAY_FORMATTER)),
                 result.getFeedbackToUser()
         );
     }

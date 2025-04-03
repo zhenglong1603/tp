@@ -15,9 +15,9 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Klinix that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "klinix")
 class JsonSerializableKlinix {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
@@ -26,7 +26,7 @@ class JsonSerializableKlinix {
     private final ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableKlinix} with the given persons.
      */
     @JsonCreator
     public JsonSerializableKlinix(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
@@ -34,30 +34,30 @@ class JsonSerializableKlinix {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyKlinix} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableKlinix}.
      */
     public JsonSerializableKlinix(ReadOnlyKlinix source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this klinix into the model's {@code Klinix} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Klinix toModelType() throws IllegalValueException {
-        Klinix addressBook = new Klinix();
+        Klinix klinix = new Klinix();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (klinix.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
-            addressBook.addAppointment(person.getAppointments());
+            klinix.addPerson(person);
+            klinix.addAppointment(person.getAppointments());
         }
-        return addressBook;
+        return klinix;
     }
 
 }

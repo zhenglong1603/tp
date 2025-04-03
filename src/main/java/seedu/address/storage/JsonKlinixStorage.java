@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyKlinix;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access Klinix data stored as a json file on the hard disk.
  */
 public class JsonKlinixStorage implements KlinixStorage {
 
@@ -45,14 +45,14 @@ public class JsonKlinixStorage implements KlinixStorage {
     public Optional<ReadOnlyKlinix> readKlinix(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableKlinix> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableKlinix> jsonKlinix = JsonUtil.readJsonFile(
                 filePath, JsonSerializableKlinix.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonKlinix.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonKlinix.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
@@ -60,8 +60,8 @@ public class JsonKlinixStorage implements KlinixStorage {
     }
 
     @Override
-    public void saveKlinix(ReadOnlyKlinix addressBook) throws IOException {
-        saveKlinix(addressBook, filePath);
+    public void saveKlinix(ReadOnlyKlinix klinix) throws IOException {
+        saveKlinix(klinix, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonKlinixStorage implements KlinixStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveKlinix(ReadOnlyKlinix addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveKlinix(ReadOnlyKlinix klinix, Path filePath) throws IOException {
+        requireNonNull(klinix);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableKlinix(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableKlinix(klinix), filePath);
     }
 
 }

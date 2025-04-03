@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.DateUtil.DATE_DISPLAY_FORMATTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.time.LocalDate;
@@ -33,8 +34,8 @@ public class ViewAppointmentByDateCommand extends Command {
         requireNonNull(model);
         model.changeDisplayedAppointments(localDate);
         if (model.isAppointmentListEmpty()) {
-            return new CommandResult(String.format(MESSAGE_NO_APPOINTMENT, localDate));
+            return new CommandResult(String.format(MESSAGE_NO_APPOINTMENT, localDate.format(DATE_DISPLAY_FORMATTER)));
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, localDate));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, localDate.format(DATE_DISPLAY_FORMATTER)));
     }
 }

@@ -12,7 +12,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Klinix data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code KlinixStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(KlinixStorage klinixStorage, UserPrefsStorage userPrefsStorage) {
         this.klinixStorage = klinixStorage;
@@ -46,7 +46,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Klinix methods =================================
 
     @Override
     public Path getKlinixFilePath() {
@@ -65,14 +65,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveKlinix(ReadOnlyKlinix addressBook) throws IOException {
-        saveKlinix(addressBook, klinixStorage.getKlinixFilePath());
+    public void saveKlinix(ReadOnlyKlinix klinix) throws IOException {
+        saveKlinix(klinix, klinixStorage.getKlinixFilePath());
     }
 
     @Override
-    public void saveKlinix(ReadOnlyKlinix addressBook, Path filePath) throws IOException {
+    public void saveKlinix(ReadOnlyKlinix klinix, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        klinixStorage.saveKlinix(addressBook, filePath);
+        klinixStorage.saveKlinix(klinix, filePath);
     }
 
 }

@@ -20,7 +20,7 @@ import seedu.address.model.Klinix;
 import seedu.address.model.ReadOnlyKlinix;
 
 public class JsonKlinixStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonKlinixStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -47,41 +47,41 @@ public class JsonKlinixStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataLoadingException.class, () -> readKlinix("notJsonFormatAddressBook.json"));
+        assertThrows(DataLoadingException.class, () -> readKlinix("notJsonFormatKlinix.json"));
     }
 
     @Test
     public void readKlinix_invalidPersonKlinix_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readKlinix("invalidPersonAddressBook.json"));
+        assertThrows(DataLoadingException.class, () -> readKlinix("invalidPersonKlinix.json"));
     }
 
     @Test
     public void readKlinix_invalidAndValidPersonKlinix_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readKlinix("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataLoadingException.class, () -> readKlinix("invalidAndValidPersonKlinix.json"));
     }
 
     @Test
     public void readAndSaveKlinix_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempKlinix.json");
         Klinix original = getTypicalKlinix();
-        JsonKlinixStorage jsonAddressBookStorage = new JsonKlinixStorage(filePath);
+        JsonKlinixStorage jsonKlinixStorage = new JsonKlinixStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveKlinix(original, filePath);
-        ReadOnlyKlinix readBack = jsonAddressBookStorage.readKlinix(filePath).get();
+        jsonKlinixStorage.saveKlinix(original, filePath);
+        ReadOnlyKlinix readBack = jsonKlinixStorage.readKlinix(filePath).get();
         assertEquals(original, new Klinix(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveKlinix(original, filePath);
-        readBack = jsonAddressBookStorage.readKlinix(filePath).get();
+        jsonKlinixStorage.saveKlinix(original, filePath);
+        readBack = jsonKlinixStorage.readKlinix(filePath).get();
         assertEquals(original, new Klinix(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveKlinix(original); // file path not specified
-        readBack = jsonAddressBookStorage.readKlinix().get(); // file path not specified
+        jsonKlinixStorage.saveKlinix(original); // file path not specified
+        readBack = jsonKlinixStorage.readKlinix().get(); // file path not specified
         assertEquals(original, new Klinix(readBack));
 
     }
@@ -92,12 +92,12 @@ public class JsonKlinixStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code klinix} at the specified {@code filePath}.
      */
-    private void saveKlinix(ReadOnlyKlinix addressBook, String filePath) {
+    private void saveKlinix(ReadOnlyKlinix klinix, String filePath) {
         try {
             new JsonKlinixStorage(Paths.get(filePath))
-                    .saveKlinix(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveKlinix(klinix, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
