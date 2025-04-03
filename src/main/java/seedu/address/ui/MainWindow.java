@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.DateUtil.DATE_DISPLAY_FORMATTER;
+
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
@@ -20,8 +22,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.exceptions.OverlappingAppointmentException;
 import seedu.address.model.medicineusage.exceptions.OverlappingMedicineUsageException;
-
-import static seedu.address.commons.util.DateUtil.DATE_DISPLAY_FORMATTER;
 
 /**
  * The Main Window. Provides the basic application layout containing
