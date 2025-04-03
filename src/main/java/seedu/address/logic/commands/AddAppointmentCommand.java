@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
@@ -28,14 +27,12 @@ public class AddAppointmentCommand extends Command {
             + ": Adds an appointment to a patient identified by NRIC.\n"
             + "Parameters: \n"
             + PREFIX_NRIC + "<NRIC> "
-            + PREFIX_DOCTOR_NRIC + "<doctorNRIC> "
             + PREFIX_APPOINTMENT_DESCRIPTION + "<appointmentType> "
             + PREFIX_FROM + "<date> "
             + PREFIX_TO + "<date> \n"
             + "Date is of the following format: dd-MM-yyyy HH:mm \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A "
-            + PREFIX_DOCTOR_NRIC + "S9876543A "
             + PREFIX_APPOINTMENT_DESCRIPTION + "Check-Up "
             + PREFIX_FROM + "22-02-2025 11:00 "
             + PREFIX_TO + "22-02-2025 11:30\n";
@@ -74,9 +71,6 @@ public class AddAppointmentCommand extends Command {
                 .filter(existingAppointment ->
                         existingAppointment.getPatientNric().equals(appointment.getPatientNric()))
                 .toList();
-        List<Appointment> doctorConflicts = overlappingAppointments.stream()
-                .filter(existingAppointment -> existingAppointment.getDoctorNric().equals(appointment.getDoctorNric()))
-                .toList();
 
         if (!patientConflicts.isEmpty()) {
             throw new OverlappingAppointmentException(
@@ -84,11 +78,6 @@ public class AddAppointmentCommand extends Command {
             );
         }
 
-        if (!doctorConflicts.isEmpty()) {
-            throw new OverlappingAppointmentException(
-                    AppointmentConflictFormatter.formatConflicts("Doctor", doctorConflicts, model)
-            );
-        }
         model.addAppointment(person, appointment);
         return new CommandResult(String.format(MESSAGE_SUCCESS, nric));
     }

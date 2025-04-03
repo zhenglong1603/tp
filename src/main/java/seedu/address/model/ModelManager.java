@@ -266,7 +266,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, apptToMark);
 
         Appointment visited = new Appointment(
-                apptToMark.getDoctorNric(),
                 apptToMark.getDescription(),
                 apptToMark.getStartDate(),
                 apptToMark.getEndDate(),
@@ -300,7 +299,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, apptToUnmark);
 
         Appointment unvisitedAppointment = new Appointment(
-                apptToUnmark.getDoctorNric(),
                 apptToUnmark.getDescription(),
                 apptToUnmark.getStartDate(),
                 apptToUnmark.getEndDate(),

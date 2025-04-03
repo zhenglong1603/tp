@@ -23,8 +23,6 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private Label startDate;
     @FXML
-    private Label doctorNric;
-    @FXML
     private Label description;
     @FXML
     private Label patientNric;
@@ -47,7 +45,6 @@ public class AppointmentCard extends UiPart<Region> {
 
 
         visited.setText(appointment.getVisited() ? "Visited" : "Not Visited");
-        doctorNric.setText(appointment.getDoctorNric());
         description.setText(appointment.getDescription());
         startDate.setText(appointment.getStartDate().format(DATE_TIME_FORMATTER));
         endDate.setText(appointment.getEndDate().format(DATE_TIME_FORMATTER));
