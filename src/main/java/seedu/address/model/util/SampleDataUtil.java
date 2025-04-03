@@ -40,7 +40,7 @@ public class SampleDataUtil {
                 getTagSet("friends"),
                 new MedicalReport("Pollen", "Asthma", "Appendectomy", "COVID-19"),
                 new AppointmentList());
-        p1.addAppointment(new Appointment("S1234567A", "Checkup",
+        p1.addAppointment(new Appointment("Checkup",
                 LocalDateTime.of(2025, 5, 10, 9, 00),
                 LocalDateTime.of(2025, 5, 10, 9, 15), "S1234567A"));
         p1.addMedicineUsage(new MedicineUsage(
@@ -58,7 +58,7 @@ public class SampleDataUtil {
                 getTagSet("colleagues", "friends"),
                 new MedicalReport("None", "Diabetes", "None", "Hepatitis B"),
                 new AppointmentList());
-        p2.addAppointment(new Appointment("S1234567A", "Dental Appointment",
+        p2.addAppointment(new Appointment("Dental Appointment",
                 LocalDateTime.of(2025, 6, 15, 13, 30),
                 LocalDateTime.of(2025, 6, 15, 14, 00), "S1234568B"));
 
@@ -84,7 +84,7 @@ public class SampleDataUtil {
                 getTagSet("neighbours"),
                 new MedicalReport("Dust", "None", "Tonsillectomy", "Flu"),
                 new AppointmentList());
-        p3.addAppointment(new Appointment("S1234567A", "Flu Vaccination",
+        p3.addAppointment(new Appointment( "Flu Vaccination",
                 LocalDateTime.of(2025, 7, 20, 12, 00),
                 LocalDateTime.of(2025, 7, 20, 12, 15), "S1234569C"));
 
@@ -97,7 +97,7 @@ public class SampleDataUtil {
                 getTagSet("family"),
                 new MedicalReport("Peanuts", "Hypertension", "None", "None"),
                 new AppointmentList());
-        p4.addAppointment(new Appointment("S1234567A", "Eye Checkup",
+        p4.addAppointment(new Appointment( "Eye Checkup",
                 LocalDateTime.of(2025, 8, 25, 10, 00),
                 LocalDateTime.of(2025, 8, 25, 10, 15), "S1234569D"));
 
@@ -132,7 +132,7 @@ public class SampleDataUtil {
                 getTagSet("colleagues"),
                 new MedicalReport("Shellfish", "Gout", "Gallbladder Removal", "None"),
                 new AppointmentList());
-        p6.addAppointment(new Appointment("S1234567A", "Routine Checkup",
+        p6.addAppointment(new Appointment("Routine Checkup",
                 LocalDateTime.of(2025, 9, 30, 11, 00),
                 LocalDateTime.of(2025, 9, 30, 11, 30), "S1234569F"));
         p6.addMedicineUsage(new MedicineUsage(

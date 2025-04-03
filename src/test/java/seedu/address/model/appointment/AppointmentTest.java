@@ -20,10 +20,10 @@ public class AppointmentTest {
         DateTimeFormatter formatter = DATE_TIME_FORMATTER;
 
         // Create Appointment with LocalDateTime
-        appointment = new Appointment("T1234567B",
+        appointment = new Appointment(
                 "Doctor Visit",
                 LocalDateTime.parse("20-03-2025 12:00", formatter),
-                LocalDateTime.parse("20-03-2025 12:30", formatter), "name 1");
+                LocalDateTime.parse("20-03-2025 12:30", formatter), "T0207730I");
     }
 
     @Test
@@ -35,7 +35,7 @@ public class AppointmentTest {
 
         assertEquals(LocalDateTime.parse("20-03-2025 12:00", formatter), appointment.getStartDate());
         assertEquals(LocalDateTime.parse("20-03-2025 12:30", formatter), appointment.getEndDate());
-        assertEquals("T1234567B", appointment.getDoctorNric());
+        assertEquals("T0207730I", appointment.getPatientNric());
     }
 
     @Test

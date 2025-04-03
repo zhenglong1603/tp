@@ -67,7 +67,6 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 | Symbol     | Parameter      | Constraints                                                                                                                                                    |
 |------------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **`ic`**   | `PATIENT_NRIC` | - Must be a **9-character alphanumeric string** that starts with **an uppercase letter (A-Z)**, followed by **7 digits (0-9)** and ends with **an uppercase letter (A-Z)**.
-| **`dic`**  | `DOCTOR_NRIC`  | - Must be a **9-character alphanumeric string** that starts with **an uppercase letter (A-Z)**, followed by **7 digits (0-9)** and ends with **an uppercase letter (A-Z)**.
 | **`appt`** | `DESCRIPTION`  | - Must contain **at least 1 alphabetic** character and has a character **limit of 40**.                                                                        |
 | **`from`** | `START_DATE`   | - A singular`DATE-TIME` in the form `dd-MM-yyyy HH:mm`, where `dd` is the day, `MM` is the month, `yyyy` is the year, `HH` is the hour and `mm` is the minute. |
 | **`to`**   | `END_DATE`     | - A singular`DATE-TIME` in the form `dd-MM-yyyy HH:mm`, where `dd` is the day, `MM` is the month, `yyyy` is the year, `HH` is the hour and `mm` is the minute. |
@@ -315,10 +314,10 @@ Examples:
 
 Add a new appointment to the patient.
 
-Format: `addappt ic/NRIC dic/DOCTOR_NRIC appt/DESCRIPTION from/START to/END`
+Format: `addappt ic/NRIC appt/DESCRIPTION from/START to/END`
 
 Example:
-* `addappt ic/S1234567A dic/S9876543A appt/Check-up from/22-02-2025 10:00 to/23-02-2025 10:15`
+* `addappt ic/S1234567A appt/Check-up from/22-02-2025 10:00 to/23-02-2025 10:15`
 
 **Warning:**
 
@@ -414,7 +413,7 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Add Appointment** | `addappt ic/NRIC dic/DOCTOR_NRICE appt/DESCRIPTION from/START to/END` <br> e.g., `addappt ic/T0260144G dic/T9876543B appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
+**Add Appointment** | `addappt ic/NRIC appt/DESCRIPTION from/START to/END` <br> e.g., `addappt ic/T0260144G appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
 **Add Medical Report** | `addmr ic/NRIC al/ALLERGIES ill/ILLNESSES sur/SURGERIES imm/IMMUNIZATIONS` <br> e.g., `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 **Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g., `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
 **Clear**  | `clear`
