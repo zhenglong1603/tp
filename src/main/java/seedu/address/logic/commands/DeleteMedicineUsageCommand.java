@@ -19,18 +19,18 @@ public class DeleteMedicineUsageCommand extends Command {
     public static final String COMMAND_WORD = "deletemu";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a medicine usage of a person given their NRIC and the index number displayed "
-            + "in the person's details.\n"
+            + ": Deletes a medicine usage of a patient given their NRIC and the index number displayed "
+            + "in the patient's details.\n"
             + "Parameters: "
             + "ID (must be a positive integer) "
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 " + PREFIX_NRIC + " S1234567A\n";
 
-    public static final String MESSAGE_SUCCESS = "From person %s, successfully deleted medicine usage:\n%s";
+    public static final String MESSAGE_SUCCESS = "From patient %s, successfully deleted medicine usage:\n%s";
     public static final String MESSAGE_INVALID_MEDICINE_USAGE_DISPLAYED_INDEX = "The medicine usage "
             + "index provided is invalid";
-    public static final String MESSAGE_PERSON_NOT_FOUND = "Person with NRIC %s not found";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
 
     private final Index targetId;
     private final Nric nric;

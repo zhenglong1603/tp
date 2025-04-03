@@ -5,7 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "nric": "T1234567A",
-    "birthDate": "01/01/1999",
+    "birthDate": "01-01-1999",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tags" : [ "friends" ]
   }, {
@@ -13,7 +13,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "nric": "T1234567B",
-    "birthDate": "02/02/1999",
+    "birthDate": "02-02-1999",
     "address" : "311, Clementi Ave 2, #02-25",
     "tags" : [ "owesMoney", "friends" ]
   }, {
@@ -21,7 +21,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "nric": "T1234567C",
-    "birthDate": "03/03/1999",
+    "birthDate": "03-03-1999",
     "address" : "wall street",
     "tags" : [ ]
   }, {
@@ -29,7 +29,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "nric": "T1234567D",
-    "birthDate": "04/04/1999",
+    "birthDate": "04-04-1999",
     "address" : "10th street",
     "tags" : [ "friends" ]
   }, {
@@ -37,7 +37,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "nric": "T1234567E",
-    "birthDate": "05/05/1999",
+    "birthDate": "05-05-1999",
     "address" : "michegan ave",
     "tags" : [ ]
   }, {
@@ -45,7 +45,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "nric": "T1234567F",
-    "birthDate": "06/06/1999",
+    "birthDate": "06-06-1999",
     "address" : "little tokyo",
     "tags" : [ ]
   }, {
@@ -53,7 +53,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "nric": "T1234567G",
-    "birthDate": "07/07/1999",
+    "birthDate": "07-07-1999",
     "address" : "4th street",
     "tags" : [ ]
   } ]

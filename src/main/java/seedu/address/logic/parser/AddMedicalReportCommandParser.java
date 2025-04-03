@@ -32,17 +32,17 @@ public class AddMedicalReportCommandParser implements Parser<AddMedicalReportCom
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                                                   AddMedicalReportCommand.MESSAGE_USAGE));
+                    AddMedicalReportCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NRIC, PREFIX_ALLERGY, PREFIX_ILLNESS,
-                                                 PREFIX_SURGERY, PREFIX_IMMUNIZATION);
+                PREFIX_SURGERY, PREFIX_IMMUNIZATION);
 
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
-        String allergy = argMultimap.getValue(PREFIX_ALLERGY).orElse("None");
-        String illness = argMultimap.getValue(PREFIX_ILLNESS).orElse("None");
-        String surgery = argMultimap.getValue(PREFIX_SURGERY).orElse("None");
-        String immunization = argMultimap.getValue(PREFIX_IMMUNIZATION).orElse("None");
+        String allergy = ParserUtil.parseMedicalField(argMultimap.getValue(PREFIX_ALLERGY).orElse("None"));
+        String illness = ParserUtil.parseMedicalField(argMultimap.getValue(PREFIX_ILLNESS).orElse("None"));
+        String surgery = ParserUtil.parseMedicalField(argMultimap.getValue(PREFIX_SURGERY).orElse("None"));
+        String immunization = ParserUtil.parseMedicalField(argMultimap.getValue(PREFIX_IMMUNIZATION).orElse("None"));
 
         MedicalReport medicalReport = new MedicalReport(allergy, illness, surgery, immunization);
 
@@ -55,5 +55,10 @@ public class AddMedicalReportCommandParser implements Parser<AddMedicalReportCom
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || other instanceof AddMedicalReportCommandParser;
     }
 }

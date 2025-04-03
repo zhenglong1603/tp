@@ -15,15 +15,20 @@ public class DateUtil {
             .withResolverStyle(ResolverStyle.STRICT);
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu")
             .withResolverStyle(ResolverStyle.STRICT);
-    public static final DateTimeFormatter DATE_DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+    public static final DateTimeFormatter DATE_DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+            .withResolverStyle(ResolverStyle.STRICT);
     public static final DateTimeFormatter DATE_TIME_DISPLAY_FORMATTER =
-            DateTimeFormatter.ofPattern("dd MMMM yyyy, hh:mm a");
+            DateTimeFormatter.ofPattern("dd-MM-uuuu, hh:mm a");
+    public static final String INVALID_DATETIME_MESSAGE = "Sorry! Please use the format "
+            + "dd-MM-yyyy HH:mm and also check if it is a valid date-time.";
+    public static final String INVALID_DATE_MESSAGE = "Sorry! Please use the format"
+            + "dd-MM-yyyy and also check if it is a valid date.";
 
     /**
      * Convert date into a more presentable format
      *
      * @param  date
-     * @return String containing date in "dd MMMM yyyy" format
+     * @return String containing date in "dd MM yyyy" format
      */
     public static String getDisplayableDate(LocalDate date) {
         requireNonNull(date);
@@ -34,7 +39,7 @@ public class DateUtil {
      * Convert dateTime into a more presentable format
      *
      * @param dateTime
-     * @return String containing dateTime in "dd MMMM yyyy, hh:mm a" format
+     * @return String containing dateTime in "dd MM yyyy, hh:mm a" format
      */
     public static String getDisplayableDateTime(LocalDateTime dateTime) {
         requireNonNull(dateTime);

@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.DateUtil.DATE_DISPLAY_FORMATTER;
+
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
@@ -140,7 +142,7 @@ public class MainWindow extends UiPart<Stage> {
 
         appointmentListTitle.textProperty().bind(
                 Bindings.createStringBinding(() -> "Appointments on "
-                                + logic.getAppointmentListDate().getDate().toLocalDate(),
+                                + logic.getAppointmentListDate().getDate().toLocalDate().format(DATE_DISPLAY_FORMATTER),
                         logic.getAppointmentListDate().dateProperty()));
     }
 

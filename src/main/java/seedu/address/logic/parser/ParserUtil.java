@@ -1,8 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.DateUtil.DATE_FORMATTER;
 import static seedu.address.commons.util.DateUtil.DATE_TIME_FORMATTER;
+import static seedu.address.commons.util.DateUtil.INVALID_DATETIME_MESSAGE;
+import static seedu.address.commons.util.DateUtil.INVALID_DATE_MESSAGE;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
@@ -18,6 +22,7 @@ import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalReport;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
@@ -30,8 +35,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String DATETIME_INVALID_SPECIFY = "\nInput to be corrected: ";
-    public static final String DATETIME_INVALID = "Sorry! Please use the format "
-            + "dd-MM-yyyy HH:mm and also check if it is a valid date.";
+    public static final String DATE_INVALID_SPECIFY = "\nInput to be corrected: ";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -224,6 +228,24 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a medical report field (e.g. allergy, illness, etc.) and validates its format.
+     * Allowed characters: letters, numbers, spaces, commas, hyphens.
+     * Must not be empty or contain only numbers.
+     *
+     * @throws ParseException if the given {@code medicalField} is empty.
+     */
+    //Solution below inspired by:
+    //https://stackoverflow.com/questions/22990870/how-to-disable-emoji-from-being-entered-in-android-edittext
+    public static String parseMedicalField(String field) throws ParseException {
+        requireNonNull(field);
+        String trimmedField = field.trim();
+        if (!MedicalReport.isValidMedicalField(trimmedField)) {
+            throw new ParseException(MedicalReport.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedField;
+    }
+
+    /**
      * Parses a {@code String dateTime} into a {@code localDateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -235,7 +257,23 @@ public class ParserUtil {
         try {
             return LocalDateTime.parse(trimmedDateTime, DATE_TIME_FORMATTER);
         } catch (DateTimeParseException exception) {
-            throw new ParseException(DATETIME_INVALID + DATETIME_INVALID_SPECIFY + trimmedDateTime, exception);
+            throw new ParseException(INVALID_DATETIME_MESSAGE + DATETIME_INVALID_SPECIFY + trimmedDateTime, exception);
+        }
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseLocalDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        try {
+            return LocalDate.parse(trimmedDate, DATE_FORMATTER);
+        } catch (DateTimeParseException exception) {
+            throw new ParseException(INVALID_DATE_MESSAGE + DATE_INVALID_SPECIFY + trimmedDate, exception);
         }
     }
 }

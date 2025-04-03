@@ -36,13 +36,16 @@ public class FindMedicineUsageCommandTest {
         FindMedicineUsageCommand command = new FindMedicineUsageCommand(predicate);
 
         expectedModel.updateFilteredPersonList(predicate);
-
         CommandResult result = command.execute(model);
 
         assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
-        assertEquals(String.format("%d persons listed!", model.getFilteredPersonList().size()),
-                result.getFeedbackToUser());
+
+        int count = model.getFilteredPersonList().size();
+        String patientWord = (count <= 1) ? "patient" : "patients";
+
+        assertEquals(String.format("%d %s listed!", count, patientWord), result.getFeedbackToUser());
     }
+
 
     @Test
     public void equals() {

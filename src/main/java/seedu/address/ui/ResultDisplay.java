@@ -16,8 +16,12 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Creates a {@code ResultDisplay} with the given {@code TextArea} to display.
+     */
     public ResultDisplay() {
         super(FXML);
+        resultDisplay.setWrapText(true);
     }
 
     public void setFeedbackToUser(String feedbackToUser) {

@@ -3,9 +3,6 @@
     -fx-background-color: derive(#1d1d1d, 20%);
     -fx-padding: 20;
     -fx-spacing: 10;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-border-color: #c0c0c0;
     -fx-border-width: 1;
 }
 
@@ -27,7 +24,7 @@
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-font-size: 14;
     -fx-background-color: dimgray;
-    -fx-border-color: #c0c0c0;
+    -fx-border-color: derive(dimgray, -20%);
     -fx-border-width: 1;
     -fx-padding: 8 15;
     -fx-background-radius: 5;
