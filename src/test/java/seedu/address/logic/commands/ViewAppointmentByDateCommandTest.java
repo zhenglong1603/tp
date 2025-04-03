@@ -48,7 +48,6 @@ public class ViewAppointmentByDateCommandTest {
     public void execute_validDate_success() {
         Nric nric = new Nric("S9856324A");
         Appointment appointment = new Appointment(
-                "S9876543A",
                 "Check-Up",
                 LocalDateTime.parse("22-02-2025 12:00", DATE_TIME_FORMATTER),
                 LocalDateTime.parse("22-02-2025 12:30", DATE_TIME_FORMATTER),
