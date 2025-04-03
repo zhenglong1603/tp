@@ -79,7 +79,7 @@ class AddAppointmentCommandTest {
     }
 
     @Test
-    void execute_overlappingAppointmentSameDoctor_throwsOverlappingAppointmentException() {
+    void execute_overlappingAppointment_throwsOverlappingAppointmentException() {
         Nric nric = new Nric("S9856324A");
         Appointment existingAppointment = new Appointment(
                 "Check-Up",

@@ -231,6 +231,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isAppointmentListEmpty() {
+        return klinix.getDisplayedAppointments().isEmpty();
+    }
+
+    @Override
     public List<Appointment> getOverlappingAppointments(Appointment newAppointment, List<Person> allPersons) {
         LocalDateTime newStart = newAppointment.getStartDate();
         LocalDateTime newEnd = newAppointment.getEndDate();
