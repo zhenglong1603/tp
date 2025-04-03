@@ -43,7 +43,6 @@ public class AppointmentCard extends UiPart<Region> {
             visited.setStyle("-fx-background-color: rgba(200,207,45,0.68); -fx-text-fill: rgba(0,0,0,0.69);");
         }
 
-
         visited.setText(appointment.getVisited() ? "Visited" : "Not Visited");
         description.setText(appointment.getDescription());
         startDate.setText(appointment.getStartDateTime().format(DATE_TIME_FORMATTER));
