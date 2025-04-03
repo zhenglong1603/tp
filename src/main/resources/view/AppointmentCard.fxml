@@ -3,9 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17"
+<HBox id="cardPane" fx:id="apptCardPane" xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+    <VBox>
+    <Label fx:id="patientName" text="\$patientName" styleClass="cell_big_label" GridPane.rowIndex="1"
+           GridPane.columnIndex="0" />
+    <GridPane fx:id="apptGridPane" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS" minWidth="10"/>
         </columnConstraints>
@@ -14,35 +17,30 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <GridPane hgap="5" vgap="5">
-                <Label fx:id="patientName" text="\$patientName" styleClass="cell_big_label" GridPane.rowIndex="0"
+                <Label fx:id="patientNric" text="\$patientNric" styleClass="cell_big_label" GridPane.rowIndex="0"
                        GridPane.columnIndex="0" />
-                <Label fx:id="patientNric" text="\$patientNric" styleClass="cell_big_label" GridPane.rowIndex="1"
-                       GridPane.columnIndex="0" />
-                <Label fx:id="visited" text="\$visited" styleClass="cell_big_label" GridPane.rowIndex="2"
-                       GridPane.columnIndex="0">
-                    <padding>
-                        <Insets top="1" right="5" bottom="1" left="5" />
-                    </padding>
-                </Label>
+                <Label fx:id="visited" text="\$visited" styleClass="cell_big_label" GridPane.rowIndex="0"
+                        GridPane.columnIndex="1" />
             </GridPane>
-            <GridPane hgap="5" vgap="5">
+            <GridPane fx:id="appointmentGridPane" hgap="5" vgap="5">
                 <columnConstraints>
                     <ColumnConstraints minWidth="60" />
                     <ColumnConstraints hgrow="ALWAYS" />
                 </columnConstraints>
-                <Label text="Start Date: " styleClass="cell_small_label" GridPane.rowIndex="0"
+                <Label text="Description: " styleClass="cell_small_label" GridPane.rowIndex="0"
                        GridPane.columnIndex="0" />
-                <Label fx:id="startDate" text="\$startDate" styleClass="cell_small_label" GridPane.rowIndex="0"
+                <Label fx:id="description" text="\$description" styleClass="cell_small_label" GridPane.rowIndex="0"
                        GridPane.columnIndex="1" />
-                <Label text="End Date: " styleClass="cell_small_label" GridPane.rowIndex="1"
+                <Label text="Start Date: " styleClass="cell_small_label" GridPane.rowIndex="1"
                        GridPane.columnIndex="0" />
-                <Label fx:id="endDate" text="\$endDate" styleClass="cell_small_label" GridPane.rowIndex="1"
+                <Label fx:id="startDate" text="\$startDate" styleClass="cell_small_label" GridPane.rowIndex="1"
                        GridPane.columnIndex="1" />
-                <Label text="Description: " styleClass="cell_small_label" GridPane.rowIndex="3"
+                <Label text="End Date: " styleClass="cell_small_label" GridPane.rowIndex="2"
                        GridPane.columnIndex="0" />
-                <Label fx:id="description" text="\$description" styleClass="cell_small_label" GridPane.rowIndex="3"
+                <Label fx:id="endDate" text="\$endDate" styleClass="cell_small_label" GridPane.rowIndex="2"
                        GridPane.columnIndex="1" />
             </GridPane>
         </VBox>
     </GridPane>
+    </VBox>
 </HBox>

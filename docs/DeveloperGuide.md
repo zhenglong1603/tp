@@ -758,3 +758,4 @@ testers are expected to do more *exploratory* testing.
           <br><br>
     * **Test Case:** `clearappt ic/S1234567A`
     * **Expected:** Klinix throws the error message `No appointments to clear`
+  
