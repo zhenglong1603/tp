@@ -25,7 +25,7 @@ public class AppointmentListTest {
         appointmentList = new AppointmentList();
 
         // Define DateTimeFormatter
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
         // Create Appointment instances with LocalDateTime
         appointment1 = new Appointment("S1234567B",

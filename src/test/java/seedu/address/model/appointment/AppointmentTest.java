@@ -16,7 +16,7 @@ public class AppointmentTest {
     @BeforeEach
     public void setUp() {
         // Define DateTimeFormatter for the expected format
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
         // Create Appointment with LocalDateTime
         appointment = new Appointment("T1234567B",
@@ -31,9 +31,9 @@ public class AppointmentTest {
         assertEquals("Doctor Visit", appointment.getDescription());
 
         assertEquals(LocalDateTime.parse("2025-03-20 12:00",
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")), appointment.getStartDate());
+                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")), appointment.getStartDate());
         assertEquals(LocalDateTime.parse("2025-03-20 12:30",
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")), appointment.getEndDate());
+                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")), appointment.getEndDate());
         assertEquals("T1234567B", appointment.getDoctorNric());
     }
 

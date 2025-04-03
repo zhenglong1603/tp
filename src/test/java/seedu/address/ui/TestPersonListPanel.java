@@ -87,7 +87,7 @@ public class TestPersonListPanel {
     @Test
     public void parsePersonData_personWithMedicineUsages_correctString() {
         Set<Tag> tags = new HashSet<>();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate startdate = LocalDate.parse("2020-01-01", formatter);
         LocalDate enddate = LocalDate.parse("2020-12-31", formatter);
         MedicalReport medicalReport = new MedicalReport("Peanuts", "Asthma", "Appendectomy", "Flu");

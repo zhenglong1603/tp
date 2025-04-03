@@ -28,7 +28,7 @@ public class DateUtil {
      * Convert date into a more presentable format
      *
      * @param  date
-     * @return String containing date in "dd MMMM yyyy" format
+     * @return String containing date in "dd MM yyyy" format
      */
     public static String getDisplayableDate(LocalDate date) {
         requireNonNull(date);
@@ -39,7 +39,7 @@ public class DateUtil {
      * Convert dateTime into a more presentable format
      *
      * @param dateTime
-     * @return String containing dateTime in "dd MMMM yyyy, hh:mm a" format
+     * @return String containing dateTime in "dd MM yyyy, hh:mm a" format
      */
     public static String getDisplayableDateTime(LocalDateTime dateTime) {
         requireNonNull(dateTime);
