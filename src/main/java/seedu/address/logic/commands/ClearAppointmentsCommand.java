@@ -32,10 +32,10 @@ public class ClearAppointmentsCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS_APPOINTMENT_NRIC = "Appointment successfully deleted from %s";
-    public static final String MESSAGE_SUCCESS_APPOINTMENT_ID = "Appointment successfully deleted from person"
+    public static final String MESSAGE_SUCCESS_APPOINTMENT_ID = "Appointment successfully deleted from patient"
             + " at index %d";
     public static final String MESSAGE_SUCCESS_APPOINTMENTS_NRIC = "Appointments successfully deleted from %s";
-    public static final String MESSAGE_SUCCESS_APPOINTMENTS_ID = "Appointments successfully deleted from person"
+    public static final String MESSAGE_SUCCESS_APPOINTMENTS_ID = "Appointments successfully deleted from patient"
             + " at index %d";
     public static final String MESSAGE_NO_APPOINTMENT = "No appointments to clear!";
     public static final String MESSAGE_PERSON_NOT_FOUND_NRIC = "Patient with NRIC %s not found";

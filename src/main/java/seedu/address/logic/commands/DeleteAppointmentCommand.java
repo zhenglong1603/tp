@@ -13,7 +13,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes an appointment of a person by unique id.
+ * Deletes an appointment of a person by unique index.
  */
 public class DeleteAppointmentCommand extends Command {
 
@@ -38,7 +38,7 @@ public class DeleteAppointmentCommand extends Command {
     private final Nric nric;
 
     /**
-     * Creates an ClearMedicineUsageCommand to delete all medicine usages of
+     * Creates an DeleteAppointmentCommand to delete a particular appointment of
      * the person identified by {@code Nric}.
      */
     public DeleteAppointmentCommand(Nric nric, Index targetId) {
