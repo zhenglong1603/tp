@@ -112,7 +112,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `KlinixParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `KlinixParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `KlinixParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -130,7 +130,7 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Klinix`, which `Person` references. This allows `Klinix` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -145,7 +145,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `KlinixStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Person class
@@ -280,15 +280,15 @@ General Clinic Counter Receptionist
 Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely to have) - *
 
 | Priority     | As a ...                            | I want to ...                                                     | So that ...                                                                   |
-| ------------ | ----------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| ------------ | ----------------------------------- |-------------------------------------------------------------------| ----------------------------------------------------------------------------- |
 | `***`    | Basic User                          | add medicine usage records                                        | the supply management system remains accurate.                                |
 | `***`    | Basic User                          | delete medicine usage records                                     | the supply management system remains accurate.                                |
-| `***`    | Basic User                          | view detailed patient medical history                             | I have the necessary context during patient check-in.                         |
+| `***`    | Basic User                          | view detailed patient medical report                              | I have the necessary context during patient check-in.                         |
 | `***`    | Basic User                          | view patients’ medicine needs                                     | I can manage the clinic’s medicine supply efficiently.                        |
 | `***`    | Basic User                          | view patient records                                              | I always work with the most current information.                              |
 | `***`    | Basic User                          | view patient's appointments                                       | I always work with the most current information.                              |
-| `***`    | Basic User                          | add medical history                                               | the clinic database remains current and accurate.                             |
-| `***`    | Basic User                          | delete medical history                                            | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | add medical report                                                | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | delete medical report                                             | the clinic database remains current and accurate.                             |
 | `***`    | Basic User                          | quickly add new patient details                                   | the clinic database remains current and accurate.                             |
 | `***`    | Basic User                          | quickly delete new patient details                                | the clinic database remains current and accurate.                             |
 | `***`    | Basic User                          | add appointments                                                  | the clinic database remains current and accurate.                             |
@@ -759,11 +759,3 @@ testers are expected to do more *exploratory* testing.
           <br><br>
     * **Test Case:** `clearappt ic/S1234567A`
     * **Expected:** Klinix throws the error message `No appointments to clear`
-      <br><br>
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
