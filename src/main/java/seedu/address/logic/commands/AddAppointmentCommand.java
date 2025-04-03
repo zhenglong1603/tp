@@ -25,11 +25,11 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an appointment to a patient identified by NRIC.\n"
-            + "Parameters: \n"
-            + PREFIX_NRIC + "<NRIC> "
-            + PREFIX_APPOINTMENT_DESCRIPTION + "<appointmentType> "
-            + PREFIX_FROM + "<date> "
-            + PREFIX_TO + "<date> \n"
+            + "Parameters: "
+            + PREFIX_NRIC + "NRIC "
+            + PREFIX_APPOINTMENT_DESCRIPTION + "APPOINTMENT_TYPE "
+            + PREFIX_FROM + "START_DATE "
+            + PREFIX_TO + "END_DATE \n"
             + "Date is of the following format: dd-MM-yyyy HH:mm \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A "
