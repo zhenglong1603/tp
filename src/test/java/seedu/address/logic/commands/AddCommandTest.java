@@ -121,7 +121,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setKlinixFilePath(Path addressBookFilePath) {
+        public void setKlinixFilePath(Path klinixFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

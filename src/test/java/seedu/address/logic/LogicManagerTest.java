@@ -154,7 +154,7 @@ public class LogicManagerTest {
         // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
         JsonKlinixStorage addressBookStorage = new JsonKlinixStorage(prefPath) {
             @Override
-            public void saveKlinix(ReadOnlyKlinix addressBook, Path filePath)
+            public void saveKlinix(ReadOnlyKlinix klinix, Path filePath)
                     throws IOException {
                 throw e;
             }

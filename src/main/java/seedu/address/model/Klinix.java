@@ -18,7 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.util.ObservableLocalDateTime;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the klinix level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class Klinix implements ReadOnlyKlinix {
@@ -45,7 +45,7 @@ public class Klinix implements ReadOnlyKlinix {
     public Klinix() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a Klinix using the Persons in the {@code toBeCopied}
      */
     public Klinix(ReadOnlyKlinix toBeCopied) {
         this();
@@ -67,7 +67,7 @@ public class Klinix implements ReadOnlyKlinix {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Klinix} with {@code newData}.
      */
     public void resetData(ReadOnlyKlinix newData) {
         requireNonNull(newData);
@@ -80,7 +80,7 @@ public class Klinix implements ReadOnlyKlinix {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the klinix.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -88,8 +88,8 @@ public class Klinix implements ReadOnlyKlinix {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to the klinix.
+     * The person must not already exist in the klinix.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -97,8 +97,8 @@ public class Klinix implements ReadOnlyKlinix {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the klinix.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the klinix.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -107,8 +107,8 @@ public class Klinix implements ReadOnlyKlinix {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Klinix}.
+     * {@code key} must exist in the klinix.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -139,8 +139,8 @@ public class Klinix implements ReadOnlyKlinix {
             return false;
         }
 
-        Klinix otherAddressBook = (Klinix) other;
-        return persons.equals(otherAddressBook.persons);
+        Klinix otherKlinix = (Klinix) other;
+        return persons.equals(otherKlinix.persons);
     }
 
     @Override
@@ -161,7 +161,7 @@ public class Klinix implements ReadOnlyKlinix {
     }
 
     /**
-     * Adds a list of appointments to the address book.
+     * Adds a list of appointments to the klinix.
      * @param appointments
      */
     public void addAppointment(List<Appointment> appointments) {
@@ -172,7 +172,7 @@ public class Klinix implements ReadOnlyKlinix {
     }
 
     /**
-     * Adds an appointment to the address book.
+     * Adds an appointment to the klinix.
      * @param appointment
      */
     public void addAppointment(Appointment appointment) {
@@ -182,9 +182,9 @@ public class Klinix implements ReadOnlyKlinix {
 
     /**
      * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the klinix.
      * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment
-     * in the address book.
+     * in the klinix.
      */
     public void replaceAppointment(Appointment target, Appointment editedAppointment) {
         this.appointmentsByDate.replaceAppointment(target, editedAppointment);
@@ -225,7 +225,7 @@ public class Klinix implements ReadOnlyKlinix {
     }
 
     /**
-     * Deletes the appointment from the address book.
+     * Deletes the appointment from the klinix.
      * @param appointmentToDelete
      */
     public void deleteAppointment(Appointment appointmentToDelete) {

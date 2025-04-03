@@ -27,6 +27,6 @@ public interface Storage extends KlinixStorage, UserPrefsStorage {
     Optional<ReadOnlyKlinix> readKlinix() throws DataLoadingException;
 
     @Override
-    void saveKlinix(ReadOnlyKlinix addressBook) throws IOException;
+    void saveKlinix(ReadOnlyKlinix klinix) throws IOException;
 
 }

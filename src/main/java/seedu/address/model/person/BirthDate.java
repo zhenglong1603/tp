@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Person's birth date in the address book.
+ * Represents a Person's birth date in the klinix.
  * Guarantees: immutable; is valid as declared in {@link #isValidBirthDate(String)}
  */
 public class BirthDate implements Comparable<BirthDate> {

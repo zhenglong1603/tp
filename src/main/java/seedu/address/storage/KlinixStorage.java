@@ -19,7 +19,7 @@ public interface KlinixStorage {
     Path getKlinixFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyKlinix}.
+     * Returns Klinix data as a {@link ReadOnlyKlinix}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
@@ -33,14 +33,14 @@ public interface KlinixStorage {
 
     /**
      * Saves the given {@link ReadOnlyKlinix} to the storage.
-     * @param addressBook cannot be null.
+     * @param klinix cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveKlinix(ReadOnlyKlinix addressBook) throws IOException;
+    void saveKlinix(ReadOnlyKlinix klinix) throws IOException;
 
     /**
      * @see #saveKlinix(ReadOnlyKlinix)
      */
-    void saveKlinix(ReadOnlyKlinix addressBook, Path filePath) throws IOException;
+    void saveKlinix(ReadOnlyKlinix klinix, Path filePath) throws IOException;
 
 }
