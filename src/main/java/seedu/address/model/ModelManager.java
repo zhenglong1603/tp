@@ -237,6 +237,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateAppointments(Person personToEdit, Person editedPerson) {
+        requireAllNonNull(personToEdit, editedPerson);
+        klinix.updateAppointments(personToEdit, editedPerson);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+    }
+
+    @Override
     public boolean isAppointmentListEmpty() {
         return klinix.getDisplayedAppointments().isEmpty();
     }
