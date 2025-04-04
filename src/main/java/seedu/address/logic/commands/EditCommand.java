@@ -23,6 +23,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BirthDate;
@@ -114,6 +115,17 @@ public class EditCommand extends Command {
 
         MedicalReport medicalReport = personToEdit.getMedicalReport();
         AppointmentList appointmentList = personToEdit.getAppointmentList();
+
+        AppointmentList temp = new AppointmentList();
+
+        for (Appointment appointment : appointmentList) {
+            temp.add(new Appointment(appointment.getDescription(),
+                    appointment.getStartDateTime(),
+                    appointment.getEndDateTime(),
+                    updatedNric.toString(),
+                    appointment.getVisited()));
+        }
+        appointmentList = temp;
         return new Person(updatedName, updatedPhone, updatedEmail, updatedNric, updatedBirthDate,
                 updatedAddress, updatedTags, medicalReport, appointmentList);
     }

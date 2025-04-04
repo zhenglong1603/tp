@@ -29,6 +29,13 @@ public class NameTest {
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("peter?")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("peter/2nd")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("pete r/t he")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("@dadsdasda")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName(" @ dadsdasda")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("@ dadsdasda")); // contains non-alphanumeric characters
+
 
         // valid name
         assertTrue(Name.isValidName("peter jack")); // alphabets only
@@ -36,6 +43,11 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Name.isValidName("David s/o issac")); // with suffix
+        assertTrue(Name.isValidName("David d/o Tan Jr"));
+        assertTrue(Name.isValidName("David c/o jeffrey Tan Jr")); // with suffix
+        assertTrue(Name.isValidName("David Tan @ Kementha")); // with suffix
+        assertTrue(Name.isValidName("Jane D'arc")); // with suffix
     }
 
     @Test
