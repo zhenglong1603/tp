@@ -102,11 +102,6 @@ public class Klinix implements ReadOnlyKlinix {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-        List<Appointment> toBeReplaced = target.getAppointments();
-        List<Appointment> toBeAdded = editedPerson.getAppointments();
-        for (Appointment a : toBeReplaced) {
-            replaceAppointment(a, toBeAdded.get(toBeReplaced.indexOf(a)));
-        }
         persons.setPerson(target, editedPerson);
     }
 
@@ -246,5 +241,16 @@ public class Klinix implements ReadOnlyKlinix {
         return targetPersons.stream()
                 .flatMap(person -> person.getMedicineUsages().stream())
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
+    }
+
+    /**
+     * updates the appointment lists with the new appointment data from the person.
+     */
+    public void updateAppointments(Person personToEdit, Person editedPerson) {
+        List<Appointment> toBeReplaced = personToEdit.getAppointments();
+        List<Appointment> toBeAdded = editedPerson.getAppointments();
+        for (Appointment a : toBeReplaced) {
+            replaceAppointment(a, toBeAdded.get(toBeReplaced.indexOf(a)));
+        }
     }
 }

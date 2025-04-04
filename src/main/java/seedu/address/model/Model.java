@@ -154,4 +154,5 @@ public interface Model {
     boolean checkValidMedicineUsage(Person person, MedicineUsage medicineUsage);
     boolean checkValidAppointment(Person person, Appointment appointment);
 
+    void updateAppointments(Person personToEdit, Person editedPerson);
 }

@@ -261,6 +261,11 @@ public class AddCommandTest {
         public boolean checkValidAppointment(Person person, Appointment appointment) {
             throw new UnsupportedOperationException("This method should not be called");
         }
+
+        @Override
+        public void updateAppointments(Person personToEdit, Person editedPerson) {
+            throw new UnsupportedOperationException("This method should not be called");
+        }
     }
 
     /**
