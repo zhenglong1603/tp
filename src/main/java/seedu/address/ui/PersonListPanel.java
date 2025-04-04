@@ -79,7 +79,7 @@ public class PersonListPanel extends UiPart<Region> {
         result.append("Appointments: ").append("\n");
         for (int i = 0; i < appointments.size(); i++) {
             result.append(i + 1).append(": ").append(appointments.get(i).toString())
-                    .append(appointments.get(i).getVisited() ? " [Visited]" : " [Not visited]" )
+                    .append(appointments.get(i).getVisited() ? " [Visited]" : " [Not visited]")
                     .append("\n");
         }
 

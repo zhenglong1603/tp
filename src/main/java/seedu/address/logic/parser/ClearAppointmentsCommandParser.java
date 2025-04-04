@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Nric;
@@ -22,6 +23,22 @@ public class ClearAppointmentsCommandParser implements Parser<ClearAppointmentsC
     public ClearAppointmentsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NRIC);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)) {
+            return parseByIndex(args);
+        } else {
+            return parseByNric(args);
+        }
+    }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the ClearAppointmentsCommand
+     * and returns an ClearAppointmentsCommand object for execution.
+     * Expects the format uses nric.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private ClearAppointmentsCommand parseByNric(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NRIC);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -34,6 +51,22 @@ public class ClearAppointmentsCommandParser implements Parser<ClearAppointmentsC
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
 
         return new ClearAppointmentsCommand(nric);
+    }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the ClearAppointmentsCommand
+     * and returns an ClearAppointmentsCommand object for execution.
+     * Expects the format uses index.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private ClearAppointmentsCommand parseByIndex(String args) throws ParseException {
+        try {
+            Index index = ParserUtil.parseIndex(args);
+            return new ClearAppointmentsCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearAppointmentsCommand.MESSAGE_USAGE), pe);
+        }
     }
 
     /**

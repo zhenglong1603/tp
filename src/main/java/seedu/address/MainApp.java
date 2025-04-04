@@ -84,6 +84,11 @@ public class MainApp extends Application {
                         + " populated with a sample Klinix.");
             }
             initialData = klinixOptional.orElseGet(SampleDataUtil::getSampleKlinix);
+            try {
+                storage.saveKlinix(initialData);
+            } catch (IOException e) {
+                logger.warning("Failed to save sample Klinix data file : " + StringUtil.getDetails(e));
+            }
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getKlinixFilePath() + " could not be loaded."
                     + " Will be starting with an empty Klinix.");
