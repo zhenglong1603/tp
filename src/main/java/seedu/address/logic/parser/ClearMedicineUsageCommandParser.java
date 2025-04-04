@@ -34,7 +34,7 @@ public class ClearMedicineUsageCommandParser implements Parser<ClearMedicineUsag
      * Parses the given {@code String} of arguments in the context of the ClearMedicineUsageCommand
      * and returns an ClearMedicineUsageCommand object for execution.
      * Expects the format uses nric.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     private ClearMedicineUsageCommand parseByNric(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -57,7 +57,7 @@ public class ClearMedicineUsageCommandParser implements Parser<ClearMedicineUsag
      * Parses the given {@code String} of arguments in the context of the ClearMedicineUsageCommand
      * and returns an ClearMedicineUsageCommand object for execution.
      * Expects the format uses index.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     private ClearMedicineUsageCommand parseByIndex(String args) throws ParseException {
         try {
