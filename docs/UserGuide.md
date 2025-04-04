@@ -253,15 +253,25 @@ Examples:
 
 Deletes the specified person from Klinix.
 
-Format: `delete INDEX`
+Format 1: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Format 2: `delete [ic/NRIC]`
+
+* Deletes the person with the specified `NRIC`.
+* The `NRIC` must be valid.
+* The command works regardless of whether if the person with the specified NRIC is displayed or not.
+
+**Note:** You can use whichever format you find convenience, but not both at the same time. Otherwise, 
+Klinix will give an error.
+
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in Klinix.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete ic/S1234567A` deletes the person with NRIC S1234567A from Klinix (if exists).
 
 ### Clearing all entries : `clear`
 
@@ -269,7 +279,7 @@ Clears all entries from the clinic.
 
 Format: `clear`
 
-### Add medical report: `addmr`
+### Adding medical report: `addmr`
 
 Add a new medical report to a patient's record.
 
@@ -293,11 +303,11 @@ Examples:
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
 
-### Delete medical report: `deletemr`
+### Deleting medical report: `deletemr`
 
 Delete a patient's existing medical report.
 
-Format: `deletemr ic/NRIC`
+Format 1: `deletemr ic/NRIC`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
@@ -306,12 +316,21 @@ Examples:
 * `deletemr ic/S1234567A`
 * `deletemr ic/T0260144G`
 
+Format 2: `deletemr INDEX`
+
+* Deletes the medical report of the person at the specified `INDEX`
+* The index refers to the index number shown in the displayed person list.
+* This index **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+* `deletemr 1`
+
 **Warning**
 
-1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
+1. The patient with the given NRIC, or at the specified index must exist, otherwise Klinix will show an error message.
 2. If the patient does not have an existing medical report, nothing will happen.
 
-### Add medicine usage records: `addmu`
+### Adding medicine usage records: `addmu`
 
 Add a new medicine usage record as part of a patient’s medical history or medical needs.
 
@@ -319,7 +338,7 @@ Format: `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
-- `MEDICINE_NAME`: The name of the medicine. It should not be blank.
+- `MEDICINE_NAME`: The name of the medicine. should only contain alphanumeric characters and spaces, and it should not be blank.
 - `DOSAGE`: The dosage of the medicine. It should not be blank.
 - `START`: The start date of the medicine usage. It must be in the format `dd-MM-yyyy`.
 - `END`: The end date of the medicine usage. It must be in the format `dd-MM-yyyy`.
@@ -332,33 +351,61 @@ Examples:
 
 1. `START` and `END`must be in the format of `dd-MM-yyyy`
 2. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
-2. Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.
+3. Two medicine usage have the same medicine name if they are equal **ignoring case**.
+4. Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.
 Klinix will detect such overlapping instances and give an error message when you try to add them.
+5. `START` should be before (or on the same day as) `END`
+6. `START` should not be before the patient's birthday.
 
-### Clear all medicine usage records: `clearmu`
+### Clearing all medicine usage records: `clearmu`
 
 Clear all medicine usage records of a patient's medical history.
 
-Format: `clearmu ic/NRIC`
+Format 1: `clearmu ic/NRIC`
+
+* Deletes all medicine usages from the person with the specified `NRIC`.
+* The `NRIC` must be valid.
 
 Examples: `clearmu ic/S1234567A`
+
+Format 2: `clearmu INDEX`
+
+* Deletes all medicine usages from the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, ...
+
+Examples: `clearmu 3`
+
+**Note:** You can use whichever format you find convenient, but not both at the same time.
+Otherwise, Klinix will give an error.
 
 **Warning:**
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 
-### Delete medicine usage records: `deletemu`
+### Deleting medicine usage records: `deletemu`
 
 Delete a particular medicine usage record of a patient's medical history.
 
 Format: `deletemu INDEX ic/NRIC`
 
 Parameters:
-- `INDEX`: The index of the medicine usage record in the displayed list. It must be a positive integer.
+- `INDEX`: The index of the medicine usage record in the displayed medicine usage list. It **must be a positive integer**.
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
+**Note:** The medicine usage record list could be viewed by navigating to the person with the specified NRIC, 
+and clicking on their displayed card to view patient details
 
 Examples:
 * `deletemu 2 ic/S1234567A`
+
+### Finding medicine usages by medicine names: `findmu`
+
+Finds patient whose medicine usages contain the specified medicine name(s).
+
+Format: `findmu KEYWORDS [MORE_KEYWORDS]`
+
+Examples: `findmu Paracetamol Amoxicillin`
 
 ### Add appointment: `addappt`
 
@@ -398,16 +445,23 @@ Example:
 
 Clear all appointments of a patient.
 
-Format: `clearappt ic/NRIC`
+Format 1: `clearappt ic/NRIC`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples: `clearappt ic/S1234567A`
 
+Format 2: `clearappt INDEX`
+
+Parameters:
+- `INDEX`: The index of the patient shown in the displayed person list. It **must be a positive integer** 1, 2, 3, ...
+
+Examples: `clearappt 1` clears all appointments of the first patient currently displayed.
+
 **Warning:**
 
-1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
+1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
 
 ### View appointments on specific date: `appton`
 
@@ -478,15 +532,16 @@ Action     | Format, Examples
 **Add Medical Report** | `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]` <br> e.g. `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 **Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g. `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
 **Clear**  | `clear`
-**Clear Appointments** | `clearappt ic/NRIC` <br> e.g. `clearappt ic/S1234567A`
-**Clear Medicine Usage** | `clearmu ic/NRIC` <br> e.g. `clearmu ic/S1234567A`
-**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**Clear Appointments** | Format 1: `clearappt ic/NRIC` <br> e.g. `clearappt ic/S1234567A` <br> Format 2: `clearappt INDEX` <br> e.g. `clearappt 2`
+**Clear Medicine Usage** | Format 1: `clearmu ic/NRIC` <br> e.g. `clearmu ic/S1234567A` <br> Format 2: `clearmu INDEX` <br> e.g. `clearmu 1`
+**Delete** | Format 1: `delete INDEX`<br> e.g. `delete 3` <br> Format 2: `delete ic/NRIC` <br> e.g. `delete ic/S1234567A`
 **Delete Appointment** | `deleteappt INDEX ic/NRIC` <br> e.g. `deleteappt 3 ic/S1234567A`
-**Delete Medical Report** | `deletemr ic/NRIC` <br> e.g. `deletemr ic/S1234567B`
+**Delete Medicine Usage** | `deletemu INDEX ic/NRIC` <br> e.g. `deletemu 1 ic/S1234568B`
+**Delete Medical Report** | Format 1: `deletemr ic/NRIC` <br> e.g. `deletemr ic/S1234567B` <br> Format 2: `deletemr INDEX` <br> e.g. `deletemr 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Exit**   | `exit`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
-**Find Medicine Usage** | `findmu ic/NRIC`<br> e.g. `findmu ic/S1234567A`
+**Find Medicine Usage** | `findmu KEYWORD [MORE_KEYWORDS]`<br> e.g. `findmu Paracetamol Amoxicillin`
 **Mark Appointment** | `markappt INDEX ic/NRIC`<br> e.g. `markappt 2 ic/S1234567A`
 **Unmark Appointment** | `unmarkappt INDEX ic/NRIC`<br> e.g. `unmarkappt 2 ic/S1234567A`
 **Help**   | `help`

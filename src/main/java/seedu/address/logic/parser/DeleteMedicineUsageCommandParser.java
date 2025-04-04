@@ -18,7 +18,7 @@ public class DeleteMedicineUsageCommandParser implements Parser<DeleteMedicineUs
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteMedicineUsageCommand
      * and returns a DeleteMedicineUsageCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteMedicineUsageCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
