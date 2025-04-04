@@ -66,15 +66,15 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 ### **Patient Parameters**
 
-| Symbol  | Parameter       | Constraints                                                                                                                                                                 |
-|---------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`n`** | `NAME`          | - Must start with a letter/nu, allowing spaces, apostrophes, periods, and hyphens between words; optional suffix ('s/o', 'd/o', 'c/o', '@') followed by another valid name. |
-| **`p`** | `PHONE_NUMBER`  | - Must be a valid phone number (at least 3 digits. e.g. 999)                                                                                                                |
-| **`e`** | `EMAIL`         | - Must follow standard email format (e.g. `user@domain.com`).                                                                                                               |
-| **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`.               |
-| **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g. `01-01-1990`).                                                                                                                                 |
-| **`a`** | `ADDRESS`       | - No specific constraints.                                                                                                                                                  |
-| **`t`** | `TAG`           | - Optional. Can be repeated (e.g. `t/friend t/colleague`).                                                                                                                  |
+| Symbol  | Parameter       | Constraints                                                                                                                                                               |
+|---------|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`n`** | `NAME`          | - Must start with a letter, allowing spaces, apostrophes, periods, and hyphens between words; optional suffix ('s/o', 'd/o', 'c/o', '@') followed by another valid name. |
+| **`p`** | `PHONE_NUMBER`  | - Must be a valid phone number (at least 3 digits. e.g. 999)                                                                                                              |
+| **`e`** | `EMAIL`         | - Must follow standard email format (e.g. `user@domain.com`).                                                                                                             |
+| **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`.             |
+| **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g. `01-01-1990`).                                                                                                                               |
+| **`a`** | `ADDRESS`       | - No specific constraints.                                                                                                                                                |
+| **`t`** | `TAG`           | - Optional. Can be repeated (e.g. `t/friend t/colleague`).                                                                                                                |
 
 ---
 
