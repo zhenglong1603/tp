@@ -6,7 +6,7 @@
 
 # Klinix User Guide
 
-Klinix Level 3  is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, you can get your contact management tasks done faster than traditional GUI apps.
+Klinix is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, you can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -66,39 +66,39 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 ### **Patient Parameters**
 
-| Symbol  | Parameter       | Constraints                                                                                                                                                    |
-|---------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`n`** | `NAME`          | - Must contain **at least 1 alphabetic character**.<br>- No special constraints on length.                                                                    |
-| **`p`** | `PHONE_NUMBER`  | - Must be a valid phone number (digits only, length not specified in your docs).                                                                               |
-| **`e`** | `EMAIL`         | - Must follow standard email format (e.g., `user@domain.com`).                                                                                                |
-| **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`. |
-| **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g., `01-01-1990`).                                                                                                                  |
-| **`a`** | `ADDRESS`       | - No specific constraints.                                                                                                                                    |
-| **`t`** | `TAG`           | - Optional. Can be repeated (e.g., `t/friend t/colleague`).                                                                                                   |
+| Symbol  | Parameter       | Constraints                                                                                                                                                                 |
+|---------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`n`** | `NAME`          | - Must start with a letter/nu, allowing spaces, apostrophes, periods, and hyphens between words; optional suffix ('s/o', 'd/o', 'c/o', '@') followed by another valid name. |
+| **`p`** | `PHONE_NUMBER`  | - Must be a valid phone number (at least 3 digits. e.g. 999)                                                                                                                |
+| **`e`** | `EMAIL`         | - Must follow standard email format (e.g. `user@domain.com`).                                                                                                               |
+| **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`.               |
+| **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g. `01-01-1990`).                                                                                                                                 |
+| **`a`** | `ADDRESS`       | - No specific constraints.                                                                                                                                                  |
+| **`t`** | `TAG`           | - Optional. Can be repeated (e.g. `t/friend t/colleague`).                                                                                                                  |
 
 ---
 
 ### **Medical Report Parameters**
 
-| Symbol    | Parameter         | Constraints                                                                                                 |
-|-----------|-------------------|-------------------------------------------------------------------------------------------------------------|
-| **`ic`**  | `PATIENT_NRIC`    | - Same as Patient NRIC (9-character alphanumeric).                                                          |
-| **`al`**  | `ALLERGIES`       | - Contains at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
-| **`ill`** | `ILLNESSES`       | - Contains at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
-| **`sur`** | `SURGERIES`       | - Contains at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
-| **`imm`** | `IMMUNIZATIONS`   | - Contains at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| Symbol    | Parameter         | Constraints                                                                                                     |
+|-----------|-------------------|-----------------------------------------------------------------------------------------------------------------|
+| **`ic`**  | `PATIENT_NRIC`    | - Same as Patient NRIC (9-character alphanumeric).                                                              |
+| **`al`**  | `ALLERGIES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`ill`** | `ILLNESSES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens.     |
+| **`sur`** | `SURGERIES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens.     |
+| **`imm`** | `IMMUNIZATIONS`   | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens.     |
 
 ---
 
 ### **Medicine Usage Parameters**
 
-| Symbol     | Parameter          | Constraints                                                                                    |
-|------------|--------------------|------------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                        |
-| **`n`**    | `MEDICINE_NAME`    | - Must contain **at least 1 alphabetic character**.                                            |
-| **`dos`**  | `DOSAGE`           | - Free-text (e.g., `Two 500mg tablets, 4 times daily`).                                       |
+| Symbol     | Parameter          | Constraints                                                                                   |
+|------------|--------------------|-----------------------------------------------------------------------------------------------|
+| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                       |
+| **`n`**    | `MEDICINE_NAME`    | - Must contain **at least 1 alphabetic character**.                                           |
+| **`dos`**  | `DOSAGE`           | - Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                       |
 | **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                  |
-| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**.  |
+| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**. |
 
 ---
 
@@ -115,11 +115,11 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 ### **General Parameters**
 
-| Symbol      | Parameter       | Constraints                                                                                    |
-|-------------|-----------------|------------------------------------------------------------------------------------------------|
-| **`INDEX`** | `INDEX`         | - **Positive integer** (1, 2, 3, ...).<br>- Must exist in the current displayed list.          |
-| **`date`**  | `DATE`          | - Format: `dd-MM-yyyy` (e.g. `22-03-2025`). Used in `appton`.                                 |
-| **`KEYWORD`**| `KEYWORD`       | - Non-empty string (used in `find`).                                                           |
+| Symbol     | Parameter       | Constraints                                                                         |
+|------------|-----------------|-------------------------------------------------------------------------------------|
+| -          | `INDEX`         | - **Positive integer** (1, 2, 3, ...).<br>- Must exist in the current displayed list. |
+| -          | `KEYWORD`       | - Non-empty string.                                         |
+| **`date`** | `DATE`          | - Format: `dd-MM-yyyy` (e.g. `22-03-2025`).             |
 
 ---
 
@@ -177,63 +177,63 @@ This feature allows you to quickly reuse or edit previously entered commands wit
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-### Adding a person: `add`
+### Adding a patient: `add`
 
-Adds a person to Klinix.
+Adds a patient to Klinix.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC b/BIRTHDATE a/ADDRESS [t/TAG]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A patient can have any number of tags (including 0)
 </box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10/10/2000 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com ic/S9876543B b/01/01/1990 a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all patients : `list`
 
-Shows a list of all persons in Klinix.
+Shows a list of all patients in Klinix.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a patient : `edit`
 
-Edits an existing person in Klinix.
+Edits an existing patient in Klinix.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [b/BIRTHDATE] [a/ADDRESS] [t/TAG]..​`
 
 parameters:
-* `INDEX`: The index of the person in the displayed list. It must be a positive integer.
-* `NAME`: (Optional) The name of the person. It should not be blank.
-* `PHONE`: (Optional) The phone number of the person. It should be a valid phone number.
-* `EMAIL`: (Optional) The email of the person. It should be a valid email address.
-* `NRIC`: (Optional) The NRIC of the person. It should be a valid NRIC number.
-* `BIRTHDATE`: (Optional) The birthdate of the person. It should be a valid date in the format `dd-MM-yyyy`.
-* `ADDRESS`: (Optional) The address of the person. It should not be blank.
-* `TAG`: (Optional) The tag of the person.
+* `INDEX`: The index of the patient in the displayed list. It must be a positive integer.
+* `NAME`: (Optional) The name of the patient. It should not be blank.
+* `PHONE`: (Optional) The phone number of the patient. It should be a valid phone number.
+* `EMAIL`: (Optional) The email of the patient. It should be a valid email address.
+* `NRIC`: (Optional) The NRIC of the patient. It should be a valid NRIC number.
+* `BIRTHDATE`: (Optional) The birthdate of the patient. It should be a valid date in the format `dd-MM-yyyy`.
+* `ADDRESS`: (Optional) The address of the patient. It should not be blank.
+* `TAG`: (Optional) The tag of the patient.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating patients by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -241,7 +241,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -249,19 +249,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a Patient : `delete`
 
-Deletes the specified person from Klinix.
+Deletes the specified patient from Klinix.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in Klinix.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd patient in Klinix.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -269,7 +269,7 @@ Clears all entries from the clinic.
 
 Format: `clear`
 
-### Add medical report: `addmr`
+### Add Medical Report: `addmr`
 
 Add a new medical report to a patient's record.
 
@@ -293,7 +293,7 @@ Examples:
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
 
-### Delete medical report: `deletemr`
+### Delete Medical Report: `deletemr`
 
 Delete a patient's existing medical report.
 
@@ -311,7 +311,7 @@ Examples:
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient does not have an existing medical report, nothing will happen.
 
-### Add medicine usage records: `addmu`
+### Add Medicine Usage records: `addmu`
 
 Add a new medicine usage record as part of a patient’s medical history or medical needs.
 
@@ -335,7 +335,7 @@ Examples:
 2. Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.
 Klinix will detect such overlapping instances and give an error message when you try to add them.
 
-### Clear all medicine usage records: `clearmu`
+### Clear all Medicine Usage records: `clearmu`
 
 Clear all medicine usage records of a patient's medical history.
 
@@ -347,7 +347,7 @@ Examples: `clearmu ic/S1234567A`
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 
-### Delete medicine usage records: `deletemu`
+### Delete Medicine Usage records: `deletemu`
 
 Delete a particular medicine usage record of a patient's medical history.
 
@@ -360,7 +360,7 @@ Parameters:
 Examples:
 * `deletemu 2 ic/S1234567A`
 
-### Add appointment: `addappt`
+### Add Appointment: `addappt`
 
 Add a new appointment to the patient.
 
@@ -376,7 +376,7 @@ Example:
 2. Two appointments from the same patient are overlapped if they have the same name and overlapping duration.
    Klinix will detect such overlapping instances and give an error message when you try to add them.
 
-### Delete appointment: `deleteappt`
+### Delete Appointment: `deleteappt`
 
 Delete the specified appointment from the patient.
 
@@ -394,7 +394,7 @@ Example:
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. The index given must also be valid, a positive integer and within the appointment list size.
 
-### Clear all appointment records: `clearappt`
+### Clear all Appointment records: `clearappt`
 
 Clear all appointments of a patient.
 
@@ -409,7 +409,7 @@ Examples: `clearappt ic/S1234567A`
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 
-### View appointments on specific date: `appton`
+### View Appointments on specific date: `appton`
 
 Display all appointments on a specific date.
 
@@ -419,7 +419,6 @@ Parameters:
 - `DATE`: The date to view appointments on. It must be in the format `dd-MM-yyyy`.
 
 Examples: `appton date/22-03-2025`
-
 
 ### Exiting the program : `exit`
 
@@ -483,7 +482,7 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Delete Appointment** | `deleteappt INDEX ic/NRIC` <br> e.g. `deleteappt 3 ic/S1234567A`
 **Delete Medical Report** | `deletemr ic/NRIC` <br> e.g. `deletemr ic/S1234567B`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
 **Exit**   | `exit`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Find Medicine Usage** | `findmu ic/NRIC`<br> e.g. `findmu ic/S1234567A`
