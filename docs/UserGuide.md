@@ -273,7 +273,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in Klinix.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `delete ic/S1234567A` deletes the person with NRIC S1234567A from Klinix (if exists).
-=======
 * `list` followed by `delete 2` deletes the 2nd patient in Klinix.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
@@ -524,6 +523,17 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Future Improvements
+
+1. **Issue**: Deleting a medical report when the patient does not have an existing medical report does not reflect the
+correct error message. Instead, it shows the success message.
+   **Improvement**: Ensure that the correct error message is displayed when attempting to delete a medical report 
+that does not exist.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
