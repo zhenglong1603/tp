@@ -317,7 +317,6 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 | `*`     | Advanced User                       | filter records based on insurance type or payment status          | I can assist with billing and insurance-related queries promptly.             |
 | `*`     | Basic User, Beginner                | view a visual calendar of appointments                            | I can manage daily schedules more intuitively.                                |
 | `*`     | Beginner                            | see pop-up help tips when hovering over icons or fields           | I understand what each element does without feeling overwhelmed               |
-*{More to be added}*
 
 ### Use cases
 
