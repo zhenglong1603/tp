@@ -55,25 +55,26 @@ public class StringUtilTest {
      */
 
     @Test
-    public void containsWordIgnoreCase_nullWord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase("typical sentence", null));
+    public void containsWordIgnoreCase_nullPartial_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsPartialWordIgnoreCase("typical sentence",
+                null));
     }
 
     @Test
-    public void containsWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+    public void containsWordIgnoreCase_emptyPartial_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "  "));
+            -> StringUtil.containsPartialWordIgnoreCase("typical sentence", "  "));
     }
 
     @Test
-    public void containsWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
+    public void containsPartialWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "aaa BBB"));
+            -> StringUtil.containsPartialWordIgnoreCase("typical sentence", "aaa BBB"));
     }
 
     @Test
-    public void containsWordIgnoreCase_nullSentence_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, "abc"));
+    public void containsPartialWordIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsPartialWordIgnoreCase(null, "abc"));
     }
 
     /*
@@ -102,26 +103,46 @@ public class StringUtilTest {
      */
 
     @Test
-    public void containsWordIgnoreCase_validInputs_correctResult() {
+    public void containsPartialWordIgnoreCase_validInputs_correctResult() {
+        // Empty sentence or keyword
+        assertFalse(StringUtil.containsPartialWordIgnoreCase("", "abc")); // empty sentence
+        assertThrows(IllegalArgumentException.class, () ->
+                StringUtil.containsPartialWordIgnoreCase("abc", ""));
 
-        // Empty sentence
-        assertFalse(StringUtil.containsWordIgnoreCase("", "abc")); // Boundary case
-        assertFalse(StringUtil.containsWordIgnoreCase("    ", "123"));
+        // Sentence contains keyword as partial substring
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("paracetamol ibuprofen", "mol")); // partial middle
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("Vitamin C + Zinc", "vit")); // partial front
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("Amoxicillin", "illin")); // partial end
 
-        // Matches a partial word only
-        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
-        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
+        // Keyword longer than any word in sentence – no match
+        assertFalse(StringUtil.containsPartialWordIgnoreCase("aaa bbb ccc", "bbbbbb")); // too long
 
-        // Matches word in the sentence, different upper/lower case letters
-        assertTrue(StringUtil.containsWordIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
-        assertTrue(StringUtil.containsWordIgnoreCase("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
-        assertTrue(StringUtil.containsWordIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
-        assertTrue(StringUtil.containsWordIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
-        assertTrue(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+        // Case-insensitive match
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("AAA bBb ccc", "bbb")); // match with different case
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("Zyrtec (Cetirizine)", "CETI")); // caps vs lowercase
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("Dr. John's formula", "john")); // with punctuation
 
-        // Matches multiple words in sentence
-        assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
+        // Sentence has leading/trailing/multiple spaces
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("   aaa   bbb   ccc   ", "bb")); // extra spaces
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("   Aaa", "aaa")); // leading spaces
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("ccc   ", "c")); // trailing spaces
+
+        // Match is full word
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("abc def ghi", "def"));
+
+        // Match is entire sentence
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("hydrocortisone", "hydrocortisone"));
+
+        // Match is across symbols
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("Aspirin + Paracetamol", "+"));
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("Aspirin-Paracetamol", "-"));
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("Cough, Cold, Fever", ","));
+
+        // No match
+        assertFalse(StringUtil.containsPartialWordIgnoreCase("Ibuprofen", "paracetamol"));
+        assertFalse(StringUtil.containsPartialWordIgnoreCase("abc def", "xyz"));
     }
+
 
     //---------------- Tests for getDetails --------------------------------------
 

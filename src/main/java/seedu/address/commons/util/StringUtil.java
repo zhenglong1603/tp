@@ -13,16 +13,16 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     *   Ignores case, and partial word match is allowed.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsPartialWordIgnoreCase("ABc def", "abc") == true
+     *       containsPartialWordIgnoreCase("ABc def", "AB") == true //partial word match
+     *       containsPartialWordIgnoreCase("ABc def", "GHJ") == false //no match
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean containsPartialWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
