@@ -1,6 +1,6 @@
 /* Container styling */
 #confirmMessageContainer {
-    -fx-background-color: #121212;
+    -fx-background-color: derive(#1d1d1d, 20%);
     -fx-padding: 20;
     -fx-spacing: 10;
     -fx-border-width: 1;
@@ -19,45 +19,24 @@
     -fx-spacing: 10;
 }
 
-#okButton{
-    -fx-background-color: #2e372e;
-    -fx-background-radius: 5;
-}
-
-#okButton:hover {
-    -fx-background-color: #53cb66;
-    -fx-text-fill: black;
-}
-
-#okButton:armed {
-    -fx-background-color: #2fc452;
-    -fx-text-fill: black;
-}
-
-/* Cancel button styling */
-
-#cancelButton {
-    -fx-background-color: #613c36;
-    -fx-background-radius: 5;
-}
-
-#cancelButton:hover {
-    -fx-background-color: #d06651;
-    -fx-text-fill: black;
-}
-#cancelButton:armed {
-    -fx-background-color: #fb5332;
-    -fx-text-fill: black;
-}
-
-
 /* Buttons styling */
 #okButton, #cancelButton{
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-font-size: 14;
+    -fx-background-color: dimgray;
+    -fx-border-color: derive(dimgray, -20%);
+    -fx-border-width: 1;
     -fx-padding: 8 15;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
     -fx-text-fill: white;
     -fx-cursor: hand;
+}
+
+#okButton:hover, #cancelButton:hover {
+    -fx-background-color: gray;
+}
+
+#copyButton:armed {
+    -fx-background-color: darkgray;
 }
