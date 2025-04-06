@@ -262,15 +262,21 @@ public class ParserUtil {
         }
     }
 
-    private static String smartTrim(String input) {
+    static String smartTrim(String input) {
         requireNonNull(input);
-        String trimmed = input.trim().replaceAll("\\s+", " "); // Trim white spaces
-        trimmed = trimmed.replaceAll("\\s*([-+@:])\\s*", "$1"); // Handle dashes and pluses
-        trimmed = trimmed.replaceAll("\\s*([.,])\\s*", "$1 "); // Handle commas and periods
-        trimmed = trimmed.replaceAll("\\s*([(#])\\s*", " $1"); // Handle left parenthesis
-        trimmed = trimmed.replaceAll("\\s*\\)\\s*", ") "); // Handle right parenthesis
-        trimmed = trimmed.replaceAll("\\s*'\\s*", "'"); // Handle apostrophes
-        trimmed = trimmed.replaceAll("\\s+", " ").trim(); // Trim white spaces again
+        // Handle characters one by one to avoid complication in rules conflict resolution
+        String trimmed = input.trim().replaceAll("\\s+", " "); // Remove extra white spaces
+        trimmed = trimmed.replaceAll("\\s*\\+\\s*", "+"); // Plus
+        trimmed = trimmed.replaceAll("\\s*@\\s*", "@"); // At
+        trimmed = trimmed.replaceAll("\\s*:\\s*", ":"); // Colon
+        trimmed = trimmed.replaceAll("\\s*'\\s*", "'"); // Apostrophe
+        trimmed = trimmed.replaceAll("\\s*\\.\\s*", ". "); // Period
+        trimmed = trimmed.replaceAll("\\s*,\\s*", ", "); // Comma
+        trimmed = trimmed.replaceAll("\\s*\\)\\s*", ") "); // Right parenthesis
+        trimmed = trimmed.replaceAll("\\s*\\(\\s*", " ("); // Left parenthesis
+        trimmed = trimmed.replaceAll("\\s*#\\s*", " #"); // Hash
+        trimmed = trimmed.replaceAll("\\s*\\-\\s*", "-"); // Dash
+        trimmed = trimmed.replaceAll("\\s+", " ").trim(); // Remove extra spaces again
 
         return trimmed;
     }
