@@ -526,17 +526,6 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Future Improvements
-
-1. **Issue**: Deleting a medical report when the patient does not have an existing medical report does not reflect the
-correct error message. Instead, it shows the success message.
-   **Improvement**: Ensure that the correct error message is displayed when attempting to delete a medical report 
-that does not exist.
-
-
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 
 Action     | Format, Examples

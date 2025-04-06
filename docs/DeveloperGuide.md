@@ -239,7 +239,8 @@ The `ViewAppointmentCommand` is implemented as follows:
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Planned Enhancements**
-
+1. The current find command only searches for names. Future versions may allow searching by other fields such as NRIC,
+   phone number, or email. This is because we understand that people may have similar names.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -319,7 +320,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 | `*`     | Beginner                            | see pop-up help tips when hovering over icons or fields           | I understand what each element does without feeling overwhelmed               |
 
 ### Use cases
-
+The use cases below are not exhaustive.
 (For all use cases below, the **System** is the `Klinix` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add Patient**
@@ -358,6 +359,26 @@ Use case ends.
 
 ---
 
+**Use case: Find Patient**
+
+**MSS**
+1. User requests to find a patient by name.
+2. System validates the name.
+3. System checks if a matching patient exists.
+4. System displays the patient details (name, age, contact number, address).
+5. System confirms successful retrieval.
+6. System displays the patient details.
+
+**Extensions**
+- 1a. Missing name → System returns "Error: Patient name is missing."
+- 1b. Invalid name format → System returns "Error: Name must be valid."
+- 2a. No matching patient found → System returns "Error: No patient found with the given name."
+- 3a. System error occurs → System returns "Error: Unable to find patient due to system error."
+- 4a. Invalid input format → System returns "Error: Invalid input format. Please check the details."
+
+Use case ends.
+---
+
 **Use case: Edit Patient**
 
 **MSS**
@@ -367,7 +388,6 @@ Use case ends.
 4. System updates the patient details (name, age, contact number, address).
 5. System confirms successful update.
 6. System displays the updated patient details.
-
 
 **Extensions**
 - 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
