@@ -546,14 +546,13 @@ Use case ends.
 
 ### Glossary
 
-Here are some glossary terms that might be helpful to clarify within your document:
-
 1. **NRIC (National Registration Identity Card)** – A unique identification number assigned to citizens and residents.
 2. **Medical Report** – A document containing a patient's medical history, including illnesses, treatments, and surgeries.
 3. **Medical Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
-8. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
-9. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
-10. **MSS (Main Success Scenario)** – The sequence of steps that lead to a successful execution of a use case.
+4. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
+5. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
+6. **MSS (Main Success Scenario)** – The sequence of steps that lead to a successful execution of a use case.
+7. **Jar** – A Java Archive file that contains the compiled Java classes and resources for the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
