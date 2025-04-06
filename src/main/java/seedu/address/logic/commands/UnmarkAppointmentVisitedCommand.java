@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.DeleteAppointmentCommand.MESSAGE_PERSON_NOT_FOUND;
-import static seedu.address.logic.commands.DeleteMedicineUsageCommand.MESSAGE_INVALID_MEDICINE_USAGE_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.util.List;
@@ -20,6 +19,7 @@ import seedu.address.model.person.Person;
 public class UnmarkAppointmentVisitedCommand extends Command {
     public static final String COMMAND_WORD = "unmarkappt";
     public static final String MESSAGE_SUCCESS = "Marked appointment as not visited for person %s:\n%s";
+    public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "Index is out of bounds.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an appointment as not visited."
             + "Parameters: "
             + "INDEX (must be a positive integer) "
@@ -51,7 +51,7 @@ public class UnmarkAppointmentVisitedCommand extends Command {
         List<Appointment> appointmentList = person.getAppointments();
 
         if (index.getZeroBased() >= appointmentList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_MEDICINE_USAGE_DISPLAYED_INDEX));
+            throw new CommandException(String.format(MESSAGE_INDEX_OUT_OF_BOUNDS));
         }
 
         Appointment apptToMark = appointmentList.get(index.getZeroBased());
