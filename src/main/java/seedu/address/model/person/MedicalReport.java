@@ -16,9 +16,6 @@ public class MedicalReport {
             "Medical report should contain only letters, numbers, spaces, or hyphens, "
                     + "and at least one alphabetic character";
 
-    public static final MedicalReport EMPTY_MEDICAL_REPORT =
-            new MedicalReport("None", "None", "None", "None");
-
     public final String value;
     private final String allergens;
     private final String illnesses;
