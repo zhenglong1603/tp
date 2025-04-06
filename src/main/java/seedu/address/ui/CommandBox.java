@@ -105,7 +105,6 @@ public class CommandBox extends UiPart<Region> {
             commandExecutor.execute(commandText);
             commandTextField.setText(""); // this is making the revert style revert
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Exception while executing command", e);
             commandTextField.setText(""); // this is making the revert style revert
             setStyleToIndicateCommandFailure();
         }
