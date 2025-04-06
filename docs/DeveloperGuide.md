@@ -772,7 +772,7 @@ testers are expected to do more *exploratory* testing.
     * **Expected:** Klinix throws the error message `No appointments to clear`
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Efforts **
+## **Appendix: Efforts**
 #### Difficulty Level
 #### Challenges Faced
 #### Effort Required
