@@ -39,7 +39,7 @@
                 <SplitPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" styleClass="split-pane" maxHeight="Infinity" prefWidth="300" minWidth="300">
                     <VBox fx:id="leftVBox" prefWidth="200" minWidth="200" styleClass="pane-with-border"
                           VBox.vgrow="ALWAYS">
-                        <StackPane alignment="CENTER_LEFT">
+                        <StackPane fx:id="leftStackPane" alignment="CENTER_LEFT">
                             <padding>
                                 <Insets top="10" right="20" bottom="5" left="20"/>
                             </padding>
