@@ -58,7 +58,7 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
+        String trimmedName = name.trim().replaceAll(" +", " ");
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -73,7 +73,7 @@ public class ParserUtil {
      */
     public static MedicineName parseMedicineName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
+        String trimmedName = name.trim().replaceAll(" +", " ");
         if (!MedicineName.isValidName(trimmedName)) {
             throw new ParseException(MedicineName.MESSAGE_CONSTRAINTS);
         }
@@ -88,7 +88,7 @@ public class ParserUtil {
      */
     public static Dosage parseDosage(String dosage) throws ParseException {
         requireNonNull(dosage);
-        String trimmedDosage = dosage.trim();
+        String trimmedDosage = dosage.trim().replaceAll(" +", " ");
         if (!Dosage.isValidDosage(trimmedDosage)) {
             throw new ParseException(Dosage.MESSAGE_CONSTRAINTS);
         }
@@ -103,7 +103,7 @@ public class ParserUtil {
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
+        String trimmedPhone = phone.trim().replaceAll(" +", " ");
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -118,7 +118,7 @@ public class ParserUtil {
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
+        String trimmedAddress = address.trim().replaceAll(" +", " ");
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
@@ -133,7 +133,7 @@ public class ParserUtil {
      */
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
-        String trimmedEmail = email.trim();
+        String trimmedEmail = email.trim().replaceAll(" +", " ");
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -148,7 +148,7 @@ public class ParserUtil {
      */
     public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
-        String trimmedNric = nric.trim();
+        String trimmedNric = nric.trim().replaceAll(" +", " ");
         if (!Nric.isValidNric(trimmedNric)) {
             throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
@@ -163,7 +163,7 @@ public class ParserUtil {
      */
     public static BirthDate parseBirthDate(String birthDate) throws ParseException {
         requireNonNull(birthDate);
-        String trimmedBirthDate = birthDate.trim();
+        String trimmedBirthDate = birthDate.trim().replaceAll(" +", " ");
         if (!BirthDate.isValidBirthDate(trimmedBirthDate)) {
             throw new ParseException(BirthDate.MESSAGE_CONSTRAINTS);
         }
@@ -178,7 +178,7 @@ public class ParserUtil {
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = tag.trim();
+        String trimmedTag = tag.trim().replaceAll(" +", " ");
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
@@ -205,7 +205,7 @@ public class ParserUtil {
      */
     public static String parseAppointmentDescription(String appointmentDescription) throws ParseException {
         requireNonNull(appointmentDescription);
-        String trimmedAppointmentDescription = appointmentDescription.trim();
+        String trimmedAppointmentDescription = appointmentDescription.trim().replaceAll(" +", " ");
         if (!Appointment.isValidDescription(trimmedAppointmentDescription)) {
             throw new ParseException(Appointment.DESCRIPTION_MESSAGE_CONSTRAINTS);
         }
@@ -223,7 +223,7 @@ public class ParserUtil {
     //https://stackoverflow.com/questions/22990870/how-to-disable-emoji-from-being-entered-in-android-edittext
     public static String parseMedicalField(String field) throws ParseException {
         requireNonNull(field);
-        String trimmedField = field.trim();
+        String trimmedField = field.trim().replaceAll(" +", " ");
         if (!MedicalReport.isValidMedicalField(trimmedField)) {
             throw new ParseException(MedicalReport.MESSAGE_CONSTRAINTS);
         }
@@ -238,7 +238,7 @@ public class ParserUtil {
      */
     public static LocalDateTime parseLocalDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
-        String trimmedDateTime = dateTime.trim();
+        String trimmedDateTime = dateTime.trim().replaceAll(" +", " ");
         try {
             return LocalDateTime.parse(trimmedDateTime, DATE_TIME_FORMATTER);
         } catch (DateTimeParseException exception) {
@@ -254,7 +254,7 @@ public class ParserUtil {
      */
     public static LocalDate parseLocalDate(String date) throws ParseException {
         requireNonNull(date);
-        String trimmedDate = date.trim();
+        String trimmedDate = date.trim().replaceAll(" +", " ");
         try {
             return LocalDate.parse(trimmedDate, DATE_FORMATTER);
         } catch (DateTimeParseException exception) {
