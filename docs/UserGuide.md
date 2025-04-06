@@ -6,7 +6,12 @@
 
 # Klinix User Guide
 
-Klinix is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, you can get your contact management tasks done faster than traditional GUI apps.
+Klinix is a desktop app created to **make your daily contact management faster and easier**. 
+
+We know how busy your day can get—answering calls, scheduling appointments, and keeping patient records organized. 
+Klinix combines the speed of typing commands with a simple, user-friendly interface, so you can quickly find, add, or update patient and partner information without the ha
+
+**Because the smoother your workflow, the better care you can provide.**
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -18,13 +23,26 @@ Klinix is a **desktop app for managing contacts, optimized for use via a  Line I
 1. **Install Java:**
    Ensure you have Java `17` or above installed on your computer.
    - **Windows & Linux Users:** Download and install Java from [Oracle JDK 17 Archive Downloads](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).
+     - **Windows Users:** Follow the instructions [here](https://se-education.org/guides/tutorials/javaInstallationWindows.html).
+     - **Linux Users:** Follow the instructions [here](https://se-education.org/guides/tutorials/javaInstallationLinux.html).
    - **Mac Users:** Install the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. **Download the Application:**
    Get the latest `.jar` file from [this release page](https://github.com/AY2425S2-CS2103T-T09-2/tp/releases).
+   Version names may vary, but the file name should be `Klinix.jar`.
+![img_1.png](images/GitRelease.png)
 
 3. **Prepare Your Folder:**
    Create an empty folder that will serve as your _home folder_ for Klinix, and copy the downloaded `.jar` file into that folder.
+    - **Windows:** Create a folder named `Klinix` on your Desktop.
+    - **macOS/Linux:** Create a folder named `Klinix` in your home directory.
+
+        or
+      
+    - **macOS/Linux:** You can create the folder using the command:
+      ```bash
+      mkdir ~/Klinix
+      ```
 
 4. **Run the Application:**
    - Open a command terminal.
@@ -41,7 +59,7 @@ Klinix is a **desktop app for managing contacts, optimized for use via a  Line I
    - Type a command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
    - Here are some example commands you can try:
      - `list` : Lists all contacts.
-     - `add <name> <details>` : Adds a new contact to Klinix.
+     - `add n/John Doe p/8888888 e/JohnDoe@student.comp.nus.edu.com.sg b/01-01-1990 a/Newgate Prison p/1234567 t/criminal` : Adds a new patient to Klinix.
      - `delete 3` : Deletes the 3rd contact shown in the current list.
      - `clear` : Deletes all contacts.
      - `exit` : Exits the app.
@@ -156,6 +174,12 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+
+### Viewing patient details
+You can view the details of a patient by clicking on their name in the displayed list. This will display all the details of the selected patient in the `details` window.
+![patient details](images/ViewPatientDetailsDemonstration.gif)
+
+
 ### Viewing past commands:
 
 You can scroll through your previously entered commands using the **Up** and **Down** arrow keys.
@@ -183,6 +207,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
+
 ### Adding a patient: `add`
 
 Adds a patient to Klinix with the specified details.
@@ -200,11 +229,40 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com ic/S9876543B b/01-01-1990 a/Newgate Prison p/1234567 t/criminal`
 
+### Marking an appointment: `markappt`
+
+Marks an appointment as `visited`.
+Format: `markappt INDEX ic/NRIC`
+Parameters:
+- `INDEX`: The index of the appointment in the [patient details](#Viewing-patient-details). It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
+Example:
+* `markappt 2 ic/S1234567A`
+* `markappt 1 ic/T0260144G`
+
+### Unmarking an appointment: `unmarkappt`
+
+Unmarks an appointment as `not visited`.
+Format: `unmarkappt INDEX ic/NRIC`
+Parameters:
+- `INDEX`: The index of the appointment in the [patient details](#Viewing-patient-details). It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
+Example:
+* `unmarkappt 2 ic/S1234567A`
+* `unmarkappt 1 ic/T0260144G`
+
 ### Listing all patients : `list`
 
 Shows a list of all patients in Klinix.
 
 Format: `list`
+
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
 
 ### Editing a patient : `edit`
 
@@ -279,6 +337,11 @@ Examples:
 Clears all entries from the clinic.
 
 Format: `clear`
+
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
 
 ### Adding medical report: `addmr`
 
@@ -466,12 +529,12 @@ Examples: `clearappt 1` clears all appointments of the first patient currently d
 
 ### View Appointments on specific date: `appton`
 
-Display all appointments on a specific date.
+Display all appointments starting on a specific date.
 
 Format: `appton date/DATE`
 
 Parameters:
-- `DATE`: The date to view appointments on. It must be in the format `dd-MM-yyyy`.
+- `DATE`: The date to view appointments starting on a specific date. It must be in the format `dd-MM-yyyy`.
 
 Examples: `appton date/22-03-2025`
 
@@ -480,6 +543,11 @@ Examples: `appton date/22-03-2025`
 Exits the program.
 
 Format: `exit`
+
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
 
 ### Saving the data
 
@@ -546,5 +614,4 @@ Action     | Format, Examples
 **Unmark Appointment** | `unmarkappt INDEX ic/NRIC`<br> e.g. `unmarkappt 2 ic/S1234567A`
 **Help**   | `help`
 **List**   | `list`
-**Unmark Appointment** | `unmarkappt INDEX ic/NRIC`<br> e.g. `unmarkappt 2 ic/S1234567A`
 **View Appointment on specific date** | `appton date/DATE` <br> e.g. `appton date/22-03-2025`
