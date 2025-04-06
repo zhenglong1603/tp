@@ -70,7 +70,7 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 |---------|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **`n`** | `NAME`          | - Must start with a letter, allowing spaces, apostrophes, periods, and hyphens between words; optional suffix ('s/o', 'd/o', 'c/o', '@') followed by another valid name. |
 | **`p`** | `PHONE_NUMBER`  | - Must be a valid phone number (at least 3 digits. e.g. 999)                                                                                                              |
-| **`e`** | `EMAIL`         | - Must follow standard email format (e.g. `user@domain.com`).                                                                                                             |
+| **`e`** | `EMAIL`         | - Must follow the format `local-part@domain` and adhere to these constraints:<br> 1. The `local-part` must only contain alphanumeric characters and these special characters: `+_.-`. It cannot start or end with a special character.<br> 2. The `domain` consists of labels separated by periods, where each label:<br> - Starts and ends with alphanumeric characters.<br> - May contain hyphens between alphanumeric characters.<br> - Ends with a label at least 2 characters long.                                                                                                             |
 | **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`.             |
 | **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g. `01-01-1990`).                                                                                                                               |
 | **`a`** | `ADDRESS`       | - No specific constraints.                                                                                                                                                |
@@ -185,7 +185,7 @@ Format: `help`
 
 ### Adding a patient: `add`
 
-Adds a patient to Klinix.
+Adds a patient to Klinix with the specified details.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC b/BIRTHDATE a/ADDRESS [t/TAG]…​`
 
@@ -193,6 +193,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC b/BIRTHDATE a/ADDRESS [t/TAG]
 
 **Tip:** A patient can have any number of tags (including 0)
 </box>
+
+**Note:** Refer to the [Patient Parameters](#patient-parameters) section for detailed constraints on each parameter.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/John street, block 123, #01-01`
@@ -212,13 +214,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [b/BIRTHDATE] [a/ADDR
 
 parameters:
 * `INDEX`: The index of the patient in the displayed list. It must be a positive integer.
-* `NAME`: (Optional) The name of the patient. It should not be blank.
-* `PHONE`: (Optional) The phone number of the patient. It should be a valid phone number.
-* `EMAIL`: (Optional) The email of the patient. It should be a valid email address.
-* `NRIC`: (Optional) The NRIC of the patient. It should be a valid NRIC number.
-* `BIRTHDATE`: (Optional) The birthdate of the patient. It should be a valid date in the format `dd-MM-yyyy`.
-* `ADDRESS`: (Optional) The address of the patient. It should not be blank.
-* `TAG`: (Optional) The tag of the patient.
+
+For detailed constraints on all other parameters (`NAME`, `PHONE`, `EMAIL`, `NRIC`, `BIRTHDATE`, `ADDRESS`, `TAG`), refer to the [Patient Parameters](#patient-parameters) section. These parameters represent the fields of the patient that you can edit.
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
