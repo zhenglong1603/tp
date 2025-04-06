@@ -23,8 +23,6 @@ import seedu.address.model.appointment.exceptions.OverlappingAppointmentExceptio
  * @see Appointment#hasOverlap(Appointment)
  */
 public class AppointmentList implements Iterable<Appointment> {
-    public static final AppointmentList EMPTY_APPOINTMENT_LIST =
-            new AppointmentList();
     private final ObservableList<Appointment> internalList = FXCollections.observableArrayList();
     private final ObservableList<Appointment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);

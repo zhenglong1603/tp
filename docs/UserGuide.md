@@ -526,22 +526,11 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Future Improvements
-
-1. **Issue**: Deleting a medical report when the patient does not have an existing medical report does not reflect the
-correct error message. Instead, it shows the success message.
-   **Improvement**: Ensure that the correct error message is displayed when attempting to delete a medical report 
-that does not exist.
-
-
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL b/BIRTHDATE a/ADDRESS [t/TAG]…​` <br> e.g. `add n/John Dane p/98471649 ic/S0123459P e/johndane@example.com b/10-10-2000 a/John street, block 123, #01-02`
 **Add Appointment** | `addappt ic/NRIC appt/DESCRIPTION from/START to/END` <br> e.g. `addappt ic/T0260144G appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
 **Add Medical Report** | `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]` <br> e.g. `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 **Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g. `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`

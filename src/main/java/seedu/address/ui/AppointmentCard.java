@@ -38,9 +38,9 @@ public class AppointmentCard extends UiPart<Region> {
         super(FXML);
         this.appointment = appointment;
         if (appointment.getVisited()) {
-            visited.setStyle("-fx-background-color: rgba(253,189,57,0.7); -fx-text-fill: rgba(0,0,0,0.69);");
+            visited.setStyle("-fx-background-color: #53cb66; -fx-text-fill: rgba(0,0,0,0.69);");
         } else {
-            visited.setStyle("-fx-background-color: rgba(200,207,45,0.68); -fx-text-fill: rgba(0,0,0,0.69);");
+            visited.setStyle("-fx-background-color: #d06651; -fx-text-fill: rgba(0,0,0,0.69);");
         }
 
         visited.setText(appointment.getVisited() ? "Visited" : "Not Visited");

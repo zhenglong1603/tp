@@ -162,7 +162,7 @@ public class ModelManager implements Model {
                 target.getBirthDate(),
                 target.getAddress(),
                 target.getTags(),
-                MedicalReport.EMPTY_MEDICAL_REPORT,
+                new MedicalReport("None", "None", "None", "None"),
                 target.getAppointmentList()
         );
 

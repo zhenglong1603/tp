@@ -239,7 +239,8 @@ The `ViewAppointmentCommand` is implemented as follows:
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Planned Enhancements**
-
+1. The current find command only searches for names. Future versions may allow searching by other fields such as NRIC,
+   phone number, or email. This is because we understand that people may have similar names.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -317,10 +318,9 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 | `*`     | Advanced User                       | filter records based on insurance type or payment status          | I can assist with billing and insurance-related queries promptly.             |
 | `*`     | Basic User, Beginner                | view a visual calendar of appointments                            | I can manage daily schedules more intuitively.                                |
 | `*`     | Beginner                            | see pop-up help tips when hovering over icons or fields           | I understand what each element does without feeling overwhelmed               |
-*{More to be added}*
 
 ### Use cases
-
+The use cases below are not exhaustive.
 (For all use cases below, the **System** is the `Klinix` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add Patient**
@@ -359,6 +359,26 @@ Use case ends.
 
 ---
 
+**Use case: Find Patient**
+
+**MSS**
+1. User requests to find a patient by name.
+2. System validates the name.
+3. System checks if a matching patient exists.
+4. System displays the patient details (name, age, contact number, address).
+5. System confirms successful retrieval.
+6. System displays the patient details.
+
+**Extensions**
+- 1a. Missing name → System returns "Error: Patient name is missing."
+- 1b. Invalid name format → System returns "Error: Name must be valid."
+- 2a. No matching patient found → System returns "Error: No patient found with the given name."
+- 3a. System error occurs → System returns "Error: Unable to find patient due to system error."
+- 4a. Invalid input format → System returns "Error: Invalid input format. Please check the details."
+
+Use case ends.
+---
+
 **Use case: Edit Patient**
 
 **MSS**
@@ -368,7 +388,6 @@ Use case ends.
 4. System updates the patient details (name, age, contact number, address).
 5. System confirms successful update.
 6. System displays the updated patient details.
-
 
 **Extensions**
 - 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
@@ -546,14 +565,13 @@ Use case ends.
 
 ### Glossary
 
-Here are some glossary terms that might be helpful to clarify within your document:
-
 1. **NRIC (National Registration Identity Card)** – A unique identification number assigned to citizens and residents.
 2. **Medical Report** – A document containing a patient's medical history, including illnesses, treatments, and surgeries.
 3. **Medical Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
-8. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
-9. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
-10. **MSS (Main Success Scenario)** – The sequence of steps that lead to a successful execution of a use case.
+4. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
+5. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
+6. **MSS (Main Success Scenario)** – The sequence of steps that lead to a successful execution of a use case.
+7. **Jar** – A Java Archive file that contains the compiled Java classes and resources for the application.
 
 --------------------------------------------------------------------------------------------------------------------
 

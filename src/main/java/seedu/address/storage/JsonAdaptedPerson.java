@@ -147,7 +147,7 @@ class JsonAdaptedPerson {
 
         final MedicalReport modelMedicalReport = (medicalReport != null)
                 ? medicalReport.toModelType()
-                : MedicalReport.EMPTY_MEDICAL_REPORT;
+                : new MedicalReport("None", "None", "None", "None");
         final AppointmentList modelAppointmentList = (appointmentList != null)
                 ? appointmentList.toModelType()
                 : new AppointmentList();
