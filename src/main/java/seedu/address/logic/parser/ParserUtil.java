@@ -43,7 +43,7 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        String trimmedIndex = oneBasedIndex.trim();
+        String trimmedIndex = oneBasedIndex.replaceAll("\\s+", ""); // Remove all white spaces
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -58,7 +58,7 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim().replaceAll(" +", " ");
+        String trimmedName = smartTrim(name);
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -73,7 +73,7 @@ public class ParserUtil {
      */
     public static MedicineName parseMedicineName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim().replaceAll(" +", " ");
+        String trimmedName = smartTrim(name);
         if (!MedicineName.isValidName(trimmedName)) {
             throw new ParseException(MedicineName.MESSAGE_CONSTRAINTS);
         }
@@ -88,7 +88,7 @@ public class ParserUtil {
      */
     public static Dosage parseDosage(String dosage) throws ParseException {
         requireNonNull(dosage);
-        String trimmedDosage = dosage.trim().replaceAll(" +", " ");
+        String trimmedDosage = smartTrim(dosage);
         if (!Dosage.isValidDosage(trimmedDosage)) {
             throw new ParseException(Dosage.MESSAGE_CONSTRAINTS);
         }
@@ -103,7 +103,7 @@ public class ParserUtil {
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim().replaceAll(" +", " ");
+        String trimmedPhone = phone.replaceAll("\\s+", ""); // Remove all white spaces
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -118,7 +118,7 @@ public class ParserUtil {
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim().replaceAll(" +", " ");
+        String trimmedAddress = smartTrim(address);
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
@@ -133,7 +133,7 @@ public class ParserUtil {
      */
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
-        String trimmedEmail = email.trim().replaceAll(" +", " ");
+        String trimmedEmail = email.replaceAll("\\s+", ""); // Remove all white spaces
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -148,7 +148,7 @@ public class ParserUtil {
      */
     public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
-        String trimmedNric = nric.trim().replaceAll(" +", " ");
+        String trimmedNric = nric.replaceAll("\\s+", ""); // Remove all white spaces
         if (!Nric.isValidNric(trimmedNric)) {
             throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
@@ -163,7 +163,7 @@ public class ParserUtil {
      */
     public static BirthDate parseBirthDate(String birthDate) throws ParseException {
         requireNonNull(birthDate);
-        String trimmedBirthDate = birthDate.trim().replaceAll(" +", " ");
+        String trimmedBirthDate = birthDate.replaceAll("\\s+", ""); // Remove all white spaces
         if (!BirthDate.isValidBirthDate(trimmedBirthDate)) {
             throw new ParseException(BirthDate.MESSAGE_CONSTRAINTS);
         }
@@ -178,7 +178,7 @@ public class ParserUtil {
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = tag.trim().replaceAll(" +", " ");
+        String trimmedTag = smartTrim(tag);
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
@@ -205,7 +205,7 @@ public class ParserUtil {
      */
     public static String parseAppointmentDescription(String appointmentDescription) throws ParseException {
         requireNonNull(appointmentDescription);
-        String trimmedAppointmentDescription = appointmentDescription.trim().replaceAll(" +", " ");
+        String trimmedAppointmentDescription = smartTrim(appointmentDescription);
         if (!Appointment.isValidDescription(trimmedAppointmentDescription)) {
             throw new ParseException(Appointment.DESCRIPTION_MESSAGE_CONSTRAINTS);
         }
@@ -223,7 +223,7 @@ public class ParserUtil {
     //https://stackoverflow.com/questions/22990870/how-to-disable-emoji-from-being-entered-in-android-edittext
     public static String parseMedicalField(String field) throws ParseException {
         requireNonNull(field);
-        String trimmedField = field.trim().replaceAll(" +", " ");
+        String trimmedField = smartTrim(field);
         if (!MedicalReport.isValidMedicalField(trimmedField)) {
             throw new ParseException(MedicalReport.MESSAGE_CONSTRAINTS);
         }
@@ -238,7 +238,7 @@ public class ParserUtil {
      */
     public static LocalDateTime parseLocalDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
-        String trimmedDateTime = dateTime.trim().replaceAll(" +", " ");
+        String trimmedDateTime = smartTrim(dateTime);
         try {
             return LocalDateTime.parse(trimmedDateTime, DATE_TIME_FORMATTER);
         } catch (DateTimeParseException exception) {
@@ -254,11 +254,24 @@ public class ParserUtil {
      */
     public static LocalDate parseLocalDate(String date) throws ParseException {
         requireNonNull(date);
-        String trimmedDate = date.trim().replaceAll(" +", " ");
+        String trimmedDate = date.replaceAll("\\s+", ""); // Remove all white spaces
         try {
             return LocalDate.parse(trimmedDate, DATE_FORMATTER);
         } catch (DateTimeParseException exception) {
             throw new ParseException(INVALID_DATE_MESSAGE + DATE_INVALID_SPECIFY + trimmedDate, exception);
         }
+    }
+
+    private static String smartTrim(String input) {
+        requireNonNull(input);
+        String trimmed = input.trim().replaceAll("\\s+", " "); // Trim white spaces
+        trimmed = trimmed.replaceAll("\\s*([-+@:])\\s*", "$1"); // Handle dashes and pluses
+        trimmed = trimmed.replaceAll("\\s*([.,])\\s*", "$1 "); // Handle commas and periods
+        trimmed = trimmed.replaceAll("\\s*([(#])\\s*", " $1"); // Handle left parenthesis
+        trimmed = trimmed.replaceAll("\\s*\\)\\s*", ") "); // Handle right parenthesis
+        trimmed = trimmed.replaceAll("\\s*'\\s*", "'"); // Handle apostrophes
+        trimmed = trimmed.replaceAll("\\s+", " ").trim(); // Trim white spaces again
+
+        return trimmed;
     }
 }
