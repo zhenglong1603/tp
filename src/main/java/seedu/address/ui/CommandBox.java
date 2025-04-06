@@ -104,7 +104,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText(""); // this is making the revert style revert
-        } catch (CommandException | ParseException e) {
+        } catch (Exception e) {
             commandTextField.setText(""); // this is making the revert style revert
             setStyleToIndicateCommandFailure();
         }
