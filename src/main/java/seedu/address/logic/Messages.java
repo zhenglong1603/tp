@@ -48,7 +48,7 @@ public class Messages {
                 .append(person.getBirthDate())
                 .append("; Address: ")
                 .append(person.getAddress());
-        if (!person.getTags().isEmpty())    {
+        if (!person.getTags().isEmpty()) {
             builder.append("; Tags: ");
             person.getTags().forEach(builder::append);
         }
