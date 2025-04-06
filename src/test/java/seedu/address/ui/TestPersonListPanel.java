@@ -47,7 +47,7 @@ public class TestPersonListPanel {
     @Test
     public void parsePersonData_validPerson_correctString() {
         MedicalReport medicalReport = new MedicalReport("None", "None", "None", "None");
-        AppointmentList appointmentList = AppointmentList.EMPTY_APPOINTMENT_LIST;
+        AppointmentList appointmentList = new AppointmentList();
         Set<Tag> tags = new HashSet<>();
         Person person = new Person(
                 new Name("John Doe"),
@@ -99,7 +99,7 @@ public class TestPersonListPanel {
                 new MedicineUsage(new MedicineName("Medicine2"), new Dosage("Dosage2"), startdate, enddate)
         );
 
-        AppointmentList appointmentList = AppointmentList.EMPTY_APPOINTMENT_LIST;
+        AppointmentList appointmentList = new AppointmentList();
         appointmentList.add(new Appointment("Injection",
                 LocalDateTime.of(2025, 10, 1, 10, 30),
                 LocalDateTime.of(2025, 10, 1, 11, 0),
