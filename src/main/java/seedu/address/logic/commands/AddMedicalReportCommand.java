@@ -62,6 +62,10 @@ public class AddMedicalReportCommand extends Command {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, nric));
         }
 
+        if (medicalReport.isEmpty()) {
+            throw new CommandException("There must be at least one field in the medical report.");
+        }
+
         model.addMedicalReport(person, medicalReport);
         return new CommandResult(String.format(MESSAGE_SUCCESS, nric));
     }
