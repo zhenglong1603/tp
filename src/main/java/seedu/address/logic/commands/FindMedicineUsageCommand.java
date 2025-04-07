@@ -17,7 +17,7 @@ public class FindMedicineUsageCommand extends Command {
     public static final String COMMAND_WORD = "findmu";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all medicine usages whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list of persons (users) "
+            + "the specified keywords (case-insensitive) and displays them as a list of patients "
             + "with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " paracetamol amoxicillin";
