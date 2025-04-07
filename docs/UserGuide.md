@@ -253,7 +253,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 
 ### Viewing patient details
 You can view the details of a patient by clicking on their name in the displayed list. This will display all the details of the selected patient in the `details` window.
-![patient details](images/ViewPatientDetailsDemonstration.gif)
+![patient details](images/ViewPatientDetailsDemonstration.jpg)
 
 [Back to Table of Contents](#table-of-contents)
 
