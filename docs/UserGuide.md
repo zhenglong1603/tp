@@ -502,6 +502,7 @@ Example:
 
 <Box type="warning" seamless>
 
+* Deleting a medical report will set all medical fields to `None`.
 * The patient with the given NRIC, or at the specified index must exist, otherwise Klinix will show an error message. 
 * If the patient does not have an existing medical report (i.e. all fields are `None`), Klinix will show an error message.
 
