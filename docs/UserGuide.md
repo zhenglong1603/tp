@@ -670,9 +670,6 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-
-<div style="page-break-after: always;"> </div>
-
 ### Clearing all Appointments: `clearappt`
 
 Deletes the list of appointments of a specified patient.
@@ -695,7 +692,7 @@ Example:
 
 <Box type="warning" seamless>
 
-The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
+The patient with the given NRIC or the given index must exist, otherwise Klinix will show an error message.
 
 </Box>
 
@@ -706,22 +703,6 @@ Otherwise, Klinix will give an error.
 </Box>
 
 [Back to Table of Contents](#table-of-contents)
-
-### Viewing Appointments that start on specific date: `appton`
-
-Displays all appointments starting on a specific date.
-
-Format: `appton date/DATE`
-
-Parameter:
-- `DATE`: The date to view appointments starting on a specific date. It must be in the format `dd-MM-yyyy`.
-
-Examples: `appton date/22-03-2025`
-
-[Back to Table of Contents](#table-of-contents)
-
-
-<div style="page-break-after: always;"> </div>
 
 ### Marking an Appointment: `markappt`
 
@@ -739,7 +720,7 @@ Examples:
 
 <Box type="warning" seamless>
 
-1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
+The patient with the given NRIC or the given index must exist, otherwise Klinix will show an error message.
 
 </Box>
 
@@ -749,9 +730,11 @@ We allow marking of appointments even if the appointment is not in the past. <br
 This is to allow for more flexibility in how you want to mark your appointments. <br>
 For example, you can mark an appointment as `visited` before the appointment time if the patient has arrived early.
 
-</Box>>
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"> </div>
 
 ### Unmarking an Appointment: `unmarkappt`
 
@@ -769,9 +752,22 @@ Examples:
 
 <Box type="warning" seamless>
 
-1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
+The patient with the given NRIC or the given index must exist, otherwise Klinix will show an error message.
 
 </Box>
+
+[Back to Table of Contents](#table-of-contents)
+
+### Viewing Appointments that start on specific date: `appton`
+
+Displays all appointments starting on a specific date.
+
+Format: `appton date/DATE`
+
+Parameter:
+- `DATE`: The date to view appointments starting on a specific date. It must be in the format `dd-MM-yyyy`.
+
+Examples: `appton date/22-03-2025`
 
 [Back to Table of Contents](#table-of-contents)
 
