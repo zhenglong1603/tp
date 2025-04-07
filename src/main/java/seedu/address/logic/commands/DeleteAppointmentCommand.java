@@ -26,7 +26,7 @@ public class DeleteAppointmentCommand extends Command {
             + "INDEX (must be a positive integer) "
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " "
-            + "1 " + PREFIX_NRIC + " S1234567A\n";
+            + "1 " + PREFIX_NRIC + "S1234567A\n";
 
     public static final String MESSAGE_SUCCESS = "From patient %s, successfully deleted appointment:\n%s";
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX = "The appointment "

@@ -1213,6 +1213,108 @@ testers are expected to do more *exploratory* testing.
           <br><br>
     * **Test Case:** `clearappt 1`
     * **Expected:** Klinix throws the error message indicating that the patient does not have any appointments.
+
+### Marking an Appointment
+**Command:** `markappt`<br>
+1. Marking an appointment as visited
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `markappt 1 ic/S1234567A`
+    * **Expected:** The first appointment of the patient with NRIC S1234567A in the list is updated with the following fields:
+        * Appointment marked as visited.
+        * Other fields remain unchanged.
+        * Klinix will return a confirmation message showing details of the marked appointment in the message.
+          <br><br>
+2. Marking an appointment that is already marked as visited
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `markappt 1 ic/S1234567A`
+    * **Expected:** Klinix throws the error message indicating that the appointment is already marked as visited.
+      <br><br>
+3. Marking an appointment where the index does not exist
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `markappt 99 ic/S1234567A`
+    * **Expected:** Klinix throws the error message indicating that the index is invalid.
+      <br><br>
+4. Marking an appointment with an invalid NRIC format
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `markappt 1 ic/1234567A`
+    * **Expected:** Klinix throws the error message indicating that the NRIC is invalid.
+      <br><br>
+
+### Unmarking an Appointment
+**Command:** `unmarkappt`<br>
+1. Unmarking an appointment as not visited
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `unmarkappt 1 ic/S1234567A`
+    * **Expected:** The first appointment of the patient with NRIC S1234567A in the list is updated with the following fields:
+        * Appointment marked as not visited.
+        * Other fields remain unchanged.
+        * Klinix will return a confirmation message showing details of the unmarked appointment in the message.
+          <br><br>
+2. Unmarking an appointment that is already marked as not visited
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `unmarkappt 1 ic/S1234567A`
+    * **Expected:** Klinix throws the error message indicating that the appointment is already marked as not visited.
+      <br><br>
+3. Unmarking an appointment where the index does not exist
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `unmarkappt 99 ic/S1234567A`
+    * **Expected:** Klinix throws the error message indicating that the index is invalid.
+      <br><br>
+4. Unmarking an appointment with an invalid NRIC format
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `unmarkappt 1 ic/1234567A`
+    * **Expected:** Klinix throws the error message indicating that the NRIC is invalid.
+      <br><br>
+
+### Viewing Appointments Starting on A Specific Date
+**Command:** `appton`<br>
+1. Viewing appointments starting on a specific date
+    * **Prerequisites:**
+        * Appointments starting on date `22-02-2025` exist in the system
+    * **Test Case:** `appton 22-02-2025`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+        * All appointments starting on `22-02-2025` are shown.
+        * Other fields remain unchanged.
+        * Klinix will return a confirmation message showing details of the appointment in the message.
+          <br><br>
+      
+2. Viewing appointments starting on a date with no appointments
+    * **Prerequisites:**
+        * Appointments starting on date `22-02-2025` does not exist in the system
+    * **Test Case:** `appton 22-02-2025`
+    * **Expected:** Klinix throws the error message indicating that no appointments exist on that date.
+      <br><br>
+
+3. Viewing appointments starting on a date with an invalid format
+    * **Prerequisites:**
+        * Appointments starting on date `22-02-2025` exist in the system
+    * **Test Case:** `appton 2025-02-22`
+    * **Expected:** Klinix throws the error message indicating that the date format is invalid.
+      <br><br>
 --------------------------------------------------------------------------------------------------------------------
 ## **Planned Enhancements**
 1. Enhanced Search Functionality<br>
