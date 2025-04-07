@@ -604,8 +604,6 @@ The patient with the NRIC you give must exist in Klinix, otherwise Klinix will s
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"> </div>
-
 ### Finding Medicine Usage Records by medicine names: `findmu`
 
 Finds patients whose medicine usages contain the specified medicine name(s).
@@ -734,8 +732,6 @@ For example, you can mark an appointment as `visited` before the appointment tim
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"> </div>
-
 ### Unmarking an Appointment: `unmarkappt`
 
 Unmarks an appointment as `not visited`.
@@ -797,7 +793,7 @@ Examples: `appton date/22-03-2025`
 6. **Medicine Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
 7. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
 8. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
-9. **Patient**: An individual who receives medical care or consultation from a general practitioner (GP) and has information being managed within Klinix.
+9. **Patient**: An individual who receives medical care or consultation from a general practitioner (GP) and has information managed within Klinix.
 
 [Back to Table of Contents](#table-of-contents)
 
