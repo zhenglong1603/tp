@@ -843,9 +843,10 @@ testers are expected to do more *exploratory* testing.
 
 **Command:** `deletemr`<br>
 
-1. Deleting a medical report from a patient
+1. Deleting a medical report from a patient by NRIC
     * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
+        * The patient has at least one medical report entry in their medical report
     * **Test Case:** `deletemr ic/S1234567A`
     * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
         * Drug Allergies: `None`
@@ -854,6 +855,20 @@ testers are expected to do more *exploratory* testing.
         * Immunizations: `None`
         * Other fields remain unchanged
           <br><br>
+
+2. Deleting a medical report from a patient by index
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * The patient has at least one medical report entry in their medical report
+    * **Test Case:** `deletemr 1`
+    * **Expected:** The patient at index `1` in the currently displayed patient list is updated with the following fields:
+        * Drug Allergies: `None`
+        * Illnesses: `None`
+        * Surgeries: `None`
+        * Immunizations: `None`
+        * Other fields remain unchanged
+          <br><br>
+      <br><br>
 
 ### Adding Medicine Usage
 
