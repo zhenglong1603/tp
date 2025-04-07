@@ -36,7 +36,7 @@ public class AddMedicineUsageCommand extends Command {
             + PREFIX_FROM + "23-02-2025 "
             + PREFIX_TO + "27-02-2025\n";
 
-    public static final String MESSAGE_SUCCESS = "Medicine usage successfully added to %s";
+    public static final String MESSAGE_SUCCESS = "Medicine usage %s successfully added to patient with NRIC %s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
     public static final String MESSAGE_MEDICINE_BEFORE_BIRTHDAY = "The added medicine usage starts before the "
             + "patient's birthday!";
@@ -70,7 +70,7 @@ public class AddMedicineUsageCommand extends Command {
         }
 
         model.addMedicineUsage(person, medicineUsage);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, nric));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, medicineUsage.toString(), nric));
     }
 
     @Override
