@@ -23,16 +23,16 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
     - **General Commands**
         - [Viewing patient details](#viewing-patient-details)
         - [Viewing past commands](#viewing-past-commands)
-        - [Viewing help](#viewing-help--help)
-        - [Clearing all patient entries](#clearing-all-patient-entries--clear)
-        - [Exiting the program](#exiting-the-program--exit)
+        - [Viewing help](#viewing-help-help)
+        - [Clearing all patient entries](#clearing-all-patient-entries-clear)
+        - [Exiting the program](#exiting-the-program-exit)
         - [Saving the data](#saving-the-data)
         - [Editing the data file](#editing-the-data-file)
     - **Patient Management**
         - [Adding a patient](#adding-a-patient-add)
-        - [Deleting a patient](#deleting-a-patient--delete)
-        - [Editing a patient](#editing-a-patient--edit)
-        - [Listing all patients](#listing-all-patients--list)
+        - [Deleting a patient](#deleting-a-patient-delete)
+        - [Editing a patient](#editing-a-patient-edit)
+        - [Listing all patients](#listing-all-patients-list)
         - [Finding patients by keywords](#finding-patients-by-keywords-find)
     - **Medical Report Management**
         - [Adding a medical report to a patient](#adding-a-medical-report-addmr)
