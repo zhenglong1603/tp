@@ -482,7 +482,7 @@ Examples:
 **Warning**
 
 1. The patient with the given NRIC, or at the specified index must exist, otherwise Klinix will show an error message.
-2. If the patient does not have an existing medical report, nothing will happen.
+2. If the patient does not have an existing medical report (i.e. all fields are `None`), Klinix will show an error message.
 
 [Back to Table of Contents](#table-of-contents)
 

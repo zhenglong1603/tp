@@ -89,7 +89,7 @@ public class DeleteMedicalReportCommand extends Command {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND_NRIC, nric));
         }
 
-        if (person.getMedicalReport() == null) {
+        if (person.getMedicalReport().isEmpty()) {
             throw new CommandException(String.format(MESSAGE_MEDICAL_REPORT_NOT_FOUND_NRIC, nric));
         }
 
