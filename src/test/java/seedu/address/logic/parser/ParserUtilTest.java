@@ -28,6 +28,8 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+// The test cases are adapted from a conversation with chatGPT
+
 public class ParserUtilTest {
     private static final String INVALID_NAME = "Rachel sig/ma";
     private static final String INVALID_PHONE = "+651234";
