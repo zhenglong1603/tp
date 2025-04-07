@@ -704,6 +704,7 @@ The use cases below are not exhaustive.
 3. **Medical Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
 4. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
 5. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
+6. **Patient**: An individual who receives medical care or consultation from a general practitioner (GP) and has information being managed within Klinix.
 6. **MSS (Main Success Scenario)** – The sequence of steps that lead to a successful execution of a use case.
 7. **Jar** – A Java Archive file that contains the compiled Java classes and resources for the application.
 
