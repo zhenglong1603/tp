@@ -532,6 +532,20 @@ The use cases below are not exhaustive.
 
 ---
 
+**Use case: Finding Medicine Usage Records**
+**MSS**
+1. User searches medicine usage records by keywords.
+2. Klinix shows a list of patients with medicine usage records matching the search.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Missing keywords → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. No matching medicine usage records found → Klinix shows an empty list.<br>
+  Use case ends.
+
+---
+
 **Use case: Adding an Appointment**
 
 **MSS**
@@ -749,8 +763,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing an existing patient (the first patient in the list)
 
-   * **Prerequisites: Ensure at least one patient is in the list. If not, add a patient using the `add` command. Eg:<br>
-      `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`**
+   * **Prerequisites: 
+        * Ensure at least one patient is in the list. If not, add a patient using the `add` command.<br>Eg:
+        `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`**
 
    * **Test case:** `edit 1 p/91234567 e/johndoe@example.com`
    * **Expected:** Patient details are updated. Details of the edited patient shown in the status message.
@@ -831,7 +846,6 @@ testers are expected to do more *exploratory* testing.
         * Illnesses: `Diabetes`
         * Surgeries: `Appendectomy`
         * Immunizations: `Flu Shot, Tetanus`
-        * Other fields remain unchanged
           <br><br>
 
 2. Adding a medical report to a patient with an existing medical report
@@ -844,7 +858,6 @@ testers are expected to do more *exploratory* testing.
         * Illnesses: `Diabetes`
         * Surgeries: `Appendectomy`
         * Immunizations: `Flu Shot, Tetanus`
-        * Other fields remain unchanged
           <br><br>
 
 3. Adding a medical report with only some fields
@@ -856,7 +869,6 @@ testers are expected to do more *exploratory* testing.
         * Illnesses: `Diabetes`
         * Surgeries: `None`
         * Immunizations: `None`
-        * Other fields remain unchanged
           <br><br>
 
 ### Deleting a Medical Report
@@ -873,7 +885,6 @@ testers are expected to do more *exploratory* testing.
         * Illnesses: `None`
         * Surgeries: `None`
         * Immunizations: `None`
-        * Other fields remain unchanged
           <br><br>
 
 2. Deleting a medical report from a patient by index
@@ -886,7 +897,6 @@ testers are expected to do more *exploratory* testing.
         * Illnesses: `None`
         * Surgeries: `None`
         * Immunizations: `None`
-        * Other fields remain unchanged
           <br><br>
       <br><br>
 
@@ -1213,6 +1223,108 @@ testers are expected to do more *exploratory* testing.
           <br><br>
     * **Test Case:** `clearappt 1`
     * **Expected:** Klinix throws the error message indicating that the patient does not have any appointments.
+
+### Marking an Appointment
+**Command:** `markappt`<br>
+1. Marking an appointment as visited
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `markappt 1 ic/S1234567A`
+    * **Expected:** The first appointment of the patient with NRIC S1234567A in the list is updated with the following fields:
+        * Appointment marked as visited.
+        * Other fields remain unchanged.
+        * Klinix will return a confirmation message showing details of the marked appointment in the message.
+          <br><br>
+2. Marking an appointment that is already marked as visited
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `markappt 1 ic/S1234567A`
+    * **Expected:** Klinix throws the error message indicating that the appointment is already marked as visited.
+      <br><br>
+3. Marking an appointment where the index does not exist
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `markappt 99 ic/S1234567A`
+    * **Expected:** Klinix throws the error message indicating that the index is invalid.
+      <br><br>
+4. Marking an appointment with an invalid NRIC format
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `markappt 1 ic/1234567A`
+    * **Expected:** Klinix throws the error message indicating that the NRIC is invalid.
+      <br><br>
+
+### Unmarking an Appointment
+**Command:** `unmarkappt`<br>
+1. Unmarking an appointment as not visited
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `unmarkappt 1 ic/S1234567A`
+    * **Expected:** The first appointment of the patient with NRIC S1234567A in the list is updated with the following fields:
+        * Appointment marked as not visited.
+        * Other fields remain unchanged.
+        * Klinix will return a confirmation message showing details of the unmarked appointment in the message.
+          <br><br>
+2. Unmarking an appointment that is already marked as not visited
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `unmarkappt 1 ic/S1234567A`
+    * **Expected:** Klinix throws the error message indicating that the appointment is already marked as not visited.
+      <br><br>
+3. Unmarking an appointment where the index does not exist
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `unmarkappt 99 ic/S1234567A`
+    * **Expected:** Klinix throws the error message indicating that the index is invalid.
+      <br><br>
+4. Unmarking an appointment with an invalid NRIC format
+    * **Prerequisites:**
+        * The patient with that NRIC must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+    * **Test Case:** `unmarkappt 1 ic/1234567A`
+    * **Expected:** Klinix throws the error message indicating that the NRIC is invalid.
+      <br><br>
+
+### Viewing Appointments Starting on A Specific Date
+**Command:** `appton`<br>
+1. Viewing appointments starting on a specific date
+    * **Prerequisites:**
+        * Appointments starting on date `22-02-2025` exist in the system
+    * **Test Case:** `appton 22-02-2025`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+        * All appointments starting on `22-02-2025` are shown.
+        * Other fields remain unchanged.
+        * Klinix will return a confirmation message showing details of the appointment in the message.
+          <br><br>
+      
+2. Viewing appointments starting on a date with no appointments
+    * **Prerequisites:**
+        * Appointments starting on date `22-02-2025` does not exist in the system
+    * **Test Case:** `appton 22-02-2025`
+    * **Expected:** Klinix throws the error message indicating that no appointments exist on that date.
+      <br><br>
+
+3. Viewing appointments starting on a date with an invalid format
+    * **Prerequisites:**
+        * Appointments starting on date `22-02-2025` exist in the system
+    * **Test Case:** `appton 2025-02-22`
+    * **Expected:** Klinix throws the error message indicating that the date format is invalid.
+      <br><br>
 --------------------------------------------------------------------------------------------------------------------
 ## **Planned Enhancements**
 1. Enhanced Search Functionality<br>
@@ -1229,6 +1341,9 @@ To enhance user-friendliness, future versions of the application will should fea
 Instead of showing time in the 24-hour format (e.g., 13:00), the system will display it in a 12-hour format with AM/PM notation
 (e.g. 1:00 PM). This change aims to improve readability and align with common user preferences, particularly for those who may 
 not be familiar with the 24-hour clock. It will also help reduce confusion when viewing or managing appointment times in the user interface.
+
+4. Currently, the `addmr` command only allows adding a medical report to a patient by NRIC. We plan to implement a feature that extends this
+functionality to allow adding a medical report by index as well. This will provide users with more flexibility in how they add medical reports.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Efforts**
