@@ -548,6 +548,8 @@ Klinix will detect such overlapping instances and give an error message when you
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"> </div>
+
 ### Deleting a Medicine Usage Record: `deletemu`
 
 This command deletes a particular medicine usage record of a patient's medical history.
