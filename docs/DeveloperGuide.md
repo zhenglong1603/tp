@@ -140,7 +140,7 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Person class
-The person class represents patients of the clinic.
+The person class represents a patient in Klinix.
 
 <puml src="diagrams/PersonClassDiagram.puml" width="550" />
 
@@ -158,9 +158,9 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Overview
 The `addappt` command allows a user to add an appointment tied to a patient with the specified NRIC. The command requires:
-- **NRIC** – Patient's NRIC in the address book.
+- **NRIC** – Patient's NRIC in Klinix.
 - **Description** – Description of the appointment.
-- **Start Date** – Beginning date and time of the appointment.
+- **Start Date** – Starting date and time of the appointment.
 - **End Date** – Ending date and time of the appointment.
 
 Here is a sequence diagram showcasing the flow of the program as well as the key steps taken.
@@ -188,7 +188,7 @@ The **`AddAppointmentCommand`** class performs the following steps to add an app
    - Creates an new `Person` instance with patient information and `Appointment` instance.
 
 3. **Replace Existing Patient Record**:
-   - The new `Person` instance, containing the `Appointment`, replaces the existing patient record in the `Model`.
+   - The new `Person` instance containing the `Appointment` replaces the existing patient record in the `Model`.
 
 #### 3. Handling Invalid Inputs
 The **`AddAppointmentCommandParser`** and **`AddAppointmentCommand`** classes enforce validation rules to ensure correct formats and scheduling logic:
@@ -260,7 +260,7 @@ The **`ViewAppointmentsByDateParser`** class enforces validation rules to ensure
 
 **Target user profile**:
 
-General Clinic Admin personnel who are:
+General Practitioners in smaller clinics
 
 **Value proposition**:
 * Helps to keep track of the patients’ records and add details
@@ -306,7 +306,9 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 The use cases below are not exhaustive.
 (For all use cases below, the **System** is the `Klinix` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add Patient**
+**Patient**: An individual who receives medical care or consultation from a general practitioner (GP) and whose information is managed within Klinix.
+
+**Use case: Adding a Patient**
 
 **MSS**
 1. User requests to add a new patient.
@@ -314,16 +316,18 @@ The use cases below are not exhaustive.
    Use case ends.
 
 **Extensions**
-- 1a. Missing required parameters → Klinix shows an error message.<br>
+- 1a. Missing required parameters → Klinix shows an invalid command message.<br>
   Use case resumes at step 1.
-- 1b. Invalid parameters → Klinix shows an invalid parameter message.<br>
+- 1b. Invalid parameters → Klinix shows an invalid parameters message.<br>
+  Use case resumes at step 1.
+- 1c. Patient with existing NRIC → Klinix shows a message indicating the NRIC exists in Klinix.<br>
   Use case resumes at step 1.
 
 ---
 
-**Use case: Delete Patient**
+**Use case: Deleting a Patient**
 
-**Format 1: Delete by NRIC**
+**Format 1: Deleting by NRIC**
 
 **MSS**
 1. User requests to delete a patient by NRIC.
@@ -338,26 +342,28 @@ The use cases below are not exhaustive.
 - 1c. No matching patient found → Klinix shows an invalid patient message<br>
   Use case resumes at step 1.
 
-**Format 2: Delete by INDEX**
+**Format 2: Deleting by Index**
 
-**Preconditions**: Klinix is displaying a non-empty list of patients.
+**Precondition**: Klinix is displaying a non-empty list of patients.
 
 **MSS**
-1. User requests to delete a patient by INDEX.
+1. User requests to delete a patient by index.
 2. Klinix confirms successful deletion of patient.<br>
    Use case ends.
 
 **Extensions**
-- 1a. Missing INDEX → Klinix shows an invalid command message.<br>
+- 1a. Missing index → Klinix shows an invalid command message.<br>
   Use case resumes at step 1.
-- 1b. Invalid INDEX format → Klinix shows an invalid parameter message.<br>
+- 1b. Invalid index format → Klinix shows an error message.<br>
+  Use case resumes at step 1.
+- 1c. Index out of bounds → Klinix shows an error message.<br>
   Use case resumes at step 1.
 
 ---
-**Use case: Edit Patient**
+**Use case: Editing a Patient**
 
 **MSS**
-1. User requests to edit a patient by INDEX.
+1. User requests to edit a patient by index.
 2. System displays information of updated patient.<br>
    Use case ends.
 
@@ -366,12 +372,14 @@ The use cases below are not exhaustive.
   Use case resumes at step 1.
 - 1b. Invalid format → Klinix shows an invalid parameter message.<br>
   Use case resumes at step 1.
-- 1c. Invalid INDEX format → Klinix shows an invalid parameter message.<br>
+- 1c. Invalid index format → Klinix shows an error message.<br>
+  Use case resumes at step 1.
+- 1d. Index out of bounds → Klinix shows an error message.<br>
   Use case resumes at step 1.
 
 ---
 
-**Use case: Find Patients**
+**Use case: Finding Patients**
 
 **MSS**
 1. User searches for patients by name.
@@ -386,20 +394,16 @@ The use cases below are not exhaustive.
 
 ---
 
-**Use case: Clear Patients**
+**Use case: Clearing Patients**
 
 **MSS**
 1. User requests to clear the list of patients.
 2. Klinix clears the list of patients.<br>
    Use case ends.
 
-**Extensions**
-- 1a. Invalid command format → Klinix shows an invalid command message.<br>
-  Use case resumes at step 1.
-
 ---
 
-**Use case: Add Medical Report**
+**Use case: Adding a Medical Report**
 
 **MSS**
 1. User requests to add a medical report for a patient. 
@@ -414,9 +418,9 @@ The use cases below are not exhaustive.
 
 ---
 
-**Use case: Delete Medical Report**
+**Use case: Deleting a Medical Report**
 
-**Format 1: Delete by NRIC**
+**Format 1: Deleting by NRIC**
 
 **MSS**
 1. User requests to delete a medical report by NRIC.
@@ -430,25 +434,31 @@ The use cases below are not exhaustive.
   Use case resumes at step 1.
 - 1c. No matching patient found → Klinix shows an invalid patient message<br>
   Use case resumes at step 1.
+- 1d. No medical report found → Klinix shows Patient does not have medical report error message<br>
+  Use case resumes at step 1.
 
-**Format 2: Delete by INDEX**
+**Format 2: Deleting by Index**
 
-**Preconditions**: Klinix is displaying a non-empty list of patients.
+**Precondition**: Klinix is displaying a non-empty list of patients.
 
 **MSS**
-1. User requests to delete a patient by INDEX.
+1. User requests to delete a patient by index.
 2. Klinix confirms successful deletion of medical report.<br>
    Use case ends.
 
 **Extensions**
-- 1a. Missing INDEX → Klinix shows an invalid command message.<br>
+- 1a. Missing index → Klinix shows an invalid command message.<br>
   Use case resumes at step 1.
-- 1b. Invalid INDEX format → Klinix shows an invalid parameter message.<br>
+- 1b. Invalid index format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
+- 1c. Index out of bounds → Klinix shows an error message.<br>
+  Use case resumes at step 1.
+- 1d. No medical report found → Klinix shows Patient does not have medical report error message<br>
   Use case resumes at step 1.
 
 ---
 
-**Use case: Add Medicine Usage Record**
+**Use case: Adding a Medicine Usage Record**
 
 **MSS**
 1. User requests to add a medicine usage record for a patient.
@@ -462,11 +472,12 @@ The use cases below are not exhaustive.
   Use case resumes at step 1.
 - 1c. Duplicate entry detected → Klinix shows a duplicate entry message.<br>
   Use case resumes at step 1.
-- 1d. Start date is after end date → Klinix shows an invalid date message.
+- 1d. Start date is after end date → Klinix shows an invalid date message.<br>
   Use case resumes at step 1.
+
 ---
 
-**Use case: Delete Medicine Usage Record**
+**Use case: Deleting a Medicine Usage Record**
 
 **MSS**
 1. User requests to delete a medical usage by NRIC.
@@ -480,12 +491,16 @@ The use cases below are not exhaustive.
   Use case resumes at step 1.
 - 1c. No matching patient found → Klinix shows an invalid patient message<br>
   Use case resumes at step 1.
+- 1d. Index out of bounds → Klinix shows an invalid index message.<br>
+  Use case resumes at step 1.
 
 ---
 
-**Use case: Clear Medicine Usage Record**
+**Use case: Clearing Medicine Usage Records**
 
-**Format 1: Clear by NRIC**
+**Preconditions**: Klinix is displaying a non-empty list of patients and the patient has a non-empty list of medicine usage records.
+
+**Format 1: Clearing by NRIC**
 
 **MSS**
 1. User requests to clear the list of medical usages by NRIC.
@@ -500,24 +515,24 @@ The use cases below are not exhaustive.
 - 1c. No matching patient found → Klinix shows an invalid patient message<br>
   Use case resumes at step 1.
 
-**Format 2: Clear by INDEX**
-
-**Preconditions**: Klinix is displaying a non-empty list of patients.
+**Format 2: Clearing by Index**
 
 **MSS**
-1. User requests to delete list of medical usages by INDEX.
+1. User requests to delete list of medical usages by index.
 2. Klinix confirms successful deletion of medical usage.<br>
    Use case ends.
 
 **Extensions**
-- 1a. Missing INDEX → Klinix shows an invalid command message.<br>
+- 1a. Missing index → Klinix shows an invalid command message.<br>
   Use case resumes at step 1.
-- 1b. Invalid INDEX format → Klinix shows an invalid parameter message.<br>
+- 1b. Invalid index format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
+- 1c. Index out of bounds → Klinix shows an invalid index message.<br>
   Use case resumes at step 1.
 
 ---
 
-**Use case: Add Appointment**
+**Use case: Adding an Appointment**
 
 **MSS**
 1. User requests to add an appointment for a patient. 
@@ -525,7 +540,7 @@ The use cases below are not exhaustive.
    Use case ends.
 
 **Extensions**
-- 1a. Missing paramters → Klinix shows an invalid command message.<br>
+- 1a. Missing parameters → Klinix shows an invalid command message.<br>
   Use case resumes at step 1.
 - 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
   Use case resumes at step 1.
@@ -538,9 +553,7 @@ The use cases below are not exhaustive.
 
 ---
 
-**Use case: Delete Appointment**
-
-**Preconditions**: Klinix is displaying a non-empty list of patients and the patient is displaying a non-empty list of appointments.
+**Use case: Deleting an Appointment**
 
 **MSS**
 1. User requests to delete an appointment by NRIC.
@@ -550,15 +563,15 @@ The use cases below are not exhaustive.
 **Extensions**
 - 1a. Missing parameters → Klinix shows an invalid command message.<br>
   Use case resumes at step 1.
-- 1b. Invalid NRIC format → Klinix shows an invalid NRIC message.<br>
+- 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
   Use case resumes at step 1.
 - 1c. No matching patient found → Klinix shows an invalid patient message<br>
   Use case resumes at step 1.
-- 1c. Invalid appointment index → Klinix returns an invalid format error message.<br>
+- 1d. Index out of bounds → Klinix shows an invalid index message.<br>
   Use case resumes at step 1.
 ---
 
-**Use case: Clear Appointment**
+**Use case: Clearing Appointments**
 
 **Preconditions**: Klinix is displaying a non-empty list of patients and the patient is displaying a non-empty list of appointments.
 
@@ -577,27 +590,30 @@ The use cases below are not exhaustive.
 - 1c. No matching patient found → Klinix shows an invalid patient message<br>
   Use case resumes at step 1.
 
-**Format 2: Delete by INDEX**
+**Format 2: Delete by Index**
 
 **Preconditions**: Klinix is displaying a non-empty list of patients.
 
 **MSS**
-1. User requests to clear list of patient's appointments by INDEX.
+1. User requests to clear list of patient's appointments by index.
 2. Klinix confirms successful deletion of patient's list of appointments.<br>
    Use case ends.
 
 **Extensions**
-- 1a. Missing INDEX → Klinix shows an invalid command message.<br>
+- 1a. Missing index → Klinix shows an invalid command message.<br>
   Use case resumes at step 1.
-- 1b. Invalid INDEX format → Klinix shows an invalid parameter message.<br>
+- 1b. Invalid index format → Klinix shows an invalid parameter message.<br>
   Use case resumes at step 1.
+- 1c. Index out of bounds → Klinix shows an invalid index message.<br>
+  Use case resumes at step 1.
+
 ---
 
 **Use Case: View Patient details**
 
 **MSS**
 1. User requests to view a patient’s details by clicking on the list of patients.
-2. Klinix displays detials of patient.
+2. Klinix displays details of the patient.
    Use case ends.
 
 ---
@@ -606,7 +622,7 @@ The use cases below are not exhaustive.
 
 **MSS**
 1. User requests to view appointments for a date.
-2. Klinix retrieves and displays all appointments on the date.<br>
+2. Klinix retrieves and displays all appointments which starts on that date.<br>
   Use case ends.
 
 **Extensions**
@@ -629,7 +645,11 @@ The use cases below are not exhaustive.
 **Extensions**
 - 1a. Missing parameters → Klinix shows an invalid command message.<br>
   Use case resumes at step 1.
-- 1b. Invalid Index parameters → Klinix shows an invalid index message.<br>
+- 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
+  Use case resumes at step 1.
+- 1c. No matching patient found → Klinix shows an invalid patient message<br>
+  Use case resumes at step 1.
+- 1d. Index out of bounds → Klinix shows an invalid index message.<br>
   Use case resumes at step 1.
 - 1c. Appointment already marked visited → Klinix shows message indicating appointment already marked visited.<br>
   Use case ends.
@@ -646,7 +666,11 @@ The use cases below are not exhaustive.
 **Extensions**
 - 1a. Missing parameters → Klinix shows an invalid command message.<br>
   Use case resumes at step 1.
-- 1b. Invalid date parameters → Klinix shows an invalid index message.<br>
+- 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
+  Use case resumes at step 1.
+- 1c. No matching patient found → Klinix shows an invalid patient message<br>
+  Use case resumes at step 1.
+- 1d. Index out of bounds → Klinix shows an invalid index message.<br>
   Use case resumes at step 1.
 - Appointment already marked not visited → Klinix shows message indicating appointment already marked not visited.<br>
   User case ends.
@@ -686,61 +710,66 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1a. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   2a. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 ### Adding a Patient
 
-1. Addding a patient with all valid fields
+**Command:** `add`<br>
 
-   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456Z b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`<br>
-      Expected: Patient is added to the list. Details of the new patient shown in the status message.
+1. Adding a patient with all valid fields
+
+   * **Test case:** `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456Z b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`<br>
+   * **Expected:** Patient is added to the list. Details of the new patient shown in the status message.
+     <br><br>
 
 2. Adding a patient with missing mandatory fields
 
-   1. Test case: `add n/Lam Tan ic/S1234567Y b/01-01-1990`<br>
-      Expected: Patient is not added. Error details shown in the status message.
-
+   * **Test case:** `add n/Lam Tan ic/S1234567Y b/01-01-1990`<br>
+   * **Expected:** Patient is not added. Error details shown in the status message.
+     <br><br>
 3. Adding a patient with invalid NRIC format
 
-   1. Test case: `add n/Pam Tan ic/1234567X b/01-01-1990`<br>
-      Expected: Patient is not added. Error details shown in the status message.
-
-4. Additional test cases to try: invalid date format, invalid email format, invalid phone number format, etc.<br>
-   Expected: Patient is not added. Error details shown in the status message.
+   * **Test case:**`add n/Pam Tan ic/1234567X b/01-01-1990`<br>
+   * **Expected:** Patient is not added. Error details shown in the status message.
+     <br><br>
 
 ### Editing a Patient
 
+**Command:** `edit`<br>
+
 1. Editing an existing patient (the first patient in the list)
 
-   1. Prerequisites: Ensure at least one patient is in the list. If not, add a patient using the `add` command. Eg:<br>
-      `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
+   * **Prerequisites: Ensure at least one patient is in the list. If not, add a patient using the `add` command. Eg:<br>
+      `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`**
 
-   1. Test case: `edit 1 p/91234567 e/johndoe@example.com`<br>
-      Expected: Patient details are updated. Details of the edited patient shown in the status message.
+   * **Test case:** `edit 1 p/91234567 e/johndoe@example.com`
+   * **Expected:** Patient details are updated. Details of the edited patient shown in the status message.
+     <br><br>
 
-   1. Test case (invalid email format): `edit 1 e/wpeodkwoedpk`<br>
-      Expected: Patient details are not updated. Error details shown in the status message.
+   * **Test case (invalid email format):** `edit 1 e/wpeodkwoedpk`
+   * **Expected:**  Patient details are not updated. Error details shown in the status message.
+     <br><br>
 
-   1. Additional test cases to try: editing the NRIC, name, age, contact number, address, tags, etc
+2. Editing an invalid patient index
 
-1. Editing an invalid patient index
+   * **Test case:** `edit 0 p/91234567`<br>
+   * **Expected:** Patient details are not updated. Error details shown in the status message.
+     <br><br>
 
-   1. Test case: `edit 0 p/91234567`<br>
-      Expected: Patient details are not updated. Error details shown in the status message.
+3. Invalid edit command
 
-1. Invalid edit command
-
-   1. Test case: `edit 1 wrfwefwefwef`<br>
-      Expected: Patient details are not updated. Error details shown in the status message.
+    * **Test case:** `edit 1 wrfwefwefwef`
+    * **Expected:** Patient details are not updated. Error details shown in the status message.
+      <br><br>
 
 ### Deleting a Patient
 
@@ -860,11 +889,11 @@ testers are expected to do more *exploratory* testing.
           <br><br>
       <br><br>
 
-### Adding Medicine Usage
+### Adding Medicine Usage Record
 
 **Command:** `addmu`<br>
 
-1. Adding a medicine usage to a patient
+1. Adding a medicine usage record to a patient
     * **Prerequisites:**
         * The patient with NRIC `S1234567A` is present in the system
     * **Test Case:** `addmu ic/S1234567A n/Paracetamol dos/500mg from/01-01-2025 to/05-01-2025`
@@ -875,39 +904,39 @@ testers are expected to do more *exploratory* testing.
         * To: `05-01-2025`
           <br><br>
 
-2. Adding a medicine usage to a non-existent patient
+2. Adding a medicine usage record to a non-existent patient
     * **Prerequisites:**
         * The patient with NRIC `S9999999Z` is not in the system
     * **Test Case:** `addmu ic/S9999999Z n/Paracetamol dos/500mg from/01-01-2025 to/05-01-2025`
     * **Expected:** Klinix shows an error indicating that the patient with NRIC `S9999999Z` does not exist.  
       <br><br>
 
-3. Adding a medicine usage with an invalid date format
+3. Adding a medicine usage record with an invalid date format
     * **Prerequisites:**
         * Patient with NRIC `S1234567A` exists
     * **Test Case:** `addmu ic/S1234567A n/Paracetamol dos/500mg from/2025-01-01 to/2025-01-05`
     * **Expected:** Klinix shows an error indicating that the input date format is invalid and must follow the format `dd-MM-yyyy`.  
       <br><br>
 
-4. Adding a medicine usage with missing required fields
+4. Adding a medicine usage record with missing required fields
     * **Prerequisites:**
         * Patient with NRIC `S1234567A` exists
     * **Test Case:** `addmu n/Paracetamol dos/500mg from/01-01-2025 to/05-01-2025`
     * **Expected:** Klinix shows an error indicating that the input command is invalid.  
       <br><br>
 
-5. Adding a medicine usage with duplicate prefixes
+5. Adding a medicine usage record with duplicate prefixes
     * **Prerequisites:**
         * Patient with NRIC `S1234567A` exists
     * **Test Case:** `addmu ic/S1234567A n/Paracetamol n/Ibuprofen dos/500mg from/01-01-2025 to/05-01-2025`
     * **Expected:** Klinix shows an error indicating that multiple values were provided for the single-valued field `n/`.  
       <br><br>
 
-### Deleting Medicine Usage
+### Deleting Medicine Usage Record
 
 **Command:** `deletemu`<br>
 
-1. Deleting an existing medicine usage from a patient
+1. Deleting an existing medicine usage record from a patient
     * **Prerequisites:**
         * The patient with NRIC `S1234567A` is present in the system
         * The patient has at least one medicine usage entry in their medical report
@@ -915,14 +944,14 @@ testers are expected to do more *exploratory* testing.
     * **Expected:** Klinix deletes the first medicine usage from the medical report of the patient with NRIC `S1234567A`.  
       <br><br>
 
-2. Deleting a medicine usage from a non-existing patient
+2. Deleting a medicine usage record from a non-existing patient
     * **Prerequisites:**
         * The patient with NRIC `S9999999Z` is not in the system
     * **Test Case:** `deletemu 1 ic/S9999999Z`
     * **Expected:** Klinix shows an error indicating that the patient with NRIC `S9999999Z` does not exist.  
       <br><br>
 
-3. Deleting a medicine usage with an out-of-bounds index
+3. Deleting a medicine usage record with an out-of-bounds index
     * **Prerequisites:**
         * The patient with NRIC `S1234567A` is present in the system
         * The patient has fewer than 6 medicine usages
@@ -930,21 +959,21 @@ testers are expected to do more *exploratory* testing.
     * **Expected:** Klinix shows an error indicating that the index is invalid.  
       <br><br>
 
-4. Deleting a medicine usage with an invalid index format
+4. Deleting a medicine usage record with an invalid index format
     * **Prerequisites:**
         * Patient with NRIC `S1234567A` exists
     * **Test Case:** `deletemu a ic/S1234567A`
     * **Expected:** Klinix shows an error indicating that the input command is invalid.  
       <br><br>
 
-5. Deleting a medicine usage without specifying an NRIC
+5. Deleting a medicine usage record without specifying an NRIC
     * **Prerequisites:**
         * At least one patient exists in the system
     * **Test Case:** `deletemu 1`
     * **Expected:** Klinix shows an error indicating that the input command is invalid.  
       <br><br>
 
-6. Deleting a medicine usage with missing arguments
+6. Deleting a medicine usage record with missing arguments
     * **Prerequisites:**
         * None
     * **Test Case:** `deletemu`
@@ -953,11 +982,11 @@ testers are expected to do more *exploratory* testing.
 
 
 
-### Clearing Medicine Usage
+### Clearing Medicine Usage Records
 
 **Command:** `clearmu`<br>
 
-1. Clearing all medicine usages using NRIC
+1. Clearing all medicine usage records using NRIC
     * **Prerequisites:**
         * The patient with NRIC `S1234567A` is present in the system
         * The patient has one or more medicine usage entries in their medical report
@@ -965,7 +994,7 @@ testers are expected to do more *exploratory* testing.
     * **Expected:** Klinix clears all medicine usage records from the medical report of the patient with NRIC `S1234567A`.  
       <br><br>
 
-2. Clearing all medicine usages using an index
+2. Clearing all medicine usage records using an index
     * **Prerequisites:**
         * There is a patient at index `1` in the list
         * That patient has one or more medicine usage entries in their medical report
@@ -973,7 +1002,7 @@ testers are expected to do more *exploratory* testing.
     * **Expected:** Klinix clears all medicine usage records from the medical report of the patient at index `1`.  
       <br><br>
 
-3. Clearing medicine usage for a patient with no existing usages (by NRIC)
+3. Clearing medicine usage records for a patient with no existing usages (by NRIC)
     * **Prerequisites:**
         * The patient with NRIC `S1234567A` is present in the system
         * The patient has no medicine usage entries
@@ -981,55 +1010,55 @@ testers are expected to do more *exploratory* testing.
     * **Expected:** Klinix shows a message indicating that the patient with NRIC `S1234567A` has no medicine usage records to clear.  
       <br><br>
 
-4. Clearing medicine usage for a patient with no existing usages (by index)
+4. Clearing medicine usage records for a patient with no existing usages (by index)
     * **Prerequisites:**
         * The patient at index `1` has no medicine usage entries
     * **Test Case:** `clearmu 1`
     * **Expected:** Klinix shows a message indicating that the patient at index `1` has no medicine usage records to clear.  
       <br><br>
 
-5. Clearing medicine usage with an invalid NRIC format
+5. Clearing medicine usage records with an invalid NRIC format
     * **Prerequisites:**
         * None
     * **Test Case:** `clearmu ic/INVALID123`
     * **Expected:** Klinix shows an error indicating that the provided NRIC is not in a valid format.  
       <br><br>
 
-6. Clearing medicine usage with missing arguments
+6. Clearing medicine usage records with missing arguments
     * **Prerequisites:**
         * None
     * **Test Case:** `clearmu`
     * **Expected:** Klinix shows an error indicating that the input command is invalid.  
       <br><br>
 
-7. Clearing medicine usage using both index and NRIC
+7. Clearing medicine usage records using both index and NRIC
     * **Prerequisites:**
         * Any patients in the system
     * **Test Case:** `clearmu 2 ic/S1234567A`
     * **Expected:** Klinix shows an error indicating that the input command is invalid.  
       <br><br>
 
-8. Clearing medicine usage using index with extra text
+8. Clearing medicine usage records using index with extra text
     * **Prerequisites:**
         * Patient at index `1` exists
     * **Test Case:** `clearmu 1 extra`
     * **Expected:** Klinix shows an error indicating that the input command is invalid.  
       <br><br>
 
-9. Clearing medicine usage using a malformed input string
+9. Clearing medicine usage records using a malformed input string
     * **Prerequisites:**
         * None
     * **Test Case:** `clearmu extra ic/S1234567A`
     * **Expected:** Klinix shows an error indicating that the input command is invalid.  
       <br><br>
 
-### Finding Medicine Usages
+### Finding Medicine Usage Records
 
 **Command:** `findmu`<br>
 
 1. Finding patients with keywords that overlap in meaning but not in text
     * **Prerequisites:**
-        * No patients have medicine usage names that include the keyword `painkiller`, but some include `Paracetamol` or `Ibuprofen`
+        * No patients have medicine usage records that include the keyword `painkiller`, but some include `Paracetamol` or `Ibuprofen`
     * **Test Case:** `findmu painkiller`
     * **Expected:** Klinix shows no results since the system only supports literal (not semantic) matching.  
       <br><br>
@@ -1038,14 +1067,14 @@ testers are expected to do more *exploratory* testing.
     * **Prerequisites:**
         * Any state of the system
     * **Test Case:** `findmu paracetamol amoxicillin`
-    * **Expected:** Klinix filters the patient list and shows all patients who have at least one medicine usage matching either `paracetamol` or `amoxicillin`.  
+    * **Expected:** Klinix filters the patient list and shows all patients who have at least one medicine usage record matching either `paracetamol` or `amoxicillin`.  
       <br><br>
 
-3. Finding patients with keywords that match no one
+3. Finding patients with keywords that match no patient
     * **Prerequisites:**
         * No patient in the system has medicine usage containing the keyword `paracetamol`
     * **Test Case:** `findmu paracetamol`
-    * **Expected:** Klinix updates the patient list to show no results since no medicine usage matches the keyword.  
+    * **Expected:** Klinix updates the patient list to show no results since no medicine usage record matches the keyword.  
       <br><br>
 
 4. Finding patients with an empty keyword input
@@ -1163,7 +1192,7 @@ testers are expected to do more *exploratory* testing.
     * **Test Case:** `clearappt ic/S1234567A`
     * **Expected:** Klinix throws the error message indicating that the patient does not have any appointments.
 
-**Format 2: Clear by INDEX**
+**Format 2: Clear by Index**
 
 1. Clearing appointments from a patient who has existing appointment(s)
     * **Prerequisites:**
@@ -1185,27 +1214,48 @@ testers are expected to do more *exploratory* testing.
     * **Expected:** Klinix throws the error message indicating that the patient does not have any appointments.
 --------------------------------------------------------------------------------------------------------------------
 ## **Planned Enhancements**
-1. The current find command only searches for names. Future versions may allow searching by other fields such as NRIC,
-   phone number, or email. This is because we understand that people may have similar names.
+1. Enhanced Search Functionality<br>
+Currently, the `find` command only supports searching by patient names. In future versions, we plan to extend this functionality 
+to include other fields such as NRIC, phone number, or email address. This is to accommodate scenarios where multiple patients may 
+share the same or similar names, and users may prefer searching by unique identifiers.
+
+2. Implementation of `Edit Appointment` Feature<br>
+We plan to implement an edit appointment feature to allow users to modify existing appointment details such as date, time or
+description. This provides greater flexibility and reflects real-world usage where appointment changes are common.
+
+3. Improved Time Format for User Interface Display Inputs<br>
+To enhance user-friendliness, future versions of the application will should feature a more intuitive date-time display format.
+Instead of showing time in the 24-hour format (e.g., 13:00), the system will display it in a 12-hour format with AM/PM notation
+(e.g. 1:00 PM). This change aims to improve readability and align with common user preferences, particularly for those who may 
+not be familiar with the 24-hour clock. It will also help reduce confusion when viewing or managing appointment times in the user interface.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Efforts**
 #### Difficulty Level
-Our project introduced a greater level of complexity compared to AB3, as it involved managing multiple entity types—primarily appointments, medical report and medical usages —whereas AB3 focused on a single entity. This expansion significantly increased the demands on command processing, as each new entity came with its own set of attributes and behaviors that had to be handled appropriately.
+Our project introduced a greater level of complexity compared to AB3, as it involved managing multiple entity types—primarily appointments, 
+medical report and medical usages —whereas AB3 focused on a single entity. This expansion significantly increased the demands on command
+processing, as each new entity came with its own set of attributes and behaviors that had to be handled appropriately.
 #### Challenges Faced
-**Integration of Person, Medical Report, Medical Usage and Appointment Entities:** To accurately associate each appointment, medical report and medical usages with its corresponding patient, we added an Appointment List and Medical Report with Medical Usage List attributes to the Person class.
+**Integration of Person, Medical Report, Medical Usage and Appointment Entities:** To accurately associate each appointment,
+medical report and medical usages with its corresponding patient, we added an Appointment List and Medical Report with Medical Usage List
+attributes to the Person class.
 
-**Command Implementation:** Designing commands for both entities required thoughtful planning to ensure they operated correctly and consistently across different use cases.
+**Command Implementation:** Designing commands for both entities required thoughtful planning to ensure they operated correctly and 
+consistently across different use cases.
 
-**UI Space Constraints:** Creating a user-friendly interface within the constraints of limited screen space proved to be a major challenge. We had to strike a balance between presenting enough information and keeping the layout clean and intuitive. Through multiple design iterations, we arrived at a solution that delivers key details without overwhelming the user.
+**UI Space Constraints:** Creating a user-friendly interface within the constraints of limited screen space proved to be a major challenge.
+We had to strike a balance between presenting enough information and keeping the layout clean and intuitive. Through multiple design iterations, we arrived at a solution that delivers key details without overwhelming the user.
 
 
 #### Effort Required
-**Design and Refactoring:** Adapting the AB3 framework to support multiple entity types required careful refactoring and the creation of new class structures.
+**Design and Refactoring:** Adapting the AB3 framework to support multiple entity types required careful refactoring and the creation of new class
+structures.
 
-**Command Implementation:** We developed dedicated commands for Person, Appointment, Medical Report and Medical Usage, which involved building additional parser classes and command logic.
+**Command Implementation:** We developed dedicated commands for Person, Appointment, Medical Report and Medical Usage 
+which involved building additional parser classes and command logic.
 
-**Testing and Debugging:** To ensure the reliability of our system, we wrote comprehensive test cases to verify that each feature and command functioned correctly across both entity types.
+**Testing and Debugging:** To ensure the reliability of our system, we wrote comprehensive test cases to verify that each 
+feature and command functioned correctly across both entity types.
 
 #### Achievements
 In conclusion, our team successfully designed and implemented key features, resolved bugs, and navigated potential integration challenges. While we initially encountered difficulties with more complex components such as Appointment and Medical Usage management, effective collaboration allowed us to overcome these hurdles and accomplish our objectives for Klinix.
