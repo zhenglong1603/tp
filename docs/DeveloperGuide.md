@@ -260,7 +260,7 @@ The **`ViewAppointmentsByDateParser`** class enforces validation rules to ensure
 
 **Target user profile**:
 
-General Clinic Counter Receptionist
+General Clinic Admin personnel who are:
 
 **Value proposition**:
 * Helps to keep track of the patients’ records and add details
@@ -274,43 +274,33 @@ General Clinic Counter Receptionist
 
 Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely to have) - *
 
-| Priority     | As a ...                            | I want to ...                                                     | So that ...                                                                   |
-| ------------ | ----------------------------------- |-------------------------------------------------------------------| ----------------------------------------------------------------------------- |
-| `***`    | Basic User                          | add medicine usage records                                        | the supply management system remains accurate.                                |
-| `***`    | Basic User                          | delete medicine usage records                                     | the supply management system remains accurate.                                |
-| `***`    | Basic User                          | view detailed patient medical report                              | I have the necessary context during patient check-in.                         |
-| `***`    | Basic User                          | view patients’ medicine needs                                     | I can manage the clinic’s medicine supply efficiently.                        |
-| `***`    | Basic User                          | view patient records                                              | I always work with the most current information.                              |
-| `***`    | Basic User                          | view patient's appointments                                       | I always work with the most current information.                              |
-| `***`    | Basic User                          | add medical report                                                | the clinic database remains current and accurate.                             |
-| `***`    | Basic User                          | delete medical report                                             | the clinic database remains current and accurate.                             |
-| `***`    | Basic User                          | quickly add new patient details                                   | the clinic database remains current and accurate.                             |
-| `***`    | Basic User                          | quickly delete new patient details                                | the clinic database remains current and accurate.                             |
-| `***`    | Basic User                          | add appointments                                                  | the clinic database remains current and accurate.                             |
-| `***`    | Basic User                          | delete appointments                                               | the clinic database remains current and accurate.                             |
-| `**` | Basic User                          | edit existing patient details                                     | all information stays up-to-date and error-free.                              |
-| `**` | Advanced User                       | search for patient records using various filters                  | I can locate the right records quickly and efficiently.                       |
-| `**` | Basic User                          | schedule new patient appointments                                 | clinic visits are well organized.                                             |
-| `**` | Basic User                          | update medicine usage records                                     | the supply management system remains accurate.                                |
-| `**` | Advanced User/Fast Typer            | utilize fast-typing shortcuts during data entry                   | I can enter information quickly and reduce wait times.                        |
-| `**` | Beginner, Basic User, Advanced User | work with an intuitive user interface                             | I need less training and can work more efficiently.                           |
-| `**` | Basic User, Beginner                | have error-prevention features built into the data entry process  | patient information is recorded correctly the first time.                     |
-| `**` | Basic User                          | confirm any record changes before finalizing them                 | I avoid mistakes and ensure accuracy in patient data.                         |
-| `**` | Basic User                          | search for patients by multiple parameters (e.g., name, ID, date) | I can quickly narrow down results to find the correct record.                 |
-| `**` | Basic User                          | filter appointments by date                                       | I can efficiently manage busy schedules.                                      |
-| `**` | Basic User                          | receive alerts for potential double-booking                       | scheduling conflicts are minimized.                                           |
-| `**` | Basic User                          | securely export patient data                                      | backups are maintained and information can be shared with authorized parties. |
-| `**` | Basic User                          | import external patient data                                      | existing records are seamlessly integrated into Klinix.                       |
-| `**` | Advanced User, Beginner             | receive suggestions for common search queries                     | I can work faster and reduce typing effort.                                   |
-| `**` | Basic User, Beginner                | navigate the application easily                                   | I can quickly access the functionality I need most often.                     |
-| `**` | Forgetful User                      | add notes during patient check-in                                 | any additional details are captured for future reference.                     |
-| `**` | Forgetful User                      | mark and unmark patients as “visited” after their appointments    | follow-ups and further actions can be tracked efficiently.                    |
-| `**` | Advanced User, Careless user        | flag incomplete or inconsistent records                           | I can follow up and ensure all necessary details are completed.               |
-| `**` | Beginner                            | view the user guide easily                                        | I can learn more about the product as and when I need                         |
-| `**` | Beginner                            | view sample data table                                            | I can see what the end result would look like                                 |
-| `*`     | Advanced User                       | set up automatic email/SMS reminders for patients                 | patients receive timely notifications about their appointments.               |
-| `*`     | Basic User, Beginner                | view a visual calendar of appointments                            | I can manage daily schedules more intuitively.                                |
-| `*`     | Beginner                            | see pop-up help tips when hovering over icons or fields           | I understand what each element does without feeling overwhelmed               |
+| Priority     | As a ...                            | I want to ...                                                    | So that ...                                                                   |
+| ------------ | ----------------------------------- |------------------------------------------------------------------| ----------------------------------------------------------------------------- |
+| `***`    | Basic User                          | add medicine usage records                                       | the supply management system remains accurate.                                |
+| `***`    | Basic User                          | delete medicine usage records                                    | the supply management system remains accurate.                                |
+| `***`    | Basic User                          | view detailed patient medical report                             | I have the necessary context during patient check-in.                         |
+| `***`    | Basic User                          | view patients’ medicine needs                                    | I can manage the clinic’s medicine supply efficiently.                        |
+| `***`    | Basic User                          | view patient records                                             | I always work with the most current information.                              |
+| `***`    | Basic User                          | view patient's appointments                                      | I always work with the most current information.                              |
+| `***`    | Basic User                          | add medical report                                               | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | delete medical report                                            | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | quickly add new patient details                                  | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | quickly delete new patient details                               | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | add appointments                                                 | the clinic database remains current and accurate.                             |
+| `***`    | Basic User                          | delete appointments                                              | the clinic database remains current and accurate.                             |
+| `**` | Basic User                          | edit existing patient details                                    | all information stays up-to-date and error-free.                              |
+| `**` | Basic User                          | schedule new patient appointments                                | clinic visits are well organized.                                             |
+| `**` | Basic User                          | update medicine usage records                                    | the supply management system remains accurate.                                |
+| `**` | Advanced User/Fast Typer            | utilize fast-typing shortcuts during data entry                  | I can enter information quickly and reduce wait times.                        |
+| `**` | Beginner, Basic User, Advanced User | work with an intuitive user interface                            | I need less training and can work more efficiently.                           |
+| `**` | Basic User, Beginner                | have error-prevention features built into the data entry process | patient information is recorded correctly the first time.                     |
+| `**` | Basic User                          | confirm any record changes before finalizing them                | I avoid mistakes and ensure accuracy in patient data.                         |
+| `**` | Basic User                          | search for patients by name                                      | I can quickly narrow down results to find the correct record.                 |
+| `**` | Basic User                          | filter appointments by date                                      | I can efficiently manage busy schedules.                                      |
+| `**` | Basic User                          | receive alerts for potential double-booking                      | scheduling conflicts are minimized.                                           |
+| `**` | Basic User, Beginner                | navigate the application easily                                  | I can quickly access the functionality I need most often.                     |
+| `**` | Forgetful User                      | mark and unmark patients as “visited” after their appointments   | follow-ups and further actions can be tracked efficiently.                    |
+| `**` | Beginner                            | view the user guide easily                                       | I can learn more about the product as and when I need                         |
 
 ### Use cases
 The use cases below are not exhaustive.
