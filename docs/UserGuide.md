@@ -147,7 +147,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 | **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`.                                                                                                                                                                                                                                                                                                                            |
 | **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g. `01-01-1990`).                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **`a`** | `ADDRESS`       | - No specific constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **`t`** | `TAG`           | - Optional. <br/>- Can have multiple different tags (e.g. `t/chronic t/followup`). <br/>- Repeating the same tag (e.g. `t/chronic t/chronic`) has no effect — it will only be added once. <br/>- Tags must not contain spaces. For example, `t/needs checkup` is **not** allowed. Instead, use something like `t/needs_checkup` or `t/checkup`.                                                                                                                                          |
+| **`t`** | `TAG`           | - Optional. <br/>- Can have multiple different tags (e.g. `t/chronic t/followup`). <br/>- Repeating the same tag (e.g. `t/chronic t/chronic`) has no effect — it will only be added once. <br/>- Tags must not contain spaces and must have at most 20 characters. For example, `t/needs checkup` is **not** allowed. Instead, use something like `t/needs_checkup` or `t/checkup`.                                                                                                      |
 
 ---
 
@@ -238,7 +238,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* For Parameters with suffixes, they can be in any order.<br>
+* If provided, the index parameter must always appear first. All other parameters can follow in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 But for parameters without suffixes, the order matters.<br>
@@ -509,6 +509,7 @@ Example:
 
 <Box type="warning" seamless>
 
+* Deleting a medical report will set all medical fields to `None`.
 * The patient with the given NRIC, or at the specified index must exist, otherwise Klinix will show an error message. 
 * If the patient does not have an existing medical report (i.e. all fields are `None`), Klinix will show an error message.
 
