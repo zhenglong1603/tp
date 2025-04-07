@@ -3,7 +3,7 @@
   title: "User Guide"
   pageNav: 3
 ---
-<img src="images/Klinix_logo.png" alt="klinix-logo" style="pointer-events: none; width: 100%; height: auto;">
+<img src="images/Klinix_logo.png" alt="klinix-logo" style="pointer-events: none; height: 100px; width: auto; display: block; margin: 0 auto;">
 
 # **Klinix User Guide**
 

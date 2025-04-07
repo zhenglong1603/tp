@@ -1172,7 +1172,7 @@ testers are expected to do more *exploratory* testing.
         * Other fields remain unchanged.
         * Klinix will return a confirmation message showing the details of the deleted appointment in the message.
           <br><br>
-2. Deleting an appointment from a patient who has no appointment
+2. Deleting an appointment from a patient who has no appointments
     * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
         * That patient has no existing appointment
@@ -1198,7 +1198,7 @@ testers are expected to do more *exploratory* testing.
        * Other fields remain unchanged.
        * Klinix will return a confirmation message indicating appointments have been cleared.
          <br><br>
-2. Clearing appointments from a patient who has no appointment
+2. Clearing appointments from a patient who has no appointments
     * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
         * That patient has no existing appointment
@@ -1215,11 +1215,11 @@ testers are expected to do more *exploratory* testing.
           <br><br>
     * **Test Case:** `clearappt 1`
     * **Expected:** The first patient in the list is updated with the following fields:
-        * All existing appointments cleared.
+        * ALl existing appointments cleared.
         * Other fields remain unchanged.
         * Klinix will return a confirmation message indicating appointments have been cleared.
           <br><br>
-2. Clearing appointments from a patient who has no appointment
+2. Clearing appointments from a patient who has no appointments
     * **Prerequisites:**
         * The patient with that index must be present in the patient list
         * That patient has no existing appointment
