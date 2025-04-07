@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 
+// The test cases are adapted from a conversation with chatGPT
 public class AppointmentListTest {
 
     private AppointmentList appointmentList;

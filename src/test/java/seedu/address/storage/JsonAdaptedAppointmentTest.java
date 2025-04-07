@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 
+// The test cases are adapted from a conversation with chatGPT
 public class JsonAdaptedAppointmentTest {
 
     private static final String VALID_APPOINTMENT_DESCRIPTION = "Dental Checkup";
