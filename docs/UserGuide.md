@@ -14,9 +14,45 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 **Because the smoother your workflow, the better care you can provide.**
 
 <!-- * Table of Contents -->
-<page-nav-print />
 
---------------------------------------------------------------------------------------------------------------------
+# Table of Contents
+1. [Quick Start](#quick-start)
+2. [Input Parameters](#input-parameters)
+3. [Features](#features)
+    - **General Commands**
+        - [Viewing patient details](#viewing-patient-details)
+        - [Viewing past commands](#viewing-past-commands)
+        - [Viewing help](#viewing-help--help)
+        - [Clearing all entries](#clearing-all-entries--clear)
+        - [Exiting the program](#exiting-the-program--exit)
+        - [Saving the data](#saving-the-data)
+        - [Editing the data file](#editing-the-data-file)
+    - **Patient Management**
+        - [Adding a patient](#adding-a-patient-add)
+        - [Deleting a patient](#deleting-a-patient--delete)
+        - [Editing a patient](#editing-a-patient--edit)
+        - [Listing all patients](#listing-all-patients--list)
+        - [Searching patients by field](#locating-patients-by-name-find)
+    - **Medical Report Management**
+        - [Adding medical report to a patient](#adding-a-medical-report-addmr)
+        - [Deleting medical report from a patient](#deleting-a-medical-report-deletemr)
+    - **Medical Usage Management**
+        - [Adding medical report to a patient](#adding-medicine-usage-records-addmu)
+        - [Deleting medical report from a patient](#deleting-medicine-usage-records-deletemu)
+        - [Clearing list of medical usage from a patient](#clearing-all-medicine-usage-records-clearmu)
+    - **Appointment Management**
+        - [Adding an appointment to a patient](#adding-an-appointment-addappt)
+        - [Deleting an appointment from a patient](#deleting-an-appointment-deleteappt)
+        - [Clearing list of appointments from a patient](#clearing-all-appointment-records-clearappt)
+        - [Marking appointment as visited](#marking-an-appointment-markappt)
+        - [Unmarking appointment as not visited](#unmarking-an-appointment-unmarkappt)
+        - [Viewing appointments that start on specific date](#viewing-appointments-on-specific-date-appton)
+4. [FAQ](#faq)
+5. [Glossary](#glossary)
+6. [Known Issues](#known-issues)
+7. [Command Summary](#command-summary)
+---
+<div style="page-break-after: always;"> </div>
 
 ## Quick Start
 
@@ -67,6 +103,8 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 6. **More Information:**
    Refer to the [Features](#features) section below for detailed descriptions of each command.
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 # Input parameters
 
@@ -110,13 +148,13 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 ### **Medicine Usage Parameters**
 
-| Symbol     | Parameter          | Constraints                                                                                                                 |
-|------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC`     | Same as Patient NRIC.                                                                                                       |
-| **`n`**    | `MEDICINE_NAME`    | Must start with **an alphanumeric character**. <br/> Following characters can be `()+,.'`, alphanumeric characters, and spaces. |
-| **`dos`**  | `DOSAGE`           | Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                                                        |
-| **`from`** | `START_DATE`       | Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                                                   |
-| **`to`**   | `END_DATE`         | Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**.                                  |
+| Symbol     | Parameter          | Constraints                                                                                                                       |
+|------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                                                           |
+| **`n`**    | `MEDICINE_NAME`    | - Must start with **an alphanumeric character**. <br/> Following characters can be `()+,.'`, alphanumeric characters, and spaces. |
+| **`dos`**  | `DOSAGE`           | - Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                                                            |
+| **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                                                       |
+| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**.                                      |
 
 ---
 
@@ -168,7 +206,9 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 | **Final cleanup**         | Remove any remaining extra spaces                              | —                                                    |
 
 **Note:** If two rules overlap, the one lower in the table (later in the list) will be applied last and will take priority.
-    
+
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Features
@@ -195,11 +235,14 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+[Back to Table of Contents](#table-of-contents)
+
 
 ### Viewing patient details
 You can view the details of a patient by clicking on their name in the displayed list. This will display all the details of the selected patient in the `details` window.
 ![patient details](images/ViewPatientDetailsDemonstration.gif)
 
+[Back to Table of Contents](#table-of-contents)
 
 ### Viewing past commands:
 
@@ -220,6 +263,8 @@ This feature allows you to quickly reuse or edit previously entered commands wit
 
 - The command history is saved only for the current session and will reset when the application is restarted.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -232,6 +277,53 @@ Format: `help`
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
+
+[Back to Table of Contents](#table-of-contents)
+
+### Clearing all entries : `clear`
+
+Clears all entries from the clinic.
+
+Format: `clear`
+
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
+
+[Back to Table of Contents](#table-of-contents)
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
+
+[Back to Table of Contents](#table-of-contents)
+
+### Saving the data
+
+Klinix data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Back to Table of Contents](#table-of-contents)
+
+### Editing the data file
+
+Klinix data are saved automatically as a JSON file `[JAR file location]/data/Klinix.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<box type="info" seamless>
+
+**Caution:**
+If your changes to the data file makes its format invalid, Klinix will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.g. if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+</box>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Adding a patient: `add`
 
@@ -250,40 +342,36 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com ic/S9876543B b/01-01-1990 a/Newgate Prison p/1234567 t/criminal`
 
-### Marking an appointment: `markappt`
+[Back to Table of Contents](#table-of-contents)
 
-Marks an appointment as `visited`.
-Format: `markappt INDEX ic/NRIC`
-Parameters:
-- `INDEX`: The index of the appointment in the [patient details](#Viewing-patient-details). It must be a positive integer.
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+### Deleting a Patient : `delete`
 
-Example:
-* `markappt 2 ic/S1234567A`
-* `markappt 1 ic/T0260144G`
+Deletes the specified patient from Klinix.
 
-### Unmarking an appointment: `unmarkappt`
+**Format 1:** `delete INDEX`
 
-Unmarks an appointment as `not visited`.
-Format: `unmarkappt INDEX ic/NRIC`
-Parameters:
-- `INDEX`: The index of the appointment in the [patient details](#Viewing-patient-details). It must be a positive integer.
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
-Example:
-* `unmarkappt 2 ic/S1234567A`
-* `unmarkappt 1 ic/T0260144G`
+**Format 2:** `delete [ic/NRIC]`
 
-### Listing all patients : `list`
+* Deletes the patient with the specified `NRIC`.
+* The `NRIC` must be valid.
+* The command works regardless of whether if the patient with the specified NRIC is displayed or not.
 
-Shows a list of all patients in Klinix.
+**Note:** You can use whichever format you find convenience, but not both at the same time. Otherwise,
+Klinix will give an error.
 
-Format: `list`
+Examples:
 
-<box type="info" seamless>
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-</box>
+* `list` followed by `delete 2` deletes the 2nd patient in Klinix.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `delete ic/S1234567A` deletes the patient with NRIC S1234567A from Klinix (if exists).
+* `list` followed by `delete 2` deletes the 2nd patient in Klinix.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Editing a patient : `edit`
 
@@ -307,6 +395,21 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
+[Back to Table of Contents](#table-of-contents)
+
+### Listing all patients : `list`
+
+Shows a list of all patients in Klinix.
+
+Format: `list`
+
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
+
+[Back to Table of Contents](#table-of-contents)
+
 ### Locating patients by name: `find`
 
 Finds patients whose names contain any of the given keywords.
@@ -325,46 +428,9 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a Patient : `delete`
+[Back to Table of Contents](#table-of-contents)
 
-Deletes the specified patient from Klinix.
-
-**Format 1:** `delete INDEX`
-
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-**Format 2:** `delete [ic/NRIC]`
-
-* Deletes the person with the specified `NRIC`.
-* The `NRIC` must be valid.
-* The command works regardless of whether if the person with the specified NRIC is displayed or not.
-
-**Note:** You can use whichever format you find convenience, but not both at the same time. Otherwise, 
-Klinix will give an error.
-
-Examples:
-
-* `list` followed by `delete 2` deletes the 2nd person in Klinix.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `delete ic/S1234567A` deletes the person with NRIC S1234567A from Klinix (if exists).
-* `list` followed by `delete 2` deletes the 2nd patient in Klinix.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-
-
-### Clearing all entries : `clear`
-
-Clears all entries from the clinic.
-
-Format: `clear`
-
-<box type="info" seamless>
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-</box>
-
-### Adding medical report: `addmr`
+### Adding a medical report: `addmr`
 
 Add a new medical report to a patient's record.
 
@@ -388,7 +454,9 @@ Examples:
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
 
-### Deleting medical report: `deletemr`
+[Back to Table of Contents](#table-of-contents)
+
+### Deleting a medical report: `deletemr`
 
 Delete a patient's existing medical report.
 
@@ -403,7 +471,7 @@ Examples:
 
 **Format 2:** `deletemr INDEX`
 
-* Deletes the medical report of the person at the specified `INDEX`
+* Deletes the medical report of the patient at the specified `INDEX`
 * The index refers to the index number shown in the displayed person list.
 * This index **must be a positive integer** 1, 2, 3, ...
 
@@ -414,6 +482,8 @@ Examples:
 
 1. The patient with the given NRIC, or at the specified index must exist, otherwise Klinix will show an error message.
 2. If the patient does not have an existing medical report, nothing will happen.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Adding medicine usage records: `addmu`
 
@@ -442,6 +512,26 @@ Klinix will detect such overlapping instances and give an error message when you
 5. `START` should be before (or on the same day as) `END`
 6. `START` should not be before the patient's birthday.
 
+[Back to Table of Contents](#table-of-contents)
+
+### Deleting medicine usage records: `deletemu`
+
+Delete a particular medicine usage record of a patient's medical history.
+
+Format: `deletemu INDEX ic/NRIC`
+
+Parameters:
+- `INDEX`: The index of the medicine usage record in the displayed medicine usage list. It **must be a positive integer**.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
+**Note:** The medicine usage record list could be viewed by navigating to the patient with the specified NRIC, 
+and clicking on their displayed card to view patient details
+
+Examples:
+* `deletemu 2 ic/S1234567A`
+
+[Back to Table of Contents](#table-of-contents)
+
 ### Clearing all medicine usage records: `clearmu`
 
 Clear all medicine usage records of a patient's medical history.
@@ -455,8 +545,8 @@ Examples: `clearmu ic/S1234567A`
 
 **Format 2:** `clearmu INDEX`
 
-* Deletes all medicine usages from the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes all medicine usages from the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, ...
 
 Examples: `clearmu 3`
@@ -468,21 +558,7 @@ Otherwise, Klinix will give an error.
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 
-### Deleting medicine usage records: `deletemu`
-
-Delete a particular medicine usage record of a patient's medical history.
-
-Format: `deletemu INDEX ic/NRIC`
-
-Parameters:
-- `INDEX`: The index of the medicine usage record in the displayed medicine usage list. It **must be a positive integer**.
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
-
-**Note:** The medicine usage record list could be viewed by navigating to the person with the specified NRIC, 
-and clicking on their displayed card to view patient details
-
-Examples:
-* `deletemu 2 ic/S1234567A`
+[Back to Table of Contents](#table-of-contents)
 
 ### Finding medicine usages by medicine names: `findmu`
 
@@ -493,7 +569,10 @@ Format: `findmu KEYWORDS [MORE_KEYWORDS]`
 Examples: `findmu Paracetamol Amoxicillin`
 
 **Note:** `findmu` supports partial match
-### Add appointment: `addappt`
+
+[Back to Table of Contents](#table-of-contents)
+
+### Adding an appointment: `addappt`
 
 Add a new appointment to the patient.
 
@@ -509,7 +588,9 @@ Example:
 2. Two appointments from the same patient are overlapped if they have the same name and overlapping duration.
    Klinix will detect such overlapping instances and give an error message when you try to add them.
 
-### Delete Appointment: `deleteappt`
+[Back to Table of Contents](#table-of-contents)
+
+### Deleting an appointment: `deleteappt`
 
 Delete the specified appointment from the patient.
 
@@ -527,9 +608,11 @@ Example:
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. The index given must also be valid, a positive integer and within the appointment list size.
 
-### Clear all Appointment records: `clearappt`
+[Back to Table of Contents](#table-of-contents)
 
-Clear all appointments of a patient.
+### Clearing all appointment records: `clearappt`
+
+Clear all appointments of a specified patient.
 
 **Format 1:** `clearappt ic/NRIC`
 
@@ -541,7 +624,7 @@ Examples: `clearappt ic/S1234567A`
 **Format 2:** `clearappt INDEX`
 
 Parameters:
-- `INDEX`: The index of the patient shown in the displayed person list. It **must be a positive integer** 1, 2, 3, ...
+- `INDEX`: The index of the patient shown in the displayed patient list. It **must be a positive integer** 1, 2, 3, ...
 
 Examples: `clearappt 1` clears all appointments of the first patient currently displayed.
 
@@ -549,7 +632,9 @@ Examples: `clearappt 1` clears all appointments of the first patient currently d
 
 1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
 
-### View Appointments on specific date: `appton`
+[Back to Table of Contents](#table-of-contents)
+
+### Viewing Appointments on specific date: `appton`
 
 Display all appointments starting on a specific date.
 
@@ -560,31 +645,37 @@ Parameters:
 
 Examples: `appton date/22-03-2025`
 
-### Exiting the program : `exit`
+[Back to Table of Contents](#table-of-contents)
 
-Exits the program.
+### Marking an appointment: `markappt`
 
-Format: `exit`
+Marks an appointment as `visited`.
 
-<box type="info" seamless>
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-</box>
+Format: `markappt INDEX ic/NRIC`
+Parameters:
+- `INDEX`: The index of the appointment in the [patient details](#patient-parameters). It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
-### Saving the data
+Example:
+* `markappt 2 ic/S1234567A`
+* `markappt 1 ic/T0260144G`
 
-Klinix data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+[Back to Table of Contents](#table-of-contents)
 
-### Editing the data file
+### Unmarking an appointment: `unmarkappt`
 
-Klinix data are saved automatically as a JSON file `[JAR file location]/data/Klinix.json`. Advanced users are welcome to update data directly by editing that data file.
+Unmarks an appointment as `not visited`.
 
-<box type="info" seamless>
+Format: `unmarkappt INDEX ic/NRIC`
+Parameters:
+- `INDEX`: The index of the appointment in the [patient details](#patient-parameters). It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
-**Caution:**
-If your changes to the data file makes its format invalid, Klinix will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.g. if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
+Example:
+* `unmarkappt 2 ic/S1234567A`
+* `unmarkappt 1 ic/T0260144G`
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -595,6 +686,8 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 **Q**: How to edit an appointment since there is no command for it<br>
 **A**: We suggest deleting the existing appointment with `deleteappt` command first before using `addappt` command to create a new appointment with the edited details.
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
@@ -604,12 +697,17 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 2. Graphical User Interface (GUI): A user interface that enables users to interact with electronic devices through visual elements like icons, buttons, and windows, rather than through text-based commands. GUIs simplify navigation and usage of software applications through a visual approach.
 
 3. Hard Disk Drive (HDD): A storage device within a computer that utilizes rotating magnetic disks to read and write data. It is primarily used for long-term storage of files, applications, and the operating system.
+
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -637,3 +735,5 @@ Action     | Format, Examples
 **Help**   | `help`
 **List**   | `list`
 **View Appointment on specific date** | `appton date/DATE` <br> e.g. `appton date/22-03-2025`
+
+[Back to Table of Contents](#table-of-contents)
