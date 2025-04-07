@@ -11,6 +11,8 @@ import seedu.address.logic.commands.FindMedicineUsageCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.MedicineUsageContainsKeywordsPredicate;
 
+// The test cases are adapted from a conversation with chatGPT
+
 public class FindMedicineUsageCommandParserTest {
 
     private final FindMedicineUsageCommandParser parser = new FindMedicineUsageCommandParser();
