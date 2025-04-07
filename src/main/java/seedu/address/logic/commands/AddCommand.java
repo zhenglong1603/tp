@@ -42,7 +42,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the klinix";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This patient or NRIC already exists in the system. Please check the details and try again.";
 
     private final Person toAdd;
 
