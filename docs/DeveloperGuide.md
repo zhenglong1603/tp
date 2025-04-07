@@ -748,8 +748,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing an existing patient (the first patient in the list)
 
-   * **Prerequisites: Ensure at least one patient is in the list. If not, add a patient using the `add` command. Eg:<br>
-      `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`**
+   * **Prerequisites: 
+        * Ensure at least one patient is in the list. If not, add a patient using the `add` command.<br>Eg:
+        `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`**
 
    * **Test case:** `edit 1 p/91234567 e/johndoe@example.com`
    * **Expected:** Patient details are updated. Details of the edited patient shown in the status message.
