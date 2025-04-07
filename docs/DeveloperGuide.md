@@ -532,6 +532,20 @@ The use cases below are not exhaustive.
 
 ---
 
+**Use case: Finding Medicine Usage Records**
+**MSS**
+1. User searches medicine usage records by keywords.
+2. Klinix shows a list of patients with medicine usage records matching the search.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Missing keywords → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. No matching medicine usage records found → Klinix shows an empty list.<br>
+  Use case ends.
+
+---
+
 **Use case: Adding an Appointment**
 
 **MSS**
