@@ -116,9 +116,8 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 **Notes about parameters:**<br>
 
 - Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbol. For example, the command `add n/John`<br>
-
-  - `n/` -> parameter symbol<br>
-  - `John` -> parameter
+  - `n/` is the parameter symbol<br>
+  - `John` is the parameter
 - All arguments are trimmed before processing:
   - Arguments of prefixes `ic/`, `b/`, `p/`, `e/`, `from/`, `to/`, `/date` are trimmed by removing **ALL WHITE SPACES**
   - Arguments of remaining prefixes are trimmed following the [Trimming Rules](#input-trimming-rules) below.
@@ -139,15 +138,15 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 
 ### **Patient Parameters**
 
-| Symbol  | Parameter       | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-|---------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`n`** | `NAME`          | - Must start with a letter, allowing spaces, apostrophes, periods, and hyphens between words; optional lowercase suffix ('s/o', 'd/o', 'c/o', '@') followed by another valid name.                                                                                                                                                                                                                                                                                                      |
-| **`p`** | `PHONE_NUMBER`  | - Must be a valid phone number (at least 3 digits. e.g. 999)                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Symbol  | Parameter       | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|---------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`n`** | `NAME`          | - Must start with a letter, allowing spaces, apostrophes, periods, and hyphens between words; optional lowercase suffix ('s/o', 'd/o', 'c/o', '@') followed by another valid name.                                                                                                                                                                                                                                                                                                     |
+| **`p`** | `PHONE_NUMBER`  | - Must be a valid phone number (at least 3 digits. e.g. 999)                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | **`e`** | `EMAIL`         | - Must follow the format `local-part@domain` and adhere to these constraints:<br> 1. The `local-part` must only contain alphanumeric characters and these special characters: `+_.-`. It cannot start or end with a special character.<br> 2. The `domain` consists of labels separated by periods, where each label:<br> - Starts and ends with alphanumeric characters.<br> - May contain hyphens between alphanumeric characters.<br> - Ends with a label at least 2 characters long. |
-| **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`.                                                                                                                                                                                                                                                                                                                           |
-| **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g. `01-01-1990`).                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`.                                                                                                                                                                                                                                                                                                                          |
+| **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g. `01-01-1990`).                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **`a`** | `ADDRESS`       | - No specific constraints.                                                                                                                                                                                                                                                                                                                                                                              |
-| **`t`** | `TAG`           | - Optional. <br/>Can have multiple different tags (e.g. `t/friend t/colleague`). <br/>Can be repreated (e.g. `t/friend t/friend`)                                                                                                                                                                                                                                                                                                                                                         |
+| **`t`** | `TAG`           | - Optional. <br/>Can have multiple different tags (e.g. `t/friend t/colleague`).                                                                                                                                                                                                                                                                                                                                                    |
 
 ---
 
@@ -326,7 +325,7 @@ e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 ### Saving the data
 
-Klinix data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Klinix data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -335,7 +334,7 @@ Klinix data are saved in the hard disk automatically after any command that chan
 Klinix data are saved automatically as a JSON file `[JAR file location]/data/Klinix.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
-If your changes to the data file makes its format invalid, Klinix will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file make its format invalid, Klinix will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.g. if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
@@ -373,18 +372,16 @@ Deletes the specified patient from Klinix.
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in Klinix.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-* `list` followed by `delete 2` deletes the 2nd patient in Klinix.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 **Format 2:** `delete ic/NRIC`
 
 * Deletes the patient with the specified `NRIC`.
 * The `NRIC` must be valid.
-* The command works regardless of whether if the patient with the specified NRIC is displayed or not.
+* The command works regardless of whether the patient with the specified NRIC is displayed or not.
 
 <Box type="info" seamless> 
 
-You can use whichever format you find convenience, but not both at the same time. Otherwise,
+You can use whichever format you find convenient, but not both at the same time. Otherwise,
 Klinix will give an error.
 
 </Box>
@@ -408,7 +405,7 @@ For detailed constraints on all other parameters (`NAME`, `PHONE`, `EMAIL`, `NRI
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the patient will be removed. i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -522,10 +519,10 @@ Examples:
 <Box type="warning" seamless>
 
 * The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
-* Two medicine usage have the same medicine name if they are equal, **ignoring case**. 
-* Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.
+* Two medicine usages have the same medicine name if they are equal, **ignoring case**. 
+* Two medicine usage records from the same patient are overlapping if they have the same name and overlapping duration.
 Klinix will detect such overlapping instances and give an error message when you try to add them.
-* `START` and `END`must be in the format of `dd-MM-yyyy`
+* `START` and `END` must be in the format of `dd-MM-yyyy`
 * `START` should be before (or on the same day as) `END`
 * `START` should not be before the patient's birthday.
 
@@ -543,7 +540,9 @@ Parameters:
 - `INDEX`: The index of the medicine usage record in the displayed medicine usage list. It **must be a positive integer**.
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#patient-parameters)).
 
-<Box type="info" seamless> The medicine usage record list could be viewed by navigating to the patient with the specified NRIC, 
+<Box type="info" seamless> 
+
+The medicine usage record list could be viewed by navigating to the patient with the specified NRIC, 
 and clicking on their displayed card to view patient details
 
 </Box>
@@ -552,7 +551,7 @@ and clicking on their displayed card to view patient details
 
 
 Example:
-* `deletemu 2 ic/S1234567A` will delete the 2nd medicine usuage record from medical history of patient with NRIC S1234567A.
+* `deletemu 2 ic/S1234567A` will delete the 2nd medicine usage record from medical history of patient with NRIC S1234567A.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -597,7 +596,7 @@ The patient with the given NRIC must exist, otherwise Klinix will show an error 
 
 ### Finding medicine usages by medicine names: `findmu`
 
-Finds patient whose medicine usages contain the specified medicine name(s).
+Finds patients whose medicine usages contain the specified medicine name(s).
 
 Format: `findmu KEYWORDS [MORE_KEYWORDS]`
 
@@ -754,7 +753,7 @@ Examples:
 
 # FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install Klinix in the other computer and overwrite its data file with the old data file from your previous Klinix home folder.<br>
 **Q**: How do I edit an appointment or medical usage record since there is no command for it?<br>
 **A**: We suggest deleting the existing appointment with `deleteappt` command first before using `addappt` command to create a new appointment with the edited details. The same solution applies to edit a medical usage record.
