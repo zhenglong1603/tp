@@ -754,18 +754,49 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a Patient
 
-1. Deleting a patient while all patients are being shown
+**Command:** `delete`<br>
 
-   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
+1. Deleting a patient using a valid index
+    * **Prerequisites:**
+        * The patient list contains at least one patient
+    * **Test Case:** `delete 1`
+    * **Expected:** Klinix deletes the patient at index `1` in the currently displayed patient list.  
+      <br><br>
 
-   1. Test case: `delete 1`<br>
-      Expected: First patient is deleted from the list. Details of the deleted patient shown in the status message. Timestamp in the status bar is updated.
+2. Deleting a patient using a valid NRIC
+    * **Prerequisites:**
+        * The patient with NRIC `S1234567A` exists in the system
+    * **Test Case:** `delete ic/S1234567A`
+    * **Expected:** Klinix deletes the patient with NRIC `S1234567A` from the system.  
+      <br><br>
 
-   1. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+3. Deleting a patient using an invalid index
+    * **Prerequisites:**
+        * The patient list has fewer than 99 patients
+    * **Test Case:** `delete 99`
+    * **Expected:** Klinix shows an error indicating that the the index is invalid.  
+      <br><br>
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+4. Deleting a patient using an invalid NRIC
+    * **Prerequisites:**
+        * No patient in the system has NRIC `S9999999Z`
+    * **Test Case:** `delete ic/S9999999Z`
+    * **Expected:** Klinix shows an error indicating that the patient with NRIC `S9999999Z` does not exist.  
+      <br><br>
+
+5. Deleting a patient using both index and NRIC together
+    * **Prerequisites:**
+        * Any state of the system
+    * **Test Case:** `delete 1 ic/S1234567A`
+    * **Expected:** Klinix shows an error indicating that the input command format is invalid.  
+      <br><br>
+
+6. Deleting a patient with NRIC first and then index
+    * **Prerequisites:**
+        * Any state of the system
+    * **Test Case:** `delete ic/S1234567A 1`
+    * **Expected:** Klinix shows an error indicating that the NRIC is invalid, since the index is now counted as part of NRIC.  
+      <br><br>
 
 ### Adding a Medical Report
 
@@ -823,6 +854,237 @@ testers are expected to do more *exploratory* testing.
         * Immunizations: `None`
         * Other fields remain unchanged
           <br><br>
+
+### Adding Medicine Usage
+
+**Command:** `addmu`<br>
+
+1. Adding a medicine usage to a patient
+    * **Prerequisites:**
+        * The patient with NRIC `S1234567A` is present in the system
+    * **Test Case:** `addmu ic/S1234567A n/Paracetamol dos/500mg from/01-01-2025 to/05-01-2025`
+    * **Expected:** Klinix adds a new medicine usage to the patient with NRIC `S1234567A` with the following fields:
+        * Medicine Name: `Paracetamol`
+        * Dosage: `500mg`
+        * From: `01-01-2025`
+        * To: `05-01-2025`
+          <br><br>
+
+2. Adding a medicine usage to a non-existent patient
+    * **Prerequisites:**
+        * The patient with NRIC `S9999999Z` is not in the system
+    * **Test Case:** `addmu ic/S9999999Z n/Paracetamol dos/500mg from/01-01-2025 to/05-01-2025`
+    * **Expected:** Klinix shows an error indicating that the patient with NRIC `S9999999Z` does not exist.  
+      <br><br>
+
+3. Adding a medicine usage with an invalid date format
+    * **Prerequisites:**
+        * Patient with NRIC `S1234567A` exists
+    * **Test Case:** `addmu ic/S1234567A n/Paracetamol dos/500mg from/2025-01-01 to/2025-01-05`
+    * **Expected:** Klinix shows an error indicating that the input date format is invalid and must follow the format `dd-MM-yyyy`.  
+      <br><br>
+
+4. Adding a medicine usage with missing required fields
+    * **Prerequisites:**
+        * Patient with NRIC `S1234567A` exists
+    * **Test Case:** `addmu n/Paracetamol dos/500mg from/01-01-2025 to/05-01-2025`
+    * **Expected:** Klinix shows an error indicating that the input command is invalid.  
+      <br><br>
+
+5. Adding a medicine usage with duplicate prefixes
+    * **Prerequisites:**
+        * Patient with NRIC `S1234567A` exists
+    * **Test Case:** `addmu ic/S1234567A n/Paracetamol n/Ibuprofen dos/500mg from/01-01-2025 to/05-01-2025`
+    * **Expected:** Klinix shows an error indicating that multiple values were provided for the single-valued field `n/`.  
+      <br><br>
+
+### Deleting Medicine Usage
+
+**Command:** `deletemu`<br>
+
+1. Deleting an existing medicine usage from a patient
+    * **Prerequisites:**
+        * The patient with NRIC `S1234567A` is present in the system
+        * The patient has at least one medicine usage entry in their medical report
+    * **Test Case:** `deletemu 1 ic/S1234567A`
+    * **Expected:** Klinix deletes the first medicine usage from the medical report of the patient with NRIC `S1234567A`.  
+      <br><br>
+
+2. Deleting a medicine usage from a non-existing patient
+    * **Prerequisites:**
+        * The patient with NRIC `S9999999Z` is not in the system
+    * **Test Case:** `deletemu 1 ic/S9999999Z`
+    * **Expected:** Klinix shows an error indicating that the patient with NRIC `S9999999Z` does not exist.  
+      <br><br>
+
+3. Deleting a medicine usage with an out-of-bounds index
+    * **Prerequisites:**
+        * The patient with NRIC `S1234567A` is present in the system
+        * The patient has fewer than 6 medicine usages
+    * **Test Case:** `deletemu 6 ic/S1234567A`
+    * **Expected:** Klinix shows an error indicating that the index is invalid.  
+      <br><br>
+
+4. Deleting a medicine usage with an invalid index format
+    * **Prerequisites:**
+        * Patient with NRIC `S1234567A` exists
+    * **Test Case:** `deletemu a ic/S1234567A`
+    * **Expected:** Klinix shows an error indicating that the input command is invalid.  
+      <br><br>
+
+5. Deleting a medicine usage without specifying an NRIC
+    * **Prerequisites:**
+        * At least one patient exists in the system
+    * **Test Case:** `deletemu 1`
+    * **Expected:** Klinix shows an error indicating that the input command is invalid.  
+      <br><br>
+
+6. Deleting a medicine usage with missing arguments
+    * **Prerequisites:**
+        * None
+    * **Test Case:** `deletemu`
+    * **Expected:** Klinix shows an error indicating that the input command is invalid.  
+      <br><br>
+
+
+
+### Clearing Medicine Usage
+
+**Command:** `clearmu`<br>
+
+1. Clearing all medicine usages using NRIC
+    * **Prerequisites:**
+        * The patient with NRIC `S1234567A` is present in the system
+        * The patient has one or more medicine usage entries in their medical report
+    * **Test Case:** `clearmu ic/S1234567A`
+    * **Expected:** Klinix clears all medicine usage records from the medical report of the patient with NRIC `S1234567A`.  
+      <br><br>
+
+2. Clearing all medicine usages using an index
+    * **Prerequisites:**
+        * There is a patient at index `1` in the list
+        * That patient has one or more medicine usage entries in their medical report
+    * **Test Case:** `clearmu 1`
+    * **Expected:** Klinix clears all medicine usage records from the medical report of the patient at index `1`.  
+      <br><br>
+
+3. Clearing medicine usage for a patient with no existing usages (by NRIC)
+    * **Prerequisites:**
+        * The patient with NRIC `S1234567A` is present in the system
+        * The patient has no medicine usage entries
+    * **Test Case:** `clearmu ic/S1234567A`
+    * **Expected:** Klinix shows a message indicating that the patient with NRIC `S1234567A` has no medicine usage records to clear.  
+      <br><br>
+
+4. Clearing medicine usage for a patient with no existing usages (by index)
+    * **Prerequisites:**
+        * The patient at index `1` has no medicine usage entries
+    * **Test Case:** `clearmu 1`
+    * **Expected:** Klinix shows a message indicating that the patient at index `1` has no medicine usage records to clear.  
+      <br><br>
+
+5. Clearing medicine usage with an invalid NRIC format
+    * **Prerequisites:**
+        * None
+    * **Test Case:** `clearmu ic/INVALID123`
+    * **Expected:** Klinix shows an error indicating that the provided NRIC is not in a valid format.  
+      <br><br>
+
+6. Clearing medicine usage with missing arguments
+    * **Prerequisites:**
+        * None
+    * **Test Case:** `clearmu`
+    * **Expected:** Klinix shows an error indicating that the input command is invalid.  
+      <br><br>
+
+7. Clearing medicine usage using both index and NRIC
+    * **Prerequisites:**
+        * Any patients in the system
+    * **Test Case:** `clearmu 2 ic/S1234567A`
+    * **Expected:** Klinix shows an error indicating that the input command is invalid.  
+      <br><br>
+
+8. Clearing medicine usage using index with extra text
+    * **Prerequisites:**
+        * Patient at index `1` exists
+    * **Test Case:** `clearmu 1 extra`
+    * **Expected:** Klinix shows an error indicating that the input command is invalid.  
+      <br><br>
+
+9. Clearing medicine usage using a malformed input string
+    * **Prerequisites:**
+        * None
+    * **Test Case:** `clearmu extra ic/S1234567A`
+    * **Expected:** Klinix shows an error indicating that the input command is invalid.  
+      <br><br>
+
+### Finding Medicine Usages
+
+**Command:** `findmu`<br>
+
+1. Finding patients with keywords that overlap in meaning but not in text
+    * **Prerequisites:**
+        * No patients have medicine usage names that include the keyword `painkiller`, but some include `Paracetamol` or `Ibuprofen`
+    * **Test Case:** `findmu painkiller`
+    * **Expected:** Klinix shows no results since the system only supports literal (not semantic) matching.  
+      <br><br>
+
+2. Finding patients who have used specified medicines
+    * **Prerequisites:**
+        * Any state of the system
+    * **Test Case:** `findmu paracetamol amoxicillin`
+    * **Expected:** Klinix filters the patient list and shows all patients who have at least one medicine usage matching either `paracetamol` or `amoxicillin`.  
+      <br><br>
+
+3. Finding patients with keywords that match no one
+    * **Prerequisites:**
+        * No patient in the system has medicine usage containing the keyword `paracetamol`
+    * **Test Case:** `findmu paracetamol`
+    * **Expected:** Klinix updates the patient list to show no results since no medicine usage matches the keyword.  
+      <br><br>
+
+4. Finding patients with an empty keyword input
+    * **Prerequisites:**
+        * Any state of the system
+    * **Test Case:** `findmu`
+    * **Expected:** Klinix shows an error indicating that the input command is invalid.  
+      <br><br>
+
+5. Finding patients with keywords containing extra spaces
+    * **Prerequisites:**
+        * Any state of the system
+    * **Test Case:** `findmu paracetamol amoxicillin // Some white spaces in between but collapsed by markdown` 
+    * **Expected:** Klinix trims extra spaces and performs the search as if the user entered: `paracetamol amoxicillin`.  
+      <br><br>
+
+6. Finding patients using case-insensitive keywords
+    * **Prerequisites:**
+        * A patient has `Amoxicillin` recorded in their medicine usage
+    * **Test Case:** `findmu AMOXICILLIN`
+    * **Expected:** Klinix performs a case-insensitive match and returns all patients with medicine names containing amoxicillin, ignoring case.  
+      <br><br>
+
+7. Finding patients using partial keyword 1
+    * **Prerequisites:**
+        * Any state of the system
+    * **Test Case:** `findmu para`
+    * **Expected:** Klinix shows all patients with medicine usage entries where the name partially matches `para`, such as `Paracetamol`.  
+      <br><br>
+
+8. Finding patients using partial keyword 2
+    * **Prerequisites:**
+        * A patient has `Amoxicillin` recorded in their medicine usage
+    * **Test Case:** `findmu cill`
+    * **Expected:** Klinix shows all patients with medicine usage entries containing `cill` anywhere in the medicine name, such as `Amoxicillin`.  
+      <br><br>
+
+9. Finding patients with multiple partial keywords
+    * **Prerequisites:**
+        * A patient has `Paracetamol` and another has `Amoxicillin`
+    * **Test Case:** `findmu cetam oxicil`
+    * **Expected:** Klinix returns patients with medicine names partially matching `cetam` and `oxicil`, such as `Paracetamol` and `Amoxicillin`.  
+      <br><br>
+
 
 ### Adding an Appointment
 

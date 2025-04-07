@@ -36,10 +36,11 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
     - **Medical Report Management**
         - [Adding medical report to a patient](#adding-a-medical-report-addmr)
         - [Deleting medical report from a patient](#deleting-a-medical-report-deletemr)
-    - **Medical Usage Management**
-        - [Adding medical report to a patient](#adding-medicine-usage-records-addmu)
-        - [Deleting medical report from a patient](#deleting-medicine-usage-records-deletemu)
-        - [Clearing list of medical usages from a patient](#clearing-all-medicine-usage-records-clearmu)
+    - **Medicine Usage Management**
+        - [Adding a medicine usage record to a patient](#adding-medicine-usage-records-addmu)
+        - [Deleting a medicine usage record from a patient](#deleting-medicine-usage-records-deletemu)
+        - [Clearing all medicine usage records from a patient](#clearing-all-medicine-usage-records-clearmu)
+        - [Finding medicine usage records by medicine names](#finding-medicine-usages-by-medicine-names-findmu)
     - **Appointment Management**
         - [Adding an appointment to a patient](#adding-an-appointment-addappt)
         - [Deleting an appointment from a patient](#deleting-an-appointment-deleteappt)
@@ -112,11 +113,14 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 
 **Notes about parameters:**<br>
 
-Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbol. For example, the command `add n/John`<br>
+- Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbol. For example, the command `add n/John`<br>
 
-- `n/` -> parameter symbol<br>
-- `John` -> parameter
-  </box>
+  - `n/` -> parameter symbol<br>
+  - `John` -> parameter
+- All arguments are trimmed before processing:
+  - Arguments of prefixes `ic/`, `b/`, `p/`, `e/`, `from/`, `to/`, `/date` are trimmed by removing **ALL WHITE SPACES**
+  - Arguments of remaining prefixes are trimmed following the [Trimming Rules](#input-trimming-rules) below.
+    </box>
 
 ---
 
