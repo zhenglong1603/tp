@@ -68,10 +68,10 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 
 2. **Download the Application:**
    Get the latest `.jar` file from [this release page](https://github.com/AY2425S2-CS2103T-T09-2/tp/releases).
-   Version names may vary, but the file name should be `Klinix.jar`.
+   Version names may vary but the file name should be `Klinix.jar`.
 
 3. **Prepare Your Folder:**
-   Create an empty folder that will serve as your _home folder_ for Klinix, and copy the downloaded `.jar` file into that folder.
+   Create an empty folder that will serve as your _home folder_ for Klinix and copy the downloaded `.jar` file into that folder.
     - **Windows:** Create a folder named `Klinix` on your Desktop.
     - **macOS/Linux:** Create a folder named `Klinix` in your home directory.
 
@@ -170,7 +170,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 | **`from`** | `START`  | - Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                                                       |
 | **`to`**   | `END`    | - Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START`**.                                           |
 
-**Notes:** Klinix considers two medicine usages from the same patient to be the same if they share the same name (case-insensitive) and have overlapping durations.
+**Note:** Klinix considers two medicine usages from the same patient to be the same if they share the same name (case-insensitive) and have overlapping durations.
 
 ---
 
@@ -398,6 +398,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
+
 ### Editing a Patient : `edit`
 
 Edits an existing patient in Klinix.
@@ -515,6 +516,7 @@ Example:
 </Box>
 
 [Back to Table of Contents](#table-of-contents)
+
 
 ### Adding a Medicine Usage Record: `addmu`
 
