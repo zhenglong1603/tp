@@ -36,6 +36,12 @@ public class PersonListPanel extends UiPart<Region> {
         this.resultDisplay = resultDisplay;
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setOnMouseClicked(event -> {
+            Person selectedItem = personListView.getSelectionModel().getSelectedItem();
+            if (selectedItem != null && !parsePersonData(selectedItem).equals(resultDisplay.getText())) {
+                updateResultDisplay(parsePersonData(selectedItem));
+            }
+        });
         personListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Person>() {
             @Override
             public void changed(ObservableValue<? extends Person> observable, Person oldValue, Person newValue) {

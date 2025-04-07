@@ -163,13 +163,15 @@ The `addappt` command allows a user to add an appointment tied to a patient with
 - **Start Date** – Beginning date and time of the appointment.
 - **End Date** – Ending date and time of the appointment.
 
+Here is a sequence diagram showcasing the flow of the program as well as the key steps taken.
+
 <puml src="diagrams/AddAppointmentSequenceDiagram.puml" alt="AddAppointmentSequenceDiagram" />
 
 #### 1. Parsing User Input
 The **`AddAppointmentCommandParser`** class is responsible for parsing user input. It uses `ArgumentTokenizer` to tokenize the input string, extracting:
-- **NRIC** – Identifies the patient in the address book.
-- **Description** – Additional details about the appointment.
-- **Start Date** – Beginning of the appointment.
+- **NRIC** – Identifies the patient in Klinix.
+- **Description** – Details about the appointment.
+- **Start Date** – Start of the appointment.
 - **End Date** – End of the appointment.
 
 During this parsing process:
@@ -178,15 +180,15 @@ During this parsing process:
 #### 2. Executing the Command
 The **`AddAppointmentCommand`** class performs the following steps to add an appointment:
 
-1. **Retrieve Patient Information**:
-   Uses the NRIC from the parser to locate the patient.
+1. **Retrieves Patient Information**:
+   - Uses the NRIC from the parser to locate the patient.
 
 2. **Create New Person Instance with Appointment added to Appointment List**:
    - Utilises patient information from the current patient (identified by the NRIC) and the new `Appointment` details.
    - Creates an new `Person` instance with patient information and `Appointment` instance.
 
 3. **Replace Existing Patient Record**:
-   The new `Person` instance, containing the `Appointment`, replaces the existing patient record in the `Model`.
+   - The new `Person` instance, containing the `Appointment`, replaces the existing patient record in the `Model`.
 
 #### 3. Handling Invalid Inputs
 The **`AddAppointmentCommandParser`** and **`AddAppointmentCommand`** classes enforce validation rules to ensure correct formats and scheduling logic:
@@ -195,8 +197,7 @@ The **`AddAppointmentCommandParser`** and **`AddAppointmentCommand`** classes en
    - **`AddAppointmentCommandParser`** checks if the date and time format follows `dd-MM-yyyy HH:mm`.
    - It checks if the date and time are valid.
    - It also ensures the **Start Date** is before or equal to the **End Date**.
-   - **`AddAppointmentCommandParser`** also checks if the NRIC of patient follows its format.
-   - **`AddAppointmentCommandParser`** also checks if the description of the appointment follows its format.
+   - **`AddAppointmentCommandParser`** also checks if the NRIC of patient follows its format and if the description of the appointment follows its format.
      <br><br>
 
 - **Conflict Checking**:
@@ -204,42 +205,43 @@ The **`AddAppointmentCommandParser`** and **`AddAppointmentCommand`** classes en
    - If there is an overlap for any of these scenarios, an error message is thrown, preventing the appointment from being created.
    - If no overlap exists, the new appointment is added to the appointment list of the patient.
 
-### View appointment command
+### View Appointment command
 
-#### Implementation
+#### Overview
+The `viewappt` command allows a user to view all appointments that start on that date. The command requires:
+- **DATE** – Date of that the appointments start on.
 
-The `ViewAppointmentCommand` is implemented as follows:
+Here is a sequence diagram showcasing the flow of the program as well as the key steps taken.
+<puml src="diagrams/ViewAppointmentByDateSequenceDiagram.puml" alt="ViewAppointmentSequenceDiagram" />
 
-##### Steps:
-1. **Initialization**
-    - The user sends a command `"appton date/10-10-2020"` to the `LogicManager`.
+#### 1. Parsing User Input
+The **`ViewAppointmentByDateParser`** class is responsible for parsing user input. It uses `ArgumentTokenizer` to tokenize the input string, extracting:
+- **DATE** – Starting date of appointments.
 
-2. **Command Parsing**
-    - `LogicManager` forwards the command to `KlinixParser` to parse it.
-    - `KlinixParser` processes the input and identifies it as a `ViewAppointmentByDateCommand`.
+- `KlinixParser` creates a new `ViewAppointmentByDateCommand` object, passing the parsed date (e.g. `10-10-2020`) as an argument
 
-3. **Command Creation**
-    - `KlinixParser` creates a new `ViewAppointmentByDateCommand` object, passing the parsed date (`10-10-2020`) as an argument.
-    - The newly created command is returned to `LogicManager`.
+#### 2. Executing the Command
+The **`ViewAppointmentsByDateCommand`** class performs the following steps to display the filtered appointments for that specific date:
 
-4. **Command Execution**
+1. **Command Creation**:
     - `LogicManager` calls `execute()` on the `ViewAppointmentByDateCommand`.
     - The command interacts with the `Model` to update the displayed appointments for the given date (`10-10-2020`).
 
-5. **Result Handling**
+2. **Result Handling**:
     - The `Model` confirms the update and returns a result to the command.
     - The command forwards this result back to `LogicManager`.
 
-6. **Command Cleanup**
+3. **Command Cleanup**
     - The `ViewAppointmentByDateCommand` is destroyed after execution.
     - `LogicManager` returns the final result to the user.
 
-<puml src="diagrams/ViewAppointmentByDateSequenceDiagram.puml" alt="ViewAppointmentSequenceDiagram" />
+#### 3. Handling Invalid Inputs
+The **`ViewAppointmentsByDateParser`** class enforces validation rules to ensure correct formats and scheduling logic:
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Planned Enhancements**
-
+- **Format Verification**:
+    - **`ViewAppointmentsByDateParser`** checks if the date format follows `dd-MM-yyyy`.
+    - It checks if the date is valid.
+      <br><br>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -290,15 +292,13 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 | `**` | Advanced User                       | search for patient records using various filters                  | I can locate the right records quickly and efficiently.                       |
 | `**` | Basic User                          | schedule new patient appointments                                 | clinic visits are well organized.                                             |
 | `**` | Advanced/Forgetful User             | receive notifications for upcoming appointments                   | I can remind patients and manage time effectively.                            |
-| `**` | Basic User                          | quickly update appointment details                                | any last-minute changes are accurately reflected in the schedule.             |
-| `**` | Basic User                          | view real-time inventory levels of medicines                      | I know when to reorder supplies without delays.                               |
 | `**` | Basic User                          | update medicine usage records                                     | the supply management system remains accurate.                                |
 | `**` | Advanced User/Fast Typer            | utilize fast-typing shortcuts during data entry                   | I can enter information quickly and reduce wait times.                        |
 | `**` | Beginner, Basic User, Advanced User | work with an intuitive user interface                             | I need less training and can work more efficiently.                           |
 | `**` | Basic User, Beginner                | have error-prevention features built into the data entry process  | patient information is recorded correctly the first time.                     |
 | `**` | Basic User                          | confirm any record changes before finalizing them                 | I avoid mistakes and ensure accuracy in patient data.                         |
 | `**` | Basic User                          | search for patients by multiple parameters (e.g., name, ID, date) | I can quickly narrow down results to find the correct record.                 |
-| `**` | Basic User                          | filter appointments by date and time                              | I can efficiently manage busy schedules.                                      |
+| `**` | Basic User                          | filter appointments by date                                       | I can efficiently manage busy schedules.                                      |
 | `**` | Basic User                          | receive alerts for potential double-booking                       | scheduling conflicts are minimized.                                           |
 | `**` | Basic User                          | securely export patient data                                      | backups are maintained and information can be shared with authorized parties. |
 | `**` | Basic User                          | import external patient data                                      | existing records are seamlessly integrated into Klinix.                       |
@@ -307,109 +307,155 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 | `**` | Forgetful User                      | add notes during patient check-in                                 | any additional details are captured for future reference.                     |
 | `**` | Forgetful User                      | mark patients as “visited” after their appointments               | follow-ups and further actions can be tracked efficiently.                    |
 | `**` | Advanced User, Careless user        | flag incomplete or inconsistent records                           | I can follow up and ensure all necessary details are completed.               |
-| `**` | Basic User                          | securely log out of the system                                    | patient data remains confidential and secure.                                 |
-| `**` | Basic User                          | securely log in                                                   | patient data remains confidential and secure.                                 |
 | `**` | Beginner                            | view the user guide easily                                        | I can learn more about the product as and when I need                         |
 | `**` | Beginner                            | view sample data table                                            | I can see what the end result would look like                                 |
-| `**` | Beginner                            | see common medicines when entering prescriptions                  | so I don’t need to type everything manually                                   |
-| `*`     | Basic User                          | generate daily appointment and check-in reports                   | I can plan resources and follow up as needed.                                 |
 | `*`     | Advanced User                       | set up automatic email/SMS reminders for patients                 | patients receive timely notifications about their appointments.               |
-| `*`     | Advanced User                       | filter records based on insurance type or payment status          | I can assist with billing and insurance-related queries promptly.             |
 | `*`     | Basic User, Beginner                | view a visual calendar of appointments                            | I can manage daily schedules more intuitively.                                |
 | `*`     | Beginner                            | see pop-up help tips when hovering over icons or fields           | I understand what each element does without feeling overwhelmed               |
-*{More to be added}*
 
 ### Use cases
-
+The use cases below are not exhaustive.
 (For all use cases below, the **System** is the `Klinix` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add Patient**
 
 **MSS**
 1. User requests to add a new patient.
-2. System validates the provided NRIC, name, age, contact number, and address.
-3. If all inputs are valid and the NRIC is unique, the system registers the patient.
-4. System confirms successful patient registration.
+2. Klinix confirms successful patient registration.<br>
+   Use case ends.
 
 **Extensions**
-- 1a. Missing required parameters → System returns an appropriate error message.
-- 1b. Invalid NRIC, name, age, or contact number → System returns an appropriate error message.
-
-Use case ends.
+- 1a. Missing required parameters → Klinix shows an error message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid parameters → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
 
 ---
 
 **Use case: Delete Patient**
 
+**Format 1: Delete by NRIC**
+
 **MSS**
 1. User requests to delete a patient by NRIC.
-2. System validates the NRIC.
-3. System checks if a matching patient exists.
-4. If the patient exists, the system deletes the patient record.
-5. System confirms successful deletion.
+2. Klinix confirms successful deletion of patient.<br>
+   Use case ends.
 
 **Extensions**
-- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 2a. No matching patient found → System returns "Error: No patient found with the given NRIC."
-- 2b. Unexpected duplicate records → System returns "Error: Duplicate patient records detected. Contact administrator."
-- 3a. System error occurs → System returns "Error: Unable to delete patient due to system error."
+- 1a. Missing NRIC → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid NRIC format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
+- 1c. No matching patient found → Klinix shows an invalid patient message<br>
+  Use case resumes at step 1.
 
-Use case ends.
+**Format 2: Delete by INDEX**
+
+**Preconditions**: Klinix is displaying a non-empty list of patients.
+
+**MSS**
+1. User requests to delete a patient by INDEX.
+2. Klinix confirms successful deletion of patient.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Missing INDEX → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid INDEX format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
 
 ---
-
 **Use case: Edit Patient**
 
 **MSS**
-1. User requests to edit a patient by NRIC.
-2. System validates the NRIC.
-3. System checks if a matching patient exists.
-4. System updates the patient details (name, age, contact number, address).
-5. System confirms successful update.
-6. System displays the updated patient details.
-
+1. User requests to edit a patient by INDEX.
+2. System displays information of updated patient.<br>
+   Use case ends.
 
 **Extensions**
-- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 2a. No matching patient found → System returns "Error: No patient found with the given NRIC."
-- 3a. Invalid input format → System returns "Error: Invalid input format. Please check the details."
+- 1a. Missing parameters → Klinix shows an invalid command message<br>
+  Use case resumes at step 1.
+- 1b. Invalid format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
+- 1c. Invalid INDEX format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
+
+---
+
+**Use case: Find Patients**
+
+**MSS**
+1. User searches for patients by name.
+2. Klinix shows a list of patients matching the search.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Missing name → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. No matching patient found → Klinix shows that there are no matching patients.<br>
+  Use case ends.
+
+---
+
+**Use case: Clear Patients**
+
+**MSS**
+1. User requests to clear the list of patients.
+2. Klinix clears the list of patients.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Invalid command format → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+
 ---
 
 **Use case: Add Medical Report**
 
 **MSS**
-1. User requests to add a medical report for a patient.
-2. System validates the NRIC.
-3. System checks if the patient exists.
-4. System records the provided medical history (allergies, illnesses, surgeries, immunizations, medical usage).
-5. System confirms successful addition.
+1. User requests to add a medical report for a patient. 
+2. Klinix confirms successful addition of medical report.<br>
+   Use case ends.
 
 **Extensions**
-- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 2a. No matching patient found → System returns "Error: No medical report found with the given NRIC."
-
-Use case ends.
+- 1a. Missing NRIC → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
+  Use case resumes at step 1.
 
 ---
 
 **Use case: Delete Medical Report**
 
+**Format 1: Delete by NRIC**
+
 **MSS**
-1. User requests to delete a patient’s medical report.
-2. System validates the NRIC.
-3. System checks if a medical report exists for the patient.
-4. If a medical report exists, the system deletes it.
-5. System confirms successful deletion.
+1. User requests to delete a medical report by NRIC.
+2. Klinix confirms successful deletion of medical report.<br>
+   Use case ends.
 
 **Extensions**
-- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 2a. No medical report found → System returns "Error: No medical report found with the given NRIC."
+- 1a. Missing NRIC → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid NRIC format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
+- 1c. No matching patient found → Klinix shows an invalid patient message<br>
+  Use case resumes at step 1.
 
-Use case ends.
+**Format 2: Delete by INDEX**
+
+**Preconditions**: Klinix is displaying a non-empty list of patients.
+
+**MSS**
+1. User requests to delete a patient by INDEX.
+2. Klinix confirms successful deletion of medical report.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Missing INDEX → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid INDEX format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
 
 ---
 
@@ -417,109 +463,153 @@ Use case ends.
 
 **MSS**
 1. User requests to add a medicine usage record for a patient.
-2. System validates the NRIC.
-3. System checks if the patient exists.
-4. System records the medicine name, dosage, start date, and end date.
-5. System confirms successful addition.
+2. Klinix confirms successful addition of medicine usage<br>
+   Use case ends.
 
 **Extensions**
-- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 1b. Invalid NRIC format → System returns "Error: NRIC must be valid."
-- 2a. No medical report found → System returns "Error: Medical report for Patient [NRIC] is missing."
-- 3a. Duplicate entry detected → System returns "Error: Duplicate entry detected. No changes were made."
-- 3b. Start date is after end date → System returns "Error: Date must be in dd-MM-yyyy format."
-
-Use case ends.
-
+- 1a. Missing parameters → Klinix shows an invalid command message.<br> 
+  Use case resumes at step 1.
+- 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
+  Use case resumes at step 1.
+- 1c. Duplicate entry detected → Klinix shows a duplicate entry message.<br>
+  Use case resumes at step 1.
+- 1d. Start date is after end date → Klinix shows an invalid date message.
+  Use case resumes at step 1.
 ---
 
 **Use case: Delete Medicine Usage Record**
 
 **MSS**
-1. User requests to delete a medicine usage record by ID.
-2. System validates the NRIC and medicine usage ID.
-3. System checks if the medicine usage record exists.
-4. If a record exists, the system deletes it.
-5. System confirms successful deletion.
+1. User requests to delete a medical usage by NRIC.
+2. Klinix confirms successful deletion of medical usage.<br>
+   Use case ends.
 
 **Extensions**
-- 1a. Missing NRIC → System returns "Error: Patient NRIC is missing."
-- 1b. Missing medicine usage ID → System returns "Error: ID must contain only numbers."
-- 2a. No record found → System returns "Error: No medicine usage record found for the given ID."
+- 1a. Missing parameters → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
+  Use case resumes at step 1.
+- 1c. No matching patient found → Klinix shows an invalid patient message<br>
+  Use case resumes at step 1.
 
-Use case ends.
+---
+
+**Use case: Clear Medicine Usage Record**
+
+**Format 1: Clear by NRIC**
+
+**MSS**
+1. User requests to clear the list of medical usages by NRIC.
+2. Klinix confirms successful deletion of patient's list of medical usage.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Missing NRIC → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid NRIC format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
+- 1c. No matching patient found → Klinix shows an invalid patient message<br>
+  Use case resumes at step 1.
+
+**Format 2: Clear by INDEX**
+
+**Preconditions**: Klinix is displaying a non-empty list of patients.
+
+**MSS**
+1. User requests to delete list of medical usages by INDEX.
+2. Klinix confirms successful deletion of medical usage.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Missing INDEX → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid INDEX format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
 
 ---
 
 **Use case: Add Appointment**
 
 **MSS**
-1. User requests to add an appointment for a patient.
-2. System validates the NRIC.
-3. System checks for existing appointments to prevent overlaps.
-4. System records the appointment details.
-5. System confirms successful addition.
+1. User requests to add an appointment for a patient. 
+2. Klinix confirms successful addition of appointment.<br>
    Use case ends.
 
 **Extensions**
-- 1a. Patient with NRIC not registered → System returns an invalid Patient error message, "Patient with NRIC <NRIC> not found"
-   * 1a1 Use case resumes at step 1.
-- 1b. Invalid NRIC format → System returns an invalid format error message.
-   * 1b1 Use case resumes at step 1.
-- 1c. Overlapping appointment detected → System returns an error message, listing all the appointments that overlap as well.
-   * 1c1 Use case resumes at step 1.
-- 1d. Invalid date format → System returns an invalid format error message.
-  * 1d1 Use case resumes at step 1.
-
-Use case ends.
+- 1a. Missing paramters → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
+  Use case resumes at step 1.
+- 1c. No matching patient found → Klinix shows an invalid patient message<br>
+  Use case resumes at step 1.
+- 1d. Overlapping appointment detected → Klinix shows overlapping appointments error message.<br>
+  Use case resumes at step 1.
+- 1e. Invalid date format → Klinix shows an invalid date error message.<br>
+  Use case resumes at step 1.
 
 ---
 
 **Use case: Delete Appointment**
+
 **Preconditions**: Klinix is displaying a non-empty list of patients and the patient is displaying a non-empty list of appointments.
 
 **MSS**
-1. User requests to delete an appointment by Index.
-2. System validates the NRIC and appointment Index.
-3. System checks if the appointment exists.
-4. If the appointment exists, the system deletes it.
-5. System confirms successful deletion.
+1. User requests to delete an appointment by NRIC.
+2. Klinix confirms successful deletion of appointment.<br>
    Use case ends.
 
 **Extensions**
-- 1a. Patient with NRIC not registered → System returns an invalid Patient error message
-   * 1a1 Use case resumes at step 1.
-- 1b. Missing appointment Index → System returns an invalid format error message.
-   * 1b1 Use case resumes at step 1.
+- 1a. Missing parameters → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid NRIC format → Klinix shows an invalid NRIC message.<br>
+  Use case resumes at step 1.
+- 1c. No matching patient found → Klinix shows an invalid patient message<br>
+  Use case resumes at step 1.
+- 1c. Invalid appointment index → Klinix returns an invalid format error message.<br>
+  Use case resumes at step 1.
 ---
 
 **Use case: Clear Appointment**
+
 **Preconditions**: Klinix is displaying a non-empty list of patients and the patient is displaying a non-empty list of appointments.
 
+**Format 1: Delete by NRIC**
+
 **MSS**
-1. User requests to clear the list of appointments of a particular patient.
-2. System validates the NRIC.
-3. System checks if list of appointments exist.
-4. If any appointment exists, the system deletes it.
-5. System confirms successful deletion.
+1. User requests to clear list of patient's appointments by NRIC.
+2. Klinix confirms successful deletion of patient's list of appointments.<br>
    Use case ends.
 
 **Extensions**
-- 1a. Patient with NRIC not registered → System returns an invalid Patient error message
-   * 1a1 Use case resumes at step 1.
+- 1a. Missing NRIC → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid NRIC format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
+- 1c. No matching patient found → Klinix shows an invalid patient message<br>
+  Use case resumes at step 1.
+
+**Format 2: Delete by INDEX**
+
+**Preconditions**: Klinix is displaying a non-empty list of patients.
+
+**MSS**
+1. User requests to clear list of patient's appointments by INDEX.
+2. Klinix confirms successful deletion of patient's list of appointments.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Missing INDEX → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid INDEX format → Klinix shows an invalid parameter message.<br>
+  Use case resumes at step 1.
 ---
 
 **Use Case: View Patient details**
 
 **MSS**
 1. User requests to view a patient’s details by clicking on the list of patients.
-3. System retrieves the patient details.
-4. System displays the details (name, age, contact, address).
-5. System displays the medical report (allergies, illnesses, surgeries, immunizations).
-6. System displays the medicine usage records (name, dosage, start date, end date).
-7. System displays the appointments (description, time).
-
-**Use case ends.**
+2. Klinix displays detials of patient.
+   Use case ends.
 
 ---
 
@@ -527,14 +617,50 @@ Use case ends.
 
 **MSS**
 1. User requests to view appointments for a date.
-2. System validates the date.
-3. System retrieves and displays all appointments on the date.
+2. Klinix retrieves and displays all appointments on the date.<br>
+  Use case ends.
 
 **Extensions**
-- 1a. Missing DATE → System returns "Error: DATE is required."
-- 2a. No appointments → System returns "Info: No appointments found for DATE <DATE>."
+- 1a. Missing parameters → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid date parameters → Klinix shows an invalid date message.<br>
+  Use case resumes at step 1.
+- 1c. No appointments with same starting date → Klinix shows message indicating no appointments found.
+  Use case ends
 
-**Use case ends.**
+---
+
+**Use Case: Mark Appointment**
+
+**MSS**
+1. User requests to mark an appointment as visited.
+2. Klinix confirms successful marking of patient's appointment as visited.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Missing parameters → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid Index parameters → Klinix shows an invalid index message.<br>
+  Use case resumes at step 1.
+- 1c. Appointment already marked visited → Klinix shows message indicating appointment already marked visited.<br>
+  Use case ends.
+
+---
+
+**Use Case: Unmark Appointment**
+
+**MSS**
+1. User requests to mark an appointment as not visited.
+2. Klinix confirms successful marking of patient's appointment as not visited.<br>
+   Use case ends.
+
+**Extensions**
+- 1a. Missing parameters → Klinix shows an invalid command message.<br>
+  Use case resumes at step 1.
+- 1b. Invalid date parameters → Klinix shows an invalid index message.<br>
+  Use case resumes at step 1.
+- Appointment already marked not visited → Klinix shows message indicating appointment already marked not visited.<br>
+  User case ends.
 
 ---
 
@@ -546,14 +672,13 @@ Use case ends.
 
 ### Glossary
 
-Here are some glossary terms that might be helpful to clarify within your document:
-
 1. **NRIC (National Registration Identity Card)** – A unique identification number assigned to citizens and residents.
 2. **Medical Report** – A document containing a patient's medical history, including illnesses, treatments, and surgeries.
 3. **Medical Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
-8. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
-9. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
-10. **MSS (Main Success Scenario)** – The sequence of steps that lead to a successful execution of a use case.
+4. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
+5. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
+6. **MSS (Main Success Scenario)** – The sequence of steps that lead to a successful execution of a use case.
+7. **Jar** – A Java Archive file that contains the compiled Java classes and resources for the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -583,7 +708,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Adding a patient
+### Adding a Patient
 
 1. Addding a patient with all valid fields
 
@@ -603,7 +728,7 @@ testers are expected to do more *exploratory* testing.
 4. Additional test cases to try: invalid date format, invalid email format, invalid phone number format, etc.<br>
    Expected: Patient is not added. Error details shown in the status message.
 
-### Editing a patient
+### Editing a Patient
 
 1. Editing an existing patient (the first patient in the list)
 
@@ -628,7 +753,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `edit 1 wrfwefwefwef`<br>
       Expected: Patient details are not updated. Error details shown in the status message.
 
-### Deleting a patient
+### Deleting a Patient
 
 1. Deleting a patient while all patients are being shown
 
@@ -643,7 +768,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Adding a medical report
+### Adding a Medical Report
 
 **Command:** `addmr`<br>
 
@@ -684,7 +809,7 @@ testers are expected to do more *exploratory* testing.
         * Other fields remain unchanged
           <br><br>
 
-### Deleting a medical report
+### Deleting a Medical Report
 
 **Command:** `deletemr`<br>
 
@@ -700,7 +825,7 @@ testers are expected to do more *exploratory* testing.
         * Other fields remain unchanged
           <br><br>
 
-### Making an appointment
+### Adding an Appointment
 
 **Command:** `addappt`<br>
 
@@ -720,10 +845,10 @@ testers are expected to do more *exploratory* testing.
         * The appointment the user adds must overlap with an existing appointment
           <br><br>
     * **Test Case:** `addappt ic/S1234567A appt/Injection from/22-02-2025 11:15 to/22-02-2025 11:45`
-    * **Expected:** Klinix throws the error message `Patient has overlapping appointments with the following patients: <Patients' Details>`
+    * **Expected:** Klinix throws the error message showing details of overlapping appointments.
       <br><br>
 
-### Deleting an appointment
+### Deleting an Appointment
 
 **Command:** `deleteappt`<br>
 
@@ -733,11 +858,10 @@ testers are expected to do more *exploratory* testing.
         * That patient has existing appointment(s)
           <br><br>
     * **Test Case:** `deleteappt 1 ic/S1234567A`
-    * **Expected:** The patient with  in the list is updated with the following fields:
-        * Appointment: `No appointments found`
+    * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+        * First appointment from patient is deleted.
         * Other fields remain unchanged.
-        * Klinix will return a confirmation message `From patient S1234567A, successfully deleted appointment:
-          Check-Up FROM 22-02-2025 11:00 TO 22-02-2025 11:30`
+        * Klinix will return a confirmation message showing details of the deleted appointment in the message.
           <br><br>
 2. Deleting an appointment from a patient who has no appointment
     * **Prerequisites:**
@@ -745,12 +869,14 @@ testers are expected to do more *exploratory* testing.
         * That patient has no existing appointment
           <br><br>
     * **Test Case:** `deleteappt 1 ic/S1234567A`
-    * **Expected:** Klinix throws the error message `The patient has no existing appointments`
+    * **Expected:** Klinix throws the error message indicating that the patient does not have any appointments.
       <br><br>
 
-### Clearing appointments
+### Clearing Appointments
 
 **Command:** `clearappt`<br>
+
+**Format 1: Clear by NRIC**
 
 1. Clearing appointments from a patient who has existing appointment(s)
    * **Prerequisites:**
@@ -758,10 +884,10 @@ testers are expected to do more *exploratory* testing.
      * That patient has existing appointment(s)
      <br><br>
        * **Test Case:** `clearappt ic/S1234567A`
-       * **Expected:** The patient with  in the list is updated with the following fields:
-           * Appointment: `No appointments found`
+       * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+           * ALl existing appointments cleared.
            * Other fields remain unchanged.
-           * Klinix will return a confirmation message `Appointments successfully deleted from <Patient's NRIC>`
+           * Klinix will return a confirmation message indicating appointments have been cleared.
              <br><br>
 2. Clearing appointments from a patient who has no appointment
     * **Prerequisites:**
@@ -769,12 +895,54 @@ testers are expected to do more *exploratory* testing.
         * That patient has no existing appointment
           <br><br>
     * **Test Case:** `clearappt ic/S1234567A`
-    * **Expected:** Klinix throws the error message `No appointments to clear`
+    * **Expected:** Klinix throws the error message indicating that the patient does not have any appointments.
+
+**Format 2: Clear by INDEX**
+
+1. Clearing appointments from a patient who has existing appointment(s)
+    * **Prerequisites:**
+        * The patient with that index must be present in the patient list
+        * That patient has existing appointment(s)
+          <br><br>
+            * **Test Case:** `clearappt 1`
+            * **Expected:** The first patient in the list is updated with the following fields:
+                * ALl existing appointments cleared.
+                * Other fields remain unchanged.
+                * Klinix will return a confirmation message indicating appointments have been cleared.
+                  <br><br>
+2. Clearing appointments from a patient who has no appointment
+    * **Prerequisites:**
+        * The patient with that index must be present in the patient list
+        * That patient has no existing appointment
+          <br><br>
+    * **Test Case:** `clearappt 1`
+    * **Expected:** Klinix throws the error message indicating that the patient does not have any appointments.
+--------------------------------------------------------------------------------------------------------------------
+## **Planned Enhancements**
+1. The current find command only searches for names. Future versions may allow searching by other fields such as NRIC,
+   phone number, or email. This is because we understand that people may have similar names.
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Efforts **
+## **Appendix: Efforts**
 #### Difficulty Level
+Our project introduced a greater level of complexity compared to AB3, as it involved managing multiple entity types—primarily appointments, medical report and medical usages —whereas AB3 focused on a single entity. This expansion significantly increased the demands on command processing, as each new entity came with its own set of attributes and behaviors that had to be handled appropriately.
 #### Challenges Faced
+**Integration of Person, Medical Report, Medical Usage and Appointment Entities:** To accurately associate each appointment, medical report and medical usages with its corresponding patient, we added an Appointment List and Medical Report with Medical Usage List attributes to the Person class.
+
+**Command Implementation:** Designing commands for both entities required thoughtful planning to ensure they operated correctly and consistently across different use cases.
+
+**UI Space Constraints:** Creating a user-friendly interface within the constraints of limited screen space proved to be a major challenge. We had to strike a balance between presenting enough information and keeping the layout clean and intuitive. Through multiple design iterations, we arrived at a solution that delivers key details without overwhelming the user.
+
+
 #### Effort Required
+**Design and Refactoring:** Adapting the AB3 framework to support multiple entity types required careful refactoring and the creation of new class structures.
+
+**Command Implementation:** We developed dedicated commands for Person, Appointment, Medical Report and Medical Usage, which involved building additional parser classes and command logic.
+
+**Testing and Debugging:** To ensure the reliability of our system, we wrote comprehensive test cases to verify that each feature and command functioned correctly across both entity types.
+
 #### Achievements
+In conclusion, our team successfully designed and implemented key features, resolved bugs, and navigated potential integration challenges. While we initially encountered difficulties with more complex components such as Appointment and Medical Usage management, effective collaboration allowed us to overcome these hurdles and accomplish our objectives for Klinix.
+
+
 

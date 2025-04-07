@@ -48,8 +48,8 @@ public class PersonBuilder {
         birthDate = new BirthDate(DEFAULT_BIRTHDATE);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        medicalReport = MedicalReport.EMPTY_MEDICAL_REPORT;
-        appointmentList = AppointmentList.EMPTY_APPOINTMENT_LIST;
+        medicalReport = new MedicalReport("None", "None", "None", "None");
+        appointmentList = new AppointmentList();
     }
 
     /**

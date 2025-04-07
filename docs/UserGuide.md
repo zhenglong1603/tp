@@ -6,7 +6,12 @@
 
 # Klinix User Guide
 
-Klinix is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, you can get your contact management tasks done faster than traditional GUI apps.
+Klinix is a desktop app created to **make your daily contact management faster and easier**. 
+
+We know how busy your day can get—answering calls, scheduling appointments, and keeping patient records organized. 
+Klinix combines the speed of typing commands with a simple, user-friendly interface, so you can quickly find, add, or update patient and partner information without the ha
+
+**Because the smoother your workflow, the better care you can provide.**
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -18,13 +23,26 @@ Klinix is a **desktop app for managing contacts, optimized for use via a  Line I
 1. **Install Java:**
    Ensure you have Java `17` or above installed on your computer.
    - **Windows & Linux Users:** Download and install Java from [Oracle JDK 17 Archive Downloads](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).
+     - **Windows Users:** Follow the instructions [here](https://se-education.org/guides/tutorials/javaInstallationWindows.html).
+     - **Linux Users:** Follow the instructions [here](https://se-education.org/guides/tutorials/javaInstallationLinux.html).
    - **Mac Users:** Install the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. **Download the Application:**
    Get the latest `.jar` file from [this release page](https://github.com/AY2425S2-CS2103T-T09-2/tp/releases).
+   Version names may vary, but the file name should be `Klinix.jar`.
+![img_1.png](images/GitRelease.png)
 
 3. **Prepare Your Folder:**
    Create an empty folder that will serve as your _home folder_ for Klinix, and copy the downloaded `.jar` file into that folder.
+    - **Windows:** Create a folder named `Klinix` on your Desktop.
+    - **macOS/Linux:** Create a folder named `Klinix` in your home directory.
+
+        or
+      
+    - **macOS/Linux:** You can create the folder using the command:
+      ```bash
+      mkdir ~/Klinix
+      ```
 
 4. **Run the Application:**
    - Open a command terminal.
@@ -41,7 +59,7 @@ Klinix is a **desktop app for managing contacts, optimized for use via a  Line I
    - Type a command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
    - Here are some example commands you can try:
      - `list` : Lists all contacts.
-     - `add <name> <details>` : Adds a new contact to Klinix.
+     - `add n/John Doe p/8888888 e/JohnDoe@student.comp.nus.edu.com.sg b/01-01-1990 a/Newgate Prison p/1234567 t/criminal` : Adds a new patient to Klinix.
      - `delete 3` : Deletes the 3rd contact shown in the current list.
      - `clear` : Deletes all contacts.
      - `exit` : Exits the app.
@@ -70,7 +88,7 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 |---------|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **`n`** | `NAME`          | - Must start with a letter, allowing spaces, apostrophes, periods, and hyphens between words; optional suffix ('s/o', 'd/o', 'c/o', '@') followed by another valid name. |
 | **`p`** | `PHONE_NUMBER`  | - Must be a valid phone number (at least 3 digits. e.g. 999)                                                                                                              |
-| **`e`** | `EMAIL`         | - Must follow standard email format (e.g. `user@domain.com`).                                                                                                             |
+| **`e`** | `EMAIL`         | - Must follow the format `local-part@domain` and adhere to these constraints:<br> 1. The `local-part` must only contain alphanumeric characters and these special characters: `+_.-`. It cannot start or end with a special character.<br> 2. The `domain` consists of labels separated by periods, where each label:<br> - Starts and ends with alphanumeric characters.<br> - May contain hyphens between alphanumeric characters.<br> - Ends with a label at least 2 characters long.                                                                                                             |
 | **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`.             |
 | **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g. `01-01-1990`).                                                                                                                               |
 | **`a`** | `ADDRESS`       | - No specific constraints.                                                                                                                                                |
@@ -92,13 +110,13 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 ### **Medicine Usage Parameters**
 
-| Symbol     | Parameter          | Constraints                                                                                   |
-|------------|--------------------|-----------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                       |
-| **`n`**    | `MEDICINE_NAME`    | - Must contain **at least 1 alphabetic character**.                                           |
-| **`dos`**  | `DOSAGE`           | - Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                       |
-| **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                  |
-| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**. |
+| Symbol     | Parameter          | Constraints                                                                                                                 |
+|------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| **`ic`**   | `PATIENT_NRIC`     | Same as Patient NRIC.                                                                                                       |
+| **`n`**    | `MEDICINE_NAME`    | Must start with **an alphanumeric character**. <br/> Following characters can be `()+,.'`, alphanumeric characters, and spaces. |
+| **`dos`**  | `DOSAGE`           | Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                                                        |
+| **`from`** | `START_DATE`       | Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                                                   |
+| **`to`**   | `END_DATE`         | Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**.                                  |
 
 ---
 
@@ -117,8 +135,8 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 | Symbol     | Parameter       | Constraints                                                                         |
 |------------|-----------------|-------------------------------------------------------------------------------------|
-| -          | `INDEX`         | - **Positive integer** (1, 2, 3, ...).<br>- Must exist in the current displayed list. |
-| -          | `KEYWORD`       | - Non-empty string.                                         |
+| NA         | `INDEX`         | - **Positive integer** (1, 2, 3, ...).<br>- Must exist in the current displayed list. |
+| NA         | `KEYWORD`       | - Non-empty string.                                         |
 | **`date`** | `DATE`          | - Format: `dd-MM-yyyy` (e.g. `22-03-2025`).             |
 
 ---
@@ -130,6 +148,27 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
     - `dd-MM-yyyy HH:mm` for appointments.
 3. **Error Handling**: Refer to the use cases for validation messages (e.g. "Invalid NRIC format").
 
+---
+
+### **Input Trimming Rules**
+
+| Rule                      | Description                                                    | Example (Before → After)                             |
+|---------------------------|----------------------------------------------------------------|------------------------------------------------------|
+| **Remove extra spaces**   | Trim leading/trailing spaces and reduce multiple spaces to one | `"  Vitamin   C   "` → `"Vitamin C"`                 |
+| **Apostrophes `'`**       | No space before or after                                       | `"John ' s"` → `"John's"`                            |
+| **Right parenthesis `)`** | No space before, exactly one space after                       | `"test )result"` → `"test) result"`                  |
+| **Left parenthesis `(`**  | One space before, no space after                               | `"Dose( 500mg )"` → `"Dose (500mg )"`                |
+| **Hash `#`**              | One space before, no space after                               | `"Tag#urgent"` → `"Tag #urgent"`                     |
+| **Comma `,`**             | No space before, one space after                               | `"Apple ,Banana,Orange"` → `"Apple, Banana, Orange"` |
+| **Period `.`**            | No space before, one space after                               | `"e . g . example"` → `"e.g. example"`               |
+| **Plus `+`**              | No spaces before or after                                      | `"Vitamin C + Zinc"` → `"Vitamin C+Zinc"`            |
+| **At sign `@`**           | No spaces before or after                                      | `"user @ example . com"` → `"user@example. com"`     |
+| **Colon `:`**             | No spaces before or after                                      | `"Time : 10AM"` → `"Time:10AM"`                      |
+| **Dash `-`**              | No spaces before or after                                      | `"2023 - 2024"` → `"2023-2024"`                      |
+| **Final cleanup**         | Remove any remaining extra spaces                              | —                                                    |
+
+**Note:** If two rules overlap, the one lower in the table (later in the list) will be applied last and will take priority.
+    
 ---
 
 ## Features
@@ -155,6 +194,12 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
+
+
+### Viewing patient details
+You can view the details of a patient by clicking on their name in the displayed list. This will display all the details of the selected patient in the `details` window.
+![patient details](images/ViewPatientDetailsDemonstration.gif)
+
 
 ### Viewing past commands:
 
@@ -183,9 +228,14 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
+
 ### Adding a patient: `add`
 
-Adds a patient to Klinix.
+Adds a patient to Klinix with the specified details.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC b/BIRTHDATE a/ADDRESS [t/TAG]…​`
 
@@ -194,15 +244,46 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC b/BIRTHDATE a/ADDRESS [t/TAG]
 **Tip:** A patient can have any number of tags (including 0)
 </box>
 
+**Note:** Refer to the [Patient Parameters](#patient-parameters) section for detailed constraints on each parameter.
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com ic/S9876543B b/01-01-1990 a/Newgate Prison p/1234567 t/criminal`
+
+### Marking an appointment: `markappt`
+
+Marks an appointment as `visited`.
+Format: `markappt INDEX ic/NRIC`
+Parameters:
+- `INDEX`: The index of the appointment in the [patient details](#Viewing-patient-details). It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
+Example:
+* `markappt 2 ic/S1234567A`
+* `markappt 1 ic/T0260144G`
+
+### Unmarking an appointment: `unmarkappt`
+
+Unmarks an appointment as `not visited`.
+Format: `unmarkappt INDEX ic/NRIC`
+Parameters:
+- `INDEX`: The index of the appointment in the [patient details](#Viewing-patient-details). It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+
+Example:
+* `unmarkappt 2 ic/S1234567A`
+* `unmarkappt 1 ic/T0260144G`
 
 ### Listing all patients : `list`
 
 Shows a list of all patients in Klinix.
 
 Format: `list`
+
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
 
 ### Editing a patient : `edit`
 
@@ -212,13 +293,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [b/BIRTHDATE] [a/ADDR
 
 parameters:
 * `INDEX`: The index of the patient in the displayed list. It must be a positive integer.
-* `NAME`: (Optional) The name of the patient. It should not be blank.
-* `PHONE`: (Optional) The phone number of the patient. It should be a valid phone number.
-* `EMAIL`: (Optional) The email of the patient. It should be a valid email address.
-* `NRIC`: (Optional) The NRIC of the patient. It should be a valid NRIC number.
-* `BIRTHDATE`: (Optional) The birthdate of the patient. It should be a valid date in the format `dd-MM-yyyy`.
-* `ADDRESS`: (Optional) The address of the patient. It should not be blank.
-* `TAG`: (Optional) The tag of the patient.
+
+For detailed constraints on all other parameters (`NAME`, `PHONE`, `EMAIL`, `NRIC`, `BIRTHDATE`, `ADDRESS`, `TAG`), refer to the [Patient Parameters](#patient-parameters) section. These parameters represent the fields of the patient that you can edit.
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -253,13 +329,13 @@ Examples:
 
 Deletes the specified patient from Klinix.
 
-Format 1: `delete INDEX`
+**Format 1:** `delete INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Format 2: `delete [ic/NRIC]`
+**Format 2:** `delete [ic/NRIC]`
 
 * Deletes the person with the specified `NRIC`.
 * The `NRIC` must be valid.
@@ -282,6 +358,11 @@ Examples:
 Clears all entries from the clinic.
 
 Format: `clear`
+
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
 
 ### Adding medical report: `addmr`
 
@@ -311,7 +392,7 @@ Examples:
 
 Delete a patient's existing medical report.
 
-Format 1: `deletemr ic/NRIC`
+**Format 1:** `deletemr ic/NRIC`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
@@ -320,7 +401,7 @@ Examples:
 * `deletemr ic/S1234567A`
 * `deletemr ic/T0260144G`
 
-Format 2: `deletemr INDEX`
+**Format 2:** `deletemr INDEX`
 
 * Deletes the medical report of the person at the specified `INDEX`
 * The index refers to the index number shown in the displayed person list.
@@ -365,14 +446,14 @@ Klinix will detect such overlapping instances and give an error message when you
 
 Clear all medicine usage records of a patient's medical history.
 
-Format 1: `clearmu ic/NRIC`
+**Format 1:** `clearmu ic/NRIC`
 
 * Deletes all medicine usages from the person with the specified `NRIC`.
 * The `NRIC` must be valid.
 
 Examples: `clearmu ic/S1234567A`
 
-Format 2: `clearmu INDEX`
+**Format 2:** `clearmu INDEX`
 
 * Deletes all medicine usages from the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -411,6 +492,7 @@ Format: `findmu KEYWORDS [MORE_KEYWORDS]`
 
 Examples: `findmu Paracetamol Amoxicillin`
 
+**Note:** `findmu` supports partial match
 ### Add appointment: `addappt`
 
 Add a new appointment to the patient.
@@ -449,14 +531,14 @@ Example:
 
 Clear all appointments of a patient.
 
-Format 1: `clearappt ic/NRIC`
+**Format 1:** `clearappt ic/NRIC`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples: `clearappt ic/S1234567A`
 
-Format 2: `clearappt INDEX`
+**Format 2:** `clearappt INDEX`
 
 Parameters:
 - `INDEX`: The index of the patient shown in the displayed person list. It **must be a positive integer** 1, 2, 3, ...
@@ -469,12 +551,12 @@ Examples: `clearappt 1` clears all appointments of the first patient currently d
 
 ### View Appointments on specific date: `appton`
 
-Display all appointments on a specific date.
+Display all appointments starting on a specific date.
 
 Format: `appton date/DATE`
 
 Parameters:
-- `DATE`: The date to view appointments on. It must be in the format `dd-MM-yyyy`.
+- `DATE`: The date to view appointments starting on a specific date. It must be in the format `dd-MM-yyyy`.
 
 Examples: `appton date/22-03-2025`
 
@@ -483,6 +565,11 @@ Examples: `appton date/22-03-2025`
 Exits the program.
 
 Format: `exit`
+
+<box type="info" seamless>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</box>
 
 ### Saving the data
 
@@ -526,22 +613,11 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Future Improvements
-
-1. **Issue**: Deleting a medical report when the patient does not have an existing medical report does not reflect the
-correct error message. Instead, it shows the success message.
-   **Improvement**: Ensure that the correct error message is displayed when attempting to delete a medical report 
-that does not exist.
-
-
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME p/PHONE_NUMBER ic/NRIC e/EMAIL b/BIRTHDATE a/ADDRESS [t/TAG]…​` <br> e.g. `add n/John Dane p/98471649 ic/S0123459P e/johndane@example.com b/10-10-2000 a/John street, block 123, #01-02`
 **Add Appointment** | `addappt ic/NRIC appt/DESCRIPTION from/START to/END` <br> e.g. `addappt ic/T0260144G appt/Check-Up from/22-02-2025 10:00 to/23-02-2025 10:15`
 **Add Medical Report** | `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]` <br> e.g. `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 **Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g. `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
@@ -560,5 +636,4 @@ Action     | Format, Examples
 **Unmark Appointment** | `unmarkappt INDEX ic/NRIC`<br> e.g. `unmarkappt 2 ic/S1234567A`
 **Help**   | `help`
 **List**   | `list`
-**Unmark Appointment** | `unmarkappt INDEX ic/NRIC`<br> e.g. `unmarkappt 2 ic/S1234567A`
 **View Appointment on specific date** | `appton date/DATE` <br> e.g. `appton date/22-03-2025`
