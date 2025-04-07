@@ -22,8 +22,9 @@ import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteCommand}. Test cases are adapted from a conversation with chatGPT
  */
+
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalKlinix(), new UserPrefs());
