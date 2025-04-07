@@ -398,8 +398,6 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"> </div>
-
 ### Editing a Patient : `edit`
 
 Edits an existing patient in Klinix.
@@ -452,8 +450,6 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Partial words will be matched e.g. `Ha` will match `Hans`
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-<div style="page-break-after: always;"> </div>
 
 Examples:
 * `find Joh` returns `john` and `John Doe`
@@ -520,8 +516,6 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"> </div>
-
 ### Adding a Medicine Usage Record: `addmu`
 
 This command allows you to add a new medicine usage record as part of a patient’s medical history or medical needs.
@@ -562,8 +556,6 @@ Example:
 * `deletemu 2 ic/S1234567A` will delete the 2nd medicine usage record from medical history of patient with NRIC S1234567A.
 
 [Back to Table of Contents](#table-of-contents)
-
-<div style="page-break-after: always;"> </div>
 
 ### Clearing all Medicine Usage Records: `clearmu`
 
