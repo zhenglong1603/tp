@@ -110,13 +110,13 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 ### **Medicine Usage Parameters**
 
-| Symbol     | Parameter          | Constraints                                                                                   |
-|------------|--------------------|-----------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                       |
-| **`n`**    | `MEDICINE_NAME`    | - Must contain **at least 1 alphabetic character**.                                           |
-| **`dos`**  | `DOSAGE`           | - Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                       |
-| **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                  |
-| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**. |
+| Symbol     | Parameter          | Constraints                                                                                                                 |
+|------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| **`ic`**   | `PATIENT_NRIC`     | Same as Patient NRIC.                                                                                                       |
+| **`n`**    | `MEDICINE_NAME`    | Must start with **an alphanumeric character**. <br/> Following characters can be `()+,.'`, alphanumeric characters, and spaces. |
+| **`dos`**  | `DOSAGE`           | Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                                                        |
+| **`from`** | `START_DATE`       | Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                                                   |
+| **`to`**   | `END_DATE`         | Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**.                                  |
 
 ---
 
@@ -135,8 +135,8 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 | Symbol     | Parameter       | Constraints                                                                         |
 |------------|-----------------|-------------------------------------------------------------------------------------|
-| -          | `INDEX`         | - **Positive integer** (1, 2, 3, ...).<br>- Must exist in the current displayed list. |
-| -          | `KEYWORD`       | - Non-empty string.                                         |
+| NA         | `INDEX`         | - **Positive integer** (1, 2, 3, ...).<br>- Must exist in the current displayed list. |
+| NA         | `KEYWORD`       | - Non-empty string.                                         |
 | **`date`** | `DATE`          | - Format: `dd-MM-yyyy` (e.g. `22-03-2025`).             |
 
 ---
@@ -148,6 +148,27 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
     - `dd-MM-yyyy HH:mm` for appointments.
 3. **Error Handling**: Refer to the use cases for validation messages (e.g. "Invalid NRIC format").
 
+---
+
+### **Input Trimming Rules**
+
+| Rule                      | Description                                                    | Example (Before → After)                             |
+|---------------------------|----------------------------------------------------------------|------------------------------------------------------|
+| **Remove extra spaces**   | Trim leading/trailing spaces and reduce multiple spaces to one | `"  Vitamin   C   "` → `"Vitamin C"`                 |
+| **Apostrophes `'`**       | No space before or after                                       | `"John ' s"` → `"John's"`                            |
+| **Right parenthesis `)`** | No space before, exactly one space after                       | `"test )result"` → `"test) result"`                  |
+| **Left parenthesis `(`**  | One space before, no space after                               | `"Dose( 500mg )"` → `"Dose (500mg )"`                |
+| **Hash `#`**              | One space before, no space after                               | `"Tag#urgent"` → `"Tag #urgent"`                     |
+| **Comma `,`**             | No space before, one space after                               | `"Apple ,Banana,Orange"` → `"Apple, Banana, Orange"` |
+| **Period `.`**            | No space before, one space after                               | `"e . g . example"` → `"e.g. example"`               |
+| **Plus `+`**              | No spaces before or after                                      | `"Vitamin C + Zinc"` → `"Vitamin C+Zinc"`            |
+| **At sign `@`**           | No spaces before or after                                      | `"user @ example . com"` → `"user@example. com"`     |
+| **Colon `:`**             | No spaces before or after                                      | `"Time : 10AM"` → `"Time:10AM"`                      |
+| **Dash `-`**              | No spaces before or after                                      | `"2023 - 2024"` → `"2023-2024"`                      |
+| **Final cleanup**         | Remove any remaining extra spaces                              | —                                                    |
+
+**Note:** If two rules overlap, the one lower in the table (later in the list) will be applied last and will take priority.
+    
 ---
 
 ## Features
@@ -308,13 +329,13 @@ Examples:
 
 Deletes the specified patient from Klinix.
 
-Format 1: `delete INDEX`
+**Format 1:** `delete INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Format 2: `delete [ic/NRIC]`
+**Format 2:** `delete [ic/NRIC]`
 
 * Deletes the person with the specified `NRIC`.
 * The `NRIC` must be valid.
@@ -371,7 +392,7 @@ Examples:
 
 Delete a patient's existing medical report.
 
-Format 1: `deletemr ic/NRIC`
+**Format 1:** `deletemr ic/NRIC`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
@@ -380,7 +401,7 @@ Examples:
 * `deletemr ic/S1234567A`
 * `deletemr ic/T0260144G`
 
-Format 2: `deletemr INDEX`
+**Format 2:** `deletemr INDEX`
 
 * Deletes the medical report of the person at the specified `INDEX`
 * The index refers to the index number shown in the displayed person list.
@@ -425,14 +446,14 @@ Klinix will detect such overlapping instances and give an error message when you
 
 Clear all medicine usage records of a patient's medical history.
 
-Format 1: `clearmu ic/NRIC`
+**Format 1:** `clearmu ic/NRIC`
 
 * Deletes all medicine usages from the person with the specified `NRIC`.
 * The `NRIC` must be valid.
 
 Examples: `clearmu ic/S1234567A`
 
-Format 2: `clearmu INDEX`
+**Format 2:** `clearmu INDEX`
 
 * Deletes all medicine usages from the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -471,6 +492,7 @@ Format: `findmu KEYWORDS [MORE_KEYWORDS]`
 
 Examples: `findmu Paracetamol Amoxicillin`
 
+**Note:** `findmu` supports partial match
 ### Add appointment: `addappt`
 
 Add a new appointment to the patient.
@@ -509,14 +531,14 @@ Example:
 
 Clear all appointments of a patient.
 
-Format 1: `clearappt ic/NRIC`
+**Format 1:** `clearappt ic/NRIC`
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
 Examples: `clearappt ic/S1234567A`
 
-Format 2: `clearappt INDEX`
+**Format 2:** `clearappt INDEX`
 
 Parameters:
 - `INDEX`: The index of the patient shown in the displayed person list. It **must be a positive integer** 1, 2, 3, ...
