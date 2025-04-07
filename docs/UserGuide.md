@@ -283,8 +283,8 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 <box type="info" seamless>
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
 
 [Back to Table of Contents](#table-of-contents)
@@ -296,8 +296,8 @@ Deletes all patient entries from Klinix.
 Format: `clear`
 
 <box type="info" seamless>
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
 
 [Back to Table of Contents](#table-of-contents)
@@ -309,8 +309,8 @@ Exits the program.
 Format: `exit`
 
 <box type="info" seamless>
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
 
 [Back to Table of Contents](#table-of-contents)
@@ -338,14 +338,13 @@ Adds a patient to Klinix with the specified details.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC b/BIRTHDATE a/ADDRESS [t/TAG]…​`
 
-<box type="tip" seamless>
-
-</box>
-
 <Box type="info" seamless> 
-- Refer to the [Patient Parameters](#patient-parameters) section for detailed constraints on each parameter.<br>
-- A patient can have any number of tags (including 0)
+
+* Refer to the [Patient Parameters](#patient-parameters) section for detailed constraints on each parameter.<br>
+* A patient can have any number of tags (including 0)
+
 </box>
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com ic/S9876543B b/01-01-1990 a/Newgate Prison p/1234567 t/criminal`
@@ -374,8 +373,11 @@ Examples:
 * The `NRIC` must be valid.
 * The command works regardless of whether if the patient with the specified NRIC is displayed or not.
 
-<Box type="info" seamless> You can use whichever format you find convenience, but not both at the same time. Otherwise,
+<Box type="info" seamless> 
+
+You can use whichever format you find convenience, but not both at the same time. Otherwise,
 Klinix will give an error.
+
 </Box>
 
 Example:
@@ -414,8 +416,10 @@ Shows a list of all patients in Klinix.
 Format: `list`
 
 <box type="info" seamless>
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
 </box>
 
 [Back to Table of Contents](#table-of-contents)
@@ -455,9 +459,9 @@ Examples:
 
 <Box type="warning" seamless>
 
-1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
-2. If the patient already has a medical report, adding a new one will overwrite the existing one.
-3. Although some fields are optional, at least one of the medical fields must be provided, else Klinix will show an error message.
+* The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
+* If the patient already has a medical report, adding a new one will overwrite the existing one. 
+* Although some fields are optional, at least one of the medical fields must be provided, else Klinix will show an error message.
 
 </Box>
 
@@ -472,7 +476,7 @@ Deletes a patient's existing medical report.
 
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#patient-parameters)).
-- 
+
 Example:
 * `deletemr ic/S1234567A`
 * `deletemr ic/T0260144G`
@@ -487,8 +491,8 @@ Example:
 
 <Box type="warning" seamless>
 
-1. The patient with the given NRIC, or at the specified index must exist, otherwise Klinix will show an error message.
-2. If the patient does not have an existing medical report (i.e. all fields are `None`), Klinix will show an error message.
+* The patient with the given NRIC, or at the specified index must exist, otherwise Klinix will show an error message. 
+* If the patient does not have an existing medical report (i.e. all fields are `None`), Klinix will show an error message.
 
 </Box>
 
@@ -513,13 +517,13 @@ Examples:
 
 <Box type="warning" seamless>
 
-1. `START` and `END`must be in the format of `dd-MM-yyyy`
-2. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
-3. Two medicine usage have the same medicine name if they are equal **ignoring case**.
-4. Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.
+* `START` and `END`must be in the format of `dd-MM-yyyy`
+* The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
+* Two medicine usage have the same medicine name if they are equal **ignoring case**. 
+* Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.
 Klinix will detect such overlapping instances and give an error message when you try to add them.
-5. `START` should be before (or on the same day as) `END`
-6. `START` should not be before the patient's birthday.
+* `START` should be before (or on the same day as) `END`
+* `START` should not be before the patient's birthday.
 
 </Box>
 
@@ -537,7 +541,9 @@ Parameters:
 
 <Box type="info" seamless> The medicine usage record list could be viewed by navigating to the patient with the specified NRIC, 
 and clicking on their displayed card to view patient details
+
 ![Medical Usage](images/MedicineUsage.gif).
+
 </Box>
 
 Examples:
@@ -606,14 +612,17 @@ Format: `addappt ic/NRIC appt/DESCRIPTION from/START to/END`
 Example:
 * `addappt ic/S1234567A appt/Check-up from/22-02-2025 10:00 to/23-02-2025 10:15`
 
-<Box type="info" seamless> Refer to the [Appointment Parameters](#appointment-parameters) for constraints on the parameters.
+<Box type="info" seamless> 
+
+Refer to the [Appointment Parameters](#appointment-parameters) for constraints on the parameters.
+
 </Box>
 
 <Box type="warning" seamless>
 
-1. `START` and `END`must be in the format of `dd-MM-yyyy HH:mm`
-2. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
-2. Appointment added must not overlap the duration of existing appointments.
+* `START` and `END`must be in the format of `dd-MM-yyyy HH:mm`
+* The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
+* Appointment added must not overlap the duration of existing appointments.
    Klinix will detect such overlapping instances and give an error message when you try to add them.
 
 </Box>
@@ -635,9 +644,9 @@ Example:
 
 <Box type="warning" seamless>
 
-1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
-2. The index given must also be valid, a positive integer and within the appointment list size.
-3. 
+* The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
+* The index given must also be valid, a positive integer and within the appointment list size.
+
 </Box>
 
 [Back to Table of Contents](#table-of-contents)
@@ -662,12 +671,14 @@ Example: `clearappt 1` deletes the list of appointments from the first patient d
 
 <Box type="warning" seamless>
 
-1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
+The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
 
 </Box>
 
 <Box type="info" seamless> You can use whichever format you find convenient, but not both at the same time.
+
 Otherwise, Klinix will give an error.
+
 </Box>
 
 [Back to Table of Contents](#table-of-contents)
