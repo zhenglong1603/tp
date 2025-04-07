@@ -15,6 +15,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.MedicineUsageContainsKeywordsPredicate;
 import seedu.address.testutil.PersonBuilder;
 
+// The test cases are adapted from a conversation with chatGPT
+
 public class FindMedicineUsageCommandTest {
 
     private Model model;

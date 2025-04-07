@@ -27,6 +27,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+// The test cases are adapted from a conversation with chatGPT
 class AddMedicineUsageCommandTest {
     private ModelManager model;
     private Person person;
