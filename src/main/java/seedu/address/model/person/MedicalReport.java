@@ -123,8 +123,9 @@ public class MedicalReport {
      * Returns true if the medical report is empty.
      */
     public boolean isEmpty() {
-        return allergens.equals("None") && illnesses.equals("None") && surgeries.equals("None")
-                && immunizations.equals("None");
+        return allergens.equalsIgnoreCase("None")
+                && illnesses.equalsIgnoreCase("None") && surgeries.equalsIgnoreCase("None")
+                && immunizations.equalsIgnoreCase("None");
     }
 
     /**
