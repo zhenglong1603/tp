@@ -29,23 +29,23 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
         - [Saving the data](#saving-the-data)
         - [Editing the data file](#editing-the-data-file)
     - **Patient Management**
-        - [Adding a patient](#adding-a-patient-add)
-        - [Deleting a patient](#deleting-a-patient-delete)
-        - [Editing a patient](#editing-a-patient-edit)
+        - [Adding a Patient](#adding-a-patient-add)
+        - [Deleting a Patient](#deleting-a-patient-delete)
+        - [Editing a Patient](#editing-a-patient-edit)
         - [Listing all patients](#listing-all-patients-list)
         - [Finding patients by keywords](#finding-patients-by-keywords-find)
     - **Medical Report Management**
-        - [Adding a medical report to a patient](#adding-a-medical-report-addmr)
-        - [Deleting a medical report from a patient](#deleting-a-medical-report-deletemr)
+        - [Adding a medical report to a Patient](#adding-a-medical-report-addmr)
+        - [Deleting a medical report from a Patient](#deleting-a-medical-report-deletemr)
     - **Medicine Usage Management**
-        - [Adding a medicine usage record to a patient](#adding-a-medicine-usage-record-addmu)
-        - [Deleting a medicine usage record from a patient](#deleting-a-medicine-usage-record-deletemu)
-        - [Clearing all medicine usage records from a patient](#clearing-all-medicine-usage-records-clearmu)
+        - [Adding a medicine usage record to a Patient](#adding-a-medicine-usage-record-addmu)
+        - [Deleting a medicine usage record from a Patient](#deleting-a-medicine-usage-record-deletemu)
+        - [Clearing all medicine usage records from a Patient](#clearing-all-medicine-usage-records-clearmu)
         - [Finding medicine usage records by medicine names](#finding-medicine-usages-by-medicine-names-findmu)
     - **Appointment Management**
-        - [Adding an appointment to a patient](#adding-an-appointment-addappt)
-        - [Deleting an appointment from a patient](#deleting-an-appointment-deleteappt)
-        - [Clearing list of appointments from a patient](#clearing-all-appointment-records-clearappt)
+        - [Adding an appointment to a Patient](#adding-an-appointment-addappt)
+        - [Deleting an appointment from a Patient](#deleting-an-appointment-deleteappt)
+        - [Clearing list of appointments from a Patient](#clearing-all-appointment-records-clearappt)
         - [Marking appointment as visited](#marking-an-appointment-markappt)
         - [Unmarking appointment as not visited](#unmarking-an-appointment-unmarkappt)
         - [Viewing appointments that start on specific date](#viewing-appointments-on-specific-date-appton)
@@ -83,7 +83,7 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
       ```
 
 4. **Run the Application:**
-   - Open a command terminal.
+   - Open your command terminal.
    - Navigate to the folder where you copied the `.jar` file:
      - **Windows:** Open Command Prompt, type `cd ` followed by the folder path, then press Enter.
      - **macOS/Linux:** Open Terminal, type `cd ` followed by the folder path, then press Enter.
@@ -121,7 +121,8 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 - All arguments are trimmed before processing:
   - Arguments of prefixes `ic/`, `b/`, `p/`, `e/`, `from/`, `to/`, `/date` are trimmed by removing **ALL WHITE SPACES**
   - Remaining arguments are trimmed based on the [Trimming Rules](#input-trimming-rules) below.
-    </box>
+  
+</box>
 
 **NRIC Consistency**: <br>
 All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
@@ -130,7 +131,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
     - `dd-MM-yyyy` for birthdates and medicine dates.<br>
     - `dd-MM-yyyy HH:mm` for appointments.
 
-**Error Handling**: Refer to the messages prompted when invalid parameters are entered (e.g. "Invalid NRIC format").
+**Error Handling**: You can refer to the messages prompted when invalid parameters are entered (e.g. "Invalid NRIC format").
 ![img.png](images/ErrorHandling.png)  
 </box>
 
@@ -252,7 +253,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 
 
 ### Viewing patient details
-You can view the details of a patient by clicking on their name in the displayed list. This will display all the details of the selected patient in the `details` window.
+You can view the details of a Patient by clicking on their name in the displayed list. This will display all the details of the selected patient in the `details` window.
 ![patient details](images/ViewPatientDetailsDemonstration.jpg)
 
 [Back to Table of Contents](#table-of-contents)
@@ -282,22 +283,24 @@ The command history is saved only for the current session and will reset when th
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Using this command shows you a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 <box type="info" seamless>
+
 Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
 e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
 </box>
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Clearing all patient entries : `clear`
 
-Deletes all patient entries from Klinix.
+This command deletes all patient entries from Klinix.
 
 Format: `clear`
 
@@ -327,7 +330,7 @@ e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 ### Saving the data
 
-Klinix data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Klinix data is saved in your hard disk automatically after any command that changes the data. There is no need to save manually.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -342,16 +345,16 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 [Back to Table of Contents](#table-of-contents)
 
-### Adding a patient: `add`
+### Adding a Patient: `add`
 
-Adds a patient to Klinix with the specified details.
+Adds a Patient to Klinix with the specified details.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC b/BIRTHDATE a/ADDRESS [t/TAG]…​`
 
 <Box type="info" seamless> 
 
-* Refer to the [Patient Parameters](#patient-parameters) section for detailed constraints on each parameter.<br>
-* A patient can have any number of tags (including 0)
+* You can refer to the [Patient Parameters](#patient-parameters) section for detailed constraints on each parameter.<br>
+* a Patient can have any number of tags (including 0)
 
 </box>
 
@@ -393,7 +396,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Editing a patient : `edit`
+### Editing a Patient : `edit`
 
 Edits an existing patient in Klinix.
 
@@ -435,6 +438,7 @@ e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 ### Finding patients by keywords: `find`
 
 Finds patients whose names contain the specified keyword(s).
+To help you spend less time on boring searching, we also supports partial search, where you can find patients with segments of their name.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -454,7 +458,7 @@ Examples:
 
 ### Adding a medical report: `addmr`
 
-Adds a new medical report to a patient's record.
+This command adds a new medical report to a Patient's record.
 
 Format: `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]`
 
@@ -469,7 +473,7 @@ Refer to the [Medical Report Parameters](#medical-report-parameters) section for
 
 <Box type="warning" seamless>
 
-* The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
+* The patient with the NRIC you give must exist in Klinix, otherwise Klinix will show an error message. 
 * If the patient already has a medical report, adding a new one will overwrite the existing one. 
 * Fields that are blank will be set to `None` by default.
 * Although some fields are optional, at least one of the medical fields must be provided, else Klinix will show an error message.
@@ -480,7 +484,7 @@ Refer to the [Medical Report Parameters](#medical-report-parameters) section for
 
 ### Deleting a medical report: `deletemr`
 
-Deletes a patient's existing medical report.
+This command deletes a Patient's existing medical report.
 
 **Format 1:** `deletemr ic/NRIC`
 
@@ -512,7 +516,7 @@ Example:
 
 ### Adding a medicine usage record: `addmu`
 
-Adds a new medicine usage record as part of a patient’s medical history or medical needs.
+This command allows you to add a new medicine usage record as part of a Patient’s medical history or medical needs.
 
 Format: `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END`
 
@@ -524,7 +528,7 @@ Examples:
 
 <Box type="warning" seamless>
 
-* The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
+* The patient with the NRIC you give must exist in Klinix, otherwise Klinix will show an error message. 
 * Two medicine usages have the same medicine name if they are equal, **ignoring case**. 
 * Two medicine usage records from the same patient are overlapping if they have the same name and overlapping duration.
 Klinix will detect such overlapping instances and give an error message when you try to add them.
@@ -538,7 +542,7 @@ Klinix will detect such overlapping instances and give an error message when you
 
 ### Deleting a medicine usage record: `deletemu`
 
-Deletes a particular medicine usage record of a patient's medical history.
+This command deletes a particular medicine usage record of a Patient's medical history.
 
 Format: `deletemu INDEX ic/NRIC`
 
@@ -563,7 +567,7 @@ Example:
 
 ### Clearing all medicine usage records: `clearmu`
 
-Deletes all medicine usage records of a patient's medical history.
+You can deletes all medicine usage records of a Patient's medical history using this command.
 
 **Format 1:** `clearmu ic/NRIC`
 
@@ -594,7 +598,7 @@ Otherwise, Klinix will give an error.
 
 <Box type="warning" seamless>
 
-The patient with the given NRIC must exist, otherwise Klinix will show an error message.
+The patient with the NRIC you give must exist in Klinix, otherwise Klinix will show an error message.
 
 </Box>
 
@@ -610,7 +614,7 @@ Example: `findmu Paracetamol Amoxicillin`
 
 <Box type="info" seamless>
 
-**Note:** `findmu` supports partial match.
+**Note:** `findmu` supports partial match similar to the partial search in the [find command](#Finding-patients-by-keywords-find).
 
 </Box>
 
@@ -634,7 +638,7 @@ Refer to the [Appointment Parameters](#appointment-parameters) for constraints o
 <Box type="warning" seamless>
 
 * `START` and `END`must be in the format of `dd-MM-yyyy HH:mm`
-* The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
+* The patient with the NRIC you give must exist in Klinix, otherwise Klinix will show an error message. 
 * Appointment added must not overlap the duration of existing appointments.
    Klinix will detect such overlapping instances and give an error message when you try to add them.
 
@@ -657,7 +661,7 @@ Example:
 
 <Box type="warning" seamless>
 
-* The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
+* The patient with the NRIC you give must exist in Klinix, otherwise Klinix will show an error message. 
 * The index given must also be valid, a positive integer and within the appointment list size.
 
 </Box>
@@ -731,6 +735,14 @@ Examples:
 
 </Box>
 
+<Box type="info" seamless>
+
+We allow marking of appointments even if the appointment is not in the past. <br>
+This is to allow for more flexibility in how you want to mark your appointments. <br>
+For example, you can mark an appointment as `visited` before the appointment time if the patient has arrived early.
+
+</Box>>
+
 [Back to Table of Contents](#table-of-contents)
 
 ### Unmarking an appointment: `unmarkappt`
@@ -774,8 +786,8 @@ Examples:
 2. **Graphical User Interface (GUI)** - A user interface that enables users to interact with electronic devices through visual elements like icons, buttons, and windows, rather than through text-based commands. GUIs simplify navigation and usage of software applications through a visual approach.
 3. **Hard Disk Drive (HDD)** - A storage device within a computer that utilizes rotating magnetic disks to read and write data. It is primarily used for long-term storage of files, applications, and the operating system.
 4. **NRIC (National Registration Identity Card)** – A unique identification number assigned to citizens and residents.
-5. **Medical Report** – A document containing a patient's medical history, including illnesses, treatments, and surgeries.
-6. **Medical Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
+5. **Medical Report** – A document containing a Patient's medical history, including illnesses, treatments, and surgeries.
+6. **Medical Usage Record** – A record of medications prescribed to a Patient, including dosage and duration.
 7. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
 8. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
 9. **Patient**: An individual who receives medical care or consultation from a general practitioner (GP) and has information being managed within Klinix.
