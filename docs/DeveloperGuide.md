@@ -575,9 +575,9 @@ The use cases below are not exhaustive.
    Use case ends.
 
 **Extensions**
-- 1a. Missing parameters → Klinix shows an invalid command message.<br>
+- 1a. Missing parameters → Klinix shows an invalid command error message.<br>
   Use case resumes at step 1.
-- 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
+- 1b. Invalid parameters format → Klinix shows an invalid parameters error message.<br>
   Use case resumes at step 1.
 - 1c. No matching patient found → Klinix shows an invalid patient error message<br>
   Use case resumes at step 1.
@@ -1189,12 +1189,12 @@ testers are expected to do more *exploratory* testing.
      * The patient with that NRIC must be present in the patient list
      * That patient has existing appointment(s)
      <br><br>
-       * **Test Case:** `clearappt ic/S1234567A`
-       * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
-           * ALl existing appointments cleared.
-           * Other fields remain unchanged.
-           * Klinix will return a confirmation message indicating appointments have been cleared.
-             <br><br>
+   * **Test Case:** `clearappt ic/S1234567A`
+   * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+       * ALl existing appointments cleared.
+       * Other fields remain unchanged.
+       * Klinix will return a confirmation message indicating appointments have been cleared.
+         <br><br>
 2. Clearing appointments from a patient who has no appointment
     * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
@@ -1210,12 +1210,12 @@ testers are expected to do more *exploratory* testing.
         * The patient with that index must be present in the patient list
         * That patient has existing appointment(s)
           <br><br>
-            * **Test Case:** `clearappt 1`
-            * **Expected:** The first patient in the list is updated with the following fields:
-                * ALl existing appointments cleared.
-                * Other fields remain unchanged.
-                * Klinix will return a confirmation message indicating appointments have been cleared.
-                  <br><br>
+    * **Test Case:** `clearappt 1`
+    * **Expected:** The first patient in the list is updated with the following fields:
+        * All existing appointments cleared.
+        * Other fields remain unchanged.
+        * Klinix will return a confirmation message indicating appointments have been cleared.
+          <br><br>
 2. Clearing appointments from a patient who has no appointment
     * **Prerequisites:**
         * The patient with that index must be present in the patient list
