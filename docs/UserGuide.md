@@ -486,6 +486,8 @@ Refer to the [Medical Report Parameters](#medical-report-parameters) section for
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"> </div>
+
 ### Deleting a Medical Report: `deletemr`
 
 This command deletes a patient's existing medical report.
@@ -543,6 +545,8 @@ Klinix will detect such overlapping instances and give an error message when you
 </Box>
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"> </div>
 
 ### Deleting a Medicine Usage Record: `deletemu`
 
@@ -664,6 +668,8 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"> </div>
+
 ### Clearing all Appointments: `clearappt`
 
 Deletes the list of appointments of a specified patient.
@@ -710,6 +716,8 @@ Parameter:
 Examples: `appton date/22-03-2025`
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"> </div>
 
 ### Marking an Appointment: `markappt`
 
@@ -775,6 +783,8 @@ Examples:
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"> </div>
 
 # Glossary
 
