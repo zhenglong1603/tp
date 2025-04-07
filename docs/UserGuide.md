@@ -76,12 +76,6 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
     - **Windows:** Create a folder named `Klinix` on your Desktop.
     - **macOS/Linux:** Create a folder named `Klinix` in your home directory.
 
-        or
-      
-    - **macOS/Linux:** You can create the folder using the command:
-      ```bash
-      mkdir ~/Klinix
-      ```
 
 4. **Run the Application:**
    - Open your command terminal.
@@ -153,6 +147,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 | **`t`** | `TAG`           | - Optional. <br/>- Can have multiple different tags (e.g. `t/chronic t/followup`). <br/>- Repeating the same tag (e.g. `t/chronic t/chronic`) has no effect — it will only be added once. <br/>- Tags must not contain spaces and must have at most 20 characters. For example, `t/needs checkup` is **not** allowed. Instead, use something like `t/needs_checkup` or `t/checkup`.                                                                                                      |
 
 ---
+<div style="page-break-after: always;"> </div>
 
 ### **Medical Report Parameters**
 
@@ -191,6 +186,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 | **`to`**   | `END`    | - Format: `dd-MM-yyyy HH:mm` (e.g. `22-02-2025 10:15`).<br>- Must be **after `START`**.                                                               |
 
 ---
+<div style="page-break-after: always;"> </div>
 
 ### **General Parameters**
 
@@ -442,6 +438,8 @@ e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 </box>
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"> </div>
 
 ### Finding Patients by keywords: `find`
 
