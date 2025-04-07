@@ -22,7 +22,7 @@ public class MedicineUsageContainsKeywordsPredicate implements Predicate<Person>
         List<MedicineName> medicineNames = person.getMedicineUsageNames();
         return keywords.stream().anyMatch(keyword ->
                 medicineNames.stream().anyMatch(name ->
-                        StringUtil.containsWordIgnoreCase(name.toString(), keyword)));
+                        StringUtil.containsPartialWordIgnoreCase(name.toString(), keyword)));
     }
 
     @Override
