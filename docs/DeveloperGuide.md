@@ -485,8 +485,8 @@ The use cases below are not exhaustive.
 **Use case: Deleting a Medicine Usage Record**
 
 **MSS**
-1. User requests to delete a medical usage by NRIC.
-2. Klinix confirms successful deletion of medical usage.<br>
+1. User requests to delete a medicine usage by NRIC.
+2. Klinix confirms successful deletion of medicine usage.<br>
    Use case ends.
 
 **Extensions**
@@ -496,7 +496,7 @@ The use cases below are not exhaustive.
   Use case resumes at step 1.
 - 1c. No matching patient found → Klinix shows an invalid patient error message<br>
   Use case resumes at step 1.
-- 1d. Medical Usage index out of bounds → Klinix shows an error message.<br>
+- 1d. Medicine usage record index out of bounds → Klinix shows an error message.<br>
   Use case resumes at step 1.
 
 ---
@@ -508,8 +508,8 @@ The use cases below are not exhaustive.
 **Format 1: Clearing by NRIC**
 
 **MSS**
-1. User requests to clear the list of medical usages by NRIC.
-2. Klinix confirms successful deletion of patient's list of medical usage.<br>
+1. User requests to clear the list of medicine usages by NRIC.
+2. Klinix confirms successful deletion of patient's list of medicine usage.<br>
    Use case ends.
 
 **Extensions**
@@ -523,8 +523,8 @@ The use cases below are not exhaustive.
 **Format 2: Clearing by index**
 
 **MSS**
-1. User requests to delete all medical usages records from the patient found by index.
-2. Klinix confirms successful deletion of medical usage records.<br>
+1. User requests to delete all medicine usages records from the patient found by index.
+2. Klinix confirms successful deletion of medicine usage records.<br>
    Use case ends.
 
 **Extensions**
@@ -580,9 +580,9 @@ The use cases below are not exhaustive.
    Use case ends.
 
 **Extensions**
-- 1a. Missing parameters → Klinix shows an invalid command message.<br>
+- 1a. Missing parameters → Klinix shows an invalid command error message.<br>
   Use case resumes at step 1.
-- 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
+- 1b. Invalid parameters format → Klinix shows an invalid parameters error message.<br>
   Use case resumes at step 1.
 - 1c. No matching patient found → Klinix shows an invalid patient error message<br>
   Use case resumes at step 1.
@@ -706,12 +706,12 @@ The use cases below are not exhaustive.
 
 1. **NRIC (National Registration Identity Card)** – A unique identification number assigned to citizens and residents.
 2. **Medical Report** – A document containing a patient's medical history, including illnesses, treatments, and surgeries.
-3. **Medical Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
+3. **Medicine Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
 4. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
 5. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
 6. **Patient**: An individual who receives medical care or consultation from a general practitioner (GP) and has information being managed within Klinix.
 7. **MSS (Main Success Scenario)** – The sequence of steps that lead to a successful execution of a use case.
-8. **Jar** – A Java Archive file that contains the compiled Java classes and resources for the application.
+8. **JAR** – A Java Archive file that contains the compiled Java classes and resources for the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -997,8 +997,6 @@ testers are expected to do more *exploratory* testing.
     * **Expected:** Klinix shows an error indicating that the input command is invalid.  
       <br><br>
 
-
-
 ### Clearing Medicine Usage Records
 
 **Command:** `clearmu`<br>
@@ -1194,12 +1192,12 @@ testers are expected to do more *exploratory* testing.
      * The patient with that NRIC must be present in the patient list
      * That patient has existing appointment(s)
      <br><br>
-       * **Test Case:** `clearappt ic/S1234567A`
-       * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
-           * All existing appointments cleared.
-           * Other fields remain unchanged.
-           * Klinix will return a confirmation message indicating appointments have been cleared.
-             <br><br>
+   * **Test Case:** `clearappt ic/S1234567A`
+   * **Expected:** The patient with NRIC S1234567A in the list is updated with the following fields:
+       * All existing appointments cleared.
+       * Other fields remain unchanged.
+       * Klinix will return a confirmation message indicating appointments have been cleared.
+         <br><br>
 2. Clearing appointments from a patient who has no appointment
     * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
@@ -1215,12 +1213,12 @@ testers are expected to do more *exploratory* testing.
         * The patient with that index must be present in the patient list
         * That patient has existing appointment(s)
           <br><br>
-            * **Test Case:** `clearappt 1`
-            * **Expected:** The first patient in the list is updated with the following fields:
-                * ALl existing appointments cleared.
-                * Other fields remain unchanged.
-                * Klinix will return a confirmation message indicating appointments have been cleared.
-                  <br><br>
+    * **Test Case:** `clearappt 1`
+    * **Expected:** The first patient in the list is updated with the following fields:
+        * All existing appointments cleared.
+        * Other fields remain unchanged.
+        * Klinix will return a confirmation message indicating appointments have been cleared.
+          <br><br>
 2. Clearing appointments from a patient who has no appointment
     * **Prerequisites:**
         * The patient with that index must be present in the patient list
@@ -1360,11 +1358,11 @@ mark appointments with more statuses such as canceled, or rescheduled. This will
 ## **Appendix: Efforts**
 #### Difficulty Level
 Our project introduced a greater level of complexity compared to AB3, as it involved managing multiple entity types—primarily
-appointments, medical reports, and medical usages—whereas AB3 focused on a single entity. This expansion significantly increased the demands on command
+appointments, medical reports, and medicine usages—whereas AB3 focused on a single entity. This expansion significantly increased the demands on command
 processing, as each new entity came with its own set of attributes and behaviors that had to be handled appropriately.
 #### Challenges Faced
-**Integration of Person, Medical Report, Medical Usage and Appointment Entities:** To accurately associate each appointment,
-medical report and medical usages with their corresponding patient, we added an `AppointmentList` and `MedicalReport` with `MedicalUsageList`
+**Integration of Person, Medical Report, Medicine Usage and Appointment Entities:** To accurately associate each appointment,
+medical report and medicine usages with their corresponding patient, we added an `AppointmentList` and `MedicalReport` with `MedicalUsageList`
 attributes to the Person class.
 
 **Command Implementation:** Designing commands for both entities required thoughtful planning to ensure they operated correctly and 
@@ -1385,7 +1383,7 @@ which involved building additional parser classes and command logic.
 feature and command functioned correctly across both entity types.
 
 #### Achievements
-In conclusion, our team successfully designed and implemented key features, resolved bugs, and navigated potential integration challenges. While we initially encountered difficulties with more complex components such as appointment and medical usage management, effective collaboration allowed us to overcome these hurdles and accomplish our objectives for Klinix.
+In conclusion, our team successfully designed and implemented key features, resolved bugs, and navigated potential integration challenges. While we initially encountered difficulties with more complex components such as appointment and medicine usage management, effective collaboration allowed us to overcome these hurdles and accomplish our objectives for Klinix.
 
 
 
