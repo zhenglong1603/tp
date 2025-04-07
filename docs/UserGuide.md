@@ -7,7 +7,7 @@
 
 # **Klinix User Guide**
 
-Klinix is a desktop app targeted towards **general practitioners (GPs)** to make their daily patient management faster and easier. 
+Klinix is a **desktop app targeted towards general practitioners (GPs)** to make their daily patient management faster and easier. 
 
 Klinix serves as a digital bridge for general practitioners in smaller clinics, streamlining their administrative tasks with a focus on patient management and tracking patient visit and medical histories.<br>
 
