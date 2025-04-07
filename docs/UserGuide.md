@@ -104,7 +104,6 @@ After a few seconds, a GUI will appear. Note that when you first start the app, 
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"> </div>
 
 # Input parameters
 
@@ -254,13 +253,13 @@ But for parameters without suffixes, the order matters.<br>
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"> </div>
-
 ### Viewing Patient details
 You can view the details of a Patient by clicking on their name in the displayed list. This will display all the details of the selected patient in the `details` window.
 ![patient details](images/ViewPatientDetailsDemonstration.jpg)
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"> </div>
 
 ### Viewing past commands:
 
@@ -333,6 +332,8 @@ e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 </box>
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"> </div>
 
 ### Saving the data
 
