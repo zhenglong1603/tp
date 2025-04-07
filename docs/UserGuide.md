@@ -121,7 +121,7 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
   - `John` -> parameter
 - All arguments are trimmed before processing:
   - Arguments of prefixes `ic/`, `b/`, `p/`, `e/`, `from/`, `to/`, `/date` are trimmed by removing **ALL WHITE SPACES**
-  - Arguments of remaining prefixes are trimmed following the [Trimming Rules](#input-trimming-rules) below.
+  - Remaining arguments are trimmed based on the [Trimming Rules](#input-trimming-rules) below.
     </box>
 
 **NRIC Consistency**: <br>
@@ -167,12 +167,13 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 
 | Symbol     | Parameter | Constraints                                                                                                                  |
 |------------|----------|------------------------------------------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC` | - Same as [Patient NRIC](#patient-parameters) (9-character alphanumeric).                                                                                                    |
-| **`n`**    | `MEDICINE_NAME` | - Must start with **an alphanumeric character**. <br/> Following characters can be `()+,.'`, alphanumeric characters, and spaces. |
+| **`ic`**   | `PATIENT_NRIC` | - Same as [Patient NRIC](#patient-parameters) (9-character alphanumeric).                                                                                                   |
+| **`n`**    | `MEDICINE_NAME` | - Must start with **an alphanumeric character**. <br/> Following characters can be `()+,.'`, alphanumeric characters, and spaces.|
 | **`dos`**  | `DOSAGE` | - Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                                                       |
 | **`from`** | `START`  | - Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                                                  |
 | **`to`**   | `END`    | - Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START`**.                                      |
 
+**Notes: ** Klinix considers two medicine usages from the same patient to be the same if they share the same name (case-insensitive) and have overlapping durations.
 ---
 
 ### **Appointment Parameters**
