@@ -69,7 +69,6 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 2. **Download the Application:**
    Get the latest `.jar` file from [this release page](https://github.com/AY2425S2-CS2103T-T09-2/tp/releases).
    Version names may vary, but the file name should be `Klinix.jar`.
-![img_1.png](images/GitRelease.png)
 
 3. **Prepare Your Folder:**
    Create an empty folder that will serve as your _home folder_ for Klinix, and copy the downloaded `.jar` file into that folder.
@@ -86,7 +85,8 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
      ```
      java -jar Klinix.jar
      ```
-     After a few seconds, a GUI will appear. Note that when you first start the app, there will be sample data. You may wish to clear the sample data using the `clear` command.
+After a few seconds, a GUI will appear. Note that when you first start the app, there will be sample data. You may wish to clear the sample data using the `clear` command.
+![img_1.png](images/fullDisplay.png)
 
 
 5. **Using the Application:**
@@ -351,6 +351,8 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"> </div>
+
 ### Adding a Patient: `add`
 
 Adds a patient to Klinix with the specified details.
@@ -464,6 +466,9 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"> </div>
+
+
 ### Adding a Medical Report: `addmr`
 
 This command adds a new medical report to a patient's record.
@@ -496,7 +501,6 @@ This command deletes a patient's existing medical report.
 
 **Format 1:** `deletemr ic/NRIC`
 
-
 Parameter:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#patient-parameters)).
 
@@ -521,6 +525,8 @@ Example:
 </Box>
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"> </div>
 
 ### Adding a Medicine Usage Record: `addmu`
 
@@ -574,6 +580,8 @@ Example:
 * `deletemu 2 ic/S1234567A` will delete the 2nd medicine usage record from medical history of patient with NRIC S1234567A.
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"> </div>
 
 ### Clearing all Medicine Usage Records: `clearmu`
 
