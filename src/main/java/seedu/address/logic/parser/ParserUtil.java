@@ -58,7 +58,7 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = smartTrim(name);
+        String trimmedName = smartTrimName(name);
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -278,6 +278,20 @@ public class ParserUtil {
         trimmed = trimmed.replaceAll("\\s*\\)\\s*", ") "); // Right parenthesis
         trimmed = trimmed.replaceAll("\\s*\\(\\s*", " ("); // Left parenthesis
         trimmed = trimmed.replaceAll("\\s*#\\s*", " #"); // Hash
+        trimmed = trimmed.replaceAll("\\s*\\-\\s*", "-"); // Dash
+        trimmed = trimmed.replaceAll("\\s+", " ").trim(); // Remove extra spaces again
+
+        return trimmed;
+    }
+
+    static String smartTrimName(String input) {
+        requireNonNull(input);
+        // Handle characters one by one to avoid complication in rules conflict resolution
+        String trimmed = input.trim().replaceAll("\\s+", " "); // Remove extra white spaces
+        trimmed = trimmed.replaceAll("\\s*\\.\\s*", ". "); // Plus
+        trimmed = trimmed.replaceAll("\\s*@\\s*", " @ "); // At
+        trimmed = trimmed.replaceAll("\\s*:\\s*", ":"); // Colon
+        trimmed = trimmed.replaceAll("\\s*'\\s*", "'"); // Apostrophe
         trimmed = trimmed.replaceAll("\\s*\\-\\s*", "-"); // Dash
         trimmed = trimmed.replaceAll("\\s+", " ").trim(); // Remove extra spaces again
 
