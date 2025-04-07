@@ -21,7 +21,7 @@ public class DateUtil {
             DateTimeFormatter.ofPattern("dd-MM-uuuu, hh:mm a");
     public static final String INVALID_DATETIME_MESSAGE = "Sorry! Please use the format "
             + "dd-MM-yyyy HH:mm and also check if it is a valid date-time.";
-    public static final String INVALID_DATE_MESSAGE = "Sorry! Please use the format"
+    public static final String INVALID_DATE_MESSAGE = "Sorry! Please use the format "
             + "dd-MM-yyyy and also check if it is a valid date.";
 
     /**
