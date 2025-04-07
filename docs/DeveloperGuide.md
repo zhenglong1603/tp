@@ -1344,6 +1344,12 @@ not be familiar with the 24-hour clock. It will also help reduce confusion when 
 
 4. Currently, the `addmr` command only allows adding a medical report to a patient by NRIC. We plan to implement a feature that extends this
 functionality to allow adding a medical report by index as well. This will provide users with more flexibility in how they add medical reports.
+
+5. Currently, the `appton` command only allows viewing appointments by start date. We plan to implement a feature that extends this functionality to allow
+viewing appointments by a range of dates. This will provide users with more flexibility in how they view appointments.
+
+6. Currently, Klinix only allow users to mark appointments as visited or not visited. We plan to implement a feature that extends this functionality to allow users to
+mark appointments with more statuses such as canceled or rescheduled. This will provide users with more flexibility in how they manage appointments.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Efforts**
