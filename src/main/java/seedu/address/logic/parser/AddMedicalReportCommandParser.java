@@ -44,6 +44,10 @@ public class AddMedicalReportCommandParser implements Parser<AddMedicalReportCom
         String surgery = ParserUtil.parseMedicalField(argMultimap.getValue(PREFIX_SURGERY).orElse("None"));
         String immunization = ParserUtil.parseMedicalField(argMultimap.getValue(PREFIX_IMMUNIZATION).orElse("None"));
 
+        if (allergy.equals("None") && illness.equals("None") && surgery.equals("None") && immunization.equals("None")) {
+            throw new ParseException("At least one medical field must be provided.");
+        }
+
         MedicalReport medicalReport = new MedicalReport(allergy, illness, surgery, immunization);
 
         return new AddMedicalReportCommand(nric, medicalReport);

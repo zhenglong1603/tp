@@ -453,6 +453,7 @@ Examples:
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
+3. Although some fields are optional, at least one of the medical fields must be provided, else Klinix will show an error message.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -472,7 +473,7 @@ Examples:
 **Format 2:** `deletemr INDEX`
 
 * Deletes the medical report of the patient at the specified `INDEX`
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed patient list.
 * This index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
@@ -538,7 +539,7 @@ Clear all medicine usage records of a patient's medical history.
 
 **Format 1:** `clearmu ic/NRIC`
 
-* Deletes all medicine usages from the person with the specified `NRIC`.
+* Deletes all medicine usages from the patient with the specified `NRIC`.
 * The `NRIC` must be valid.
 
 Examples: `clearmu ic/S1234567A`
