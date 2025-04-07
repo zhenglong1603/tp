@@ -604,6 +604,8 @@ The patient with the NRIC you give must exist in Klinix, otherwise Klinix will s
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"> </div>
+
 ### Finding Medicine Usage Records by medicine names: `findmu`
 
 Finds patients whose medicine usages contain the specified medicine name(s).
@@ -668,6 +670,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
+
 <div style="page-break-after: always;"> </div>
 
 ### Clearing all Appointments: `clearappt`
@@ -716,6 +719,7 @@ Parameter:
 Examples: `appton date/22-03-2025`
 
 [Back to Table of Contents](#table-of-contents)
+
 
 <div style="page-break-after: always;"> </div>
 
@@ -783,6 +787,7 @@ Examples:
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
 
 <div style="page-break-after: always;"> </div>
 
