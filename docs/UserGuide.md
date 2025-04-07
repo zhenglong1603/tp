@@ -4,12 +4,13 @@
   pageNav: 3
 ---
 
-# Klinix User Guide
+# **Klinix User Guide**
 
-Klinix is a desktop app created to **make your daily patient management faster and easier**. 
+Klinix is a desktop app targeted towards **general practitioners (GPs)** to make their daily patient management faster and easier. 
 
-We know how busy your day can get—answering calls, scheduling appointments, and keeping patient records organized. 
-Klinix combines the speed of typing commands with a simple, user-friendly interface, so you can quickly find, add, or update patient and partner information without the hassle.
+Klinix serves as a digital bridge for general practitioners in smaller clinics, streamlining their administrative tasks with a focus on patient management and tracking patient visit and medical histories.<br>
+
+Klinix combines the speed of typing commands with a simple, user-friendly interface, so that they can quickly find and update patient information without a hassle.
 
 **Because the smoother your workflow, the better care you can provide.**
 
@@ -23,7 +24,7 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
         - [Viewing patient details](#viewing-patient-details)
         - [Viewing past commands](#viewing-past-commands)
         - [Viewing help](#viewing-help--help)
-        - [Clearing all patient entries](#clearing-all-entries--clear)
+        - [Clearing all patient entries](#clearing-all-patient-entries--clear)
         - [Exiting the program](#exiting-the-program--exit)
         - [Saving the data](#saving-the-data)
         - [Editing the data file](#editing-the-data-file)
@@ -32,13 +33,13 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
         - [Deleting a patient](#deleting-a-patient--delete)
         - [Editing a patient](#editing-a-patient--edit)
         - [Listing all patients](#listing-all-patients--list)
-        - [Searching patients by field](#locating-patients-by-name-find)
+        - [Finding patients by keywords](#finding-patients-by-keywords-find)
     - **Medical Report Management**
-        - [Adding medical report to a patient](#adding-a-medical-report-addmr)
-        - [Deleting medical report from a patient](#deleting-a-medical-report-deletemr)
+        - [Adding a medical report to a patient](#adding-a-medical-report-addmr)
+        - [Deleting a medical report from a patient](#deleting-a-medical-report-deletemr)
     - **Medicine Usage Management**
-        - [Adding a medicine usage record to a patient](#adding-medicine-usage-records-addmu)
-        - [Deleting a medicine usage record from a patient](#deleting-medicine-usage-records-deletemu)
+        - [Adding a medicine usage record to a patient](#adding-a-medicine-usage-record-addmu)
+        - [Deleting a medicine usage record from a patient](#deleting-a-medicine-usage-record-deletemu)
         - [Clearing all medicine usage records from a patient](#clearing-all-medicine-usage-records-clearmu)
         - [Finding medicine usage records by medicine names](#finding-medicine-usages-by-medicine-names-findmu)
     - **Appointment Management**
@@ -92,6 +93,7 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
      ```
      After a few seconds, a GUI will appear. Note that when you first start the app, there will be sample data. You may wish to clear the sample data using the `clear` command.
 
+
 5. **Using the Application:**
    - Type a command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
    - Here are some example commands you can try:
@@ -126,7 +128,7 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 
 **Date Formats**:<br>
-    - `dd-MM-yyyy` for birthdates/medicine dates.<br>
+    - `dd-MM-yyyy` for birthdates and medicine dates.<br>
     - `dd-MM-yyyy HH:mm` for appointments.
 
 **Error Handling**: Refer to the messages prompted when invalid parameters are entered (e.g. "Invalid NRIC format").
@@ -163,24 +165,24 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 
 ### **Medicine Usage Parameters**
 
-| Symbol     | Parameter          | Constraints                                                                                                                       |
-|------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC`     | - Same as [Patient NRIC](#patient-parameters) (9-character alphanumeric).                                                                                                         |
-| **`n`**    | `MEDICINE_NAME`    | - Must start with **an alphanumeric character**. <br/> Following characters can be `()+,.'`, alphanumeric characters, and spaces. |
-| **`dos`**  | `DOSAGE`           | - Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                                                            |
-| **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                                                       |
-| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START_DATE`**.                                      |
+| Symbol     | Parameter | Constraints                                                                                                                  |
+|------------|----------|------------------------------------------------------------------------------------------------------------------------------|
+| **`ic`**   | `PATIENT_NRIC` | - Same as [Patient NRIC](#patient-parameters) (9-character alphanumeric).                                                                                                    |
+| **`n`**    | `MEDICINE_NAME` | - Must start with **an alphanumeric character**. <br/> Following characters can be `()+,.'`, alphanumeric characters, and spaces. |
+| **`dos`**  | `DOSAGE` | - Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                                                       |
+| **`from`** | `START`  | - Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                                                  |
+| **`to`**   | `END`    | - Format: `dd-MM-yyyy` (e.g. `25-02-2025`).<br>- Must be **after or equal to `START`**.                                      |
 
 ---
 
 ### **Appointment Parameters**
 
-| Symbol     | Parameter          | Constraints                                                                                                                                                 |
-|------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC`     | - Same as [Patient NRIC](#patient-parameters) (9-character alphanumeric).                                                                                                                                       |
-| **`appt`** | `DESCRIPTION`      | - **1–40 alphabetic characters** (e.g. `Dental Check-up`).                                                                                                 |
-| **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy HH:mm` (e.g. `22-02-2025 10:00`).                                                                                                    |
-| **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy HH:mm` (e.g. `22-02-2025 10:15`).<br>- Must be **after `START_DATE`**.                                                               |
+| Symbol     | Parameter | Constraints                                                                                                                                            |
+|------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`ic`**   | `PATIENT_NRIC` | - Same as [Patient NRIC](#patient-parameters) (9-character alphanumeric).                                                                                                                                  |
+| **`appt`** | `DESCRIPTION` | - **1–40 alphabetic characters** (e.g. `Dental Check-up`).                                                                                            |
+| **`from`** | `START`  | - Format: `dd-MM-yyyy HH:mm` (e.g. `22-02-2025 10:00`).                                                                                               |
+| **`to`**   | `END`    | - Format: `dd-MM-yyyy HH:mm` (e.g. `22-02-2025 10:15`).<br>- Must be **after `START`**.                                                               |
 
 ---
 
@@ -214,6 +216,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 
 <Box type="info" seamless> If two rules overlap, the one lower in the table (later in the list) will be applied last and will take priority.
 </box>
+
 [Back to Table of Contents](#table-of-contents)
 
 ---
@@ -268,9 +271,11 @@ This feature allows you to quickly reuse or edit previously entered commands wit
 2. Press the **Up Arrow** key to bring up the `list` command in the command box.
 3. Press the **Down Arrow** key to navigate back to a more recent command.
 
-#### Notes:
+<box type="info" seamless>
 
-- The command history is saved only for the current session and will reset when the application is restarted.
+The command history is saved only for the current session and will reset when the application is restarted.
+
+</box>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -296,8 +301,10 @@ Deletes all patient entries from Klinix.
 Format: `clear`
 
 <box type="info" seamless>
+
 Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+e.g. if the command specifies `clear 123`, it will be interpreted as `clear`.
+
 </box>
 
 [Back to Table of Contents](#table-of-contents)
@@ -309,8 +316,10 @@ Exits the program.
 Format: `exit`
 
 <box type="info" seamless>
+
 Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+
 </box>
 
 [Back to Table of Contents](#table-of-contents)
@@ -418,15 +427,15 @@ Format: `list`
 <box type="info" seamless>
 
 Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </box>
 
 [Back to Table of Contents](#table-of-contents)
 
-### Locating patients by name: `find`
+### Finding patients by keywords: `find`
 
-Finds patients whose names contain any of the given keywords.
+Finds patients whose names contain the specified keyword(s).
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -438,7 +447,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
+* `find Joh` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -474,10 +483,10 @@ Deletes a patient's existing medical report.
 **Format 1:** `deletemr ic/NRIC`
 
 
-Parameters:
+Parameter:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#patient-parameters)).
 
-Example:
+Examples:
 * `deletemr ic/S1234567A`
 * `deletemr ic/T0260144G`
 
@@ -498,18 +507,13 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Adding medicine usage record: `addmu`
+### Adding a medicine usage record: `addmu`
 
 Adds a new medicine usage record as part of a patient’s medical history or medical needs.
 
 Format: `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END`
 
-Parameters:
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#patient-parameters)).
-- `MEDICINE_NAME`: The name of the medicine. should only contain alphanumeric characters and spaces, and it should not be blank.
-- `DOSAGE`: The dosage of the medicine. It should not be blank.
-- `START`: The start date of the medicine usage. It must be in the format `dd-MM-yyyy`.
-- `END`: The end date of the medicine usage. It must be in the format `dd-MM-yyyy`.
+**Note:** Refer to the [Medicine Usage Parameters](#medicine-usage-parameters) section for constraints on each parameter.
 
 Examples:
 * `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
@@ -517,11 +521,11 @@ Examples:
 
 <Box type="warning" seamless>
 
-* `START` and `END`must be in the format of `dd-MM-yyyy`
 * The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
-* Two medicine usage have the same medicine name if they are equal **ignoring case**. 
+* Two medicine usage have the same medicine name if they are equal, **ignoring case**. 
 * Two medicine usage records from the same patient are overlapped if they have the same name and overlapping duration.
 Klinix will detect such overlapping instances and give an error message when you try to add them.
+* `START` and `END`must be in the format of `dd-MM-yyyy`
 * `START` should be before (or on the same day as) `END`
 * `START` should not be before the patient's birthday.
 
@@ -529,7 +533,7 @@ Klinix will detect such overlapping instances and give an error message when you
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting medicine usage record: `deletemu`
+### Deleting a medicine usage record: `deletemu`
 
 Deletes a particular medicine usage record of a patient's medical history.
 
@@ -542,12 +546,13 @@ Parameters:
 <Box type="info" seamless> The medicine usage record list could be viewed by navigating to the patient with the specified NRIC, 
 and clicking on their displayed card to view patient details
 
-![Medical Usage](images/MedicineUsage.gif).
-
 </Box>
 
-Examples:
-* `deletemu 2 ic/S1234567A`
+![Medical Usage](images/MedicineUsage.gif)
+
+
+Example:
+* `deletemu 2 ic/S1234567A` will delete the 2nd medicine usuage record from medical history of patient with NRIC S1234567A.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -559,18 +564,21 @@ Deletes all medicine usage records of a patient's medical history.
 
 * Deletes all medicine usages from the patient with the specified `NRIC`.
 
-Parameters:
+Parameter:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#patient-parameters)).
 
-Examples: `clearmu ic/S1234567A`
+Example: 
+* `clearmu ic/S1234567A`
 
 **Format 2:** `clearmu INDEX`
 
 * Deletes all medicine usages from the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** (e.g. 1, 2, 3, ...)
 
-Examples: `clearmu 3`
+Parameter:
+- `INDEX`: The index number shown in the displayed patient list. It **must be a positive integer** (e.g. 1, 2, 3, ...)
+
+Example: 
+* `clearmu 3`
 
 <Box type="info" seamless>
 
@@ -593,11 +601,11 @@ Finds patient whose medicine usages contain the specified medicine name(s).
 
 Format: `findmu KEYWORDS [MORE_KEYWORDS]`
 
-Examples: `findmu Paracetamol Amoxicillin`
+Example: `findmu Paracetamol Amoxicillin`
 
 <Box type="info" seamless>
 
-**Note:** `findmu` supports partial match
+**Note:** `findmu` supports partial match.
 
 </Box>
 
@@ -657,17 +665,19 @@ Deletes the list of appointments of a specified patient.
 
 **Format 1:** `clearappt ic/NRIC`
 
-Parameters:
+Parameter:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#patient-parameters)).
 
-Example: `clearappt ic/S1234567A`
+Example: 
+* `clearappt ic/S1234567A` deletes the list of appointments from the patient with NRIC S1234567A.
 
-**Format 2:** `clearappt INDEX`
+**Format 2:** `clearappt INDEX` 
 
 Parameter:
 - `INDEX`: The index of the patient shown in the displayed patient list. It **must be a positive integer** 1, 2, 3, ...
 
-Example: `clearappt 1` deletes the list of appointments from the first patient displayed.
+Example: 
+* `clearappt 1` deletes the list of appointments from the first patient displayed.
 
 <Box type="warning" seamless>
 
@@ -710,9 +720,11 @@ Examples:
 * `markappt 2 ic/S1234567A`
 * `markappt 1 ic/T0260144G`
 
-**Warning:**
+<Box type="warning" seamless>
 
 1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
+
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -730,9 +742,11 @@ Examples:
 * `unmarkappt 2 ic/S1234567A`
 * `unmarkappt 1 ic/T0260144G`
 
-**Warning:**
+<Box type="warning" seamless>
 
 1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
+
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -742,8 +756,8 @@ Examples:
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install Klinix in the other computer and overwrite its data file with the old data file from your previous Klinix home folder.<br>
-**Q**: How to edit an appointment or medical usage since there is no command for it?<br>
-**A**: We suggest deleting the existing appointment with `deleteappt` command first before using `addappt` command to create a new appointment with the edited details. The same solution applies for editing of medical usage.
+**Q**: How do I edit an appointment or medical usage record since there is no command for it?<br>
+**A**: We suggest deleting the existing appointment with `deleteappt` command first before using `addappt` command to create a new appointment with the edited details. The same solution applies to edit a medical usage record.
 
 [Back to Table of Contents](#table-of-contents)
 

@@ -17,7 +17,7 @@ public class Nric {
      * The NRIC must follow a specific format starting with an uppercase letter, followed by 7
      * digits, and ending with an uppercase letter.
      */
-    public static final String VALIDATION_REGEX = "^[A-Z][0-9]{7}[A-Z]$";
+    public static final String VALIDATION_REGEX = "^[S|F|M|T|G][0-9]{7}[A-Z]$";
 
     public final String value;
 
