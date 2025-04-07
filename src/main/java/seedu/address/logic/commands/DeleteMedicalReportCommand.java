@@ -117,7 +117,7 @@ public class DeleteMedicalReportCommand extends Command {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND_ID, targetIndex.getOneBased()));
         }
 
-        if (person.getMedicalReport() == null) {
+        if (person.getMedicalReport().isEmpty()) {
             throw new CommandException(String.format(MESSAGE_MEDICAL_REPORT_NOT_FOUND_ID, targetIndex.getOneBased()));
         }
 
