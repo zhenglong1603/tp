@@ -291,7 +291,6 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 | `**` | Basic User                          | edit existing patient details                                     | all information stays up-to-date and error-free.                              |
 | `**` | Advanced User                       | search for patient records using various filters                  | I can locate the right records quickly and efficiently.                       |
 | `**` | Basic User                          | schedule new patient appointments                                 | clinic visits are well organized.                                             |
-| `**` | Advanced/Forgetful User             | receive notifications for upcoming appointments                   | I can remind patients and manage time effectively.                            |
 | `**` | Basic User                          | update medicine usage records                                     | the supply management system remains accurate.                                |
 | `**` | Advanced User/Fast Typer            | utilize fast-typing shortcuts during data entry                   | I can enter information quickly and reduce wait times.                        |
 | `**` | Beginner, Basic User, Advanced User | work with an intuitive user interface                             | I need less training and can work more efficiently.                           |
@@ -305,7 +304,7 @@ Priorities: High (must have) - * * *, Medium (nice to have) - * *, Low (unlikely
 | `**` | Advanced User, Beginner             | receive suggestions for common search queries                     | I can work faster and reduce typing effort.                                   |
 | `**` | Basic User, Beginner                | navigate the application easily                                   | I can quickly access the functionality I need most often.                     |
 | `**` | Forgetful User                      | add notes during patient check-in                                 | any additional details are captured for future reference.                     |
-| `**` | Forgetful User                      | mark patients as “visited” after their appointments               | follow-ups and further actions can be tracked efficiently.                    |
+| `**` | Forgetful User                      | mark and unmark patients as “visited” after their appointments    | follow-ups and further actions can be tracked efficiently.                    |
 | `**` | Advanced User, Careless user        | flag incomplete or inconsistent records                           | I can follow up and ensure all necessary details are completed.               |
 | `**` | Beginner                            | view the user guide easily                                        | I can learn more about the product as and when I need                         |
 | `**` | Beginner                            | view sample data table                                            | I can see what the end result would look like                                 |

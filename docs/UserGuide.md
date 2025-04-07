@@ -690,8 +690,8 @@ Example:
 # FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install Klinix in the other computer and overwrite its data file with the old data file from your previous Klinix home folder.
-**Q**: How to edit an appointment since there is no command for it<br>
+**A**: Install Klinix in the other computer and overwrite its data file with the old data file from your previous Klinix home folder.<br>
+**Q**: How to edit an appointment since there is no command for it?<br>
 **A**: We suggest deleting the existing appointment with `deleteappt` command first before using `addappt` command to create a new appointment with the edited details.
 
 [Back to Table of Contents](#table-of-contents)
