@@ -45,7 +45,7 @@ public class FindMedicineUsageCommandTest {
         int count = model.getFilteredPersonList().size();
         String patientWord = (count <= 1) ? "patient" : "patients";
 
-        assertEquals(String.format("%d %s listed!", count, patientWord), result.getFeedbackToUser());
+        assertEquals(String.format("%d %s listed", count, patientWord), result.getFeedbackToUser());
     }
 
 

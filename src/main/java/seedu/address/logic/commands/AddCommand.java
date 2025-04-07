@@ -43,7 +43,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON =
-            "This patient or NRIC already exists in the system. Please check the details and try again.";
+            "The patient with this NRIC already exists in the system. Please check the details and try again.";
 
     private final Person toAdd;
 

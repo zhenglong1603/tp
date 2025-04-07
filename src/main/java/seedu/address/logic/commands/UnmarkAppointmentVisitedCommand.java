@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 public class UnmarkAppointmentVisitedCommand extends Command {
     public static final String COMMAND_WORD = "unmarkappt";
     public static final String MESSAGE_SUCCESS = "Marked appointment as not visited for person %s:\n%s";
-    public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "Index is out of bounds.";
+    public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "Index is out of bounds";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an appointment as not visited. \n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "

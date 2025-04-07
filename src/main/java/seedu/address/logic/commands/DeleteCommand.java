@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the patient identified by the index number used in the displayed patient list or by nric.\n"
+            + ": Deletes the patient identified by the index number used in the displayed patient list or by NRIC.\n"
             + "Parameters for first method: "
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " "
