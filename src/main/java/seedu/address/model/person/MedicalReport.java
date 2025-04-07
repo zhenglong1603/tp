@@ -1,7 +1,9 @@
 package seedu.address.model.person;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.medicineusage.MedicineUsage;
@@ -32,10 +34,10 @@ public class MedicalReport {
      * @param immunizations A string representing the immunizations of the person.
      */
     public MedicalReport(String allergens, String illnesses, String surgeries, String immunizations) {
-        this.allergens = allergens;
-        this.illnesses = illnesses;
-        this.surgeries = surgeries;
-        this.immunizations = immunizations;
+        this.allergens = normalizeField(allergens);
+        this.illnesses = normalizeField(illnesses);
+        this.surgeries = normalizeField(surgeries);
+        this.immunizations = normalizeField(immunizations);
         this.medicineUsages = new MedicineUsageList();
         this.value = this.toString();
     }
@@ -123,6 +125,19 @@ public class MedicalReport {
     public boolean isEmpty() {
         return allergens.equals("None") && illnesses.equals("None") && surgeries.equals("None")
                 && immunizations.equals("None");
+    }
+
+    /**
+     * Normalizes the field by removing leading and trailing spaces, and replacing empty fields with "None"
+     */
+    private String normalizeField(String field) {
+        if (field == null || field.isEmpty()) {
+            return "None";
+        }
+        return Arrays.stream(field.split(","))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .collect(Collectors.joining(", "));
     }
 }
 
