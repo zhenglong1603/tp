@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.medicineusage.exceptions.MedicineUsageNotFoundException;
 import seedu.address.model.medicineusage.exceptions.OverlappingMedicineUsageException;
 
+// The test cases are adapted from a conversation with chatGPT
+
 class MedicineUsageListTest {
     private MedicineUsageList medicineUsageList;
     private MedicineUsage medicineUsage1;

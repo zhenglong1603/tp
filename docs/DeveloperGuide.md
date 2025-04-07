@@ -413,6 +413,8 @@ The use cases below are not exhaustive.
   Use case resumes at step 1.
 - 1c. No matching patient found → Klinix shows a message indicating that there are no matching patients.<br>
   Use case ends.
+- 1d. No medical fields provided → Klinix shows an invalid fields message.<br>
+  Use case resumes at step 1.
 
 ---
 
@@ -702,6 +704,7 @@ The use cases below are not exhaustive.
 3. **Medical Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
 4. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
 5. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
+6. **Patient**: An individual who receives medical care or consultation from a general practitioner (GP) and has information being managed within Klinix.
 6. **MSS (Main Success Scenario)** – The sequence of steps that lead to a successful execution of a use case.
 7. **JAR** – A Java Archive file that contains the compiled Java classes and resources for the application.
 8. **Patient** - An individual who receives medical care or consultation from a general practitioner (GP) and has information being managed within Klinix.
@@ -844,7 +847,6 @@ testers are expected to do more *exploratory* testing.
         * Illnesses: `Diabetes`
         * Surgeries: `Appendectomy`
         * Immunizations: `Flu Shot, Tetanus`
-        * Other fields remain unchanged
           <br><br>
 
 2. Adding a medical report to a patient with an existing medical report
@@ -857,7 +859,6 @@ testers are expected to do more *exploratory* testing.
         * Illnesses: `Diabetes`
         * Surgeries: `Appendectomy`
         * Immunizations: `Flu Shot, Tetanus`
-        * Other fields remain unchanged
           <br><br>
 
 3. Adding a medical report with only some fields
@@ -869,7 +870,6 @@ testers are expected to do more *exploratory* testing.
         * Illnesses: `Diabetes`
         * Surgeries: `None`
         * Immunizations: `None`
-        * Other fields remain unchanged
           <br><br>
 
 ### Deleting a Medical Report
@@ -886,7 +886,6 @@ testers are expected to do more *exploratory* testing.
         * Illnesses: `None`
         * Surgeries: `None`
         * Immunizations: `None`
-        * Other fields remain unchanged
           <br><br>
 
 2. Deleting a medical report from a patient by index
@@ -899,7 +898,6 @@ testers are expected to do more *exploratory* testing.
         * Illnesses: `None`
         * Surgeries: `None`
         * Immunizations: `None`
-        * Other fields remain unchanged
           <br><br>
       <br><br>
 
@@ -1343,6 +1341,15 @@ To enhance user-friendliness, future versions of the application will should fea
 Instead of showing time in the 24-hour format (e.g., 13:00), the system will display it in a 12-hour format with AM/PM notation
 (e.g. 1:00 PM). This change aims to improve readability and align with common user preferences, particularly for those who may 
 not be familiar with the 24-hour clock. It will also help reduce confusion when viewing or managing appointment times in the user interface.
+
+4. Currently, the `addmr` command only allows adding a medical report to a patient by NRIC. We plan to implement a feature that extends this
+functionality to allow adding a medical report by index as well. This will provide users with more flexibility in how they add medical reports.
+
+5. Currently, the `appton` command only allows viewing appointments by start date. We plan to implement a feature that extends this functionality to allow
+viewing appointments by a range of dates. This will provide users with more flexibility in how they view appointments.
+
+6. Currently, Klinix only allow users to mark appointments as visited or not visited. We plan to implement a feature that extends this functionality to allow users to
+mark appointments with more statuses such as canceled or rescheduled. This will provide users with more flexibility in how they manage appointments.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Efforts**

@@ -12,6 +12,8 @@ import seedu.address.logic.commands.ClearMedicineUsageCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Nric;
 
+// The test cases are adapted from a conversation with chatGPT
+
 class ClearMedicineUsageCommandParserTest {
     private ClearMedicineUsageCommandParser parser;
 

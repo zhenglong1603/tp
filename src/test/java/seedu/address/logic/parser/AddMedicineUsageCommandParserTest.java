@@ -16,6 +16,8 @@ import seedu.address.model.medicineusage.MedicineName;
 import seedu.address.model.medicineusage.MedicineUsage;
 import seedu.address.model.person.Nric;
 
+// The test cases are adapted from a conversation with chatGPT
+
 class AddMedicineUsageCommandParserTest {
     private AddMedicineUsageCommandParser parser;
 
