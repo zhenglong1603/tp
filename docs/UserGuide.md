@@ -240,9 +240,6 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 * If provided, the index parameter must always appear first. All other parameters can follow in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-But for parameters without suffixes, the order matters.<br>
-  e.g. `deletemu 1 ic/S1234567A` is not the same as `deletemu ic/S1234567A 1`.
-
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -283,8 +280,6 @@ The command history is saved only for the current session and will reset when th
 </box>
 
 [Back to Table of Contents](#table-of-contents)
-
-<div style="page-break-after: always;"> </div>
 
 ### Viewing help : `help`
 
@@ -352,8 +347,6 @@ Furthermore, certain edits can cause the Klinix to behave in unexpected ways (e.
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"> </div>
-
 ### Adding a Patient: `add`
 
 Adds a patient to Klinix with the specified details.
@@ -405,6 +398,8 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"> </div>
+
 ### Editing a Patient : `edit`
 
 Edits an existing patient in Klinix.
@@ -444,8 +439,6 @@ e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"> </div>
-
 ### Finding Patients by keywords: `find`
 
 Finds patients whose names contain the specified keyword(s).
@@ -460,15 +453,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+<div style="page-break-after: always;"> </div>
+
 Examples:
 * `find Joh` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  
+![result for 'find alex david'](images/findAlexDavidResult.png)
 
 [Back to Table of Contents](#table-of-contents)
-
-<div style="page-break-after: always;"> </div>
-
 
 ### Adding a Medical Report: `addmr`
 
@@ -555,8 +548,6 @@ Klinix will detect such overlapping instances and give an error message when you
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"> </div>
-
 ### Deleting a Medicine Usage Record: `deletemu`
 
 This command deletes a particular medicine usage record of a patient's medical history.
@@ -567,16 +558,6 @@ Parameters:
 - `INDEX`: The index of the medicine usage record in the displayed medicine usage list. It **must be a positive integer**.
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#patient-parameters)).
 
-<Box type="info" seamless> 
-
-The medicine usage record list could be viewed by navigating to the patient with the specified NRIC, 
-and clicking on their displayed card to view patient details
-
-</Box>
-
-![Medicine Usage](images/MedicineUsage.gif)
-
-
 Example:
 * `deletemu 2 ic/S1234567A` will delete the 2nd medicine usage record from medical history of patient with NRIC S1234567A.
 
@@ -585,6 +566,8 @@ Example:
 <div style="page-break-after: always;"> </div>
 
 ### Clearing all Medicine Usage Records: `clearmu`
+
+![clearmu_details](images/clearMUPic.png)
 
 You can delete all medicine usage records of a patient's medical history using this command.
 
