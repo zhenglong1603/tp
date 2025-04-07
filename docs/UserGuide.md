@@ -764,11 +764,15 @@ Examples:
 
 # Glossary
 
-1. Command Line Interface (CLI): A user interface where individuals interact with a computer or software by typing text-based commands. Instead of using icons or buttons, users enter specific instructions in a terminal or command prompt to execute tasks.
-
-2. Graphical User Interface (GUI): A user interface that enables users to interact with electronic devices through visual elements like icons, buttons, and windows, rather than through text-based commands. GUIs simplify navigation and usage of software applications through a visual approach.
-
-3. Hard Disk Drive (HDD): A storage device within a computer that utilizes rotating magnetic disks to read and write data. It is primarily used for long-term storage of files, applications, and the operating system.
+1. **Command Line Interface (CLI)** - A user interface where individuals interact with a computer or software by typing text-based commands. Instead of using icons or buttons, users enter specific instructions in a terminal or command prompt to execute tasks.
+2. **Graphical User Interface (GUI)** - A user interface that enables users to interact with electronic devices through visual elements like icons, buttons, and windows, rather than through text-based commands. GUIs simplify navigation and usage of software applications through a visual approach.
+3. **Hard Disk Drive (HDD)** - A storage device within a computer that utilizes rotating magnetic disks to read and write data. It is primarily used for long-term storage of files, applications, and the operating system.
+4. **NRIC (National Registration Identity Card)** – A unique identification number assigned to citizens and residents.
+5. **Medical Report** – A document containing a patient's medical history, including illnesses, treatments, and surgeries.
+6. **Medical Usage Record** – A record of medications prescribed to a patient, including dosage and duration.
+7. **Overlapping Appointment** – When a new appointment conflicts with an existing one in terms of time and date.
+8. **Deletion Confirmation** – A message displayed when a record is successfully removed from the system.
+9. **Patient**: An individual who receives medical care or consultation from a general practitioner (GP) and has information being managed within Klinix.
 
 [Back to Table of Contents](#table-of-contents)
 
