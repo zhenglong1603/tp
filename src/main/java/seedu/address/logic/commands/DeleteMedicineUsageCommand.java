@@ -28,8 +28,7 @@ public class DeleteMedicineUsageCommand extends Command {
             + "1 " + PREFIX_NRIC + "S1234567A\n";
 
     public static final String MESSAGE_SUCCESS = "From patient %s, successfully deleted medicine usage:\n%s";
-    public static final String MESSAGE_INVALID_MEDICINE_USAGE_DISPLAYED_INDEX = "The medicine usage "
-            + "index provided is invalid!";
+    public static final String MESSAGE_INVALID_MEDICINE_USAGE_DISPLAYED_INDEX = "Index is out of bounds.";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
     public static final String MESSAGE_EMPTY_MEDICINE_USAGES = "Patient has no existing medicine usages!";
 
