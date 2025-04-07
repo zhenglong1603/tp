@@ -116,6 +116,14 @@ public class MedicalReport {
                 && input.matches("^[a-zA-Z0-9 ,\\-]+$")
                 && input.matches(".*[a-zA-Z].*");
     }
+
+    /**
+     * Returns true if the medical report is empty.
+     */
+    public boolean isEmpty() {
+        return allergens.equals("None") && illnesses.equals("None") && surgeries.equals("None")
+                && immunizations.equals("None");
+    }
 }
 
 
