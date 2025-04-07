@@ -160,7 +160,6 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 | **`imm`** | `IMMUNIZATIONS`   | - Optional. Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
 
 ---
-<div style="page-break-after: always;"> </div>
 
 ### **Medicine Usage Parameters**
 
@@ -255,6 +254,7 @@ But for parameters without suffixes, the order matters.<br>
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"> </div>
 
 ### Viewing Patient details
 You can view the details of a Patient by clicking on their name in the displayed list. This will display all the details of the selected patient in the `details` window.
@@ -284,6 +284,8 @@ The command history is saved only for the current session and will reset when th
 </box>
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"> </div>
 
 ### Viewing help : `help`
 
