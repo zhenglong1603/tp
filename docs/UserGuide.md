@@ -116,21 +116,31 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 - `n/` -> parameter symbol<br>
 - `John` -> parameter
-  </box>
+
+**NRIC Consistency**: <br>
+All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
+
+**Date Formats**:<br>
+    - `dd-MM-yyyy` for birthdates/medicine dates.<br>
+    - `dd-MM-yyyy HH:mm` for appointments.
+
+**Error Handling**: Refer to the messages prompted when invalid parameters are entered (e.g. "Invalid NRIC format").
+![img.png](images/ErrorHandling.png)  
+</box>
 
 ---
 
 ### **Patient Parameters**
 
-| Symbol  | Parameter       | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|---------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`n`** | `NAME`          | - Must start with a letter, allowing spaces, apostrophes, periods, and hyphens between words; optional lowercase suffix ('s/o', 'd/o', 'c/o', '@') followed by another valid name.                                                                                                                                                                                                                                                                                                       |
-| **`p`** | `PHONE_NUMBER`  | - Must be a valid phone number (at least 3 digits. e.g. 999)                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Symbol  | Parameter       | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|---------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`n`** | `NAME`          | - Must start with a letter, allowing spaces, apostrophes, periods, and hyphens between words; optional lowercase suffix ('s/o', 'd/o', 'c/o', '@') followed by another valid name.                                                                                                                                                                                                                                                                                                      |
+| **`p`** | `PHONE_NUMBER`  | - Must be a valid phone number (at least 3 digits. e.g. 999)                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **`e`** | `EMAIL`         | - Must follow the format `local-part@domain` and adhere to these constraints:<br> 1. The `local-part` must only contain alphanumeric characters and these special characters: `+_.-`. It cannot start or end with a special character.<br> 2. The `domain` consists of labels separated by periods, where each label:<br> - Starts and ends with alphanumeric characters.<br> - May contain hyphens between alphanumeric characters.<br> - Ends with a label at least 2 characters long. |
-| **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`.                                                                                                                                                                                                                                                                                                                            |
-| **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g. `01-01-1990`).                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| **`a`** | `ADDRESS`       | - No specific constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **`t`** | `TAG`           | - Optional. Can be repeated (e.g. `t/friend t/colleague`).                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **`ic`**| `NRIC`          | - **9-character alphanumeric**: Starts with an uppercase letter (A-Z), followed by 7 digits (0-9), ends with an uppercase letter (A-Z). Example: `S1234567A`.                                                                                                                                                                                                                                                                                                                           |
+| **`b`** | `BIRTHDATE`     | - Format: `dd-MM-yyyy` (e.g. `01-01-1990`).                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **`a`** | `ADDRESS`       | - No specific constraints.                                                                                                                                                                                                                                                                                                                                                                              |
+| **`t`** | `TAG`           | - Optional. <br/>Can have multiple different tags (e.g. `t/friend t/colleague`). <br/>Can be repreated (e.g. `t/friend t/friend`)                                                                                                                                                                                                                                                                                                                                                         |
 
 ---
 
@@ -138,11 +148,11 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 | Symbol    | Parameter         | Constraints                                                                                                     |
 |-----------|-------------------|-----------------------------------------------------------------------------------------------------------------|
-| **`ic`**  | `PATIENT_NRIC`    | - Same as Patient NRIC (9-character alphanumeric).                                                              |
+| **`ic`**  | `PATIENT_NRIC`    | - Same as [Patient NRIC](#Patient-parameters) (9-character alphanumeric).                                       |
 | **`al`**  | `ALLERGIES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
-| **`ill`** | `ILLNESSES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens.     |
-| **`sur`** | `SURGERIES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens.     |
-| **`imm`** | `IMMUNIZATIONS`   | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens.     |
+| **`ill`** | `ILLNESSES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`sur`** | `SURGERIES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`imm`** | `IMMUNIZATIONS`   | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
 
 ---
 
@@ -150,7 +160,7 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 | Symbol     | Parameter          | Constraints                                                                                                                       |
 |------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                                                           |
+| **`ic`**   | `PATIENT_NRIC`     | - Same as [Patient NRIC](#Patient-parameters) (9-character alphanumeric).                                                                                                         |
 | **`n`**    | `MEDICINE_NAME`    | - Must start with **an alphanumeric character**. <br/> Following characters can be `()+,.'`, alphanumeric characters, and spaces. |
 | **`dos`**  | `DOSAGE`           | - Free-text (e.g. `Two 500mg tablets, 4 times daily`).                                                                            |
 | **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy` (e.g. `23-02-2025`).                                                                                       |
@@ -162,7 +172,7 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 | Symbol     | Parameter          | Constraints                                                                                                                                                 |
 |------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`ic`**   | `PATIENT_NRIC`     | - Same as Patient NRIC.                                                                                                                                     |
+| **`ic`**   | `PATIENT_NRIC`     | - Same as [Patient NRIC](#Patient-parameters) (9-character alphanumeric).                                                                                                                                       |
 | **`appt`** | `DESCRIPTION`      | - **1–40 alphabetic characters** (e.g. `Dental Check-up`).                                                                                                 |
 | **`from`** | `START_DATE`       | - Format: `dd-MM-yyyy HH:mm` (e.g. `22-02-2025 10:00`).                                                                                                    |
 | **`to`**   | `END_DATE`         | - Format: `dd-MM-yyyy HH:mm` (e.g. `22-02-2025 10:15`).<br>- Must be **after `START_DATE`**.                                                               |
@@ -177,14 +187,6 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 | NA         | `KEYWORD`       | - Non-empty string.                                         |
 | **`date`** | `DATE`          | - Format: `dd-MM-yyyy` (e.g. `22-03-2025`).             |
 
----
-
-### **Notes**:
-1. **NRIC Consistency**: All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.
-2. **Date Formats**:
-    - `dd-MM-yyyy` for birthdates/medicine dates.
-    - `dd-MM-yyyy HH:mm` for appointments.
-3. **Error Handling**: Refer to the use cases for validation messages (e.g. "Invalid NRIC format").
 
 ---
 
@@ -205,8 +207,9 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 | **Dash `-`**              | No spaces before or after                                      | `"2023 - 2024"` → `"2023-2024"`                      |
 | **Final cleanup**         | Remove any remaining extra spaces                              | —                                                    |
 
+<Box type="info" seamless>
 **Note:** If two rules overlap, the one lower in the table (later in the list) will be applied last and will take priority.
-
+</box>
 [Back to Table of Contents](#table-of-contents)
 
 ---
@@ -337,9 +340,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC b/BIRTHDATE a/ADDRESS [t/TAG]
 
 **Tip:** A patient can have any number of tags (including 0)
 </box>
-
+<Box type="info" seamless>
 **Note:** Refer to the [Patient Parameters](#patient-parameters) section for detailed constraints on each parameter.
-
+</box>
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com ic/S9876543B b/01-01-1990 a/Newgate Prison p/1234567 t/criminal`
@@ -354,7 +357,7 @@ Deletes the specified patient from Klinix.
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** (e.g. 1, 2, 3, …)​
 
 **Format 2:** `delete [ic/NRIC]`
 
@@ -362,8 +365,10 @@ Deletes the specified patient from Klinix.
 * The `NRIC` must be valid.
 * The command works regardless of whether if the patient with the specified NRIC is displayed or not.
 
+<Box type="info" seamless>
 **Note:** You can use whichever format you find convenience, but not both at the same time. Otherwise,
 Klinix will give an error.
+</Box>
 
 Examples:
 
@@ -439,7 +444,7 @@ Adds a new medical report to a patient's record.
 Format: `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]`
 
 parameters:
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#Patient-parameters)).
 - `ALLERGIES`: (Optional) The allergies of the patient. It can be `None` or a string of allergies separated by commas.
 - `ILLNESSES`: (Optional) The illnesses of the patient. It can be `None` or a string of illnesses separated by commas.
 - `SURGERIES`: (Optional) The surgeries of the patient. It can be `None` or a string of surgeries separated by commas.
@@ -451,11 +456,13 @@ Examples:
 * `addmr ic/T0260144G al/None ill/None sur/None imm/None`
 * `addmr ic/S1234567A al/Peanuts, Penicillin ill/None sur/Appendectomy imm/Flu Vaccine, Hepatitis B`
 
-**Warning:**
+<Box type="warning" seamless>
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
 3. Although some fields are optional, at least one of the medical fields must be provided, else Klinix will show an error message.
+
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -466,7 +473,7 @@ Deletes a patient's existing medical report.
 **Format 1:** `deletemr ic/NRIC`
 
 Parameters:
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#Patient-parameters)).
 
 Examples:
 * `deletemr ic/S1234567A`
@@ -481,10 +488,12 @@ Examples:
 Examples:
 * `deletemr 1`
 
-**Warning**
+<Box type="warning" seamless>
 
 1. The patient with the given NRIC, or at the specified index must exist, otherwise Klinix will show an error message.
 2. If the patient does not have an existing medical report (i.e. all fields are `None`), Klinix will show an error message.
+
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -495,7 +504,7 @@ Adds a new medicine usage record as part of a patient’s medical history or med
 Format: `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END`
 
 Parameters:
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#Patient-parameters)).
 - `MEDICINE_NAME`: The name of the medicine. should only contain alphanumeric characters and spaces, and it should not be blank.
 - `DOSAGE`: The dosage of the medicine. It should not be blank.
 - `START`: The start date of the medicine usage. It must be in the format `dd-MM-yyyy`.
@@ -505,7 +514,7 @@ Examples:
 * `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
 * `addmu ic/S1234567A n/Panadol Extra dos/Two 250mg tablets, once per day from/01-03-2025 to/05-03-2025`
 
-**Warning:**
+<Box type="warning" seamless>
 
 1. `START` and `END`must be in the format of `dd-MM-yyyy`
 2. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
@@ -514,6 +523,8 @@ Examples:
 Klinix will detect such overlapping instances and give an error message when you try to add them.
 5. `START` should be before (or on the same day as) `END`
 6. `START` should not be before the patient's birthday.
+
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -525,10 +536,13 @@ Format: `deletemu INDEX ic/NRIC`
 
 Parameters:
 - `INDEX`: The index of the medicine usage record in the displayed medicine usage list. It **must be a positive integer**.
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#Patient-parameters)).
 
+<Box type="info" seamless>
 **Note:** The medicine usage record list could be viewed by navigating to the patient with the specified NRIC, 
 and clicking on their displayed card to view patient details
+![Medical Usage](images/MedicineUsage.gif).
+</Box>
 
 Examples:
 * `deletemu 2 ic/S1234567A`
@@ -542,7 +556,9 @@ Deletes all medicine usage records of a patient's medical history.
 **Format 1:** `clearmu ic/NRIC`
 
 * Deletes all medicine usages from the patient with the specified `NRIC`.
-* The `NRIC` must be valid.
+
+Parameters:
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#Patient-parameters)).
 
 Examples: `clearmu ic/S1234567A`
 
@@ -550,16 +566,22 @@ Examples: `clearmu ic/S1234567A`
 
 * Deletes all medicine usages from the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, ...
+* The index **must be a positive integer** (e.g. 1, 2, 3, ...)
 
 Examples: `clearmu 3`
+
+<Box type="info" seamless>
 
 **Note:** You can use whichever format you find convenient, but not both at the same time.
 Otherwise, Klinix will give an error.
 
-**Warning:**
+</Box>
 
-1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
+<Box type="warning" seamless>
+
+The patient with the given NRIC must exist, otherwise Klinix will show an error message.
+
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -571,7 +593,11 @@ Format: `findmu KEYWORDS [MORE_KEYWORDS]`
 
 Examples: `findmu Paracetamol Amoxicillin`
 
+<Box type="info" seamless>
+
 **Note:** `findmu` supports partial match
+
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -584,12 +610,14 @@ Format: `addappt ic/NRIC appt/DESCRIPTION from/START to/END`
 Example:
 * `addappt ic/S1234567A appt/Check-up from/22-02-2025 10:00 to/23-02-2025 10:15`
 
-**Warning:**
+<Box type="warning" seamless>
 
 1. `START` and `END`must be in the format of `dd-MM-yyyy HH:mm`
 2. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. Two appointments from the same patient are overlapped if they have the same name and overlapping duration.
    Klinix will detect such overlapping instances and give an error message when you try to add them.
+
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -600,16 +628,18 @@ Deletes the specified appointment from the patient.
 Format: `deleteappt INDEX ic/NRIC`
 
 Parameters:
-- `INDEX`: The index of the appointment in the displayed list. It must be a positive integer.
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `INDEX`: The index of the appointment in the displayed list of appointments in the patient details section. It must be a positive integer.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#Patient-parameters)).
 
 Example:
 * `deleteappt 2 ic/S1234567A`
 
-**Warning:**
+<Box type="warning" seamless>
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. The index given must also be valid, a positive integer and within the appointment list size.
+3. 
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -620,7 +650,7 @@ Deletes the list of appointments of a specified patient.
 **Format 1:** `clearappt ic/NRIC`
 
 Parameters:
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
+- `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#Patient-parameters)).
 
 Examples: `clearappt ic/S1234567A`
 
@@ -631,12 +661,16 @@ Parameters:
 
 Examples: `clearappt 1` deletes the list of appointments from the first patient displayed.
 
-**Warning:**
+<Box type="warning" seamless>
 
 1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
 
+<Box type="info" seamless>
+
+<Box type="info" seamless>
 **Note:** You can use whichever format you find convenient, but not both at the same time.
 Otherwise, Klinix will give an error.
+</Box>
 
 [Back to Table of Contents](#table-of-contents)
 
