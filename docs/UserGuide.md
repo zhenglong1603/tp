@@ -140,13 +140,13 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 
 ### **Medical Report Parameters**
 
-| Symbol    | Parameter         | Constraints                                                                                                     |
-|-----------|-------------------|-----------------------------------------------------------------------------------------------------------------|
-| **`ic`**  | `PATIENT_NRIC`    | - Same as Patient NRIC (9-character alphanumeric).                                                              |
-| **`al`**  | `ALLERGIES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
-| **`ill`** | `ILLNESSES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens.     |
-| **`sur`** | `SURGERIES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens.     |
-| **`imm`** | `IMMUNIZATIONS`   | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens.     |
+| Symbol    | Parameter         | Constraints                                                                                                               |
+|-----------|-------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **`ic`**  | `PATIENT_NRIC`    | - Same as Patient NRIC (9-character alphanumeric).                                                                        |
+| **`al`**  | `ALLERGIES`       | - Optional. Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`ill`** | `ILLNESSES`       | - Optional. Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`sur`** | `SURGERIES`       | - Optional. Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`imm`** | `IMMUNIZATIONS`   | - Optional. Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
 
 ---
 
@@ -443,18 +443,12 @@ Adds a new medical report to a patient's record.
 
 Format: `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]`
 
-parameters:
-- `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
-- `ALLERGIES`: (Optional) The allergies of the patient. It can be `None` or a string of allergies separated by commas.
-- `ILLNESSES`: (Optional) The illnesses of the patient. It can be `None` or a string of illnesses separated by commas.
-- `SURGERIES`: (Optional) The surgeries of the patient. It can be `None` or a string of surgeries separated by commas.
-- `IMMUNIZATIONS`: (Optional) The immunizations of the patient.
-It can be `None` or a string of immunizations separated by commas.
-
 Examples:
 * `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 * `addmr ic/T0260144G al/None ill/None sur/None imm/None`
 * `addmr ic/S1234567A al/Peanuts, Penicillin ill/None sur/Appendectomy imm/Flu Vaccine, Hepatitis B`
+
+**Note:** To list more than one item in the fields, separate them with commas. Refer to the [Medical Report Parameters](#medical-report-parameters) section for constraints on each parameter.
 
 **Warning:**
 
@@ -479,9 +473,8 @@ Example:
 
 **Format 2:** `deletemr INDEX`
 
-* Deletes the medical report of the patient at the specified `INDEX`
-* The index refers to the index number shown in the displayed patient list.
-* This index **must be a positive integer** 1, 2, 3, ...
+Parameter:
+- `INDEX`: The index of the patient in the displayed list. It **must be a positive integer** 1, 2, 3, ...
 
 Example:
 * `deletemr 1`
