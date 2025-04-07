@@ -14,8 +14,8 @@ import seedu.address.model.Model;
  */
 public class ViewAppointmentByDateCommand extends Command {
     public static final String COMMAND_WORD = "appton";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": View appointments by date. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": View appointments by date. \n"
+            + "Parameter: "
             + "DATE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DATE + "23-03-2025";

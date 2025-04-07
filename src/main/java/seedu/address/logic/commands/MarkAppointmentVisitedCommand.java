@@ -20,7 +20,7 @@ public class MarkAppointmentVisitedCommand extends Command {
     public static final String COMMAND_WORD = "markappt";
     public static final String MESSAGE_SUCCESS = "Marked appointment as visited for person %s:\n%s";
     public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "Index is out of bounds.";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an appointment as visited. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an appointment as visited. \n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + PREFIX_NRIC + "[NRIC]'\n"
