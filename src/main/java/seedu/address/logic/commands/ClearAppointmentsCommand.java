@@ -23,11 +23,11 @@ public class ClearAppointmentsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears all appointments of a person identified by NRIC, OR by the index number used in the "
             + "displayed patient list. However, it cannot be both NRIC and index.\n"
-            + "Parameters for first method: "
+            + "Parameter for first method: "
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A\n"
-            + "Parameters for second method: "
+            + "Parameter for second method: "
             + "INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

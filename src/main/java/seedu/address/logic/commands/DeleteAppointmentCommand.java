@@ -30,7 +30,7 @@ public class DeleteAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "From patient %s, successfully deleted appointment:\n%s";
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX = "The appointment "
-            + "index provided is invalid";
+            + "index provided is invalid!";
     public static final String MESSAGE_EMPTY_APPOINTMENT = "Patient has no existing appointments!";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
 
