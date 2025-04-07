@@ -37,10 +37,10 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_FROM + "22-02-2025 11:00 "
             + PREFIX_TO + "22-02-2025 11:30\n";
 
-    public static final String MESSAGE_SUCCESS = "Appointment successfully added to %s";
+    public static final String MESSAGE_SUCCESS = "Appointment successfully added to person with NRIC %s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
     public static final String MESSAGE_APPOINTMENT_BEFORE_BIRTHDAY = "The added appointment starts before the "
-            + "patient's birthday!";
+            + "patient's birthday";
 
     private final Nric nric;
     private final Appointment appointment;

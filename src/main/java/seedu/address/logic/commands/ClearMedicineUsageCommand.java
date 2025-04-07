@@ -37,8 +37,8 @@ public class ClearMedicineUsageCommand extends Command {
     public static final String MESSAGE_SUCCESS_MEDICINES_NRIC = "Medicine usages successfully deleted from %s";
     public static final String MESSAGE_SUCCESS_MEDICINES_ID = "Medicine usages successfully deleted from patient at"
             + " index %d";
-    public static final String MESSAGE_NO_MEDICINE_NRIC = "Patient with NRIC %s has no medicine usages to clear!";
-    public static final String MESSAGE_NO_MEDICINE_ID = "Patient at index %d has no medicine usages to clear!";
+    public static final String MESSAGE_NO_MEDICINE_NRIC = "Patient with NRIC %s has no medicine usages to clear";
+    public static final String MESSAGE_NO_MEDICINE_ID = "Patient at index %d has no medicine usages to clear";
     public static final String MESSAGE_PERSON_NOT_FOUND_NRIC = "Patient with NRIC %s not found";
     public static final String MESSAGE_PERSON_NOT_FOUND_ID = "Patient at index %d not found";
 
