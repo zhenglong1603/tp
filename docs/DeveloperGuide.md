@@ -797,7 +797,7 @@ testers are expected to do more *exploratory* testing.
         * Other fields remain unchanged
           <br><br>
 
-3. Adding a medical report with missing parameters
+3. Adding a medical report with only some fields
    * **Prerequisites:**
         * The patient with that NRIC must be present in the patient list
     * **Test Case:** `addmr ic/S1234567A al/Peanut Allergy ill/Diabetes`

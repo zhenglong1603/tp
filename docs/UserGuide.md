@@ -6,10 +6,10 @@
 
 # Klinix User Guide
 
-Klinix is a desktop app created to **make your daily contact management faster and easier**. 
+Klinix is a desktop app created to **make your daily patient management faster and easier**. 
 
 We know how busy your day can get—answering calls, scheduling appointments, and keeping patient records organized. 
-Klinix combines the speed of typing commands with a simple, user-friendly interface, so you can quickly find, add, or update patient and partner information without the ha
+Klinix combines the speed of typing commands with a simple, user-friendly interface, so you can quickly find, add, or update patient and partner information without the hassle.
 
 **Because the smoother your workflow, the better care you can provide.**
 
@@ -54,7 +54,7 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 ---
 <div style="page-break-after: always;"> </div>
 
-## Quick Start
+# Quick Start
 
 1. **Install Java:**
    Ensure you have Java `17` or above installed on your computer.
@@ -94,10 +94,10 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 5. **Using the Application:**
    - Type a command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
    - Here are some example commands you can try:
-     - `list` : Lists all contacts.
+     - `list` : Lists all patients.
      - `add n/John Doe p/8888888 e/JohnDoe@student.comp.nus.edu.com.sg b/01-01-1990 a/Newgate Prison p/1234567 t/criminal` : Adds a new patient to Klinix.
-     - `delete 3` : Deletes the 3rd contact shown in the current list.
-     - `clear` : Deletes all contacts.
+     - `delete 3` : Deletes the 3rd patient shown in the current list.
+     - `clear` : Deletes all patients.
      - `exit` : Exits the app.
 
 6. **More Information:**
@@ -211,7 +211,7 @@ Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbo
 
 ---
 
-## Features
+# Features
 
 <box type="info" seamless>
 
@@ -282,7 +282,7 @@ Format: `help`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the clinic.
+Deletes all patient entries from the clinic.
 
 Format: `clear`
 
@@ -432,7 +432,7 @@ Examples:
 
 ### Adding a medical report: `addmr`
 
-Add a new medical report to a patient's record.
+Adds a new medical report to a patient's record.
 
 Format: `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]`
 
@@ -453,12 +453,13 @@ Examples:
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
+3. Although some fields are optional, at least one of the medical fields must be provided, else Klinix will show an error message.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Deleting a medical report: `deletemr`
 
-Delete a patient's existing medical report.
+Deletes a patient's existing medical report.
 
 **Format 1:** `deletemr ic/NRIC`
 
@@ -472,7 +473,7 @@ Examples:
 **Format 2:** `deletemr INDEX`
 
 * Deletes the medical report of the patient at the specified `INDEX`
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed patient list.
 * This index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
@@ -487,7 +488,7 @@ Examples:
 
 ### Adding medicine usage records: `addmu`
 
-Add a new medicine usage record as part of a patient’s medical history or medical needs.
+Adds a new medicine usage record as part of a patient’s medical history or medical needs.
 
 Format: `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END`
 
@@ -516,7 +517,7 @@ Klinix will detect such overlapping instances and give an error message when you
 
 ### Deleting medicine usage records: `deletemu`
 
-Delete a particular medicine usage record of a patient's medical history.
+Deletes a particular medicine usage record of a patient's medical history.
 
 Format: `deletemu INDEX ic/NRIC`
 
@@ -534,11 +535,11 @@ Examples:
 
 ### Clearing all medicine usage records: `clearmu`
 
-Clear all medicine usage records of a patient's medical history.
+Deletes all medicine usage records of a patient's medical history.
 
 **Format 1:** `clearmu ic/NRIC`
 
-* Deletes all medicine usages from the person with the specified `NRIC`.
+* Deletes all medicine usages from the patient with the specified `NRIC`.
 * The `NRIC` must be valid.
 
 Examples: `clearmu ic/S1234567A`
@@ -574,7 +575,7 @@ Examples: `findmu Paracetamol Amoxicillin`
 
 ### Adding an appointment: `addappt`
 
-Add a new appointment to the patient.
+Adds a new appointment to the patient.
 
 Format: `addappt ic/NRIC appt/DESCRIPTION from/START to/END`
 
@@ -592,7 +593,7 @@ Example:
 
 ### Deleting an appointment: `deleteappt`
 
-Delete the specified appointment from the patient.
+Deletes the specified appointment from the patient.
 
 Format: `deleteappt INDEX ic/NRIC`
 
@@ -612,7 +613,7 @@ Example:
 
 ### Clearing all appointment records: `clearappt`
 
-Clear all appointments of a specified patient.
+Deletes the list of appointments of a specified patient.
 
 **Format 1:** `clearappt ic/NRIC`
 
@@ -626,17 +627,20 @@ Examples: `clearappt ic/S1234567A`
 Parameters:
 - `INDEX`: The index of the patient shown in the displayed patient list. It **must be a positive integer** 1, 2, 3, ...
 
-Examples: `clearappt 1` clears all appointments of the first patient currently displayed.
+Examples: `clearappt 1` deletes the list of appointments from the first patient displayed.
 
 **Warning:**
 
 1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
 
+**Note:** You can use whichever format you find convenient, but not both at the same time.
+Otherwise, Klinix will give an error.
+
 [Back to Table of Contents](#table-of-contents)
 
 ### Viewing Appointments on specific date: `appton`
 
-Display all appointments starting on a specific date.
+Displays all appointments starting on a specific date.
 
 Format: `appton date/DATE`
 
@@ -652,6 +656,7 @@ Examples: `appton date/22-03-2025`
 Marks an appointment as `visited`.
 
 Format: `markappt INDEX ic/NRIC`
+
 Parameters:
 - `INDEX`: The index of the appointment in the [patient details](#patient-parameters). It must be a positive integer.
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
@@ -667,6 +672,7 @@ Example:
 Unmarks an appointment as `not visited`.
 
 Format: `unmarkappt INDEX ic/NRIC`
+
 Parameters:
 - `INDEX`: The index of the appointment in the [patient details](#patient-parameters). It must be a positive integer.
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
