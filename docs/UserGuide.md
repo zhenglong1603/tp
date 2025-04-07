@@ -121,7 +121,7 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
   - `John` -> parameter
 - All arguments are trimmed before processing:
   - Arguments of prefixes `ic/`, `b/`, `p/`, `e/`, `from/`, `to/`, `/date` are trimmed by removing **ALL WHITE SPACES**
-  - Arguments of remaining prefixes are trimmed following the [Trimming Rules](#input-trimming-rules) below.
+  - Remaining arguments are trimmed based on the [Trimming Rules](#input-trimming-rules) below.
     </box>
 
 **NRIC Consistency**: <br>
