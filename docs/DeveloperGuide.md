@@ -415,6 +415,10 @@ The use cases below are not exhaustive.
   Use case resumes at step 1.
 - 1b. Invalid parameters format → Klinix shows an invalid parameters message.<br>
   Use case resumes at step 1.
+- 1c. Patient with the given NRIC does not exist → Klinix shows an invalid patient message<br>
+  Use case resumes at step 1.
+- 1d. No medical fields provided → Klinix shows an invalid fields message.<br>
+  Use case resumes at step 1.
 
 ---
 
@@ -451,7 +455,7 @@ The use cases below are not exhaustive.
   Use case resumes at step 1.
 - 1b. Invalid index format → Klinix shows an invalid parameter message.<br>
   Use case resumes at step 1.
-- 1c. Index out of bounds → Klinix shows an error message.<br>
+- 1c. Index out of bounds → Klinix shows an invalid index error message.<br>
   Use case resumes at step 1.
 - 1d. No medical report found → Klinix shows Patient does not have medical report error message<br>
   Use case resumes at step 1.
