@@ -224,6 +224,9 @@ public class ParserUtil {
     public static String parseMedicalField(String field) throws ParseException {
         requireNonNull(field);
         String trimmedField = smartTrim(field);
+        if (trimmedField.equalsIgnoreCase("none")) {
+            return "None";
+        }
         if (!MedicalReport.isValidMedicalField(trimmedField)) {
             throw new ParseException(MedicalReport.MESSAGE_CONSTRAINTS);
         }

@@ -23,7 +23,7 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
         - [Viewing patient details](#viewing-patient-details)
         - [Viewing past commands](#viewing-past-commands)
         - [Viewing help](#viewing-help--help)
-        - [Clearing all entries](#clearing-all-entries--clear)
+        - [Clearing all patient entries](#clearing-all-entries--clear)
         - [Exiting the program](#exiting-the-program--exit)
         - [Saving the data](#saving-the-data)
         - [Editing the data file](#editing-the-data-file)
@@ -36,10 +36,11 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
     - **Medical Report Management**
         - [Adding medical report to a patient](#adding-a-medical-report-addmr)
         - [Deleting medical report from a patient](#deleting-a-medical-report-deletemr)
-    - **Medical Usage Management**
-        - [Adding medical report to a patient](#adding-medicine-usage-records-addmu)
-        - [Deleting medical report from a patient](#deleting-medicine-usage-records-deletemu)
-        - [Clearing list of medical usage from a patient](#clearing-all-medicine-usage-records-clearmu)
+    - **Medicine Usage Management**
+        - [Adding a medicine usage record to a patient](#adding-medicine-usage-records-addmu)
+        - [Deleting a medicine usage record from a patient](#deleting-medicine-usage-records-deletemu)
+        - [Clearing all medicine usage records from a patient](#clearing-all-medicine-usage-records-clearmu)
+        - [Finding medicine usage records by medicine names](#finding-medicine-usages-by-medicine-names-findmu)
     - **Appointment Management**
         - [Adding an appointment to a patient](#adding-an-appointment-addappt)
         - [Deleting an appointment from a patient](#deleting-an-appointment-deleteappt)
@@ -112,10 +113,14 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 
 **Notes about parameters:**<br>
 
-Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbol. For example, the command `add n/John`<br>
+- Parameters will be in the form of `p/[PARAMETER]` where p is the parameter symbol. For example, the command `add n/John`<br>
 
-- `n/` -> parameter symbol<br>
-- `John` -> parameter
+  - `n/` -> parameter symbol<br>
+  - `John` -> parameter
+- All arguments are trimmed before processing:
+  - Arguments of prefixes `ic/`, `b/`, `p/`, `e/`, `from/`, `to/`, `/date` are trimmed by removing **ALL WHITE SPACES**
+  - Arguments of remaining prefixes are trimmed following the [Trimming Rules](#input-trimming-rules) below.
+    </box>
 
 **NRIC Consistency**: <br>
 All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
@@ -146,13 +151,13 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 
 ### **Medical Report Parameters**
 
-| Symbol    | Parameter         | Constraints                                                                                                     |
-|-----------|-------------------|-----------------------------------------------------------------------------------------------------------------|
-| **`ic`**  | `PATIENT_NRIC`    | - Same as [Patient NRIC](#Patient-parameters) (9-character alphanumeric).                                       |
-| **`al`**  | `ALLERGIES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
-| **`ill`** | `ILLNESSES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
-| **`sur`** | `SURGERIES`       | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
-| **`imm`** | `IMMUNIZATIONS`   | - Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| Symbol    | Parameter         | Constraints                                                                                                               |
+|-----------|-------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **`ic`**  | `PATIENT_NRIC`    | - Same as [Patient NRIC](#Patient-parameters) (9-character alphanumeric).                                                                       |
+| **`al`**  | `ALLERGIES`       | - Optional. Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`ill`** | `ILLNESSES`       | - Optional. Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`sur`** | `SURGERIES`       | - Optional. Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
+| **`imm`** | `IMMUNIZATIONS`   | - Optional. Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
 
 ---
 
@@ -285,9 +290,9 @@ Format: `help`
 
 [Back to Table of Contents](#table-of-contents)
 
-### Clearing all entries : `clear`
+### Clearing all patient entries : `clear`
 
-Deletes all patient entries from the clinic.
+Deletes all patient entries from Klinix.
 
 Format: `clear`
 
@@ -359,7 +364,13 @@ Deletes the specified patient from Klinix.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** (e.g. 1, 2, 3, …)​
 
-**Format 2:** `delete [ic/NRIC]`
+Examples:
+* `list` followed by `delete 2` deletes the 2nd patient in Klinix.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd patient in Klinix.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+
+**Format 2:** `delete ic/NRIC`
 
 * Deletes the patient with the specified `NRIC`.
 * The `NRIC` must be valid.
@@ -370,13 +381,8 @@ Deletes the specified patient from Klinix.
 Klinix will give an error.
 </Box>
 
-Examples:
-
-* `list` followed by `delete 2` deletes the 2nd patient in Klinix.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+Example:
 * `delete ic/S1234567A` deletes the patient with NRIC S1234567A from Klinix (if exists).
-* `list` followed by `delete 2` deletes the 2nd patient in Klinix.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -386,8 +392,8 @@ Edits an existing patient in Klinix.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [b/BIRTHDATE] [a/ADDRESS] [t/TAG]..​`
 
-parameters:
-* `INDEX`: The index of the patient in the displayed list. It must be a positive integer.
+Parameter:
+* `INDEX`: The index of the patient in the displayed list. 
 
 For detailed constraints on all other parameters (`NAME`, `PHONE`, `EMAIL`, `NRIC`, `BIRTHDATE`, `ADDRESS`, `TAG`), refer to the [Patient Parameters](#patient-parameters) section. These parameters represent the fields of the patient that you can edit.
 
@@ -423,10 +429,10 @@ Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Partial words will be matched e.g. `Ha` will match `Hans`
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -443,20 +449,23 @@ Adds a new medical report to a patient's record.
 
 Format: `addmr ic/NRIC [al/ALLERGIES] [ill/ILLNESSES] [sur/SURGERIES] [imm/IMMUNIZATIONS]`
 
+
 parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#Patient-parameters)).
 - `ALLERGIES`: (Optional) The allergies of the patient. It can be `None` or a string of allergies separated by commas.
 - `ILLNESSES`: (Optional) The illnesses of the patient. It can be `None` or a string of illnesses separated by commas.
 - `SURGERIES`: (Optional) The surgeries of the patient. It can be `None` or a string of surgeries separated by commas.
 - `IMMUNIZATIONS`: (Optional) The immunizations of the patient.
-It can be `None` or a string of immunizations separated by commas.
 
 Examples:
 * `addmr ic/S1234567A al/Penicillin ill/Flu sur/Appendectomy imm/Flu Vaccine`
 * `addmr ic/T0260144G al/None ill/None sur/None imm/None`
 * `addmr ic/S1234567A al/Peanuts, Penicillin ill/None sur/Appendectomy imm/Flu Vaccine, Hepatitis B`
 
+**Note:** To list more than one item in the fields, separate them with commas. Refer to the [Medical Report Parameters](#medical-report-parameters) section for constraints on each parameter.
+
 <Box type="warning" seamless>
+**Warning:**
 
 1. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
 2. If the patient already has a medical report, adding a new one will overwrite the existing one.
@@ -472,20 +481,20 @@ Deletes a patient's existing medical report.
 
 **Format 1:** `deletemr ic/NRIC`
 
+
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#Patient-parameters)).
-
-Examples:
+- 
+Example:
 * `deletemr ic/S1234567A`
 * `deletemr ic/T0260144G`
 
 **Format 2:** `deletemr INDEX`
 
-* Deletes the medical report of the patient at the specified `INDEX`
-* The index refers to the index number shown in the displayed patient list.
-* This index **must be a positive integer** 1, 2, 3, ...
+Parameter:
+- `INDEX`: The index of the patient in the displayed list. It **must be a positive integer** 1, 2, 3, ...
 
-Examples:
+Example:
 * `deletemr 1`
 
 <Box type="warning" seamless>
@@ -497,7 +506,7 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Adding medicine usage records: `addmu`
+### Adding medicine usage record: `addmu`
 
 Adds a new medicine usage record as part of a patient’s medical history or medical needs.
 
@@ -528,7 +537,7 @@ Klinix will detect such overlapping instances and give an error message when you
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting medicine usage records: `deletemu`
+### Deleting medicine usage record: `deletemu`
 
 Deletes a particular medicine usage record of a patient's medical history.
 
@@ -610,11 +619,16 @@ Format: `addappt ic/NRIC appt/DESCRIPTION from/START to/END`
 Example:
 * `addappt ic/S1234567A appt/Check-up from/22-02-2025 10:00 to/23-02-2025 10:15`
 
+<Box type="info" seamless>
+**Note:** Refer to the [Appointment Parameters](#appointment-parameters) for constraints on the parameters.
+</Box>
+
 <Box type="warning" seamless>
+**Warning:**
 
 1. `START` and `END`must be in the format of `dd-MM-yyyy HH:mm`
 2. The patient with the given NRIC must exist, otherwise Klinix will show an error message.
-2. Two appointments from the same patient are overlapped if they have the same name and overlapping duration.
+2. Appointment added must not overlap the duration of existing appointments.
    Klinix will detect such overlapping instances and give an error message when you try to add them.
 
 </Box>
@@ -652,14 +666,14 @@ Deletes the list of appointments of a specified patient.
 Parameters:
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number (Same as [Patient NRIC](#Patient-parameters)).
 
-Examples: `clearappt ic/S1234567A`
+Example: `clearappt ic/S1234567A`
 
 **Format 2:** `clearappt INDEX`
 
-Parameters:
+Parameter:
 - `INDEX`: The index of the patient shown in the displayed patient list. It **must be a positive integer** 1, 2, 3, ...
 
-Examples: `clearappt 1` deletes the list of appointments from the first patient displayed.
+Example: `clearappt 1` deletes the list of appointments from the first patient displayed.
 
 <Box type="warning" seamless>
 
@@ -680,7 +694,7 @@ Displays all appointments starting on a specific date.
 
 Format: `appton date/DATE`
 
-Parameters:
+Parameter:
 - `DATE`: The date to view appointments starting on a specific date. It must be in the format `dd-MM-yyyy`.
 
 Examples: `appton date/22-03-2025`
@@ -694,12 +708,16 @@ Marks an appointment as `visited`.
 Format: `markappt INDEX ic/NRIC`
 
 Parameters:
-- `INDEX`: The index of the appointment in the [patient details](#patient-parameters). It must be a positive integer.
+- `INDEX`: The index of the appointment in the patient. It must be a positive integer.
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
-Example:
+Examples:
 * `markappt 2 ic/S1234567A`
 * `markappt 1 ic/T0260144G`
+
+**Warning:**
+
+1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -710,12 +728,16 @@ Unmarks an appointment as `not visited`.
 Format: `unmarkappt INDEX ic/NRIC`
 
 Parameters:
-- `INDEX`: The index of the appointment in the [patient details](#patient-parameters). It must be a positive integer.
+- `INDEX`: The index of the appointment in the patient details. It must be a positive integer.
 - `NRIC`: The NRIC of the patient. It must be a valid NRIC number.
 
-Example:
+Examples:
 * `unmarkappt 2 ic/S1234567A`
 * `unmarkappt 1 ic/T0260144G`
+
+**Warning:**
+
+1. The patient with the given NRIC, or the given index must exist, otherwise Klinix will show an error message.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -725,8 +747,8 @@ Example:
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install Klinix in the other computer and overwrite its data file with the old data file from your previous Klinix home folder.<br>
-**Q**: How to edit an appointment since there is no command for it?<br>
-**A**: We suggest deleting the existing appointment with `deleteappt` command first before using `addappt` command to create a new appointment with the edited details.
+**Q**: How to edit an appointment or medical usage since there is no command for it?<br>
+**A**: We suggest deleting the existing appointment with `deleteappt` command first before using `addappt` command to create a new appointment with the edited details. The same solution applies for editing of medical usage.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -763,7 +785,7 @@ Action     | Format, Examples
 **Add Medicine Usage** | `addmu ic/NRIC n/MEDICINE_NAME dos/DOSAGE from/START to/END` <br> e.g. `addmu ic/T0260144G n/Paracetamol dos/Two 500mg tablets, 4 times in 24 hours from/23-02-2025 to/25-02-2025`
 **Clear**  | `clear`
 **Clear Appointments** | Format 1: `clearappt ic/NRIC` <br> e.g. `clearappt ic/S1234567A` <br> Format 2: `clearappt INDEX` <br> e.g. `clearappt 2`
-**Clear Medicine Usage** | Format 1: `clearmu ic/NRIC` <br> e.g. `clearmu ic/S1234567A` <br> Format 2: `clearmu INDEX` <br> e.g. `clearmu 1`
+**Clear Medicine Usages** | Format 1: `clearmu ic/NRIC` <br> e.g. `clearmu ic/S1234567A` <br> Format 2: `clearmu INDEX` <br> e.g. `clearmu 1`
 **Delete** | Format 1: `delete INDEX`<br> e.g. `delete 3` <br> Format 2: `delete ic/NRIC` <br> e.g. `delete ic/S1234567A`
 **Delete Appointment** | `deleteappt INDEX ic/NRIC` <br> e.g. `deleteappt 3 ic/S1234567A`
 **Delete Medicine Usage** | `deletemu INDEX ic/NRIC` <br> e.g. `deletemu 1 ic/S1234568B`
