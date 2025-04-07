@@ -465,12 +465,15 @@ Examples:
 * `addmr ic/T0260144G al/None ill/None sur/None imm/None`
 * `addmr ic/S1234567A al/Peanuts, Penicillin ill/None sur/Appendectomy imm/Flu Vaccine, Hepatitis B`
 
-**Note:** To list more than one item in the fields, separate them with commas. Refer to the [Medical Report Parameters](#medical-report-parameters) section for constraints on each parameter.
+**Note:** To list more than one item in the fields, separate them with commas. If a field is not applicable,
+you can leave it empty or set to `None`. 
+Refer to the [Medical Report Parameters](#medical-report-parameters) section for constraints on each parameter.
 
 <Box type="warning" seamless>
 
 * The patient with the given NRIC must exist, otherwise Klinix will show an error message. 
 * If the patient already has a medical report, adding a new one will overwrite the existing one. 
+* Fields that are blank will be set to `None` by default.
 * Although some fields are optional, at least one of the medical fields must be provided, else Klinix will show an error message.
 
 </Box>
