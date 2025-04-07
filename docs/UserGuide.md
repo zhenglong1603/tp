@@ -110,6 +110,8 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"> </div>
+
 # Input parameters
 
 <box type="info" seamless>
@@ -163,6 +165,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 | **`imm`** | `IMMUNIZATIONS`   | - Optional. Must contain at least one letter and does not include special symbols other than spaces, commas, and hyphens. |
 
 ---
+<div style="page-break-after: always;"> </div>
 
 ### **Medicine Usage Parameters**
 
@@ -223,6 +226,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"> </div>
 
 # Features
 
