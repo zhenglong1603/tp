@@ -16,6 +16,8 @@
 
 This project is based on the AddressBook-Level 3 project created by the [SE-EDU initiative](https://se-education.org/)
 
+GitHub Copilot was used for code autocompletion during Klinix's development.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
