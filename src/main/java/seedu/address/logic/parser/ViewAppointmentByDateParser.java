@@ -22,6 +22,8 @@ public class ViewAppointmentByDateParser implements Parser<ViewAppointmentByDate
     public ViewAppointmentByDateCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE);
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE);
+
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
