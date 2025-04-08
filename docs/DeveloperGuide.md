@@ -733,14 +733,15 @@ testers are expected to do more *exploratory* testing.
 
    1a. Download the jar file and copy into an empty folder
 
-   1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimal.
+   1b. Double-click the jar file<br>
+   * **Expected:** Shows the GUI with a set of sample contacts. The window size may not be optimal.
 
 2. Saving window preferences
 
    2a. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    2b. Re-launch the App by double-clicking the jar file.<br>
-       Expected: The most recent window size and location are retained.
+    * **Expected:** The most recent window size and location are retained.
 
 ### Adding a Patient
 
