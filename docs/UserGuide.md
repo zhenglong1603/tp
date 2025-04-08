@@ -93,7 +93,7 @@ After a few seconds, a GUI will appear. Note that when you first start the app, 
    - Type a command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
    - Here are some example commands you can try:
      - `list` : Lists all patients.
-     - `add n/John Doe p/8888888 e/JohnDoe@student.comp.nus.edu.com.sg b/01-01-1990 a/Newgate Prison p/1234567 t/criminal` : Adds a new patient to Klinix.
+     - `add n/John Doe p/98765432 e/johnd@example.com ic/S0123456A b/10-10-2000 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` : Adds a new patient to Klinix.
      - `delete 3` : Deletes the 3rd patient shown in the current list.
      - `clear` : Deletes all patients.
      - `exit` : Exits the app.
