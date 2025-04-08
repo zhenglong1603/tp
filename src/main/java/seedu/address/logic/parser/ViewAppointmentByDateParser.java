@@ -15,6 +15,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ViewAppointmentByDateParser implements Parser<ViewAppointmentByDateCommand> {
 
+    private static final String MESSAGE_INVALID_DATE_FORMAT =
+            "Please enter a valid date. The correct format is dd-MM-yyyy";
+
     @Override
     public ViewAppointmentByDateCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE);
@@ -29,7 +32,7 @@ public class ViewAppointmentByDateParser implements Parser<ViewAppointmentByDate
         try {
             date = LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(), DateUtil.getDateFormatter());
         } catch (Exception e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT,
                     ViewAppointmentByDateCommand.MESSAGE_USAGE));
         }
 
