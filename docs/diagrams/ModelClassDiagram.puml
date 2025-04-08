@@ -15,7 +15,7 @@ Class UserPrefs
 Class UniquePersonList
 Class Person
 
-Class I
+Class I #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
@@ -33,7 +33,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 Klinix *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 
-I --up> ModelManager
+I -[hidden]up-> ModelManager
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
