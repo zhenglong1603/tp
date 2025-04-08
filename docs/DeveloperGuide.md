@@ -3,6 +3,7 @@
   title: "Developer Guide"
   pageNav: 3
 ---
+<img src="images/Klinix_logo.png" alt="klinix-logo" style="pointer-events: none; height: 120px; width: auto; display: block; margin: 0 auto;">
 
 # **Klinix Developer Guide**
 
