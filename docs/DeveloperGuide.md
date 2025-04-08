@@ -1217,7 +1217,7 @@ testers are expected to do more *exploratory* testing.
           <br><br>
     * **Test Case:** `clearappt 1`
     * **Expected:** The first patient in the list is updated with the following fields:
-        * ALl existing appointments cleared.
+        * All existing appointments cleared.
         * Other fields remain unchanged.
         * Klinix will return a confirmation message indicating appointments have been cleared.
           <br><br>
