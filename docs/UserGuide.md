@@ -11,7 +11,7 @@ Klinix is a **desktop app targeted towards general practitioners (GPs)** to make
 
 Klinix serves as a digital bridge for general practitioners in smaller clinics, streamlining their administrative tasks with a focus on patient management and tracking patient visit and medical histories.<br>
 
-Klinix combines the speed of typing commands with a simple, user-friendly interface, so that they can quickly find and update patient information without a hassle.
+Klinix combines the speed of typing commands with a simple, user-friendly interface so that they can quickly find and update patient information without a hassle.
 
 **Because the smoother your workflow, the better care you can provide.**
 
@@ -126,10 +126,6 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 **Date Formats**:<br>
     - `dd-MM-yyyy` for birthdates and medicine dates.<br>
     - `dd-MM-yyyy HH:mm` for appointments.
-
-**Error Handling**: You can refer to the messages prompted when invalid parameters are entered (e.g. "Invalid NRIC format").
-![img.png](images/ErrorHandling.png)  
-</box>
 
 ---
 
@@ -251,7 +247,7 @@ All NRIC fields (`ic`) follow the same 9-character alphanumeric rule.<br>
 [Back to Table of Contents](#table-of-contents)
 
 ### Viewing Patient details
-You can view the details of a Patient by clicking on their name in the displayed list. This will display all the details of the selected patient in the `details` window.
+You can view the details of a patient by clicking on their name in the displayed list. This will display all the details of the selected patient in the `details` window.
 ![patient details](images/ViewPatientDetailsDemonstration.jpg)
 
 [Back to Table of Contents](#table-of-contents)
