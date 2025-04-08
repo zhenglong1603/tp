@@ -46,7 +46,7 @@ Klinix combines the speed of typing commands with a simple, user-friendly interf
     - **Appointment Management**
         - [Adding an Appointment to a Patient](#adding-an-appointment-addappt)
         - [Deleting an Appointment from a Patient](#deleting-an-appointment-deleteappt)
-        - [Clearing list of Appointments from a Patient](#clearing-all-appointments-clearappt)
+        - [Clearing all Appointments from a Patient](#clearing-all-appointments-clearappt)
         - [Marking Appointment as visited](#marking-an-appointment-markappt)
         - [Unmarking Appointment as not visited](#unmarking-an-appointment-unmarkappt)
         - [Viewing Appointments that start on specific date](#viewing-appointments-that-start-on-specific-date-appton)
@@ -780,9 +780,6 @@ Examples: `appton date/22-03-2025`
 
 --------------------------------------------------------------------------------------------------------------------
 
-
-<div style="page-break-after: always;"> </div>
-
 # Glossary
 
 1. **Command Line Interface (CLI)** - A user interface where individuals interact with a computer or software by typing text-based commands. Instead of using icons or buttons, users enter specific instructions in a terminal or command prompt to execute tasks.
@@ -798,6 +795,8 @@ Examples: `appton date/22-03-2025`
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"> </div>
 
 # Known issues
 
