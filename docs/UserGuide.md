@@ -614,7 +614,7 @@ Example: `findmu Paracetamol Amoxicillin`
 
 <Box type="info" seamless>
 
-**Note:** `findmu` supports partial match similar to the partial search in the [find command](#Finding-patients-by-keywords-find).
+**Note:** `findmu` supports partial match similar to the partial search in the [find command](#finding-patients-by-keywords-find).
 
 </Box>
 
