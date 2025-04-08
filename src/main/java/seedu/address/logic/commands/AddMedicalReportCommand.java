@@ -35,7 +35,7 @@ public class AddMedicalReportCommand extends Command {
             + PREFIX_SURGERY + "Appendectomy "
             + PREFIX_IMMUNIZATION + "Flu";
 
-    public static final String MESSAGE_SUCCESS = "Medical report successfully added to %s";
+    public static final String MESSAGE_SUCCESS = "Medical report successfully added to patient with NRIC %s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Patient with NRIC %s not found";
 
     private final Nric nric;

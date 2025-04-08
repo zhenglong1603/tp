@@ -31,13 +31,15 @@ public class ClearAppointmentsCommand extends Command {
             + "INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS_APPOINTMENT_NRIC = "Appointment successfully deleted from %s";
+    public static final String MESSAGE_SUCCESS_APPOINTMENT_NRIC = "Appointment successfully deleted from patient with"
+            + " NRIC %s";
     public static final String MESSAGE_SUCCESS_APPOINTMENT_ID = "Appointment successfully deleted from patient"
             + " at index %d";
-    public static final String MESSAGE_SUCCESS_APPOINTMENTS_NRIC = "Appointments successfully deleted from %s";
+    public static final String MESSAGE_SUCCESS_APPOINTMENTS_NRIC = "Appointments successfully deleted from patient with"
+            + " NRIC %s";
     public static final String MESSAGE_SUCCESS_APPOINTMENTS_ID = "Appointments successfully deleted from patient"
             + " at index %d";
-    public static final String MESSAGE_NO_APPOINTMENT = "Patient has no existing appointments!";
+    public static final String MESSAGE_NO_APPOINTMENT = "Patient has no existing appointments";
     public static final String MESSAGE_PERSON_NOT_FOUND_NRIC = "Patient with NRIC %s not found";
     public static final String MESSAGE_PERSON_NOT_FOUND_ID = "Patient at index %d not found";
 

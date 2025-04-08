@@ -36,7 +36,8 @@ public class DeleteMedicalReportCommand extends Command {
             + " at index %d";
     public static final String MESSAGE_PERSON_NOT_FOUND_NRIC = "Patient with NRIC %s not found";
     public static final String MESSAGE_PERSON_NOT_FOUND_ID = "Patient at index %d not found";
-    public static final String MESSAGE_MEDICAL_REPORT_NOT_FOUND_NRIC = "Medical report not found for patient with %s";
+    public static final String MESSAGE_MEDICAL_REPORT_NOT_FOUND_NRIC = "Medical report not found for patient with "
+            + "NRIC %s";
     public static final String MESSAGE_MEDICAL_REPORT_NOT_FOUND_ID = "Medical report not found for patient at index %d";
 
     private final Nric nric;

@@ -12,6 +12,7 @@ import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Nric;
 
+// The test cases are adapted from a conversation with chatGPT
 class DeleteAppointmentCommandParserTest {
 
     private DeleteAppointmentCommandParser parser;

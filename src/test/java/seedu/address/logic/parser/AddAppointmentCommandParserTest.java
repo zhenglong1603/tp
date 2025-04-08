@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Nric;
 
+// The test cases are adapted from a conversation with chatGPT
 public class AddAppointmentCommandParserTest {
     private final AddAppointmentCommandParser parser = new AddAppointmentCommandParser();
 

@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// The test cases are adapted from a conversation with chatGPT
 public class AppointmentTest {
 
     private Appointment appointment;
